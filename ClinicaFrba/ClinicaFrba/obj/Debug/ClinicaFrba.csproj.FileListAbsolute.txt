@@ -17,3 +17,6 @@ E:\Noe\Facu\Cursando\Gestion De Datos\Archivos TP\2do Cuatri\Aplicacion Desktop\
 E:\Noe\Facu\Cursando\Gestion De Datos\Archivos TP\2do Cuatri\Aplicacion Desktop\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.ElegirRol.resources
 E:\Noe\Facu\Cursando\Gestion De Datos\Archivos TP\2do Cuatri\Aplicacion Desktop\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Login.resources
 E:\Noe\Facu\Cursando\Gestion De Datos\Archivos TP\2do Cuatri\Aplicacion Desktop\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Home.resources
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.exe.config
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.exe
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.pdb

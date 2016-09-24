@@ -136,6 +136,9 @@
     <Compile Include="Registro Resultado\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="SQLDAO\conexion.cs" />
+    <Compile Include="SQLDAO\configuracion.cs" />
+    <Compile Include="SQLDAO\DBSQL.cs" />
     <EmbeddedResource Include="ElegirRol.resx">
       <DependentUpon>ElegirRol.cs</DependentUpon>
     </EmbeddedResource>
