@@ -20,3 +20,11 @@ E:\Noe\Facu\Cursando\Gestion De Datos\Archivos TP\2do Cuatri\Aplicacion Desktop\
 C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.exe.config
 C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.exe
 C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.pdb
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.exe
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.pdb
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.csprojResolveAssemblyReference.cache
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.ElegirRol.resources
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Home.resources
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Login.resources
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Properties.Resources.resources
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.csproj.GenerateResource.Cache

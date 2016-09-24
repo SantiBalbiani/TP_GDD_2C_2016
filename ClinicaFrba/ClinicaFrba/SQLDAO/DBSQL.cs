@@ -10,7 +10,7 @@ namespace ClinicaFrba.SQL_DAO
     using System.Data;
     using System.Configuration;
 
-    class DBSql
+    public class DBSql
     {
         static public DataTable Query(String query)
         {

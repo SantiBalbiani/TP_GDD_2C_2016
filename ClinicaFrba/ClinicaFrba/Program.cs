@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
+using ClinicaFrba.SQL_DAO;
 
 namespace ClinicaFrba
 {
@@ -16,7 +20,19 @@ namespace ClinicaFrba
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            DataTable dt = new DataTable();
+            dt = DBSql.Query("select * from gd_esquema.Maestra");
+            foreach (DataRow dataRow in dt.Rows)
+            {
+                foreach (var item in dataRow.ItemArray)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+
+         
             Application.Run(new Login());
+            
         }
     }
 }
