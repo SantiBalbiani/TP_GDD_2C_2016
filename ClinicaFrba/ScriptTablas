@@ -1,0 +1,160 @@
+use GD2C2016
+GO
+Create schema SELECT_GROUP
+GO
+
+create table SELECT_GROUP.Direccion(
+	idDireccion numeric(6,0) identity(1,1) not null,
+	direccion nvarchar(255),
+	primary key(idDireccion)
+	)
+
+create table SELECT_GROUP.Afiliado(
+	idAfiliado numeric(6,0) identity(1,1) not null,
+	nombre nvarchar(255),
+	apellido nvarchar(255),
+	tipoDni nvarchar(45),
+	numeroDni numeric(18,0),
+	telefono numeric(18,0),
+	mail nvarchar(255),
+	fechaNac datetime,
+	sexo nvarchar(45),
+	estadoCivil nvarchar(45),
+	direccion numeric(6,0),
+	familiares nvarchar(45),
+	username numeric(6,0),
+	plan_idPlan numeric(6,0),
+	direccion_idDireccion numeric(6,0),
+	primary key(idAfiliado)
+	)
+create table SELECT_GROUP.Profesional(
+	idProfesional numeric(6,0) identity(1,1) not null,
+	nombre nvarchar(255),
+	apellido nvarchar(255),
+	telefono numeric(18,0),
+	mail nvarchar(255),
+	fechaNac datetime,
+	sexo nvarchar(45),
+	matricula nvarchar(45),
+	profesionalCol nvarchar(45),
+	username numeric(6,0),
+	direccion_idDireccion numeric(6,0)
+	primary key(idProfesional)
+)
+create table SELECT_GROUP.Usuario(
+	username numeric(6,0) identity(1,1) not null,
+	nombreUsuario nvarchar(45),
+	idUsuario numeric(6,0), /*Esta estaria de mas, ya que el id es la primary key */
+	intentosFallidos nvarchar(45),
+	habilitado bit,
+	afiliado_idAfiliado numeric(6,0)
+	primary key (username)
+)
+create table SELECT_GROUP.UsuarioPorRol(
+	rol_idRol numeric(6,0),
+	usuario_username numeric(6,0)
+)
+create table SELECT_GROUP.Rol(
+	idRol numeric(6,0) identity(1,1) not null,
+	nombre nvarchar(45),
+	habilitado bit,
+	primary key (idRol)
+)
+create table SELECT_GROUP.Bono_Por_Afiliado(
+	numero_Consulta numeric(6,0),
+	afiliado_idAfiliado numeric(6,0),
+	afiliado_usuario_username numeric(6,0),
+	bono_idBono numeric(6,0),
+	estado bit,
+	diagnostico nvarchar(45)
+)
+create table SELECT_GROUP.Bono( 
+	idBono numeric(6,0) identity(1,1) not null,
+	primary key (idBono)
+)
+create table SELECT_GROUP.Cancelacion(
+	idCancelacion numeric(6,0) identity(1,1) not null,
+	motivo nvarchar(45),
+	tipo_Cancelacion_idTipoCanc numeric(6,0),
+	bono_idBono numeric(6,0),
+	primary key (idCancelacion)
+)
+create table SELECT_GROUP.Tipo_Cancelacion(
+	idTipoCanc numeric(6,0),
+	descripcion nvarchar(45),
+	primary key (idTipoCanc)
+)
+create table SELECT_GROUP.BonoPorPlan(
+	bono_idBono numeric(6,0),
+	plan_idPlan numeric(6,0),
+	costo numeric(18,0)
+)
+create table SELECT_GROUP.Plann(
+	idPlan numeric(6,0) identity(1,1) not null,
+	descripcion nvarchar(45),
+	primary key(idPlan)
+)
+create table SELECT_GROUP.Plan_Historico(
+	idPlanHistorico numeric(6,0) identity(1,1) not null,
+	motivoCambio nvarchar(45),
+	fechaCambio datetime,
+	plan_HistoticoCol nvarchar(45),
+	afiliado_idAfiliado numeric(6,0),
+	plan_idPlan numeric(6,0),
+	primary key(idPlanHistorico)
+)
+create table SELECT_GROUP.Familiar(
+	idFamiliar numeric(6,0) identity(1,1) not null,
+	familiarCol nvarchar(45),
+	primary key (idFamiliar)
+)
+create table SELECT_GROUP.ProfesionalPorEspecialidad(
+	especialidad_idEspecialidad numeric(6,0) identity(1,1) not null,
+	profesional_idProfesional numeric(6,0)
+)
+create table SELECT_GROUP.Especialidad(
+	idEspecialidad numeric(6,0) identity(1,1) not null,
+	tipoEspecialidad_idTipoEspecialidad numeric(6,0),
+	descripcion nvarchar(45),
+	tipo nvarchar(45),
+	primary key (idEspecialidad)
+)
+create table SELECT_GROUP.TipoEspecialidad(
+	idTipo numeric(6,0) identity(1,1) not null,
+	descripcion nvarchar(45),
+	primary key (idTipo)
+)
+create table SELECT_GROUP.Agenda(
+	idAgenda numeric(6,0) identity(1,1) not null,
+	profesionalPorEspecialidad_Especialidad numeric(6,0),
+	profesionalPorEspecialidad_Profesional numeric(6,0),
+	agenda_copy1_idAgenda numeric(6,0),
+	agenda_copy1_fecha datetime,
+	diaDisponible int,
+	especialidad int,
+	horaDesde int,
+	horaHasta nvarchar(45),
+	primary key (idAgenda)
+)
+create table SELECT_GROUP.Agenda_Detalle(
+	idAgenda numeric(6,0) identity(1,1) not null,
+	fecha_Hora_Turno datetime,
+	primary key (idAgenda)
+	)
+create table SELECT_GROUP.Turno(
+	idTurno numeric(6,0) identity(1,1) not null,
+	agenda_Detalle_idAgenda numeric(6,0),
+	agenda_Detalle_Fecha datetime,
+	afiliado_idAfiliado numeric(6,0),
+	afiliado_plan_idPlan numeric(6,0),
+	primary key (idTurno)
+)
+create table SELECT_GROUP.FuncionalidadPorRol(
+	rol_idRol numeric(6,0),
+	funcionalidad_idFuncionalidad numeric(6,0)
+	)
+create table SELECT_GROUP.Funcionalidad(
+	idFuncionalidad numeric(6,0) identity(1,1) not null,
+	descripcion nvarchar(45),
+	primary key (idFuncionalidad)
+)
