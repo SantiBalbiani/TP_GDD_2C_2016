@@ -44,10 +44,8 @@ create table SELECT_GROUP.Profesional(
 create table SELECT_GROUP.Usuario(
 	username numeric(6,0) identity(1,1) not null,
 	nombreUsuario nvarchar(45),
-	idUsuario numeric(6,0), /*Esta estaria de mas, ya que el id es la primary key */
 	intentosFallidos nvarchar(45),
 	habilitado bit,
-	afiliado_idAfiliado numeric(6,0)
 	primary key (username)
 )
 create table SELECT_GROUP.UsuarioPorRol(
@@ -70,6 +68,7 @@ create table SELECT_GROUP.Bono_Por_Afiliado(
 )
 create table SELECT_GROUP.Bono( 
 	idBono numeric(6,0) identity(1,1) not null,
+	estado bit,
 	primary key (idBono)
 )
 create table SELECT_GROUP.Cancelacion(
@@ -92,6 +91,7 @@ create table SELECT_GROUP.BonoPorPlan(
 create table SELECT_GROUP.Plann(
 	idPlan numeric(6,0) identity(1,1) not null,
 	descripcion nvarchar(45),
+	precioDelBono int,
 	primary key(idPlan)
 )
 create table SELECT_GROUP.Plan_Historico(
@@ -131,7 +131,6 @@ create table SELECT_GROUP.Agenda(
 	agenda_copy1_idAgenda numeric(6,0),
 	agenda_copy1_fecha datetime,
 	diaDisponible int,
-	especialidad int,
 	horaDesde int,
 	horaHasta nvarchar(45),
 	primary key (idAgenda)
@@ -146,7 +145,8 @@ create table SELECT_GROUP.Turno(
 	agenda_Detalle_idAgenda numeric(6,0),
 	agenda_Detalle_Fecha datetime,
 	afiliado_idAfiliado numeric(6,0),
-	afiliado_plan_idPlan numeric(6,0),
+	cancelacion_idCancelacion numeric(6,0),
+	estado bit,
 	primary key (idTurno)
 )
 create table SELECT_GROUP.FuncionalidadPorRol(
@@ -157,4 +157,11 @@ create table SELECT_GROUP.Funcionalidad(
 	idFuncionalidad numeric(6,0) identity(1,1) not null,
 	descripcion nvarchar(45),
 	primary key (idFuncionalidad)
+)
+
+create table SELECT_GROUP.Compras(
+	idCompra numeric(6,0),
+	fecha datetime,
+	unidades int,
+	monto int
 )
