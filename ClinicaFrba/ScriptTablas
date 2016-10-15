@@ -3,14 +3,8 @@ GO
 Create schema SELECT_GROUP
 GO
 
-create table SELECT_GROUP.Direccion(
-	idDireccion numeric(6,0) identity(1,1) not null,
-	direccion nvarchar(255),
-	primary key(idDireccion)
-	)
-
 create table SELECT_GROUP.Afiliado(
-	idAfiliado numeric(6,0) identity(1,1) not null,
+	idAfiliado numeric(7,0) identity(1,1) not null,
 	nombre nvarchar(255),
 	apellido nvarchar(255),
 	tipoDni nvarchar(45),
@@ -20,11 +14,10 @@ create table SELECT_GROUP.Afiliado(
 	fechaNac datetime,
 	sexo nvarchar(45),
 	estadoCivil nvarchar(45),
-	direccion numeric(6,0),
+	direccion nvarchar(255),
 	familiares nvarchar(45),
 	username numeric(6,0),
 	plan_idPlan numeric(6,0),
-	direccion_idDireccion numeric(6,0),
 	primary key(idAfiliado)
 	)
 create table SELECT_GROUP.Profesional(
@@ -32,13 +25,13 @@ create table SELECT_GROUP.Profesional(
 	nombre nvarchar(255),
 	apellido nvarchar(255),
 	telefono numeric(18,0),
+	direccion nvarchar(255),
 	mail nvarchar(255),
 	fechaNac datetime,
 	sexo nvarchar(45),
 	matricula nvarchar(45),
 	profesionalCol nvarchar(45),
 	username numeric(6,0),
-	direccion_idDireccion numeric(6,0)
 	primary key(idProfesional)
 )
 create table SELECT_GROUP.Usuario(
@@ -55,8 +48,14 @@ create table SELECT_GROUP.UsuarioPorRol(
 create table SELECT_GROUP.Rol(
 	idRol numeric(6,0) identity(1,1) not null,
 	nombre nvarchar(45),
-	habilitado bit,
 	primary key (idRol)
+)
+create table SELECT_GROUP.Diagnostico(
+	idDiagnostico numeric(6,0) not null,
+	sintomas nvarchar(255),
+	enfermedades nvarchar(255),
+	fechaYHora datetime,
+	primary key (idDiagnostico)
 )
 create table SELECT_GROUP.Bono_Por_Afiliado(
 	numero_Consulta numeric(6,0),
@@ -64,10 +63,11 @@ create table SELECT_GROUP.Bono_Por_Afiliado(
 	afiliado_usuario_username numeric(6,0),
 	bono_idBono numeric(6,0),
 	estado bit,
-	diagnostico nvarchar(45)
 )
 create table SELECT_GROUP.Bono( 
 	idBono numeric(6,0) identity(1,1) not null,
+	idCompra numeric(6,0),
+	idPlan numeric(6,0),
 	estado bit,
 	primary key (idBono)
 )
@@ -83,31 +83,22 @@ create table SELECT_GROUP.Tipo_Cancelacion(
 	descripcion nvarchar(45),
 	primary key (idTipoCanc)
 )
-create table SELECT_GROUP.BonoPorPlan(
-	bono_idBono numeric(6,0),
-	plan_idPlan numeric(6,0),
-	costo numeric(18,0)
-)
+
 create table SELECT_GROUP.Plann(
 	idPlan numeric(6,0) identity(1,1) not null,
 	descripcion nvarchar(45),
-	precioDelBono int,
+	precioDelBono money,
 	primary key(idPlan)
 )
 create table SELECT_GROUP.Plan_Historico(
-	idPlanHistorico numeric(6,0) identity(1,1) not null,
+	idPlanNuevo numeric(6,0) identity(1,1) not null,
 	motivoCambio nvarchar(45),
 	fechaCambio datetime,
-	plan_HistoticoCol nvarchar(45),
+	planAnterior numeric(6,0),
 	afiliado_idAfiliado numeric(6,0),
-	plan_idPlan numeric(6,0),
-	primary key(idPlanHistorico)
+	primary key(idPlanNuevo)
 )
-create table SELECT_GROUP.Familiar(
-	idFamiliar numeric(6,0) identity(1,1) not null,
-	familiarCol nvarchar(45),
-	primary key (idFamiliar)
-)
+
 create table SELECT_GROUP.ProfesionalPorEspecialidad(
 	especialidad_idEspecialidad numeric(6,0) identity(1,1) not null,
 	profesional_idProfesional numeric(6,0)
@@ -126,10 +117,8 @@ create table SELECT_GROUP.TipoEspecialidad(
 )
 create table SELECT_GROUP.Agenda(
 	idAgenda numeric(6,0) identity(1,1) not null,
-	profesionalPorEspecialidad_Especialidad numeric(6,0),
-	profesionalPorEspecialidad_Profesional numeric(6,0),
-	agenda_copy1_idAgenda numeric(6,0),
-	agenda_copy1_fecha datetime,
+	especialidad_IdEspecialidad numeric(6,0),
+	profesional_IdProfesional numeric(6,0),
 	diaDisponible int,
 	horaDesde int,
 	horaHasta nvarchar(45),
@@ -142,13 +131,21 @@ create table SELECT_GROUP.Agenda_Detalle(
 	)
 create table SELECT_GROUP.Turno(
 	idTurno numeric(6,0) identity(1,1) not null,
-	agenda_Detalle_idAgenda numeric(6,0),
+	idAgenda_Detalle numeric(6,0),
 	agenda_Detalle_Fecha datetime,
 	afiliado_idAfiliado numeric(6,0),
 	cancelacion_idCancelacion numeric(6,0),
-	estado bit,
+	estado int,
+	idDiagnostico numeric(6,0),
 	primary key (idTurno)
 )
+create table SELECT_GROUP.EstadoTurno(
+	idEstadoTurno int,
+	descripcion nvarchar(45),
+	primary key (idEstadoTurno)
+)
+
+
 create table SELECT_GROUP.FuncionalidadPorRol(
 	rol_idRol numeric(6,0),
 	funcionalidad_idFuncionalidad numeric(6,0)
@@ -158,10 +155,9 @@ create table SELECT_GROUP.Funcionalidad(
 	descripcion nvarchar(45),
 	primary key (idFuncionalidad)
 )
-
 create table SELECT_GROUP.Compras(
 	idCompra numeric(6,0),
 	fecha datetime,
 	unidades int,
-	monto int
+	monto money
 )
