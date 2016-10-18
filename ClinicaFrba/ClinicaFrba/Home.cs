@@ -21,5 +21,13 @@ namespace ClinicaFrba
         {
 
         }
+
+        private void btnAlta_Click(object sender, EventArgs e)
+        {
+            //this.Hide();
+            ClinicaFrba.Abm_Afiliado.frmAltaAfiliado frm = new Abm_Afiliado.frmAltaAfiliado();
+            frm.Show();
+            
+        }
     }
 }

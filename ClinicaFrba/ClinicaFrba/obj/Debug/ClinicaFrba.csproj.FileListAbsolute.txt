@@ -28,3 +28,19 @@ C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\D
 C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Login.resources
 C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Properties.Resources.resources
 C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.csproj.GenerateResource.Cache
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.exe.config
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.exe
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.pdb
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Abm_Afiliado.AltaAfiliado.resources
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Abm_Afiliado.AltaPareja.resources
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.ElegirRol.resources
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Home.resources
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Login.resources
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Properties.Resources.resources
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.csproj.GenerateResource.Cache
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.exe
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.pdb
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.exe.manifest
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.application
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.exe.manifest
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.application

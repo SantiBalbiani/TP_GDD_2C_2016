@@ -40,21 +40,27 @@
             this.txtUsuario.Enabled = false;
             this.txtUsuario.Location = new System.Drawing.Point(74, 27);
             this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.ReadOnly = true;
             this.txtUsuario.Size = new System.Drawing.Size(166, 20);
             this.txtUsuario.TabIndex = 5;
             // 
             // comboRoles
             // 
             this.comboRoles.FormattingEnabled = true;
+            this.comboRoles.Items.AddRange(new object[] {
+            "Afiliado",
+            "Profesional",
+            "Administrativo"});
             this.comboRoles.Location = new System.Drawing.Point(74, 53);
             this.comboRoles.Name = "comboRoles";
             this.comboRoles.Size = new System.Drawing.Size(166, 21);
             this.comboRoles.TabIndex = 10;
+ //           this.comboRoles.SelectedIndexChanged += new System.EventHandler(this.comboRoles_SelectedIndexChanged);
             // 
             // btnContinuar
             // 
             this.btnContinuar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnContinuar.Location = new System.Drawing.Point(15, 111);
+            this.btnContinuar.Location = new System.Drawing.Point(149, 80);
             this.btnContinuar.Name = "btnContinuar";
             this.btnContinuar.Size = new System.Drawing.Size(91, 23);
             this.btnContinuar.TabIndex = 11;
@@ -79,13 +85,12 @@
             this.lblRol.Size = new System.Drawing.Size(23, 13);
             this.lblRol.TabIndex = 13;
             this.lblRol.Text = "Rol";
-            this.lblRol.Click += new System.EventHandler(this.lblRol_Click);
             // 
             // ElegirRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(277, 146);
+            this.ClientSize = new System.Drawing.Size(277, 120);
             this.Controls.Add(this.lblRol);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnContinuar);

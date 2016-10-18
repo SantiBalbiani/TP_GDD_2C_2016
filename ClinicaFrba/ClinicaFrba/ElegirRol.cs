@@ -17,21 +17,44 @@ namespace ClinicaFrba
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblRol_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        int rolElegido;
+       
         private void btnContinuar_Click(object sender, EventArgs e)
         {
-            Home frm = new Home();
-            frm.Show();
-            this.Close();
-        }
+          //  if (this.comboRoles.SelectedIndex == -1)//Si no selecciono ROL
+          //  {
+                //No puedo seguir, mensaje avisando que debe seleccionar un rol
+               // MsgBox("An exception occurred:");
+          //      MessageBox.Show("Debe seleccionar un ROL para poder continuar");
+          //  }
+         //   else
+          //  {
+                rolElegido = this.comboRoles.SelectedIndex;//el index guarda un 0,1,2 en la variable
+          //      MessageBox.Show("Rol Nro " + rolElegido);
+
+                switch (rolElegido)
+                {
+                    case 0:
+                    //Ejemplo:
+                        Home frm = new Home();
+                        frm.Show();
+                        this.Close();
+                        break;
+                    case 1:
+                        //hacer algo
+                        break;
+                    case 2:
+                        //hacer algo
+                        break;
+                    default:
+                        MessageBox.Show("Debe Seleccionar un Rol para poder continuar");
+                        break;
+                }
+         }
+            
+         
+        //}
+
+    
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+            this.btnAlta = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -44,11 +45,22 @@
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // btnAlta
+            // 
+            this.btnAlta.Location = new System.Drawing.Point(13, 49);
+            this.btnAlta.Name = "btnAlta";
+            this.btnAlta.Size = new System.Drawing.Size(75, 23);
+            this.btnAlta.TabIndex = 1;
+            this.btnAlta.Text = "Dar de Alta";
+            this.btnAlta.UseVisualStyleBackColor = true;
+            this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.label1);
             this.Name = "Home";
             this.Text = "Menú Principal";
@@ -59,5 +71,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnAlta;
     }
 }
