@@ -3,12 +3,26 @@ GO
 Create schema SELECT_GROUP
 GO
 
+create table SELECT_GROUP.Plann(
+	idPlan numeric(6,0) identity(1,1) not null,
+	descripcion nvarchar(45),
+	precioDelBono money,
+	primary key(idPlan)
+)
+
+create table SELECT_GROUP.Usuario(
+	username numeric(6,0) identity(1,1) not null,
+	nombreUsuario nvarchar(45),
+	intentosFallidos nvarchar(45),
+	habilitado bit,
+	CONSTRAINT pk_IdUsername primary key (username)
+)
 create table SELECT_GROUP.Afiliado(
 	idAfiliado numeric(7,0) identity(1,1) not null,
 	nombre nvarchar(255),
 	apellido nvarchar(255),
 	tipoDni nvarchar(45),
-	numeroDni numeric(18,0),
+	numeroDni numeric(18,0) unique,
 	telefono numeric(18,0),
 	mail nvarchar(255),
 	fechaNac datetime,
@@ -16,12 +30,14 @@ create table SELECT_GROUP.Afiliado(
 	estadoCivil nvarchar(45),
 	direccion nvarchar(255),
 	familiares nvarchar(45),
-	username numeric(6,0),
+	username numeric(6,0) unique,
 	plan_idPlan numeric(6,0),
-	primary key(idAfiliado)
+	CONSTRAINT pk_IdAfiliado primary key(idAfiliado),
+	CONSTRAINT fk_Afiliado_Usuario foreign key (username) references SELECT_GROUP.Usuario (username),
+	CONSTRAINT fk_Afiliado_Plann foreign key (plan_idPlan) references SELECT_GROUP.Plann (idPlan)
 	)
 create table SELECT_GROUP.Profesional(
-	idProfesional numeric(6,0) identity(1,1) not null,
+	idProfesional numeric(7,0) identity(1,1) not null,
 	nombre nvarchar(255),
 	apellido nvarchar(255),
 	telefono numeric(18,0),
@@ -29,135 +45,159 @@ create table SELECT_GROUP.Profesional(
 	mail nvarchar(255),
 	fechaNac datetime,
 	sexo nvarchar(45),
-	matricula nvarchar(45),
-	profesionalCol nvarchar(45),
-	username numeric(6,0),
-	primary key(idProfesional)
-)
-create table SELECT_GROUP.Usuario(
-	username numeric(6,0) identity(1,1) not null,
-	nombreUsuario nvarchar(45),
-	intentosFallidos nvarchar(45),
-	habilitado bit,
-	primary key (username)
-)
-create table SELECT_GROUP.UsuarioPorRol(
-	rol_idRol numeric(6,0),
-	usuario_username numeric(6,0)
+	matricula nvarchar(45) unique,
+	username numeric(6,0) unique,
+	CONSTRAINT pk_IdProfesional primary key(idProfesional),
+	CONSTRAINT fk_Profesional_Usuario foreign key (username) references SELECT_GROUP.Usuario (username)
 )
 create table SELECT_GROUP.Rol(
 	idRol numeric(6,0) identity(1,1) not null,
 	nombre nvarchar(45),
-	primary key (idRol)
+	CONSTRAINT pk_IdRol primary key (idRol)
 )
+
+create table SELECT_GROUP.UsuarioPorRol(
+	rol_idRol numeric(6,0),
+	usuario_username numeric(6,0)
+	CONSTRAINT fk_Usuario_PorRol foreign key (usuario_username) references SELECT_GROUP.Usuario (username),
+	CONSTRAINT fk_Rol_idRol foreign key (rol_idRol) references SELECT_GROUP.Rol (idRol)
+)
+
+create table SELECT_GROUP.Funcionalidad(
+	idFuncionalidad numeric(6,0) identity(1,1) not null,
+	descripcion nvarchar(45),
+	CONSTRAINT pk_IdFuncionalidad primary key (idFuncionalidad)
+)
+
+create table SELECT_GROUP.FuncionalidadPorRol(
+	rol_idRol numeric(6,0),
+	funcionalidad_idFuncionalidad numeric(6,0)
+	CONSTRAINT fk_FuncionalidadPorRol_Funcionalidad foreign key (funcionalidad_idFuncionalidad) references SELECT_GROUP.Funcionalidad (idFuncionalidad),
+	CONSTRAINT fk_FuncionalidadPorRol_idRol foreign key (rol_idRol) references SELECT_GROUP.Rol (idRol)
+		)
+
+create table SELECT_GROUP.Compras(
+	idCompra numeric(6,0),
+	fecha datetime,
+	unidades int,
+	monto money,
+	CONSTRAINT pk_IdCompras primary key (idCompra)
+)
+
 create table SELECT_GROUP.Diagnostico(
 	idDiagnostico numeric(6,0) not null,
 	sintomas nvarchar(255),
 	enfermedades nvarchar(255),
 	fechaYHora datetime,
-	primary key (idDiagnostico)
+	CONSTRAINT pk_IdDiagnostico primary key (idDiagnostico)
 )
 create table SELECT_GROUP.Bono_Por_Afiliado(
 	numero_Consulta numeric(6,0),
-	afiliado_idAfiliado numeric(6,0),
-	afiliado_usuario_username numeric(6,0),
+	afiliado_idAfiliado numeric(7,0),
+	/*afiliado_usuario_username numeric(6,0),*/
 	bono_idBono numeric(6,0),
 	estado bit,
-)
+	CONSTRAINT pk_IdConsulta primary key (numero_Consulta),
+	CONSTRAINT fk_BonoPorAfiliado_Afiliado foreign key (afiliado_idAfiliado) references SELECT_GROUP.Afiliado (idAfiliado),
+	)
 create table SELECT_GROUP.Bono( 
 	idBono numeric(6,0) identity(1,1) not null,
 	idCompra numeric(6,0),
 	idPlan numeric(6,0),
 	estado bit,
-	primary key (idBono)
+	CONSTRAINT pk_IdBono primary key (idBono),
+	CONSTRAINT fk_Bono_Compra foreign key (idCompra) references SELECT_GROUP.Compras (idCompra),
+	CONSTRAINT fk_Bono_Plan foreign key (idPlan) references SELECT_GROUP.Plann (idPlan)
 )
+
+create table SELECT_GROUP.Tipo_Cancelacion(
+	idTipoCanc numeric(6,0),
+	descripcion nvarchar(45),
+	CONSTRAINT pk_IdTipoCancelacion primary key (idTipoCanc)
+)
+
 create table SELECT_GROUP.Cancelacion(
 	idCancelacion numeric(6,0) identity(1,1) not null,
 	motivo nvarchar(45),
 	tipo_Cancelacion_idTipoCanc numeric(6,0),
 	bono_idBono numeric(6,0),
-	primary key (idCancelacion)
-)
-create table SELECT_GROUP.Tipo_Cancelacion(
-	idTipoCanc numeric(6,0),
-	descripcion nvarchar(45),
-	primary key (idTipoCanc)
+	CONSTRAINT pk_IdCancelacion primary key (idCancelacion),
+	CONSTRAINT fk_Cancelacion_TipoCancelacion foreign key (tipo_Cancelacion_idTipoCanc) references SELECT_GROUP.Tipo_Cancelacion (idTipoCanc),
+	CONSTRAINT fk_Cancelacion_Bono foreign key (bono_idBono) references SELECT_GROUP.Bono (idBono)
 )
 
-create table SELECT_GROUP.Plann(
-	idPlan numeric(6,0) identity(1,1) not null,
-	descripcion nvarchar(45),
-	precioDelBono money,
-	primary key(idPlan)
-)
 create table SELECT_GROUP.Plan_Historico(
 	idPlanNuevo numeric(6,0) identity(1,1) not null,
 	motivoCambio nvarchar(45),
 	fechaCambio datetime,
 	planAnterior numeric(6,0),
-	afiliado_idAfiliado numeric(6,0),
-	primary key(idPlanNuevo)
+	afiliado_idAfiliado numeric(7,0),
+	CONSTRAINT pk_idPlanHistorico primary key(idPlanNuevo),
+	CONSTRAINT fk_PlanHistorico_PlanHistorico foreign key (planAnterior) references SELECT_GROUP.Plan_Historico (idPlanNuevo),
+	CONSTRAINT fk_PlanHistorico_Afiliado foreign key (afiliado_idAfiliado) references SELECT_GROUP.Afiliado (idAfiliado)
+
 )
 
-create table SELECT_GROUP.ProfesionalPorEspecialidad(
-	especialidad_idEspecialidad numeric(6,0) identity(1,1) not null,
-	profesional_idProfesional numeric(6,0)
-)
-create table SELECT_GROUP.Especialidad(
-	idEspecialidad numeric(6,0) identity(1,1) not null,
-	tipoEspecialidad_idTipoEspecialidad numeric(6,0),
-	descripcion nvarchar(45),
-	tipo nvarchar(45),
-	primary key (idEspecialidad)
-)
 create table SELECT_GROUP.TipoEspecialidad(
 	idTipo numeric(6,0) identity(1,1) not null,
 	descripcion nvarchar(45),
-	primary key (idTipo)
+	CONSTRAINT pk_IdEspecialidad primary key (idTipo)
 )
+create table SELECT_GROUP.Especialidad(
+	idEspecialidad numeric(18,0) identity(1,1) not null,
+	tipoEspecialidad_idTipoEspecialidad numeric(6,0),
+	descripcion nvarchar(255),
+	tipo nvarchar(45),
+	CONSTRAINT pk_IdEspecialidad primary key (idEspecialidad),
+	CONSTRAINT fk_Especialidad_TipoEspecialidad foreign key (tipoEspecialidad_idTipoEspecialidad) references SELECT_GROUP.TipoEspecialidad (idTipo)
+)
+
+
+create table SELECT_GROUP.ProfesionalPorEspecialidad(
+	especialidad_idEspecialidad numeric(18,0), 
+	profesional_idProfesional numeric(7,0),
+	CONSTRAINT fk_ProfesionalPorEspecialidad_Especailidad foreign key (especialidad_idEspecialidad) references SELECT_GROUP.Especialidad (idEspecialidad),
+	CONSTRAINT fk_ProfesonalPorEspecialidad_Profesional foreign key (profesional_idProfesional) references SELECT_GROUP.Profesional (idProfesional)
+)
+
 create table SELECT_GROUP.Agenda(
 	idAgenda numeric(6,0) identity(1,1) not null,
-	especialidad_IdEspecialidad numeric(6,0),
-	profesional_IdProfesional numeric(6,0),
+	profesional_IdProfesional numeric(7,0),
 	diaDisponible int,
 	horaDesde int,
 	horaHasta nvarchar(45),
-	primary key (idAgenda)
+	CONSTRAINT pk_IdAgenda primary key (idAgenda),
+	/*Ver */CONSTRAINT fk_Agenda_IdProfesional foreign key (profesional_IdProfesional) references SELECT_GROUP.Profesional (idProfesional)
 )
-create table SELECT_GROUP.Agenda_Detalle(
+
+/*Para mi no va */
+/*create table SELECT_GROUP.Agenda_Detalle(
 	idAgenda numeric(6,0) identity(1,1) not null,
 	fecha_Hora_Turno datetime,
 	primary key (idAgenda)
 	)
+	*/
+
+create table SELECT_GROUP.EstadoTurno(
+	idEstadoTurno numeric(6,0) identity(1,1) not null,
+	descripcion nvarchar(45),
+	CONSTRAINT pk_idEstadoTurno primary key (idEstadoTurno)
+)
+
 create table SELECT_GROUP.Turno(
 	idTurno numeric(6,0) identity(1,1) not null,
-	idAgenda_Detalle numeric(6,0),
-	agenda_Detalle_Fecha datetime,
-	afiliado_idAfiliado numeric(6,0),
+	idAgenda numeric(6,0),
+	fechaTurno datetime,
+	afiliado_idAfiliado numeric(7,0),
 	cancelacion_idCancelacion numeric(6,0),
-	estado int,
+	estado numeric(6,0),
 	idDiagnostico numeric(6,0),
-	primary key (idTurno)
-)
-create table SELECT_GROUP.EstadoTurno(
-	idEstadoTurno int,
-	descripcion nvarchar(45),
-	primary key (idEstadoTurno)
+	CONSTRAINT pk_IdTurno primary key (idTurno),
+	CONSTRAINT fk_Turno_Agenda foreign key (idAgenda) references SELECT_GROUP.Agenda (idAgenda),
+	CONSTRAINT fk_Turno_Afiliado foreign key (afiliado_idAfiliado) references SELECT_GROUP.Afiliado (idAfiliado),
+	CONSTRAINT fk_Turno_Cancelacion foreign key (cancelacion_idCancelacion) references SELECT_GROUP.Cancelacion (idCancelacion),
+	CONSTRAINT fk_Turno_Estado foreign key (estado) references SELECT_GROUP.EstadoTurno (idEstadoTurno),
+	CONSTRAINT fk_Turno_Diagnostico foreign key (idDiagnostico) references SELECT_GROUP.Diagnostico (idDiagnostico)
+
 )
 
-
-create table SELECT_GROUP.FuncionalidadPorRol(
-	rol_idRol numeric(6,0),
-	funcionalidad_idFuncionalidad numeric(6,0)
-	)
-create table SELECT_GROUP.Funcionalidad(
-	idFuncionalidad numeric(6,0) identity(1,1) not null,
-	descripcion nvarchar(45),
-	primary key (idFuncionalidad)
-)
-create table SELECT_GROUP.Compras(
-	idCompra numeric(6,0),
-	fecha datetime,
-	unidades int,
-	monto money
-)
