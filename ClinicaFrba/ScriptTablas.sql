@@ -5,7 +5,7 @@ Create schema SELECT_GROUP
 GO
 
 create table SELECT_GROUP.Plann(
-	idPlan numeric(18,0) identity(1,1) not null,
+	idPlan numeric(18,0) not null,
 	descripcion varchar(255),
 	precioDelBono_Consulta numeric(18,0),
 	precioDelBono_Farmacia numeric(18,0),
@@ -209,21 +209,21 @@ create table SELECT_GROUP.Turno(
 
 )
 /*Cargo tabla ROL*/
-INSERT INTO	SELECT_GROUP.Rol (idRol,nombre, habilitado) VALUES
-		(1,'Afiliado',1),
-		(2,'Administrativo', 1),
-		(3,'Profesional',1);
+INSERT INTO	SELECT_GROUP.Rol (nombre, habilitado) VALUES
+		('Afiliado',1),
+		('Administrativo', 1),
+		('Profesional',1);
 /*Cargo tabla Funcion*/		
-INSERT INTO SELECT_GROUP.Funcionalidad(idFuncionalidad,descripcion) VALUES
-		(1,'Anunciarse'),
-		(2,'Comprar_Bono'),
-		(3,'Cancelar_Turno'),
-		(4,'Atender'),
-		(5,'ABM_Rol'),
-		(6,'Listado_Estadistico'),
-		(7,'ABM_Usuarios'),
-		(8,'Reservar Turno'),
-		(9,'Abandonar Consultorio');
+INSERT INTO SELECT_GROUP.Funcionalidad(descripcion) VALUES
+		('Anunciarse'),
+		('Comprar_Bono'),
+		('Cancelar_Turno'),
+		('Atender'),
+		('ABM_Rol'),
+		('Listado_Estadistico'),
+		('ABM_Usuarios'),
+		('Reservar Turno'),
+		('Abandonar Consultorio');
 
 /*Cargo tabla ROL_funcion (tabla intermedia)*/
 INSERT INTO SELECT_GROUP.Funcionalidad_Por_Rol(rol_idRol,funcionalidad_idFuncionalidad) VALUES
@@ -237,29 +237,33 @@ INSERT INTO SELECT_GROUP.Funcionalidad_Por_Rol(rol_idRol,funcionalidad_idFuncion
 		(2,5),
 		(2,7);
 
-/*INSERT INTO SELECT_GROUP.Plann(idPlan,descripcion,precioDelBono_Consulta,precioDelBono_Farmacia)
+INSERT INTO SELECT_GROUP.Plann(idPlan,descripcion,precioDelBono_Consulta,precioDelBono_Farmacia)
 SELECT distinct Plan_Med_Codigo,Plan_Med_Descripcion,Plan_Med_Precio_Bono_Consulta,Plan_Med_Precio_Bono_Farmacia from gd_esquema.Maestra
 order by Plan_Med_Codigo
 
-INSERT INTO SELECT_GROUP.Diagnostico(idDiagnostico,enfermedades,sintomas)
-SELECT distinct Consulta_Enfermedades,Consulta_Sintomas from gd_esquema.Maestra
+
+
+
+INSERT INTO SELECT_GROUP.Diagnostico(enfermedades,idDiagnostico,sintomas,fechaYHora)
+SELECT distinct Consulta_Enfermedades,000001,Consulta_Sintomas, (CONVERT (date,GETDATE()))  from gd_esquema.Maestra
 where Consulta_Enfermedades is not null
-order by Consulta_Enfermedades
 
-INSERT INTO SELECT_GROUP.Diagnostico(fechaYHora) values
-(CONVERT (date,GETDATE()))
-
+//Falta el usuario y el plann
 INSERT INTO SELECT_GROUP.Afiliado(numeroDni,nombre,apellido,tipoDni,telefono,mail,fechaNac,sexo,estadoCivil,direccion,familiares,username,plan_idPlan)
-SELECT distinct Paciente_Dni,Paciente_Nombre,Paciente_Apellido,'DNI',Paciente_Telefono,Paciente_mail,Paciente_Fecha_Nac,'SEXO','EC',Paciente_Direccion,'USUARIO','Plan' from gd_esquema.Maestra
+SELECT distinct Paciente_Dni,Paciente_Nombre,Paciente_Apellido,'DNI',Paciente_Telefono,Paciente_mail,Paciente_Fecha_Nac,'SEXO','EC',Paciente_Direccion,'Familiares','USUARIO','Plan' from gd_esquema.Maestra
 where Paciente_Dni is not null
+order by Paciente_Nombre
 
+//Falta usuario y matricula
 INSERT INTO SELECT_GROUP.Profesional(numeroDni,nombre,apellido,telefono,direccion,mail,fechaNac,sexo,matricula,username)
 SELECT distinct Medico_Dni,Medico_Nombre,Medico_Apellido,Medico_Telefono,Medico_Direccion,Medico_Mail,Medico_Fecha_Nac,'Sexo','Matricula','Usuario' from gd_esquema.Maestra
 where Medico_Dni is not null
 
+
 INSERT INTO SELECT_GROUP.Turno(idTurno,idAgenda,fechaTurno,afiliado_idAfiliado,cancelacion_idCancelacion,estado,idDiagnostico) 
 SELECT distinct Turno_Numero,'AGENDA',Turno_Fecha,'AFILIADO','CANCELACION','ESTADO','DIAGNOSTICO' from gd_esquema.Maestra
 where Turno_Numero is not null
+
 
 INSERT INTO SELECT_GROUP.Especialidad(idEspecialidad,tipoEspecialidad_idTipoEspecialidad,descripcion)
 SELECT distinct Especialidad_Codigo,'TipoEspecialidad',Especialidad_Descripcion from gd_esquema.Maestra
@@ -277,7 +281,7 @@ INSERT INTO SELECT_GROUP.Bono(idBono,idCompra,idPlan,estado,bonoConsulta_FechaIm
 SELECT distinct Bono_Consulta_Numero,'Compra','Plan','Estado',Bono_Consulta_Fecha_Impresion from gd_esquema.Maestra
 where Bono_Consulta_Numero is not null
 
-*/
 COMMIT TRANSACTION creacionTablas
+
 
 
