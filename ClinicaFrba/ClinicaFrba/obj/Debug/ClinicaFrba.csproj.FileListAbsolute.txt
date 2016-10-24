@@ -44,3 +44,20 @@ C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.application
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.exe.manifest
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.application
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.exe.config
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.exe
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.pdb
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.csprojResolveAssemblyReference.cache
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Abm_Afiliado.AltaAfiliado.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Abm_Afiliado.AltaPareja.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.ElegirRol.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Home.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Login.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Properties.Resources.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.csproj.GenerateResource.Cache
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.exe.manifest
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.application
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.exe
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.pdb
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.exe.manifest
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.application
