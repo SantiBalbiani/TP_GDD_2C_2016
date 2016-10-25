@@ -284,6 +284,7 @@ from gd_esquema.Maestra
 where Medico_Dni is not null
 order by Medico_Dni
 
+/*
 INSERT INTO SELECT_GROUP.Turno(idTurno,idAgenda,fechaTurno,afiliado_idAfiliado,cancelacion_idCancelacion,estado,idDiagnostico) 
 SELECT distinct Turno_Numero,'AGENDA',Turno_Fecha,'AFILIADO','CANCELACION','ESTADO','DIAGNOSTICO' from gd_esquema.Maestra
 where Turno_Numero is not null
@@ -304,6 +305,8 @@ where Compra_Bono_Fecha is not null
 INSERT INTO SELECT_GROUP.Bono(idBono,idCompra,idPlan,estado,bonoConsulta_FechaImpresion)
 SELECT distinct Bono_Consulta_Numero,'Compra','Plan','Estado',Bono_Consulta_Fecha_Impresion from gd_esquema.Maestra
 where Bono_Consulta_Numero is not null
+
+*/
 
 COMMIT TRANSACTION creacionTablas
 
