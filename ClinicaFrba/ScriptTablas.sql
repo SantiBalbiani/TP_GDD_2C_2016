@@ -12,7 +12,6 @@ create table SELECT_GROUP.Plann(
 	primary key(idPlan)
 )
 
-
 create table SELECT_GROUP.Rol(
 	idRol numeric(6,0) identity(1,1) not null,
 	nombre varchar(45),
@@ -26,10 +25,15 @@ create table SELECT_GROUP.Usuario(
 	contraseña varbinary(45),
 	intentosFallidos numeric(1,0),
 	habilitado bit,
-	id_Rol numeric(6,0) not null,
 	CONSTRAINT pk_IdUsername primary key (username),
-	CONSTRAINT fk_usuario_Rol foreign key (id_Rol) references SELECT_GROUP.Rol (idRol)
 )
+create table SELECT_GROUP.Usuario_Por_Rol(
+	rol_idRol numeric(6,0),
+	usuario_username numeric(6,0)
+	CONSTRAINT fk_Usuario_PorRol foreign key (usuario_username) references SELECT_GROUP.Usuario (username),
+	CONSTRAINT fk_Rol_idRol foreign key (rol_idRol) references SELECT_GROUP.Rol (idRol)
+)
+
 create table SELECT_GROUP.Afiliado(
 	idAfiliado numeric(7,0) identity(1,1) not null,
 	nombre varchar(255),
@@ -49,6 +53,20 @@ create table SELECT_GROUP.Afiliado(
 	CONSTRAINT fk_Afiliado_Usuario foreign key (username) references SELECT_GROUP.Usuario (username),
 	CONSTRAINT fk_Afiliado_Plann foreign key (plan_idPlan) references SELECT_GROUP.Plann (idPlan)
 	)
+
+create table SELECT_GROUP.Tipo_Especialidad(
+	idTipo numeric(18,0) identity(1,1) not null,
+	descripcion varchar(255),
+	CONSTRAINT pk_IdTipoEspecialidad primary key (idTipo)
+)
+create table SELECT_GROUP.Especialidad(
+	idEspecialidad numeric(18,0) identity(1,1) not null,
+	tipoEspecialidad_idTipoEspecialidad numeric(18,0),
+	descripcion varchar(255),
+	CONSTRAINT pk_IdEspecialidad primary key (idEspecialidad),
+	CONSTRAINT fk_Especialidad_TipoEspecialidad foreign key (tipoEspecialidad_idTipoEspecialidad) references SELECT_GROUP.Tipo_Especialidad (idTipo)
+)
+
 create table SELECT_GROUP.Profesional(
 	matricula numeric(7,0) identity(1000,1) not null,
 	nombre varchar(255),
@@ -61,22 +79,19 @@ create table SELECT_GROUP.Profesional(
 	sexo varchar(45),
 	username numeric(6,0) unique,
 	CONSTRAINT pk_IdProfesional primary key(matricula),
-	CONSTRAINT fk_Profesional_Usuario foreign key (username) references SELECT_GROUP.Usuario (username)
+	CONSTRAINT fk_Profesional_Usuario foreign key (username) references SELECT_GROUP.Usuario (username),
 )
-
-create table SELECT_GROUP.Usuario_Por_Rol(
-	rol_idRol numeric(6,0),
-	usuario_username numeric(6,0)
-	CONSTRAINT fk_Usuario_PorRol foreign key (usuario_username) references SELECT_GROUP.Usuario (username),
-	CONSTRAINT fk_Rol_idRol foreign key (rol_idRol) references SELECT_GROUP.Rol (idRol)
+create table SELECT_GROUP.Profesional_Por_Especialidad(
+	especialidad_idEspecialidad numeric(18,0), 
+	profesional_idProfesional numeric(7,0),
+	CONSTRAINT fk_ProfesionalPorEspecialidad_Especailidad foreign key (especialidad_idEspecialidad) references SELECT_GROUP.Especialidad (idEspecialidad),
+	CONSTRAINT fk_ProfesonalPorEspecialidad_Profesional foreign key (profesional_idProfesional) references SELECT_GROUP.Profesional (matricula)
 )
-
 create table SELECT_GROUP.Funcionalidad(
 	idFuncionalidad numeric(6,0) identity(1,1) not null,
 	descripcion varchar(45),
 	CONSTRAINT pk_IdFuncionalidad primary key (idFuncionalidad)
 )
-
 create table SELECT_GROUP.Funcionalidad_Por_Rol(
 	rol_idRol numeric(6,0),
 	funcionalidad_idFuncionalidad numeric(6,0)
@@ -149,27 +164,6 @@ create table SELECT_GROUP.Plan_Historico(
 
 )
 
-create table SELECT_GROUP.Tipo_Especialidad(
-	idTipo numeric(18,0) identity(1,1) not null,
-	descripcion varchar(255),
-	CONSTRAINT pk_IdTipoEspecialidad primary key (idTipo)
-)
-create table SELECT_GROUP.Especialidad(
-	idEspecialidad numeric(18,0) identity(1,1) not null,
-	tipoEspecialidad_idTipoEspecialidad numeric(18,0),
-	descripcion varchar(255),
-	CONSTRAINT pk_IdEspecialidad primary key (idEspecialidad),
-	CONSTRAINT fk_Especialidad_TipoEspecialidad foreign key (tipoEspecialidad_idTipoEspecialidad) references SELECT_GROUP.Tipo_Especialidad (idTipo)
-)
-
-
-create table SELECT_GROUP.Profesional_Por_Especialidad(
-	especialidad_idEspecialidad numeric(18,0), 
-	profesional_idProfesional numeric(7,0),
-	CONSTRAINT fk_ProfesionalPorEspecialidad_Especailidad foreign key (especialidad_idEspecialidad) references SELECT_GROUP.Especialidad (idEspecialidad),
-	CONSTRAINT fk_ProfesonalPorEspecialidad_Profesional foreign key (profesional_idProfesional) references SELECT_GROUP.Profesional (matricula)
-)
-
 create table SELECT_GROUP.Agenda(
 	idAgenda numeric(6,0) identity(1,1) not null,
 	profesional_IdProfesional numeric(7,0),
@@ -211,6 +205,10 @@ create table SELECT_GROUP.Turno(
 	CONSTRAINT fk_Turno_Diagnostico foreign key (idDiagnostico) references SELECT_GROUP.Diagnostico (idDiagnostico)
 
 )
+
+COMMIT TRANSACTION creacionTablas
+
+BEGIN TRANSACTION MigracionDeDatos
 /*Cargo tabla ROL*/
 INSERT INTO	SELECT_GROUP.Rol (nombre, habilitado) VALUES
 		('Afiliado',1),
@@ -241,22 +239,55 @@ INSERT INTO SELECT_GROUP.Funcionalidad_Por_Rol(rol_idRol,funcionalidad_idFuncion
 		(2,7);
 
 /*Cargo usuario Admin pedido por catedra */ 
-INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado,id_rol) values
-('admin', HASHBYTES('SHA2_256','w23e'),0,1,(select idRol from SELECT_GROUP.Rol where SELECT_GROUP.Rol.nombre = 'Administrativo'));
+INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado) values
+('admin', HASHBYTES('SHA2_256','w23e'),0,1);
+
+/*Cargo tabla de Usuario_Por_Rol para admin*/
+insert into SELECT_GROUP.Usuario_Por_Rol(rol_idRol,usuario_username) values
+(2,1);
+
 
 /*Cargo los usuarios pertenecientes a los Afiliados */
-INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado,id_rol)
-select distinct cast(Paciente_Dni as varchar(45)), HASHBYTES('SHA2_256',Paciente_Apellido),0,1,(select idRol from SELECT_GROUP.Rol where SELECT_GROUP.Rol.nombre = 'Afiliado')
+INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado)
+select distinct cast(Paciente_Dni as varchar(45)), HASHBYTES('SHA2_256',Paciente_Apellido),0,1
 from gd_esquema.Maestra
 where Paciente_Dni is not null
-order by cast(Paciente_Dni as varchar(45))
+order by cast(Paciente_Dni as varchar(45));
+
+COMMIT TRANSACTION MigracionDeDatos
+
+/*Cargo los demas roles para afiliado */
+insert into SELECT_GROUP.Usuario_Por_Rol(usuario_username) 
+select distinct U.username
+from SELECT_GROUP.Usuario U
+inner join gd_esquema.Maestra M
+on cast(M.Paciente_Dni as varchar(45)) = U.nombreUsuario
+Select * from SELECT_GROUP.Usuario_Por_Rol
+
+update SELECT_GROUP.Usuario_Por_Rol
+set rol_idRol = (select idRol where nombre = 'Afiliado')
+from SELECT_GROUP.Rol
+where rol_idRol is NULL
+
 
 /*Cargo los usuarios pertenecientes a los profesionales */
-INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado,id_rol)
-select distinct cast(Medico_Dni as varchar(45)), HASHBYTES('SHA2_256',Medico_Apellido),0,1,(select idRol from SELECT_GROUP.Rol where SELECT_GROUP.Rol.nombre = 'Profesional')
+INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado)
+select distinct cast(Medico_Dni as varchar(45)), HASHBYTES('SHA2_256',Medico_Apellido),0,1
 from gd_esquema.Maestra
 where Medico_Dni is not null
 order by cast(Medico_Dni as varchar(45))
+
+/* Cargo los roles para los profesionales */
+insert into SELECT_GROUP.Usuario_Por_Rol(usuario_username) 
+select distinct U.username
+from SELECT_GROUP.Usuario U
+inner join gd_esquema.Maestra M
+on cast(M.Medico_Dni as varchar(45)) = U.nombreUsuario
+
+update SELECT_GROUP.Usuario_Por_Rol
+set rol_idRol = (select idRol where nombre = 'Profesional')
+from SELECT_GROUP.Rol
+where rol_idRol is NULL
 
 /*Cargo los planes de la tabla maestra */
 INSERT INTO SELECT_GROUP.Plann(idPlan,descripcion,precioDelBono_Consulta,precioDelBono_Farmacia)
@@ -285,10 +316,9 @@ where Medico_Dni is not null
 order by Medico_Dni
 
 /*
-INSERT INTO SELECT_GROUP.Turno(idTurno,idAgenda,fechaTurno,afiliado_idAfiliado,cancelacion_idCancelacion,estado,idDiagnostico) 
-SELECT distinct Turno_Numero,'AGENDA',Turno_Fecha,'AFILIADO','CANCELACION','ESTADO','DIAGNOSTICO' from gd_esquema.Maestra
+select distinct Turno_Numero,Turno_Fecha from gd_esquema.Maestra
 where Turno_Numero is not null
-
+order by Turno_Fecha
 
 INSERT INTO SELECT_GROUP.Especialidad(idEspecialidad,tipoEspecialidad_idTipoEspecialidad,descripcion)
 SELECT distinct Especialidad_Codigo,'TipoEspecialidad',Especialidad_Descripcion from gd_esquema.Maestra
@@ -298,6 +328,10 @@ INSERT INTO SELECT_GROUP.Tipo_Especialidad(idTipo,descripcion)
 SELECT distinct Tipo_Especialidad_Codigo,Tipo_Especialidad_Descripcion from gd_esquema.Maestra
 where Tipo_Especialidad_Codigo is not null
 
+INSERT INTO SELECT_GROUP.Turno(idTurno,idAgenda,fechaTurno,afiliado_idAfiliado,cancelacion_idCancelacion,estado,idDiagnostico) 
+SELECT distinct Turno_Numero,'AGENDA',Turno_Fecha,'AFILIADO','CANCELACION','ESTADO','DIAGNOSTICO' from gd_esquema.Maestra
+where Turno_Numero is not null
+
 INSERT INTO SELECT_GROUP.Compras(compra_bono_fecha,usuario_Comprador,unidades,monto)
 SELECT distinct Compra_Bono_fecha,'Usuario','Monto' from gd_esquema.Maestra
 where Compra_Bono_Fecha is not null
@@ -305,10 +339,5 @@ where Compra_Bono_Fecha is not null
 INSERT INTO SELECT_GROUP.Bono(idBono,idCompra,idPlan,estado,bonoConsulta_FechaImpresion)
 SELECT distinct Bono_Consulta_Numero,'Compra','Plan','Estado',Bono_Consulta_Fecha_Impresion from gd_esquema.Maestra
 where Bono_Consulta_Numero is not null
-
 */
-
-COMMIT TRANSACTION creacionTablas
-
-
 
