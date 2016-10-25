@@ -12,27 +12,37 @@ create table SELECT_GROUP.Plann(
 	primary key(idPlan)
 )
 
+
+create table SELECT_GROUP.Rol(
+	idRol numeric(6,0) identity(1,1) not null,
+	nombre varchar(45),
+	habilitado bit,
+	CONSTRAINT pk_IdRol primary key (idRol)
+)
+
 create table SELECT_GROUP.Usuario(
 	username numeric(6,0) identity(1,1) not null,
-	nombreUsuario nvarchar(45),
-	contraseña varchar(20),
-	intentosFallidos nvarchar(45),
+	nombreUsuario varchar(45),
+	contraseña varbinary(45),
+	intentosFallidos numeric(1,0),
 	habilitado bit,
-	CONSTRAINT pk_IdUsername primary key (username)
+	id_Rol numeric(6,0) not null,
+	CONSTRAINT pk_IdUsername primary key (username),
+	CONSTRAINT fk_usuario_Rol foreign key (id_Rol) references SELECT_GROUP.Rol (idRol)
 )
 create table SELECT_GROUP.Afiliado(
 	idAfiliado numeric(7,0) identity(1,1) not null,
 	nombre varchar(255),
 	apellido varchar(255),
-	tipoDni nvarchar(45),
+	tipoDni varchar(45),
 	numeroDni numeric(18,0) unique,
 	telefono numeric(18,0),
 	mail varchar(255),
 	fechaNac datetime,
-	sexo nvarchar(45),
-	estadoCivil nvarchar(45),
+	sexo varchar(45),
+	estadoCivil varchar(45),
 	direccion varchar(255),
-	familiares nvarchar(45),
+	familiares varchar(45),
 	username numeric(6,0) unique,
 	plan_idPlan numeric(18,0),
 	CONSTRAINT pk_IdAfiliado primary key(idAfiliado),
@@ -40,7 +50,7 @@ create table SELECT_GROUP.Afiliado(
 	CONSTRAINT fk_Afiliado_Plann foreign key (plan_idPlan) references SELECT_GROUP.Plann (idPlan)
 	)
 create table SELECT_GROUP.Profesional(
-	idProfesional numeric(7,0) identity(1,1) not null,
+	matricula numeric(7,0) identity(1000,1) not null,
 	nombre varchar(255),
 	apellido varchar(255),
 	numeroDni numeric(18,0),
@@ -48,17 +58,10 @@ create table SELECT_GROUP.Profesional(
 	direccion varchar(255),
 	mail varchar(255),
 	fechaNac datetime,
-	sexo nvarchar(45),
-	matricula nvarchar(45) unique,
+	sexo varchar(45),
 	username numeric(6,0) unique,
-	CONSTRAINT pk_IdProfesional primary key(idProfesional),
+	CONSTRAINT pk_IdProfesional primary key(matricula),
 	CONSTRAINT fk_Profesional_Usuario foreign key (username) references SELECT_GROUP.Usuario (username)
-)
-create table SELECT_GROUP.Rol(
-	idRol numeric(6,0) identity(1,1) not null,
-	nombre nvarchar(45),
-	habilitado bit,
-	CONSTRAINT pk_IdRol primary key (idRol)
 )
 
 create table SELECT_GROUP.Usuario_Por_Rol(
@@ -70,7 +73,7 @@ create table SELECT_GROUP.Usuario_Por_Rol(
 
 create table SELECT_GROUP.Funcionalidad(
 	idFuncionalidad numeric(6,0) identity(1,1) not null,
-	descripcion nvarchar(45),
+	descripcion varchar(45),
 	CONSTRAINT pk_IdFuncionalidad primary key (idFuncionalidad)
 )
 
@@ -92,7 +95,7 @@ create table SELECT_GROUP.Compras(
 )
 
 create table SELECT_GROUP.Diagnostico(
-	idDiagnostico numeric(6,0) not null,
+	idDiagnostico numeric(6,0) identity(1,1) not null,
 	sintomas varchar(255),
 	enfermedades varchar(255),
 	fechaYHora datetime,
@@ -120,13 +123,13 @@ create table SELECT_GROUP.Bono(
 
 create table SELECT_GROUP.Tipo_Cancelacion(
 	idTipoCanc numeric(6,0),
-	descripcion nvarchar(45),
+	descripcion varchar(45),
 	CONSTRAINT pk_IdTipoCancelacion primary key (idTipoCanc)
 )
 
 create table SELECT_GROUP.Cancelacion(
 	idCancelacion numeric(6,0) identity(1,1) not null,
-	motivo nvarchar(45),
+	motivo varchar(45),
 	tipo_Cancelacion_idTipoCanc numeric(6,0),
 	bono_idBono numeric(18,0),
 	CONSTRAINT pk_IdCancelacion primary key (idCancelacion),
@@ -136,7 +139,7 @@ create table SELECT_GROUP.Cancelacion(
 
 create table SELECT_GROUP.Plan_Historico(
 	idPlanNuevo numeric(6,0) identity(1,1) not null,
-	motivoCambio nvarchar(45),
+	motivoCambio varchar(45),
 	fechaCambio datetime,
 	planAnterior numeric(6,0),
 	afiliado_idAfiliado numeric(7,0),
@@ -164,7 +167,7 @@ create table SELECT_GROUP.Profesional_Por_Especialidad(
 	especialidad_idEspecialidad numeric(18,0), 
 	profesional_idProfesional numeric(7,0),
 	CONSTRAINT fk_ProfesionalPorEspecialidad_Especailidad foreign key (especialidad_idEspecialidad) references SELECT_GROUP.Especialidad (idEspecialidad),
-	CONSTRAINT fk_ProfesonalPorEspecialidad_Profesional foreign key (profesional_idProfesional) references SELECT_GROUP.Profesional (idProfesional)
+	CONSTRAINT fk_ProfesonalPorEspecialidad_Profesional foreign key (profesional_idProfesional) references SELECT_GROUP.Profesional (matricula)
 )
 
 create table SELECT_GROUP.Agenda(
@@ -172,9 +175,9 @@ create table SELECT_GROUP.Agenda(
 	profesional_IdProfesional numeric(7,0),
 	diaDisponible int,
 	horaDesde int,
-	horaHasta nvarchar(45),
+	horaHasta varchar(45),
 	CONSTRAINT pk_IdAgenda primary key (idAgenda),
-	CONSTRAINT fk_Agenda_IdProfesional foreign key (profesional_IdProfesional) references SELECT_GROUP.Profesional (idProfesional)
+	CONSTRAINT fk_Agenda_IdProfesional foreign key (profesional_IdProfesional) references SELECT_GROUP.Profesional (matricula)
 )
 
 
@@ -188,7 +191,7 @@ create table SELECT_GROUP.Agenda_Detalle(
 
 create table SELECT_GROUP.Estado_Turno(
 	idEstadoTurno numeric(6,0) identity(1,1) not null,
-	descripcion nvarchar(45),
+	descripcion varchar(45),
 	CONSTRAINT pk_idEstadoTurno primary key (idEstadoTurno)
 )
 
@@ -237,28 +240,49 @@ INSERT INTO SELECT_GROUP.Funcionalidad_Por_Rol(rol_idRol,funcionalidad_idFuncion
 		(2,5),
 		(2,7);
 
+/*Cargo usuario Admin pedido por catedra */ 
+INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado,id_rol) values
+('admin', HASHBYTES('SHA2_256','w23e'),0,1,(select idRol from SELECT_GROUP.Rol where SELECT_GROUP.Rol.nombre = 'Administrativo'));
+
+/*Cargo los usuarios pertenecientes a los Afiliados */
+INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado,id_rol)
+select distinct cast(Paciente_Dni as varchar(45)), HASHBYTES('SHA2_256',Paciente_Apellido),0,1,(select idRol from SELECT_GROUP.Rol where SELECT_GROUP.Rol.nombre = 'Afiliado')
+from gd_esquema.Maestra
+where Paciente_Dni is not null
+order by cast(Paciente_Dni as varchar(45))
+
+/*Cargo los usuarios pertenecientes a los profesionales */
+INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado,id_rol)
+select distinct cast(Medico_Dni as varchar(45)), HASHBYTES('SHA2_256',Medico_Apellido),0,1,(select idRol from SELECT_GROUP.Rol where SELECT_GROUP.Rol.nombre = 'Profesional')
+from gd_esquema.Maestra
+where Medico_Dni is not null
+order by cast(Medico_Dni as varchar(45))
+
+/*Cargo los planes de la tabla maestra */
 INSERT INTO SELECT_GROUP.Plann(idPlan,descripcion,precioDelBono_Consulta,precioDelBono_Farmacia)
-SELECT distinct Plan_Med_Codigo,Plan_Med_Descripcion,Plan_Med_Precio_Bono_Consulta,Plan_Med_Precio_Bono_Farmacia from gd_esquema.Maestra
+SELECT distinct Plan_Med_Codigo,Plan_Med_Descripcion,Plan_Med_Precio_Bono_Consulta,Plan_Med_Precio_Bono_Farmacia 
+from gd_esquema.Maestra
 order by Plan_Med_Codigo
 
-
-
-
-INSERT INTO SELECT_GROUP.Diagnostico(enfermedades,idDiagnostico,sintomas,fechaYHora)
-SELECT distinct Consulta_Enfermedades,000001,Consulta_Sintomas, (CONVERT (date,GETDATE()))  from gd_esquema.Maestra
+/*Cargo los diagnosticos de la tabla maestra*/
+INSERT INTO SELECT_GROUP.Diagnostico(sintomas,enfermedades,fechaYHora)
+SELECT distinct Consulta_Enfermedades,Consulta_Sintomas, (CONVERT (date,GETDATE()))
+from gd_esquema.Maestra
 where Consulta_Enfermedades is not null
 
-//Falta el usuario y el plann
+/*Cargo los afiliados de la tabla maestra */
 INSERT INTO SELECT_GROUP.Afiliado(numeroDni,nombre,apellido,tipoDni,telefono,mail,fechaNac,sexo,estadoCivil,direccion,familiares,username,plan_idPlan)
-SELECT distinct Paciente_Dni,Paciente_Nombre,Paciente_Apellido,'DNI',Paciente_Telefono,Paciente_mail,Paciente_Fecha_Nac,'SEXO','EC',Paciente_Direccion,'Familiares','USUARIO','Plan' from gd_esquema.Maestra
+SELECT distinct Paciente_Dni,Paciente_Nombre,Paciente_Apellido,'DNI',Paciente_Telefono,Paciente_mail,Paciente_Fecha_Nac,'SEXO','EC',Paciente_Direccion,'Familiares',(select username from SELECT_GROUP.Usuario where nombreUsuario = (cast(Paciente_Dni as varchar(45)))),(select idPlan from SELECT_GROUP.Plann where idPlan = 555555) 
+from gd_esquema.Maestra
 where Paciente_Dni is not null
 order by Paciente_Nombre
 
-//Falta usuario y matricula
-INSERT INTO SELECT_GROUP.Profesional(numeroDni,nombre,apellido,telefono,direccion,mail,fechaNac,sexo,matricula,username)
-SELECT distinct Medico_Dni,Medico_Nombre,Medico_Apellido,Medico_Telefono,Medico_Direccion,Medico_Mail,Medico_Fecha_Nac,'Sexo','Matricula','Usuario' from gd_esquema.Maestra
+/*Cargo los Profesionales de la tabla maestra */
+INSERT INTO SELECT_GROUP.Profesional(numeroDni,nombre,apellido,telefono,direccion,mail,fechaNac,sexo,username)
+SELECT distinct Medico_Dni,Medico_Nombre,Medico_Apellido,Medico_Telefono,Medico_Direccion,Medico_Mail,Medico_Fecha_Nac,'Sexo', (select username from SELECT_GROUP.Usuario where nombreUsuario = (cast(Medico_Dni as varchar(45))))
+from gd_esquema.Maestra
 where Medico_Dni is not null
-
+order by Medico_Dni
 
 INSERT INTO SELECT_GROUP.Turno(idTurno,idAgenda,fechaTurno,afiliado_idAfiliado,cancelacion_idCancelacion,estado,idDiagnostico) 
 SELECT distinct Turno_Numero,'AGENDA',Turno_Fecha,'AFILIADO','CANCELACION','ESTADO','DIAGNOSTICO' from gd_esquema.Maestra
