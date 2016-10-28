@@ -88,7 +88,7 @@ create table SELECT_GROUP.Funcionalidad_Por_Rol(
 
 create table SELECT_GROUP.Compras(
 	idCompra numeric(6,0),
-	compra_bono_fecha datetime,
+	FechaCompra datetime,
 	usuario_Comprador numeric(6,0),
 	unidades int,
 	monto money,
@@ -104,7 +104,7 @@ create table SELECT_GROUP.Diagnostico(
 	CONSTRAINT pk_IdDiagnostico primary key (idDiagnostico)
 )
 create table SELECT_GROUP.Bono( 
-	idBono numeric(18,0) identity(1,1) not null,
+	idBono numeric(18,0) not null,
 	idCompra numeric(6,0),
 	idPlan numeric(18,0),
 	numero_Consulta numeric(6,0),
@@ -153,16 +153,16 @@ create table SELECT_GROUP.Plan_Historico(
 )
 
 create table SELECT_GROUP.Tipo_Especialidad(
-	idTipo numeric(18,0) identity(1,1) not null,
+	idTipo numeric(18,0) not null,
 	descripcion varchar(255),
 	CONSTRAINT pk_IdTipoEspecialidad primary key (idTipo)
 )
 create table SELECT_GROUP.Especialidad(
-	idEspecialidad numeric(18,0) identity(1,1) not null,
-	tipoEspecialidad_idTipoEspecialidad numeric(18,0),
+	idEspecialidad numeric(18,0) not null,
+	idTipoEspecialidad numeric(18,0),
 	descripcion varchar(255),
 	CONSTRAINT pk_IdEspecialidad primary key (idEspecialidad),
-	CONSTRAINT fk_Especialidad_TipoEspecialidad foreign key (tipoEspecialidad_idTipoEspecialidad) references SELECT_GROUP.Tipo_Especialidad (idTipo)
+	CONSTRAINT fk_Especialidad_TipoEspecialidad foreign key (idTipoEspecialidad) references SELECT_GROUP.Tipo_Especialidad (idTipo)
 )
 
 create table SELECT_GROUP.Profesional_Por_Especialidad(
@@ -295,6 +295,33 @@ INSERT INTO SELECT_GROUP.Turno(idTurno,idAgenda,fechaTurno,cancelacion_idCancela
 SELECT distinct Turno_Numero,null,Turno_Fecha,null,1/*(select idEstadoTurno from SELECT_GROUP.Estado_Turno where descripcion = 'Atendido')*/,1 /*select idDiagnostico from SELECT_GROUP.Diagnostico where sintomas = 'Sintoma 1'*/ from gd_esquema.Maestra
 where Turno_Numero is not null
 
+/*idAgenda en null porque al estar utilizados los turnos no se van a agendar */
+/*cancelacion_idCancelacion en null porque al estar utilizados mo se cancelan */ 
+
+update t
+set t.afiliado_idAfiliado = dt.idAfiliado
+from SELECT_GROUP.Turno as t
+join
+ (
+select   
+		t.idTurno, 
+		g.idAfiliado 
+from
+ (   select idTurno,
+      (row_number() over (order by newid())
+    % (select count(*) from SELECT_GROUP.Afiliado))+1 as rn -- number from 1 to n 
+   from SELECT_GROUP.Turno
+ ) AS t 
+join 
+ ( select idAfiliado,
+     row_number() over (order by newid()) as rn -- sequential number from 1 to n
+   from SELECT_GROUP.Afiliado 
+ ) as g
+   on t.rn = g.rn 
+ ) as dt
+on t.idTurno = dt.idTurno;
+
+/*
 Create TRIGGER SELECT_GROUP.InsertaRandom 
 on SELECT_GROUP.Turno for insert as
 BEGIN
@@ -305,26 +332,39 @@ set afiliado_idAfiliado = @valor
 end
 
 select * from SELECT_GROUP.Turno
+*/
 
 /*select top 1 idAfiliado from SELECT_GROUP.Afiliado order by NEWID() */ /* Funcion random trae 1 registro */
-
-INSERT INTO SELECT_GROUP.Especialidad(idEspecialidad,tipoEspecialidad_idTipoEspecialidad,descripcion)
-SELECT distinct Especialidad_Codigo,'TipoEspecialidad',Especialidad_Descripcion from gd_esquema.Maestra
-where Especialidad_Codigo is not null
 
 INSERT INTO SELECT_GROUP.Tipo_Especialidad(idTipo,descripcion)
 SELECT distinct Tipo_Especialidad_Codigo,Tipo_Especialidad_Descripcion from gd_esquema.Maestra
 where Tipo_Especialidad_Codigo is not null
 
-INSERT INTO SELECT_GROUP.Compras(compra_bono_fecha,usuario_Comprador,unidades,monto)
-SELECT distinct Compra_Bono_fecha,'Usuario','Monto' from gd_esquema.Maestra
+INSERT INTO SELECT_GROUP.Especialidad(idEspecialidad,descripcion)
+SELECT distinct Especialidad_Codigo,Especialidad_Descripcion from gd_esquema.Maestra
+where Especialidad_Codigo is not null
+
+update SELECT_GROUP.Especialidad 
+set idTipoEspecialidad = (CASE 
+                    WHEN descripcion like '%Cirugía%'
+                        THEN 1001
+					WHEN descripcion like '%Radio%'
+                        THEN 1003
+					WHEN descripcion like '%Médico-Quirúrgica%'
+						THEN 1002
+					ELSE 1000
+		END);
+
+		
+INSERT INTO SELECT_GROUP.Compras(FechaCompra,usuario_Comprador,unidades,monto)
+SELECT distinct Compra_Bono_Fecha,'Usuario','Monto' from gd_esquema.Maestra
 where Compra_Bono_Fecha is not null
 
 INSERT INTO SELECT_GROUP.Bono(idBono,idCompra,idPlan,estado,bonoConsulta_FechaImpresion)
 SELECT distinct Bono_Consulta_Numero,'Compra','Plan','Estado',Bono_Consulta_Fecha_Impresion from gd_esquema.Maestra
 where Bono_Consulta_Numero is not null
 
-
 COMMIT TRANSACTION creacionTablas
+
 
 
