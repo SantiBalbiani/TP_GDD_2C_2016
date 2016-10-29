@@ -87,13 +87,13 @@ create table SELECT_GROUP.Funcionalidad_Por_Rol(
 )
 
 create table SELECT_GROUP.Compras(
-	idCompra numeric(6,0),
+	idCompra numeric(6,0) identity(1,1),
 	FechaCompra datetime,
-	usuario_Comprador numeric(6,0),
+	afiliado_Comprador numeric(7,0),
 	unidades int,
 	monto money,
 	CONSTRAINT pk_IdCompras primary key (idCompra),
-	CONSTRAINT fk_Compras_Usuario foreign key(usuario_Comprador) references SELECT_GROUP.Usuario (idUsuario)
+	CONSTRAINT fk_Compras_Usuario foreign key(afiliado_Comprador) references SELECT_GROUP.Afiliado (idAfiliado)
 )
 
 create table SELECT_GROUP.Diagnostico(
@@ -104,16 +104,15 @@ create table SELECT_GROUP.Diagnostico(
 	CONSTRAINT pk_IdDiagnostico primary key (idDiagnostico)
 )
 create table SELECT_GROUP.Bono( 
-	idBono numeric(18,0) not null,
+	idBono numeric(18,0) identity(1,1) not null,
 	idCompra numeric(6,0),
 	idPlan numeric(18,0),
+	idAfiliado numeric (7,0),
 	numero_Consulta numeric(6,0),
 	estado bit,
 	bonoConsulta_FechaImpresion datetime,
-	idUsuario numeric(6,0),
-
 	CONSTRAINT pk_IdBono primary key (idBono),
-	CONSTRAINT fk_Bono_Usuario foreign key (idUsuario) references SELECT_GROUP.Usuario (idUsuario),
+	CONSTRAINT fk_Bono_Afiliado foreign key (idAfiliado) references SELECT_GROUP.Afiliado (idAfiliado),
 	CONSTRAINT fk_Bono_Compra foreign key (idCompra) references SELECT_GROUP.Compras (idCompra),
 	CONSTRAINT fk_Bono_Plan foreign key (idPlan) references SELECT_GROUP.Plan_Med (idPlan)
 )
@@ -356,15 +355,49 @@ set idTipoEspecialidad = (CASE
 		END);
 
 		
-INSERT INTO SELECT_GROUP.Compras(FechaCompra,usuario_Comprador,unidades,monto)
-SELECT distinct Compra_Bono_Fecha,'Usuario','Monto' from gd_esquema.Maestra
+select distinct Compra_Bono_Fecha from gd_esquema.Maestra
+select idAfiliado,datepart (MONTH,fechaNac),datepart(day,fechaNac) from SELECT_GROUP.Afiliado
+order by datepart (MONTH,fechaNac),DATEPART(day,fechaNac)
+
+INSERT INTO SELECT_GROUP.Compras(FechaCompra,afiliado_Comprador)
+SELECT distinct Compra_Bono_Fecha,(select top 1 idAfiliado from SELECT_GROUP.Afiliado where DATEPART(MONTH,Compra_Bono_Fecha) = DATEPART(MONTH,fechaNac) AND DATEPART(DAY,Compra_Bono_Fecha) = DATEPART(DAY,fechaNac))
+from gd_esquema.Maestra
 where Compra_Bono_Fecha is not null
 
-INSERT INTO SELECT_GROUP.Bono(idBono,idCompra,idPlan,estado,bonoConsulta_FechaImpresion)
-SELECT distinct Bono_Consulta_Numero,'Compra','Plan','Estado',Bono_Consulta_Fecha_Impresion from gd_esquema.Maestra
+update SELECT_GROUP.Compras
+set unidades =  ROUND(afiliado_Comprador * rand()/1000,0) from SELECT_GROUP.Compras
+
+update SELECT_GROUP.Compras /*TCompras TAfiliado TPlan Medico*/
+set monto = PM.precioDelBono_Consulta * unidades
+from SELECT_GROUP.Afiliado as AF inner join SELECT_GROUP.Compras as CO on AF.idAfiliado = CO.afiliado_Comprador
+inner join SELECT_GROUP.Plan_Med as PM on PM.idPlan = AF.plan_idPlan
+
+INSERT INTO SELECT_GROUP.Bono(numero_Consulta,idPlan,estado,bonoConsulta_FechaImpresion)
+SELECT distinct Bono_Consulta_Numero,555555,1,Bono_Consulta_Fecha_Impresion from gd_esquema.Maestra
 where Bono_Consulta_Numero is not null
 
+update t
+set t.idAfiliado = dt.idAfiliado
+from SELECT_GROUP.Bono as t
+join
+ (
+select   
+		t.idPlan, 
+		g.idAfiliado 
+from
+ (   select idPlan,
+      (row_number() over (order by newid())
+    % (select count(*) from SELECT_GROUP.Afiliado))+1 as rn -- number from 1 to n 
+   from SELECT_GROUP.Bono
+ ) AS t 
+join 
+ ( select idAfiliado,
+     row_number() over (order by newid()) as rn -- sequential number from 1 to n
+   from SELECT_GROUP.Afiliado 
+ ) as g
+   on t.rn = g.rn 
+ ) as dt
+on t.idPlan = dt.idPlan;
+
 COMMIT TRANSACTION creacionTablas
-
-
 
