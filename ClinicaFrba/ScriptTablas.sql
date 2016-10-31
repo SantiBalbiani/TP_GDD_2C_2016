@@ -359,21 +359,37 @@ select distinct Compra_Bono_Fecha from gd_esquema.Maestra
 select idAfiliado,datepart (MONTH,fechaNac),datepart(day,fechaNac) from SELECT_GROUP.Afiliado
 order by datepart (MONTH,fechaNac),DATEPART(day,fechaNac)
 
-INSERT INTO SELECT_GROUP.Compras(FechaCompra,afiliado_Comprador)
-SELECT distinct Compra_Bono_Fecha,(select top 1 idAfiliado from SELECT_GROUP.Afiliado where DATEPART(MONTH,Compra_Bono_Fecha) = DATEPART(MONTH,fechaNac) AND DATEPART(DAY,Compra_Bono_Fecha) = DATEPART(DAY,fechaNac))
+
+select Paciente_Dni, Compra_Bono_Fecha, count(*) from gd_esquema.Maestra
+where Compra_Bono_Fecha is not null
+group by Paciente_Dni, Compra_Bono_Fecha
+
+select Paciente_Dni,Compra_Bono_Fecha from gd_esquema.Maestra
+where Paciente_Dni = 96456176 and Compra_Bono_Fecha is not null
+order by Compra_Bono_Fecha
+
+select * from SELECT_GROUP.Afiliado
+where idAfiliado = 270401
+
+select * from SELECT_GROUP.Afiliado
+INSERT INTO SELECT_GROUP.Compras(FechaCompra,afiliado_Comprador,unidades)
+SELECT distinct Compra_Bono_Fecha, (select idAfiliado from SELECT_GROUP.Afiliado where numeroDni = Paciente_Dni ), count(*)
 from gd_esquema.Maestra
 where Compra_Bono_Fecha is not null
-
-update SELECT_GROUP.Compras
-set unidades =  ROUND(afiliado_Comprador * rand()/1000,0) from SELECT_GROUP.Compras
+group by Compra_Bono_Fecha,Paciente_Dni
 
 update SELECT_GROUP.Compras /*TCompras TAfiliado TPlan Medico*/
 set monto = PM.precioDelBono_Consulta * unidades
 from SELECT_GROUP.Afiliado as AF inner join SELECT_GROUP.Compras as CO on AF.idAfiliado = CO.afiliado_Comprador
 inner join SELECT_GROUP.Plan_Med as PM on PM.idPlan = AF.plan_idPlan
 
-INSERT INTO SELECT_GROUP.Bono(numero_Consulta,idPlan,estado,bonoConsulta_FechaImpresion)
-SELECT distinct Bono_Consulta_Numero,555555,1,Bono_Consulta_Fecha_Impresion from gd_esquema.Maestra
+select distinct Bono_Consulta_Numero from gd_esquema.Maestra
+where Bono_Consulta_Numero is not null
+
+INSERT INTO SELECT_GROUP.Bono(numero_Consulta,idPlan,estado,bonoConsulta_FechaImpresion,idCompra)
+SELECT distinct Bono_Consulta_Numero,555555,1,Bono_Consulta_Fecha_Impresion,(select idCompra from SELECT_GROUP.Compras)
+
+from gd_esquema.Maestra
 where Bono_Consulta_Numero is not null
 
 update t
