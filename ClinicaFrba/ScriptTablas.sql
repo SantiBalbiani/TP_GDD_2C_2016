@@ -1,5 +1,8 @@
 BEGIN TRANSACTION creacionTablas
 use GD2C2016
+
+GO
+create schema SELECT_GROUP
 GO
 
 
@@ -116,14 +119,6 @@ create table SELECT_GROUP.Bono(
 	CONSTRAINT fk_Bono_Plan foreign key (idPlan) references SELECT_GROUP.Plan_Med (idPlan)
 )
 
-/*create table SELECT_GROUP.Bono_Por_Afiliado(
-	afiliado_idAfiliado numeric(7,0),
-	bono_idBono numeric(18,0),
-	CONSTRAINT fk_BonoPorAfiliado_Afiliado foreign key (afiliado_idAfiliado) references SELECT_GROUP.Afiliado (idAfiliado),
-	CONSTRAINT fk_BonoPorAfiliado_Bono foreign key (bono_idBono) references SELECT_GROUP.Bono (idBono)
-	primary key (afiliado_idAfiliado, bono_idBono)
-	)
-	*/
 create table SELECT_GROUP.Tipo_Cancelacion(
 	idTipoCanc numeric(6,0) identity (1,1) primary key (idTipoCanc),
 	descripcion varchar(45),
@@ -319,20 +314,6 @@ join
  ) as dt
 on t.idTurno = dt.idTurno;
 
-/*
-Create TRIGGER SELECT_GROUP.InsertaRandom 
-on SELECT_GROUP.Turno for insert as
-BEGIN
-	declare @valor AS int
-	set @valor = (select top 1 idAfiliado from SELECT_GROUP.Afiliado order by NEWID())
-update SELECT_GROUP.Turno 
-set afiliado_idAfiliado = @valor
-end
-
-select * from SELECT_GROUP.Turno
-*/
-
-/*select top 1 idAfiliado from SELECT_GROUP.Afiliado order by NEWID() */ /* Funcion random trae 1 registro */
 
 INSERT INTO SELECT_GROUP.Tipo_Especialidad(idTipo,descripcion)
 SELECT distinct Tipo_Especialidad_Codigo,Tipo_Especialidad_Descripcion from gd_esquema.Maestra
@@ -351,26 +332,8 @@ set idTipoEspecialidad = (CASE
 					WHEN descripcion like '%Médico-Quirúrgica%'
 						THEN 1002
 					ELSE 1000
-		END);
+		END);	
 
-		
-select distinct Compra_Bono_Fecha from gd_esquema.Maestra
-select idAfiliado,datepart (MONTH,fechaNac),datepart(day,fechaNac) from SELECT_GROUP.Afiliado
-order by datepart (MONTH,fechaNac),DATEPART(day,fechaNac)
-
-
-select Paciente_Dni, Compra_Bono_Fecha, count(*) from gd_esquema.Maestra
-where Compra_Bono_Fecha is not null
-group by Paciente_Dni, Compra_Bono_Fecha
-
-select Paciente_Dni,Compra_Bono_Fecha from gd_esquema.Maestra
-where Paciente_Dni = 96456176 and Compra_Bono_Fecha is not null
-order by Compra_Bono_Fecha
-
-select * from SELECT_GROUP.Afiliado
-where idAfiliado = 270401
-
-select * from SELECT_GROUP.Afiliado
 INSERT INTO SELECT_GROUP.Compras(FechaCompra,afiliado_Comprador,unidades)
 SELECT distinct Compra_Bono_Fecha, (select idAfiliado from SELECT_GROUP.Afiliado where numeroDni = Paciente_Dni ), count(*)
 from gd_esquema.Maestra
@@ -382,56 +345,22 @@ set monto = PM.precioDelBono_Consulta * unidades
 from SELECT_GROUP.Afiliado as AF inner join SELECT_GROUP.Compras as CO on AF.idAfiliado = CO.afiliado_Comprador
 inner join SELECT_GROUP.Plan_Med as PM on PM.idPlan = AF.plan_idPlan
 
-select distinct Bono_Consulta_Numero from gd_esquema.Maestra
-where Bono_Consulta_Numero is not null
-
-INSERT INTO SELECT_GROUP.Bono(numero_Consulta,idPlan,estado,bonoConsulta_FechaImpresion,idCompra)
-SELECT distinct Bono_Consulta_Numero,555555,1,Bono_Consulta_Fecha_Impresion,(select idCompra from SELECT_GROUP.Compras)
-
-from gd_esquema.Maestra
-where Bono_Consulta_Numero is not null
-
-update t
-set t.idAfiliado = dt.idAfiliado
-from SELECT_GROUP.Bono as t
-join
- (
-select   
-		t.idPlan, 
-		g.idAfiliado 
-from
- (   select idPlan,
-      (row_number() over (order by newid())
-    % (select count(*) from SELECT_GROUP.Afiliado))+1 as rn -- number from 1 to n 
-   from SELECT_GROUP.Bono
- ) AS t 
-join 
- ( select idAfiliado,
-     row_number() over (order by newid()) as rn -- sequential number from 1 to n
-   from SELECT_GROUP.Afiliado 
- ) as g
-   on t.rn = g.rn 
- ) as dt
-on t.idPlan = dt.idPlan;
-
-
-/* Insert de tabla BONO: Hecho Por Santi --> Porfa Revisen que en las fechas filtré por el campo equivocado */
-
 INSERT INTO Select_Group.Bono
-(idCompra, idPlan, idAfiliado ,numero_Consulta,estado,bonoConsulta_FechaImpresion)
+(numero_Consulta,idCompra, idPlan, idAfiliado,estado,bonoConsulta_FechaImpresion)
 
-SELECT C.idCompra,Afi.plan_idPlan,Afi.idAfiliado, Bono_Consulta_Numero,1, M.Bono_Consulta_Fecha_Impresion
+SELECT distinct Bono_Consulta_Numero,C.idCompra,Afi.plan_idPlan,Afi.idAfiliado, 1, M.Bono_Consulta_Fecha_Impresion
 
-  FROM gd_esquema.Maestra M
+  FROM gd_esquema.Maestra as M
   
-  JOIN Select_Group.Afiliado Afi ON Afi.apellido = M.Paciente_Apellido AND Afi.nombre = M.Paciente_Nombre
-  LEFT JOIN Select_Group.Compras C ON C.FechaCompra = M.Compra_Bono_Fecha AND C.afiliado_Comprador = Afi.idAfiliado
+  JOIN Select_Group.Afiliado as Afi ON Afi.numeroDni = M.Paciente_Dni
+  inner JOIN Select_Group.Compras as C ON  C.afiliado_Comprador = Afi.idAfiliado and C.FechaCompra = M.Compra_Bono_Fecha
   
   WHERE M.Bono_Consulta_Numero is not null
-  AND M.Compra_Bono_Fecha is not null
+  AND M.Bono_Consulta_Fecha_Impresion is not null
 
   ORDER BY M.Bono_Consulta_Numero
 GO
 
 COMMIT TRANSACTION creacionTablas
+
 
