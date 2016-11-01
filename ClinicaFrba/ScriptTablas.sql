@@ -1,8 +1,7 @@
 BEGIN TRANSACTION creacionTablas
 use GD2C2016
 GO
-Create schema SELECT_GROUP
-GO
+
 
 create table SELECT_GROUP.Plan_Med(
 	idPlan numeric(18,0) not null,
@@ -414,6 +413,25 @@ join
    on t.rn = g.rn 
  ) as dt
 on t.idPlan = dt.idPlan;
+
+
+/* Insert de tabla BONO: Hecho Por Santi --> Porfa Revisen que en las fechas filtré por el campo equivocado */
+
+INSERT INTO Select_Group.Bono
+(idCompra, idPlan, idAfiliado ,numero_Consulta,estado,bonoConsulta_FechaImpresion)
+
+SELECT C.idCompra,Afi.plan_idPlan,Afi.idAfiliado, Bono_Consulta_Numero,1, M.Bono_Consulta_Fecha_Impresion
+
+  FROM gd_esquema.Maestra M
+  
+  JOIN Select_Group.Afiliado Afi ON Afi.apellido = M.Paciente_Apellido AND Afi.nombre = M.Paciente_Nombre
+  LEFT JOIN Select_Group.Compras C ON C.FechaCompra = M.Compra_Bono_Fecha AND C.afiliado_Comprador = Afi.idAfiliado
+  
+  WHERE M.Bono_Consulta_Numero is not null
+  AND M.Compra_Bono_Fecha is not null
+
+  ORDER BY M.Bono_Consulta_Numero
+GO
 
 COMMIT TRANSACTION creacionTablas
 
