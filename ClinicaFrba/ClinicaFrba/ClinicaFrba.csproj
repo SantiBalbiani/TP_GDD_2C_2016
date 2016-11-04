@@ -76,11 +76,15 @@
     <Compile Include="Abm Afiliado\AltaAfiliado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Afiliado\AltaAfiliado.Designer.cs" />
+    <Compile Include="Abm Afiliado\AltaAfiliado.Designer.cs">
+      <DependentUpon>AltaAfiliado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Afiliado\AltaPareja.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Afiliado\AltaPareja.Designer.cs" />
+    <Compile Include="Abm Afiliado\AltaPareja.Designer.cs">
+      <DependentUpon>AltaPareja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Especialidades Medicas\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,8 +204,12 @@
     <Compile Include="SQLDAO\conexion.cs" />
     <Compile Include="SQLDAO\configuracion.cs" />
     <Compile Include="SQLDAO\DBSQL.cs" />
-    <EmbeddedResource Include="Abm Afiliado\AltaAfiliado.resx" />
-    <EmbeddedResource Include="Abm Afiliado\AltaPareja.resx" />
+    <EmbeddedResource Include="Abm Afiliado\AltaAfiliado.resx">
+      <DependentUpon>AltaAfiliado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Afiliado\AltaPareja.resx">
+      <DependentUpon>AltaPareja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\abmMenuRol.resx">
       <DependentUpon>abmMenuRol.cs</DependentUpon>
     </EmbeddedResource>

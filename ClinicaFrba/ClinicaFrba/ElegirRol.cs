@@ -36,7 +36,7 @@ namespace ClinicaFrba
                 {
                     case 0:
                     //Ejemplo:
-                        Home frm = new Home();
+                        HomeAfiliado frm = new HomeAfiliado();
                         frm.Show();
                         this.Close();
                         break;

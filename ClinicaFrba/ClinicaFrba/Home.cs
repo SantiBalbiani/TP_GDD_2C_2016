@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ClinicaFrba
 {
-    public partial class Home : Form
+    public partial class HomeAfiliado : Form
     {
-        public Home()
+        public HomeAfiliado()
         {
             InitializeComponent();
         }
@@ -28,6 +28,21 @@ namespace ClinicaFrba
             ClinicaFrba.Abm_Afiliado.frmAltaAfiliado frm = new Abm_Afiliado.frmAltaAfiliado();
             frm.Show();
             
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void HomeAfiliado_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnComprar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
