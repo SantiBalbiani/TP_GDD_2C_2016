@@ -61,3 +61,4 @@ E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\
 E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.pdb
 E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.exe.manifest
 E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.application
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.csprojResolveAssemblyReference.cache
