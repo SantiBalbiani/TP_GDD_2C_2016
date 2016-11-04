@@ -36,21 +36,31 @@ namespace ClinicaFrba
                 {
                     case 0:
                     //Ejemplo:
-                        HomeAfiliado frm = new HomeAfiliado();
-                        frm.Show();
+                        HomeAfiliado frmAfiliado = new HomeAfiliado();
+                        frmAfiliado.Show();
                         this.Close();
                         break;
                     case 1:
                         //hacer algo
+                        Menu_Principal.HomeProfesional frmProfesional= new Menu_Principal.HomeProfesional();
+                        frmProfesional.Show();
+                        this.Close();
                         break;
                     case 2:
-                        //hacer algo
-                        break;
+                        Menu_Principal.HomeAdmin frmAdmin= new Menu_Principal.HomeAdmin();
+                        frmAdmin.Show();
+                        this.Close();
+                        break;           
                     default:
                         MessageBox.Show("Debe Seleccionar un Rol para poder continuar");
                         break;
                 }
          }
+
+        private void comboRoles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
             
          
         //}

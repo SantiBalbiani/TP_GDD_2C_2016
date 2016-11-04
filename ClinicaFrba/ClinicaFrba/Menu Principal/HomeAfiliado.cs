@@ -15,6 +15,7 @@ namespace ClinicaFrba
         public HomeAfiliado()
         {
             InitializeComponent();
+            this.txtBonosDisponibles.Enabled = false; 
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -25,8 +26,9 @@ namespace ClinicaFrba
         private void btnAlta_Click(object sender, EventArgs e)
         {
             //this.Hide();
-            ClinicaFrba.Abm_Afiliado.frmAltaAfiliado frm = new Abm_Afiliado.frmAltaAfiliado();
-            frm.Show();
+            //ClinicaFrba.Abm_Afiliado.frmAltaAfiliado frm = new Abm_Afiliado.frmAltaAfiliado();
+            ClinicaFrba.Abm_Afiliado.AltaPareja frmPareja = new Abm_Afiliado.AltaPareja();
+            frmPareja.Show();
             
         }
 
@@ -43,6 +45,11 @@ namespace ClinicaFrba
         private void btnComprar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtBonosDisponibles_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -52,7 +52,7 @@
             // 
             // btnAlta
             // 
-            this.btnAlta.Location = new System.Drawing.Point(13, 106);
+            this.btnAlta.Location = new System.Drawing.Point(485, 294);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(97, 23);
             this.btnAlta.TabIndex = 1;
@@ -87,6 +87,7 @@
             this.txtBonosDisponibles.Name = "txtBonosDisponibles";
             this.txtBonosDisponibles.Size = new System.Drawing.Size(97, 20);
             this.txtBonosDisponibles.TabIndex = 5;
+            this.txtBonosDisponibles.TextChanged += new System.EventHandler(this.txtBonosDisponibles_TextChanged);
             // 
             // lblBonos
             // 

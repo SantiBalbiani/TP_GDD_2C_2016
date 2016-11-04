@@ -157,11 +157,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GD2C2016DataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Home.cs">
+    <Compile Include="Menu Principal\HomeAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Home.Designer.cs">
-      <DependentUpon>Home.cs</DependentUpon>
+    <Compile Include="Menu Principal\HomeAdmin.Designer.cs">
+      <DependentUpon>HomeAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu Principal\HomeAfiliado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu Principal\HomeAfiliado.Designer.cs">
+      <DependentUpon>HomeAfiliado.cs</DependentUpon>
     </Compile>
     <Compile Include="Listados\Form1.cs">
       <SubType>Form</SubType>
@@ -174,6 +180,12 @@
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu Principal\HomeProfesional.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu Principal\HomeProfesional.Designer.cs">
+      <DependentUpon>HomeProfesional.cs</DependentUpon>
     </Compile>
     <Compile Include="Pedir Turno\Form1.cs">
       <SubType>Form</SubType>
@@ -228,11 +240,17 @@
     <EmbeddedResource Include="ElegirRol.resx">
       <DependentUpon>ElegirRol.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Home.resx">
-      <DependentUpon>Home.cs</DependentUpon>
+    <EmbeddedResource Include="Menu Principal\HomeAdmin.resx">
+      <DependentUpon>HomeAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu Principal\HomeAfiliado.resx">
+      <DependentUpon>HomeAfiliado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu Principal\HomeProfesional.resx">
+      <DependentUpon>HomeProfesional.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
