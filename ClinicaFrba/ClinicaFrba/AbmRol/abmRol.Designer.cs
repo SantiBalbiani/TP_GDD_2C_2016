@@ -48,7 +48,7 @@
             // asignarRol
             // 
             this.asignarRol.AutoSize = true;
-            this.asignarRol.Location = new System.Drawing.Point(27, 31);
+            this.asignarRol.Location = new System.Drawing.Point(30, 34);
             this.asignarRol.Name = "asignarRol";
             this.asignarRol.Size = new System.Drawing.Size(183, 13);
             this.asignarRol.TabIndex = 0;
@@ -57,7 +57,7 @@
             // 
             // btnCrear
             // 
-            this.btnCrear.Location = new System.Drawing.Point(57, 93);
+            this.btnCrear.Location = new System.Drawing.Point(33, 76);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(75, 72);
             this.btnCrear.TabIndex = 5;
@@ -75,7 +75,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(179, 93);
+            this.button1.Location = new System.Drawing.Point(135, 76);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 72);
             this.button1.TabIndex = 11;
@@ -84,7 +84,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(297, 93);
+            this.button2.Location = new System.Drawing.Point(239, 76);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 72);
             this.button2.TabIndex = 12;

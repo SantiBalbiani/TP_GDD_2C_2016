@@ -62,3 +62,8 @@ E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\
 E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.exe.manifest
 E:\Facultad\Cursada 2016\Gestion de Datos\Tp Clinica\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.application
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.csprojResolveAssemblyReference.cache
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.abmMenuRol.resources
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.abmRol.resources
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.crearRol.resources
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.eliminarRol.resources
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.modificarRol.resources

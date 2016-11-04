@@ -27,28 +27,29 @@ namespace ClinicaFrba
                 string pass = txtContraseña.Text;
                 string cadena = "select nombre as user_name,clave as contraseña ,loginfallidos as login_fallidos,IdRol as id_rol from NEPAirlines.Usuario where clave=HASHBYTES('SHA2_256','" + pass.Trim() + "') and Nombre=('" + cod.Trim() + "')" ;
                     //select user_name,contraseña,login_fallidos,id_rol from prueba.usuarios where user_name=upper('" + cod.Trim() + "') and contraseña=prueba.psencriptar('"+pass.Trim()+"')";
-                users = Conexion.LeerTabla(cadena);
-                if (users.Rows.Count == 0)
+                users = conexion.leertabla(cadena);
+                if (users.rows.count == 0)
                 {
-                    MessageBox.Show("Error al ingresar el Usuario o Contraseña");
-                    cadena = "update NEPAirlines.Usuario set LoginFallidos=LoginFallidos+1 where Nombre=upper('" + cod.Trim() + "')";                    
-                    int resultado=Conexion.EjecutarComando(cadena);                                                            
+                    messagebox.show("error al ingresar el usuario o contraseña");
+                    cadena = "update nepairlines.usuario set loginfallidos=loginfallidos+1 where nombre=upper('" + cod.trim() + "')";
+                    int resultado = conexion.ejecutarcomando(cadena);
                 }
                 else
                 {
-                    foreach (DataRow fila in users.Rows)
+                    foreach (datarow fila in users.rows)
                     {
-                        if (int.Parse((fila["login_fallidos"].ToString())) < 3) {
-                            this.Hide();
-                            MessageBox.Show("Bienvenido " + fila["user_name"].ToString());
-                            AbmMenu menu = new AbmMenu();
-                            menu.CargarMenu(fila["id_rol"].ToString());
-                            menu.Show();
-                            
+                        if (int.parse((fila["login_fallidos"].tostring())) < 3)
+                        {
+                            this.hide();
+                            messagebox.show("bienvenido " + fila["user_name"].tostring());
+                            //abmmenu menu = new abmmenu();
+                            //menu.cargarmenu(fila["id_rol"].tostring());
+                            //menu.show();
+
                         }
                         else
                         {
-                            MessageBox.Show("El Usuario" + fila["user_name"].ToString()+" está Bloqueado");
+                            messagebox.show("el usuario" + fila["user_name"].tostring() + " está bloqueado");
                         }
                     }
                 }                   

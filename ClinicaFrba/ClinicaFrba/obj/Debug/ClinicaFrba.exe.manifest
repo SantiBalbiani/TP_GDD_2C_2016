@@ -42,24 +42,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ClinicaFrba.exe" size="31744">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ClinicaFrba.exe" size="507392">
       <assemblyIdentity name="ClinicaFrba" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wI/O9l0XAqTqTZix2c2eSfDeqGQqG2S8o1iDaU91yTM=</dsig:DigestValue>
+        <dsig:DigestValue>YX1YBAxOgj7idQ2cHin4JKhad4egbrJL6UEqgq/Msh0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="ClinicaFrba.exe.config" size="452">
+  <file name="ClinicaFrba.exe.config" size="439">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>S1FugGK3y/RfCyul7sIl3eyNKZ9z4X4Qvoqy2duIBQQ=</dsig:DigestValue>
+      <dsig:DigestValue>vss7khwkejy/Np1dbp4DFe6kzKS62c6/KsNSi2EQF9Y=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
