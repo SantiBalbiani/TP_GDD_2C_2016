@@ -159,11 +159,6 @@
     <Compile Include="ElegirRol.Designer.cs">
       <DependentUpon>ElegirRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="GD2C2016DataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GD2C2016DataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Menu Principal\HomeAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,9 +215,6 @@
     <Compile Include="Registro Resultado\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="SQLDAO\conexion.cs" />
-    <Compile Include="SQLDAO\configuracion.cs" />
-    <Compile Include="SQLDAO\DBSQL.cs" />
     <EmbeddedResource Include="Abm Afiliado\AltaAfiliado.resx">
       <DependentUpon>AltaAfiliado.cs</DependentUpon>
     </EmbeddedResource>
@@ -275,17 +267,6 @@
       <DependentUpon>Llegada.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Base de Datos\App.config" />
-    <None Include="GD2C2016DataSet.xsc">
-      <DependentUpon>GD2C2016DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="GD2C2016DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GD2C2016DataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="GD2C2016DataSet.xss">
-      <DependentUpon>GD2C2016DataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

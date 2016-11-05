@@ -13,6 +13,7 @@ namespace ClinicaFrba
 {
     public partial class Login : Form
     {
+
         public Login()
         {
             InitializeComponent();
@@ -20,46 +21,45 @@ namespace ClinicaFrba
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //if (Conexion.conectar())
-            //{
-            //    DataTable users = new DataTable();
-            //    string cod = txtUsuario.Text;
-            //    string pass = txtContraseña.Text;
-            //    string cadena = "select nombre as user_name,clave as contraseña ,loginfallidos as login_fallidos,IdRol as id_rol from NEPAirlines.Usuario where clave=HASHBYTES('SHA2_256','" + pass.Trim() + "') and Nombre=('" + cod.Trim() + "')" ;
-            //    select user_name,contraseña,login_fallidos,id_rol from prueba.usuarios where user_name=upper('" + cod.Trim() + "') and contraseña=prueba.psencriptar('"+pass.Trim()+"')";
-            //    users = conexion.leertabla(cadena);
-            //    if (users.rows.count == 0)
-            //    {
-            //        messagebox.show("error al ingresar el usuario o contraseña");
-            //        cadena = "update nepairlines.usuario set loginfallidos=loginfallidos+1 where nombre=upper('" + cod.trim() + "')";
-            //        int resultado = conexion.ejecutarcomando(cadena);
-            //    }
-            //    else
-            //    {
-            //        foreach (datarow fila in users.rows)
-            //        {
-            //            if (int.parse((fila["login_fallidos"].tostring())) < 3)
-            //            {
-            //                this.hide();
-            //                messagebox.show("bienvenido " + fila["user_name"].tostring());
-            //                abmmenu menu = new abmmenu();
-            //                menu.cargarmenu(fila["id_rol"].tostring());
-            //                menu.show();
+            //bool bandera = Conexion.conectar();
 
-            //            }
-            //            else
-            //            {
-            //                messagebox.show("el usuario" + fila["user_name"].tostring() + " está bloqueado");
-            //            }
-            //        }
-            //    }                   
-            //}
-        
+            if (Conexion.conectar())
+            {
+                DataTable users = new DataTable();
+                string cod = txtUsuario.Text;
+                string pass = txtContraseña.Text;
+                string cadena = "select nombreUsuario,contraseña,intentosFallidos,id_Rol from SELECT_GROUP.Usuario where contraseña=HASHBYTES('SHA2_256','" + pass.Trim() + "') and nombreUsuario=('" + cod.Trim() + "')";
+                //select user_name,contraseña,login_fallidos,id_rol from prueba.usuarios where user_name=upper('" + cod.Trim() + "') and contraseña=prueba.psencriptar('"+pass.Trim()+"')";
+                users = Conexion.LeerTabla(cadena);
+                if (users.Rows.Count == 0)
+                {
+                    MessageBox.Show("error al ingresar el usuario o contraseña");
+                    cadena = "update SELECT_GROUP.Usuario set intentosFallidos=intentosFallidos+1 where nombreUsuario=upper('" + cod.Trim() + "')";
+                    int resultado = Conexion.EjecutarComando(cadena);
+                    this.txtContraseña.ResetText();
+                    this.txtUsuario.ResetText();
+                }
+                else
+                {
+                    foreach (DataRow fila in users.Rows)
+                    {
+                        if (int.Parse((fila["intentosFallidos"].ToString())) < 3)
+                        {
+                            this.Hide();
+                            MessageBox.Show("bienvenido " + fila["nombreUsuario"].ToString());
+                            ElegirRol frmRol = new ElegirRol();
+                            frmRol.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("el usuario" + fila["user_name"].ToString() + " está bloqueado");
 
-            ElegirRol frm = new ElegirRol();
-            frm.Show();
-            this.Hide();
-            
+                        }
+                    }
+
+                }
+            }
+
         }
     }
 }

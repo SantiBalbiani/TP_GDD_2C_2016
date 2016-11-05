@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
-using ClinicaFrba.SQL_DAO;
 
 namespace ClinicaFrba
 {
