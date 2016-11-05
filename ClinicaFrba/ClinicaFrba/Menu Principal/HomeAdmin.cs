@@ -16,5 +16,30 @@ namespace ClinicaFrba.Menu_Principal
         {
             InitializeComponent();
         }
+
+        private void HomeAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAltaAfiliado_Click(object sender, EventArgs e)
+        {
+            Abm_Afiliado.frmAltaAfiliado frmAlta = new Abm_Afiliado.frmAltaAfiliado();
+            frmAlta.Show();
+       
+        }
+
+        private void btnAgregarParejaAfiliado_Click(object sender, EventArgs e)
+        {
+            Abm_Afiliado.AltaPareja frmAgregarPareja = new Abm_Afiliado.AltaPareja(); 
+            frmAgregarPareja.Show();
+
+        }
+
+        private void btnAgregarFamiliar_Click(object sender, EventArgs e)
+        {
+            //Abm_Afiliado.AltaFamiliar frmAgregarFamiliar = new Abm_Afiliado.AltaFamiliar();
+            //frmAgregarFamiliar.Show();
+        }
     }
 }

@@ -35,7 +35,6 @@
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtMail = new System.Windows.Forms.TextBox();
-            this.cmbEstadoCivil = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,8 +43,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.cmbSexo = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.btnSiguiente = new System.Windows.Forms.Button();
@@ -103,21 +100,6 @@
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(130, 20);
             this.txtMail.TabIndex = 6;
-            // 
-            // cmbEstadoCivil
-            // 
-            this.cmbEstadoCivil.FormattingEnabled = true;
-            this.cmbEstadoCivil.Items.AddRange(new object[] {
-            "Soltero/a",
-            "Casado/a",
-            "Concubinato",
-            "Divorciado/a",
-            "Viudo/a"});
-            this.cmbEstadoCivil.Location = new System.Drawing.Point(83, 236);
-            this.cmbEstadoCivil.Name = "cmbEstadoCivil";
-            this.cmbEstadoCivil.Size = new System.Drawing.Size(130, 21);
-            this.cmbEstadoCivil.TabIndex = 8;
-            this.cmbEstadoCivil.Tag = "";
             // 
             // label2
             // 
@@ -192,27 +174,10 @@
             this.cmbSexo.Size = new System.Drawing.Size(130, 21);
             this.cmbSexo.TabIndex = 7;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 244);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 13);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Estado Civil:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(168, 262);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(45, 20);
-            this.textBox1.TabIndex = 19;
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(234, 49);
+            this.label12.Location = new System.Drawing.Point(230, 45);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(69, 13);
             this.label12.TabIndex = 22;
@@ -267,8 +232,6 @@
             this.Controls.Add(this.btnSiguiente);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.cmbSexo);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -277,7 +240,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.cmbEstadoCivil);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.txtDireccion);
@@ -301,7 +263,6 @@
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.TextBox txtMail;
-        private System.Windows.Forms.ComboBox cmbEstadoCivil;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -310,8 +271,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cmbSexo;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button btnSiguiente;

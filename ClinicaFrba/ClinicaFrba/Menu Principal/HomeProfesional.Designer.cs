@@ -43,6 +43,7 @@
             this.label3.Size = new System.Drawing.Size(188, 20);
             this.label3.TabIndex = 10;
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -66,6 +67,7 @@
             this.label1.Text = "◉‿◉     Seleccione que desea realizar     ◉‿◉\r\n";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+         
             // HomeProfesional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -86,5 +88,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+     
     }
 }

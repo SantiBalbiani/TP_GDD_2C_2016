@@ -8,23 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ClinicaFrba.Menu_Principal
+namespace ClinicaFrba.Abm_Afiliado
 {
-    public partial class HomeProfesional : Form
+    public partial class AltaFamiliar : Form
     {
-        public HomeProfesional()
+        public AltaFamiliar()
         {
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
+      
+        private void btnCancelar_Click_1(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void label13_Click(object sender, EventArgs e)
         {
 
         }
-    }
+
+   }
 }
