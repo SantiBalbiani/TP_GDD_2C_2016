@@ -80,7 +80,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 72);
             this.button1.TabIndex = 11;
-            this.button1.Text = "Modificar Rol Existentes";
+            this.button1.Text = "Modificar Rol Existente";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -159,7 +159,7 @@
             this.button3.Text = "Salir";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // abmRol
+            // abmMenuRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -170,7 +170,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.asignarRol);
-            this.Name = "abmRol";
+            this.Name = "abmMenuRol";
             this.Text = "ABM Rol";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Rol.ResumeLayout(false);
