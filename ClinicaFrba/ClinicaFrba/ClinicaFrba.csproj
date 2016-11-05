@@ -256,7 +256,9 @@
     <EmbeddedResource Include="Registro Llegada\Llegada.resx">
       <DependentUpon>Llegada.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Base de Datos\App.config" />
+    <None Include="Base de Datos\App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
