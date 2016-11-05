@@ -34,6 +34,7 @@
             this.btnAltaAfiliado = new System.Windows.Forms.Button();
             this.btnAgregarParejaAfiliado = new System.Windows.Forms.Button();
             this.btnAgregarFamiliar = new System.Windows.Forms.Button();
+            this.btnRegistrarLlegada = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -81,7 +82,7 @@
             // 
             // btnAgregarParejaAfiliado
             // 
-            this.btnAgregarParejaAfiliado.Location = new System.Drawing.Point(15, 87);
+            this.btnAgregarParejaAfiliado.Location = new System.Drawing.Point(166, 58);
             this.btnAgregarParejaAfiliado.Name = "btnAgregarParejaAfiliado";
             this.btnAgregarParejaAfiliado.Size = new System.Drawing.Size(145, 23);
             this.btnAgregarParejaAfiliado.TabIndex = 12;
@@ -91,7 +92,7 @@
             // 
             // btnAgregarFamiliar
             // 
-            this.btnAgregarFamiliar.Location = new System.Drawing.Point(15, 116);
+            this.btnAgregarFamiliar.Location = new System.Drawing.Point(166, 87);
             this.btnAgregarFamiliar.Name = "btnAgregarFamiliar";
             this.btnAgregarFamiliar.Size = new System.Drawing.Size(145, 23);
             this.btnAgregarFamiliar.TabIndex = 13;
@@ -99,11 +100,22 @@
             this.btnAgregarFamiliar.UseVisualStyleBackColor = true;
             this.btnAgregarFamiliar.Click += new System.EventHandler(this.btnAgregarFamiliar_Click);
             // 
+            // btnRegistrarLlegada
+            // 
+            this.btnRegistrarLlegada.Location = new System.Drawing.Point(15, 152);
+            this.btnRegistrarLlegada.Name = "btnRegistrarLlegada";
+            this.btnRegistrarLlegada.Size = new System.Drawing.Size(145, 23);
+            this.btnRegistrarLlegada.TabIndex = 14;
+            this.btnRegistrarLlegada.Text = "Registrar Llegada";
+            this.btnRegistrarLlegada.UseVisualStyleBackColor = true;
+            this.btnRegistrarLlegada.Click += new System.EventHandler(this.btnRegistrarLlegada_Click);
+            // 
             // HomeAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.btnRegistrarLlegada);
             this.Controls.Add(this.btnAgregarFamiliar);
             this.Controls.Add(this.btnAgregarParejaAfiliado);
             this.Controls.Add(this.btnAltaAfiliado);
@@ -126,5 +138,6 @@
         private System.Windows.Forms.Button btnAltaAfiliado;
         private System.Windows.Forms.Button btnAgregarParejaAfiliado;
         private System.Windows.Forms.Button btnAgregarFamiliar;
+        private System.Windows.Forms.Button btnRegistrarLlegada;
     }
 }

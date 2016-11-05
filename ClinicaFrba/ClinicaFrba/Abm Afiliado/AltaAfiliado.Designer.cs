@@ -309,9 +309,10 @@
             this.label13.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label13.Location = new System.Drawing.Point(9, 305);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(279, 28);
+            this.label13.Size = new System.Drawing.Size(347, 28);
             this.label13.TabIndex = 27;
-            this.label13.Text = "Una vez haya terminado de cargar su grupo familiar,\r\nhaga clic en siguiente";
+            this.label13.Text = "Una vez haya terminado de cargar todos sus datos y de su grupo,\r\nHaga clic en sig" +
+    "uiente para continuar.";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label13.Click += new System.EventHandler(this.label13_Click);
             // 

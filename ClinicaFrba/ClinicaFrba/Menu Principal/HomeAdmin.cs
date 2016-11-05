@@ -38,8 +38,14 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnAgregarFamiliar_Click(object sender, EventArgs e)
         {
-            //Abm_Afiliado.AltaFamiliar frmAgregarFamiliar = new Abm_Afiliado.AltaFamiliar();
-            //frmAgregarFamiliar.Show();
+            Abm_Afiliado.AltaFamiliar frmAgregarFamiliar = new Abm_Afiliado.AltaFamiliar();
+            frmAgregarFamiliar.Show();
+        }
+
+        private void btnRegistrarLlegada_Click(object sender, EventArgs e)
+        {
+            Registro_Llegada.Llegada frmRegistrar = new Registro_Llegada.Llegada();
+            frmRegistrar.Show();
         }
     }
 }

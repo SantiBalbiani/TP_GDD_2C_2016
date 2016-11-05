@@ -69,3 +69,5 @@ C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.exe
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.pdb
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Abm_Afiliado.AltaFamiliar.resources
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.csprojResolveAssemblyReference.cache
+C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Registro_Llegada.Llegada.resources
