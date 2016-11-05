@@ -115,13 +115,6 @@
     <Compile Include="AbmRol\abmMenuRol.Designer.cs">
       <DependentUpon>abmMenuRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRol\abmRol.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmRol\abmRol.Designer.cs">
-      <DependentUpon>abmRol.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmRol\ClaseRol.cs" />
     <Compile Include="AbmRol\crearRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,9 +219,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\abmMenuRol.resx">
       <DependentUpon>abmMenuRol.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmRol\abmRol.resx">
-      <DependentUpon>abmRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\crearRol.resx">
       <DependentUpon>crearRol.cs</DependentUpon>

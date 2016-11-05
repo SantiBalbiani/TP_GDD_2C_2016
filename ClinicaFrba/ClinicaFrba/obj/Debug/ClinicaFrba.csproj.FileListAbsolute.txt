@@ -54,7 +54,6 @@ C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Abm_Afiliado.AltaFamiliar.resources
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Abm_Afiliado.AltaPareja.resources
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.abmMenuRol.resources
-C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.abmRol.resources
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.crearRol.resources
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.eliminarRol.resources
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.modificarRol.resources
