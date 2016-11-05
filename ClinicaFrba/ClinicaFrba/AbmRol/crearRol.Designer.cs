@@ -83,14 +83,15 @@
             // 
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Items.AddRange(new object[] {
-            "F1",
-            "F2",
-            "F3",
-            "F4"});
-            this.checkedListBox1.Location = new System.Drawing.Point(300, 106);
+            "Comprar Bono",
+            "Pedir Turno",
+            "Registrar llegada de Afiliado",
+            "Cancelar Turno"});
+            this.checkedListBox1.Location = new System.Drawing.Point(297, 112);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(120, 64);
             this.checkedListBox1.TabIndex = 3;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // label3
             // 
