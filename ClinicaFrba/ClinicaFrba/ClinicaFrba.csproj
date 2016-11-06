@@ -57,7 +57,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -140,11 +140,11 @@
     <Compile Include="Cancelar Atencion\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Compra Bono\Form1.cs">
+    <Compile Include="Compra Bono\CompraDeBonos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Compra Bono\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Compra Bono\CompraDeBonos.Designer.cs">
+      <DependentUpon>CompraDeBonos.cs</DependentUpon>
     </Compile>
     <Compile Include="ElegirRol.cs">
       <SubType>Form</SubType>
@@ -228,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\modificarRol.resx">
       <DependentUpon>modificarRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compra Bono\CompraDeBonos.resx">
+      <DependentUpon>CompraDeBonos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ElegirRol.resx">
       <DependentUpon>ElegirRol.cs</DependentUpon>

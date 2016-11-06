@@ -11,6 +11,7 @@ using ClinicaFrba.Base_de_Datos;
 
 namespace ClinicaFrba
 {
+
     public partial class Login : Form
     {
 
@@ -46,6 +47,7 @@ namespace ClinicaFrba
                         {
                             this.Hide();
                             MessageBox.Show("bienvenido " + fila["nombreUsuario"].ToString());
+                            Globals.userName = cod.Trim();
                             ElegirRol frmRol = new ElegirRol(txtUsuario.Text);
                             frmRol.Show();
                         }

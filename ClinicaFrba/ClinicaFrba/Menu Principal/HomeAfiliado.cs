@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClinicaFrba.Compra_Bono;
 
 namespace ClinicaFrba
 {
@@ -44,7 +45,9 @@ namespace ClinicaFrba
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            FrmComprarBonos frmComprarBonos = new FrmComprarBonos();
+            frmComprarBonos.Show();
         }
 
         private void txtBonosDisponibles_TextChanged(object sender, EventArgs e)

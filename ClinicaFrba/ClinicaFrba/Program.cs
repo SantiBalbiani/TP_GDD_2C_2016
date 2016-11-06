@@ -9,6 +9,11 @@ using System.Configuration;
 
 namespace ClinicaFrba
 {
+    public static class Globals
+    {
+        public static String userName = "0";
+
+    }
     static class Program
     {
         /// <summary>
