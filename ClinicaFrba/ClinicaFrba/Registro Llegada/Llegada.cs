@@ -45,7 +45,7 @@ namespace ClinicaFrba.Registro_Llegada
         private void button1_Click_1(object sender, EventArgs e)
         {
             //Al tocar este boton se chequea si posee bonos dispobibles para realizar la consulta, y si tiene se habilitan las opciones, sino, se informa. 
-            this.        
+            //this.        
         }
 
         private void label3_Click(object sender, EventArgs e)

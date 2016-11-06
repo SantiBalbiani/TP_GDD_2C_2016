@@ -69,3 +69,27 @@ C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.application
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.exe
 C:\Users\Noe\Desktop\TP Gestion\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.pdb
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Abm_Afiliado.frmAltaAfiliado.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Abm_Afiliado.AltaFamiliar.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Abm_Afiliado.AltaPareja.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.abmMenuRol.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.crearRol.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.eliminarRol.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.AbmRol.modificarRol.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Menu_Principal.HomeAdmin.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.HomeAfiliado.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Login.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Menu_Principal.HomeProfesional.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Properties.Resources.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Registro_Llegada.Llegada.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.csproj.GenerateResource.Cache
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.exe.config
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.exe.manifest
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.application
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.exe
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\Debug\ClinicaFrba.pdb
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.ElegirRol.resources
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.exe.manifest
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.application
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.exe
+E:\Facultad\Cursada 2016\Gestion de Datos\Tp 2C\Nueva carpeta\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.pdb

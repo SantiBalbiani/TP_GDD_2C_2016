@@ -28,39 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.comboRoles = new System.Windows.Forms.ComboBox();
             this.btnContinuar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblRol = new System.Windows.Forms.Label();
+            this.comboBoxRoles = new System.Windows.Forms.ComboBox();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // txtUsuario
-            // 
-            this.txtUsuario.Enabled = false;
-            this.txtUsuario.Location = new System.Drawing.Point(74, 27);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.ReadOnly = true;
-            this.txtUsuario.Size = new System.Drawing.Size(166, 20);
-            this.txtUsuario.TabIndex = 5;
-            // 
-            // comboRoles
-            // 
-            this.comboRoles.FormattingEnabled = true;
-            this.comboRoles.Items.AddRange(new object[] {
-            "Afiliado",
-            "Profesional",
-            "Administrativo"});
-            this.comboRoles.Location = new System.Drawing.Point(74, 53);
-            this.comboRoles.Name = "comboRoles";
-            this.comboRoles.Size = new System.Drawing.Size(166, 21);
-            this.comboRoles.TabIndex = 10;
-            this.comboRoles.SelectedIndexChanged += new System.EventHandler(this.comboRoles_SelectedIndexChanged);
             // 
             // btnContinuar
             // 
             this.btnContinuar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnContinuar.Location = new System.Drawing.Point(149, 80);
+            this.btnContinuar.Location = new System.Drawing.Point(149, 87);
             this.btnContinuar.Name = "btnContinuar";
             this.btnContinuar.Size = new System.Drawing.Size(91, 23);
             this.btnContinuar.TabIndex = 11;
@@ -86,18 +64,40 @@
             this.lblRol.TabIndex = 13;
             this.lblRol.Text = "Rol";
             // 
+            // comboBoxRoles
+            // 
+            this.comboBoxRoles.FormattingEnabled = true;
+            this.comboBoxRoles.Location = new System.Drawing.Point(74, 60);
+            this.comboBoxRoles.Name = "comboBoxRoles";
+            this.comboBoxRoles.Size = new System.Drawing.Size(166, 21);
+            this.comboBoxRoles.TabIndex = 14;
+            this.comboBoxRoles.Text = "Seleccione un Rol";
+            this.comboBoxRoles.SelectedIndexChanged += new System.EventHandler(this.comboBoxRoles_SelectedIndexChanged);
+            // 
+            // txtUsuario
+            // 
+            this.txtUsuario.Enabled = false;
+            this.txtUsuario.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.txtUsuario.Location = new System.Drawing.Point(74, 27);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.ReadOnly = true;
+            this.txtUsuario.Size = new System.Drawing.Size(166, 20);
+            this.txtUsuario.TabIndex = 5;
+            this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
+            // 
             // ElegirRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(277, 120);
+            this.Controls.Add(this.comboBoxRoles);
             this.Controls.Add(this.lblRol);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnContinuar);
-            this.Controls.Add(this.comboRoles);
             this.Controls.Add(this.txtUsuario);
             this.Name = "ElegirRol";
-            this.Text = "Selecionar Rol";
+            this.Text = "Clinica FRBA";
+            this.Load += new System.EventHandler(this.ElegirRol_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,10 +105,10 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtUsuario;
-        private System.Windows.Forms.ComboBox comboRoles;
         private System.Windows.Forms.Button btnContinuar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblRol;
+        private System.Windows.Forms.ComboBox comboBoxRoles;
+        private System.Windows.Forms.TextBox txtUsuario;
     }
 }

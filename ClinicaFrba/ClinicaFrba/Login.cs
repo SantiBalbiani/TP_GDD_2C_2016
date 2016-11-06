@@ -35,7 +35,6 @@ namespace ClinicaFrba
                 {
                     MessageBox.Show("error al ingresar el usuario o contraseña");
                     cadena = "update SELECT_GROUP.Usuario set intentosFallidos=intentosFallidos+1 where nombreUsuario=upper('" + cod.Trim() + "')";
-                    int resultado = Conexion.EjecutarComando(cadena);
                     this.txtContraseña.ResetText();
                     this.txtUsuario.ResetText();
                 }
@@ -47,12 +46,12 @@ namespace ClinicaFrba
                         {
                             this.Hide();
                             MessageBox.Show("bienvenido " + fila["nombreUsuario"].ToString());
-                            ElegirRol frmRol = new ElegirRol();
+                            ElegirRol frmRol = new ElegirRol(txtUsuario.Text);
                             frmRol.Show();
                         }
                         else
                         {
-                            MessageBox.Show("el usuario" + fila["user_name"].ToString() + " está bloqueado");
+                            MessageBox.Show("el usuario" + fila["nombreUsuario"].ToString() + " está bloqueado");
 
                         }
                     }

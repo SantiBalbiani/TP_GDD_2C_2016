@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ClinicaFrba.Base_de_Datos
 {
@@ -27,8 +28,9 @@ namespace ClinicaFrba.Base_de_Datos
                 conexion.Open();
                 conectado = true;
             }
-            catch (InvalidCastException error)
+            catch (InvalidCastException)
             {
+                MessageBox.Show("Error al conectar la Base de datos");
                 conectado = false;
             }
             return conectado;
@@ -62,14 +64,14 @@ namespace ClinicaFrba.Base_de_Datos
             }        
             return dtresultado;*/
         }
-        public static int EjecutarComando(string sentencia)
+        public static DataTable EjecutarComando(string sentencia)
         {
-            int retorno = 0;
-            if (conectar())
-            {
-                SqlCommand comando = new SqlCommand(sentencia, conexion);
-                retorno = comando.ExecuteNonQuery();
-            }
+            DataTable retorno = new DataTable();
+            SqlConnection conexion = new SqlConnection("Data Source=localhost\\SQLSERVER2012;Initial Catalog=GD2C2016;User=gd;password=gd2016;Integrated Security=True");
+            SqlCommand comando = new SqlCommand(sentencia, conexion);
+            SqlDataAdapter adap = new SqlDataAdapter(comando);
+            adap.Fill(retorno);
+
             return retorno;
         }
     }
