@@ -33,16 +33,16 @@ namespace ClinicaFrba.AbmRol
         private void button1_Click(object sender, EventArgs e)
         {
             SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-            SqlCommand cmdUsuario = new SqlCommand("Select_Group.CrearRol", cnx);
-            cmdUsuario.CommandType = CommandType.StoredProcedure;
-            cmdUsuario.Parameters.Add("@ROL_DESCRIP", SqlDbType.VarChar).Value = textBox1.Text;
-            cmdUsuario.Parameters.Add("@FUNCIONALIDAD_DESCIP", SqlDbType.Int).Value = checkedListBox1.Text;
+            SqlCommand cmdRol = new SqlCommand("Select_Group.CrearRol", cnx);
+            cmdRol.CommandType = CommandType.StoredProcedure;
+            cmdRol.Parameters.Add("@ROL_DESCRIP", SqlDbType.VarChar).Value = textBox1.Text;
+            cmdRol.Parameters.Add("@FUNCIONALIDAD_DESCIP", SqlDbType.Int).Value = checkedListBox1.Text;
 
             try
             {
 
                 cnx.Open();
-                cmdUsuario.ExecuteNonQuery();
+                cmdRol.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {
