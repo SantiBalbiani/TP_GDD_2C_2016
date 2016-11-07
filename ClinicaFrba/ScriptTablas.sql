@@ -28,7 +28,6 @@ create table SELECT_GROUP.Usuario(
 	contraseña varbinary(45),
 	intentosFallidos numeric(1,0),
 	habilitado bit,
-	id_Rol numeric(6,0) not null,
 	CONSTRAINT pk_IdUsername primary key (idUsuario),
 	CONSTRAINT fk_usuario_Rol foreign key (id_Rol) references SELECT_GROUP.Rol (idRol)
 )
@@ -361,6 +360,22 @@ SELECT distinct Bono_Consulta_Numero,C.idCompra,Afi.plan_idPlan,Afi.idAfiliado, 
   ORDER BY M.Bono_Consulta_Numero
 GO
 
+insert into SELECT_GROUP.Usuario_Por_Rol (rol_idRol,usuario_username)
+select R.idRol,U.idUsuario
+from SELECT_GROUP.Usuario as U, SELECT_GROUP.Rol as R, SELECT_GROUP.Afiliado as A
+where U.idUsuario = A.idUsuario and r.nombre = 'Afiliado'
+
+insert into SELECT_GROUP.Usuario_Por_Rol (rol_idRol,usuario_username)
+select R.idRol,U.idUsuario
+from SELECT_GROUP.Usuario as U, SELECT_GROUP.Rol as R, SELECT_GROUP.Profesional as P
+where U.idUsuario = P.idUsuario and r.nombre = 'Profesional'
+
+insert into SELECT_GROUP.Usuario_Por_Rol (rol_idRol,usuario_username)
+select R.idRol,U.idUsuario
+from SELECT_GROUP.Usuario as U, SELECT_GROUP.Rol as R
+where U.nombreUsuario = 'admin' and r.nombre = 'Administrativo'
+
+
 --=============================================================================================================
 --TIPO		: Procedure
 --NOMBRE	: ComprarBono
@@ -444,5 +459,6 @@ END
 GO
 
 COMMIT TRANSACTION creacionTablas
+
 
 
