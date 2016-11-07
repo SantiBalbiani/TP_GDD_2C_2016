@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -70,7 +70,7 @@ namespace ClinicaFrba
         private void ElegirRol_Load(object sender, EventArgs e)
         {
             txtUsuario.Text = usuarioLogeado;
-            string query = "select r.nombre,r.idRol from SELECT_GROUP.Usuario as u,SELECT_GROUP.Rol as r where u.nombreUsuario = '" + usuarioLogeado + "' and r.idRol = u.id_Rol";
+            string query = "select r.nombre,r.idRol from SELECT_GROUP.Usuario as u,SELECT_GROUP.Rol, SELECT_GROUP.Usuario_Por_Rol as UXR as r where u.nombreUsuario = '" + usuarioLogeado + "' and u.idUsuario = UXR.usuario_username and r.idRol = URX.rol_idRol";
              DataTable dt = Conexion.EjecutarComando(query);
             foreach(DataRow fila in dt.Rows){
                 comboBoxRoles.Items.Add(Convert.ToString(fila["nombre"]));
