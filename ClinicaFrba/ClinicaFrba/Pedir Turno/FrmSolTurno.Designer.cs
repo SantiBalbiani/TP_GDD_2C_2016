@@ -47,6 +47,7 @@
             this.monthCalendar1.Location = new System.Drawing.Point(161, 18);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 2;
+            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // listView1
             // 
@@ -55,6 +56,7 @@
             this.listView1.Size = new System.Drawing.Size(548, 214);
             this.listView1.TabIndex = 3;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // FrmSolTurno
             // 
