@@ -35,6 +35,7 @@
             this.txtBonosDisponibles = new System.Windows.Forms.TextBox();
             this.lblBonos = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -109,11 +110,22 @@
             this.label3.TabIndex = 7;
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(213, 248);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(97, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Solicitar Turno";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // HomeAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblBonos);
             this.Controls.Add(this.txtBonosDisponibles);
@@ -138,5 +150,6 @@
         private System.Windows.Forms.TextBox txtBonosDisponibles;
         private System.Windows.Forms.Label lblBonos;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button1;
     }
 }

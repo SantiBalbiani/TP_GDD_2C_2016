@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClinicaFrba.Compra_Bono;
+using ClinicaFrba.Pedir_Turno;
 
 namespace ClinicaFrba
 {
@@ -52,6 +53,14 @@ namespace ClinicaFrba
 
         private void txtBonosDisponibles_TextChanged(object sender, EventArgs e)
         {
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FrmSolTurno frmSolTurno = new FrmSolTurno();
+            frmSolTurno.Show();
             
         }
     }
