@@ -1,20 +1,24 @@
 /*baja rol*/
 
-CREATE PROCEDURE SELECT_GROUP.BAJA_ROL(@ROL INT) AS 
+CREATE PROCEDURE SELECT_GROUP.BAJA_ROL(@ROL varchar(45)) AS 
 
 BEGIN
 
 UPDATE ROL SET
 habilitado = 0
-where idRol = @ROL
+where nombre = @ROL
 
-/*UPDATE SELECT_GROUP.USUARIO_POR_ROL SET
 
-FROM Select_group.USUARIO_POR_ROL UPR, Select_group.USUARIO U 
-WHERE U.username = UPR.usuario_username AND UPR.rol_idRol=@ROL
-*/
 END 
 GO
+create procedure SELECT_GROUP.Habilitar_Rol(@ROL varchar(45)) as
+begin
+update Rol SET
+habilitado = 1
+where nombre = @ROL and habilitado = 0
+end
+go
+
 /*----------------------------*/
 /*crear rol*/
 
