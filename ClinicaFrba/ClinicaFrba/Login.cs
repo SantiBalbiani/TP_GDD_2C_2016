@@ -29,7 +29,7 @@ namespace ClinicaFrba
                 DataTable users = new DataTable();
                 string cod = txtUsuario.Text;
                 string pass = txtContraseña.Text;
-                string cadena = "select nombreUsuario,contraseña,intentosFallidos,id_Rol from SELECT_GROUP.Usuario where contraseña=HASHBYTES('SHA2_256','" + pass.Trim() + "') and nombreUsuario=('" + cod.Trim() + "')";
+                string cadena = "select nombreUsuario,contraseña,intentosFallidos from SELECT_GROUP.Usuario where contraseña=HASHBYTES('SHA2_256','" + pass.Trim() + "') and nombreUsuario=('" + cod.Trim() + "')";
                 //select user_name,contraseña,login_fallidos,id_rol from prueba.usuarios where user_name=upper('" + cod.Trim() + "') and contraseña=prueba.psencriptar('"+pass.Trim()+"')";
                 users = Conexion.LeerTabla(cadena);
                 if (users.Rows.Count == 0)
