@@ -414,6 +414,18 @@ END
 GO
 
 --=============================================================================================================
+--TIPO		: Store Procedure
+--NOMBRE	: ObtenerEspecialidades
+--OBJETIVO  : Obtiene los tipos de especialidades.                                     
+--=============================================================================================================
+
+CREATE PROCEDURE [Select_Group].[ObtenerEspecialidades]
+AS
+BEGIN
+SELECT idTipo, descripcion FROM Select_Group.Tipo_Especialidad
+END
+GO
+--=============================================================================================================
 --TIPO		: Trigger
 --NOMBRE	: RegistrarBonos
 --OBJETIVO  : Crea una cantidad de registros(Bonos) igual al campo "unidades" de la tabla Compras.                                     
@@ -460,6 +472,8 @@ CLOSE CompraDeBonos;
 DEALLOCATE CompraDeBonos;
 END
 GO
+
+
 
 COMMIT TRANSACTION creacionTablas
 
