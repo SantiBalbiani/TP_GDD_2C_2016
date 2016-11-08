@@ -182,11 +182,12 @@
     <Compile Include="Menu Principal\HomeProfesional.Designer.cs">
       <DependentUpon>HomeProfesional.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pedir Turno\Form1.cs">
+    <Compile Include="Pedir Turno\ComboboxItem_2.cs" />
+    <Compile Include="Pedir Turno\FrmSolTurno.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pedir Turno\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Pedir Turno\FrmSolTurno.Designer.cs">
+      <DependentUpon>FrmSolTurno.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -246,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu Principal\HomeProfesional.resx">
       <DependentUpon>HomeProfesional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pedir Turno\FrmSolTurno.resx">
+      <DependentUpon>FrmSolTurno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
