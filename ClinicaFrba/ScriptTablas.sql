@@ -29,7 +29,7 @@ create table SELECT_GROUP.Usuario(
 	intentosFallidos numeric(1,0),
 	habilitado bit,
 	CONSTRAINT pk_IdUsername primary key (idUsuario),
-	CONSTRAINT fk_usuario_Rol foreign key (id_Rol) references SELECT_GROUP.Rol (idRol)
+	
 )
 create table SELECT_GROUP.Afiliado(
 	idAfiliado numeric(7,0) identity(001,100) not null,
@@ -231,19 +231,19 @@ INSERT INTO SELECT_GROUP.Funcionalidad_Por_Rol(rol_idRol,funcionalidad_idFuncion
 		(3,1),(3,2),(3,3),(3,8),(3,9); /*Usuario Afiliado funciones*/
 
 /*Cargo usuario Admin pedido por catedra */ 
-INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado,id_rol) values
-('admin', HASHBYTES('SHA2_256','w23e'),0,1,1 /*(select idRol from SELECT_GROUP.Rol where SELECT_GROUP.Rol.nombre = 'Administrativo'));*/); 
+INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado) values
+('admin', HASHBYTES('SHA2_256','w23e'),0,1)
 
 /*Cargo los usuarios pertenecientes a los Afiliados */
-INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado,id_rol)
-select distinct cast(Paciente_Dni as varchar(45)), HASHBYTES('SHA2_256',cast(Paciente_Dni as varchar(45))),0,1,3 /*(select idRol from SELECT_GROUP.Rol where SELECT_GROUP.Rol.nombre = 'Afiliado')*/
+INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado)
+select distinct cast(Paciente_Dni as varchar(45)), HASHBYTES('SHA2_256',cast(Paciente_Dni as varchar(45))),0,1
 from gd_esquema.Maestra
 where Paciente_Dni is not null
 order by cast(Paciente_Dni as varchar(45))
 
 /*Cargo los usuarios pertenecientes a los profesionales */
-INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado,id_rol)
-select distinct cast(Medico_Dni as varchar(45)), HASHBYTES('SHA2_256',Medico_Apellido),0,1,(select idRol from SELECT_GROUP.Rol where SELECT_GROUP.Rol.nombre = 'Profesional')
+INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado)
+select distinct cast(Medico_Dni as varchar(45)), HASHBYTES('SHA2_256',Medico_Apellido),0,1
 from gd_esquema.Maestra
 where Medico_Dni is not null
 order by cast(Medico_Dni as varchar(45))
@@ -381,7 +381,7 @@ where U.nombreUsuario = 'admin' and r.nombre = 'Administrativo'
 --NOMBRE	: ComprarBono
 --OBJETIVO  : Crear un registro en la tabla compras.                                     
 --=============================================================================================================
-CREATE PROCEDURE [Select_Group].[ComprarBono](@userName VARCHAR(45), @cantidad INT)
+CREATE PROCEDURE [SELECT_GROUP].[ComprarBono](@userName VARCHAR(45), @cantidad INT)
 AS
 BEGIN
 
@@ -404,7 +404,7 @@ BEGIN
 
 	set @precio = (SELECT precioDelBono_Consulta FROM Select_Group.Plan_Med WHERE Select_Group.Plan_Med.idPlan = @idPlan );
 
-	Insert into Select_Group.Compras(FechaCompra,afiliado_Comprador,unidades,monto)
+	Insert into SELECT_GROUP.Compras(FechaCompra,afiliado_Comprador,unidades,monto)
 	Values(@fechaActual, @nroAfiliado, @cantidad, (@precio * @cantidad));
 
 END
@@ -459,6 +459,7 @@ END
 GO
 
 COMMIT TRANSACTION creacionTablas
+
 
 
 
