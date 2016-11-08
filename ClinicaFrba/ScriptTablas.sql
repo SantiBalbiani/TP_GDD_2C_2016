@@ -375,6 +375,9 @@ select R.idRol,U.idUsuario
 from SELECT_GROUP.Usuario as U, SELECT_GROUP.Rol as R
 where U.nombreUsuario = 'admin' and r.nombre = 'Administrativo'
 
+INSERT INTO Select_Group.Profesional_Por_Especialidad
+([especialidad_idEspecialidad], [profesional_idProfesional])
+SELECT distinct M.Especialidad_Codigo, P.matricula FROM gd_esquema.Maestra M JOIN Select_Group.Profesional P ON M.Medico_Dni = P.numeroDni 
 
 --=============================================================================================================
 --TIPO		: Procedure
@@ -416,7 +419,7 @@ GO
 --OBJETIVO  : Crea una cantidad de registros(Bonos) igual al campo "unidades" de la tabla Compras.                                     
 --=============================================================================================================
 
-ALTER TRIGGER [Select_Group].[RegistrarBonos] ON [Select_Group].[Compras]
+CREATE TRIGGER [Select_Group].[RegistrarBonos] ON [Select_Group].[Compras]
 AFTER INSERT
 AS
 
