@@ -57,8 +57,37 @@ namespace ClinicaFrba.Pedir_Turno
             DataTable profesionales = new DataTable();
             Object unItemEspecialidad = comboBox1.SelectedItem;
             ComboboxItem itemEspecialidad = (ComboboxItem)unItemEspecialidad;
+            string consultaStr = "select profesional_idProfesional from SELECT_GROUP.Profesional_Por_Especialidad WHERE especialidad_idEspecialidad = '" + itemEspecialidad.Value.ToString() + "'";
+
+            profesionales = Conexion.LeerTabla(consultaStr);
+
+            DataTable nombreProfesionales = new DataTable();
+
+            
+            
+
+            
+            foreach (DataRow idProf in profesionales.Rows)
+            {
+
+                string consultaNyA = "select matricula, nombre, apellido from SELECT_GROUP.Profesional WHERE matricula = '" + idProf["profesional_idProfesional"].ToString() + "'";
+                nombreProfesionales = Conexion.LeerTabla(consultaNyA);
+                
+                foreach (DataRow filaNombreProf in nombreProfesionales.Rows)
+                {
 
 
+                    string profesional = filaNombreProf["nombre"].ToString() + ", " + filaNombreProf["apellido"].ToString();
+                    ComboboxItem itemProf = new ComboboxItem();
+
+                    itemProf.Text = profesional;
+                    itemProf.Value = filaNombreProf["matricula"].ToString();
+
+                    comboBox3.Items.Add(itemProf);
+
+                }
+
+            }
 
 
             Conexion.conexion.Close();
@@ -89,6 +118,7 @@ namespace ClinicaFrba.Pedir_Turno
         {
             Conexion.conectar();
             comboBox1.Items.Clear();
+            comboBox3.Items.Clear();
             DataTable especialidades = new DataTable();
             Object unItem = comboBox2.SelectedItem;
             ComboboxItem unItemCasteado = (ComboboxItem)unItem;
