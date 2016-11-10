@@ -70,7 +70,7 @@ namespace ClinicaFrba.Pedir_Turno
                 item.Text = fila["descripcion"].ToString();
                 item.Value = fila["idTipo"];
                 comboBox2.Items.Add(item);
-                comboBox2.SelectedIndex = 0;
+               
 
 
             }
@@ -80,32 +80,35 @@ namespace ClinicaFrba.Pedir_Turno
         {
             Conexion.conectar();
 
-            DataTable profesionalesDeUnaEspecialidad = new DataTable();
-            string cadena = "select profesional_idProfesional from SELECT_GROUP.Profesional_Por_Especialidad WHERE especialidad_idEspecialidad = '" + comboBox2.SelectedIndex.ToString() + "'"; 
+            DataTable especialidades = new DataTable();
+            Object unItem = comboBox2.SelectedItem;
+            ComboboxItem unItemCasteado = (ComboboxItem)unItem;
+            string cadena = "select idEspecialidad, descripcion from SELECT_GROUP.Especialidad WHERE idTipoEspecialidad = '" + unItemCasteado.Value.ToString() + "'"; 
 
-            profesionalesDeUnaEspecialidad = Conexion.LeerTabla(cadena);
-            DataTable unProfesionaDeUnaEspecialidad = new DataTable();
+            especialidades = Conexion.LeerTabla(cadena);
+            //DataTable unProfesionaDeUnaEspecialidad = new DataTable();
 
-            foreach (DataRow filaProfId in profesionalesDeUnaEspecialidad.Rows)
+            foreach (DataRow especialidad in especialidades.Rows)
             {
 
-                string cadena2 = "select nombre, apellido from SELECT_GROUP.Profesional WHERE matricula = '" + filaProfId["profesional_idProfesional"].ToString() + "'";
                 
-                unProfesionaDeUnaEspecialidad = Conexion.LeerTabla(cadena2);
-                foreach (DataRow filaNombreProf in unProfesionaDeUnaEspecialidad.Rows){
+                
+               
+              
 
 
-                    string profesional = filaNombreProf["nombre"].ToString() + ", " + filaNombreProf["apellido"].ToString();
-                    ComboboxItem itemProf = new ComboboxItem();
+                    string desc = especialidad["descripcion"].ToString();
+                    ComboboxItem itemEsp = new ComboboxItem();
 
-                    itemProf.Text = profesional;
-                    itemProf.Value = filaProfId["profesional_idProfesional"].ToString();
+                    itemEsp.Text = desc;
+                    itemEsp.Value = especialidad["idEspecialidad"].ToString();
 
-                    comboBox1.Items.Add(itemProf);
+                    comboBox1.Items.Add(itemEsp);
 
                 }
+ 
 
-            }
+            
             Conexion.conexion.Close();
         }
 
