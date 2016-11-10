@@ -33,6 +33,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button1
@@ -64,11 +65,11 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(42, 125);
+            this.comboBox1.Location = new System.Drawing.Point(42, 81);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(148, 21);
             this.comboBox1.TabIndex = 4;
-            this.comboBox1.Text = "Seleccione Profesional";
+            this.comboBox1.Text = "Seleccione Especialidad";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // comboBox2
@@ -78,14 +79,23 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(148, 21);
             this.comboBox2.TabIndex = 5;
-            this.comboBox2.Text = "Seleccione Especialidad";
+            this.comboBox2.Text = "Elija tipo de Especialidad";
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(42, 128);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(148, 21);
+            this.comboBox3.TabIndex = 6;
             // 
             // FrmSolTurno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(601, 496);
+            this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.listView1);
@@ -105,5 +115,6 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox3;
     }
 }

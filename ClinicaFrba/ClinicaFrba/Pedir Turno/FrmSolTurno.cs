@@ -79,7 +79,7 @@ namespace ClinicaFrba.Pedir_Turno
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             Conexion.conectar();
-
+            comboBox1.Items.Clear();
             DataTable especialidades = new DataTable();
             Object unItem = comboBox2.SelectedItem;
             ComboboxItem unItemCasteado = (ComboboxItem)unItem;
