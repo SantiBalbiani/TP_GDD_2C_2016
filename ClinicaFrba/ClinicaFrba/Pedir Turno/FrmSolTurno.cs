@@ -52,7 +52,16 @@ namespace ClinicaFrba.Pedir_Turno
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Conexion.conectar();
+            comboBox3.Items.Clear();
+            DataTable profesionales = new DataTable();
+            Object unItemEspecialidad = comboBox1.SelectedItem;
+            ComboboxItem itemEspecialidad = (ComboboxItem)unItemEspecialidad;
 
+
+
+
+            Conexion.conexion.Close();
         }
 
         private void FrmSolTurno_Load(object sender, EventArgs e)
@@ -122,6 +131,11 @@ namespace ClinicaFrba.Pedir_Turno
             this.Hide();
             HomeAfiliado frmHome = new HomeAfiliado();
             frmHome.Show();
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
