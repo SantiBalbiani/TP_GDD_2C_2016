@@ -54,7 +54,8 @@ namespace ClinicaFrba.Pedir_Turno
         {
             Conexion.conectar();
             comboBox3.Items.Clear();
-            comboBox3.SelectedItem = 0;
+            comboBox3.ResetText();
+            
             DataTable profesionales = new DataTable();
             Object unItemEspecialidad = comboBox1.SelectedItem;
             ComboboxItem itemEspecialidad = (ComboboxItem)unItemEspecialidad;
@@ -119,7 +120,9 @@ namespace ClinicaFrba.Pedir_Turno
         {
             Conexion.conectar();
             comboBox1.Items.Clear();
+            comboBox1.ResetText();
             comboBox3.Items.Clear();
+            comboBox3.ResetText();
             DataTable especialidades = new DataTable();
             Object unItem = comboBox2.SelectedItem;
             ComboboxItem unItemCasteado = (ComboboxItem)unItem;

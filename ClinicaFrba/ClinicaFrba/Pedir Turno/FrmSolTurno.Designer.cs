@@ -67,9 +67,9 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(42, 81);
+            this.comboBox1.Location = new System.Drawing.Point(25, 81);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(270, 21);
+            this.comboBox1.Size = new System.Drawing.Size(287, 21);
             this.comboBox1.TabIndex = 4;
             this.comboBox1.Text = "Seleccione Especialidad";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -77,9 +77,9 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(42, 41);
+            this.comboBox2.Location = new System.Drawing.Point(25, 41);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(270, 21);
+            this.comboBox2.Size = new System.Drawing.Size(287, 21);
             this.comboBox2.TabIndex = 5;
             this.comboBox2.Text = "Seleccione Area de Especialidad";
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
@@ -87,9 +87,9 @@
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(42, 128);
+            this.comboBox3.Location = new System.Drawing.Point(25, 128);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(270, 21);
+            this.comboBox3.Size = new System.Drawing.Size(287, 21);
             this.comboBox3.TabIndex = 6;
             this.comboBox3.Text = "Seleccione Profesional";
             this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
