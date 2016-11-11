@@ -55,6 +55,7 @@ namespace ClinicaFrba.Pedir_Turno
             Conexion.conectar();
             comboBox3.Items.Clear();
             comboBox3.ResetText();
+            comboBox3.SelectedText = "Seleccione Profesional";
             
             DataTable profesionales = new DataTable();
             Object unItemEspecialidad = comboBox1.SelectedItem;
@@ -121,8 +122,10 @@ namespace ClinicaFrba.Pedir_Turno
             Conexion.conectar();
             comboBox1.Items.Clear();
             comboBox1.ResetText();
+            comboBox1.SelectedText = "Seleccione Especialidad";
             comboBox3.Items.Clear();
             comboBox3.ResetText();
+            comboBox3.SelectedText = "Seleccione Profesional";
             DataTable especialidades = new DataTable();
             Object unItem = comboBox2.SelectedItem;
             ComboboxItem unItemCasteado = (ComboboxItem)unItem;
