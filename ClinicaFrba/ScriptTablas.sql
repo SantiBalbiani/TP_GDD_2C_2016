@@ -170,7 +170,7 @@ create table SELECT_GROUP.Agenda(
 	profesional_IdProfesional numeric(7,0),
 	diaDisponible int,
 	horaDesde int,
-	horaHasta varchar(45),
+	horaHasta int,
 	CONSTRAINT pk_IdAgenda primary key (idAgenda),
 	CONSTRAINT fk_Agenda_IdProfesional foreign key (profesional_IdProfesional) references SELECT_GROUP.Profesional (matricula)
 )
