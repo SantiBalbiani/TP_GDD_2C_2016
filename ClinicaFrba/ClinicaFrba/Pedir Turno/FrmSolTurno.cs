@@ -55,12 +55,13 @@ namespace ClinicaFrba.Pedir_Turno
             }
             finally
             {
+                
                 string desde = "0";
                 string hasta= "0";
                 DataTable diasDisponibles = new DataTable();
                 SqlDataAdapter adaptador = new SqlDataAdapter(cmdUsuario);
                 adaptador.Fill(diasDisponibles);
-
+                cnx.Close();
                 foreach (DataRow diaDisponible in diasDisponibles.Rows)
                 {
                     desde = diaDisponible["horaDesde"].ToString();
@@ -68,7 +69,7 @@ namespace ClinicaFrba.Pedir_Turno
                     idAgenda = diaDisponible["idAgenda"].ToString();
                 }
 
-                cnx.Close();
+                
                 if (desde != "0") //Profesional no trabaja ese día
                 {
 
@@ -88,6 +89,16 @@ namespace ClinicaFrba.Pedir_Turno
                         horarioTurnos[i] = horarioTurnos[i].Add(primerTurno);
                         primerTurno = primerTurno.Add(intervaloDeTurno);
                     }
+
+                    Conexion.conectar();
+                    DataTable turnosTomados = new DataTable();
+                    string fechaTurnoSinHoraElegida = fechaElegida.Date.ToString("yyyyMMdd");
+
+                    string queryTurnosTomados = "SELECT fecha_Hora_Turno FROM Select_Group.Agenda_Detalle WHERE CAST(fecha_Hora_Turno AS date) = " + "'" + fechaTurnoSinHoraElegida + "'" + " AND idAgenda = " + idAgenda + " AND estaCancelado = 0";
+
+                    turnosTomados = Conexion.LeerTabla(queryTurnosTomados);
+
+                    // Acá va la lógica que remueve los turnos ocupados
 
 
 
