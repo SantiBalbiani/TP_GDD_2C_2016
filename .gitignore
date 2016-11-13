@@ -1,2 +1,3 @@
-/ClinicaFrba/ClinicaFrba/bin/*
-/ClinicaFrba/ClinicaFrba/obj/*
+#Build directories
+bin/
+obj/
