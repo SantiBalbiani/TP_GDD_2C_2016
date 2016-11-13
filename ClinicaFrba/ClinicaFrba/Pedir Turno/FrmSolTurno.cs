@@ -26,15 +26,17 @@ namespace ClinicaFrba.Pedir_Turno
             listView1.Clear();
             DateTime fechaElegida;
             fechaElegida = monthCalendar1.SelectionEnd;
+            int diaSemana = (int)fechaElegida.DayOfWeek;
+
             string[] arr = new string[2];
             ListViewItem itm;
-            listView1.Columns.Add("Fecha", 100);
-            listView1.Columns.Add("Hora Disponible", 150);
+            listView1.Columns.Add("Fecha", 500);
+            listView1.Columns.Add("Hora Disponible", 550);
             
             //Llamar SP de hs disponibles
 
-            arr[0] = fechaElegida.ToString();
-            arr[1] = "16:00";
+            arr[0] = diaSemana.ToString();
+            arr[1] = fechaElegida.DayOfWeek.ToString();
             
 
             itm = new ListViewItem(arr);

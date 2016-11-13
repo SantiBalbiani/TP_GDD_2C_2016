@@ -2,8 +2,8 @@ BEGIN TRANSACTION creacionTablas
 use GD2C2016
 
 GO
-create schema SELECT_GROUP
-GO
+--create schema SELECT_GROUP
+--GO
 
 
 create table SELECT_GROUP.Plan_Med(
@@ -384,34 +384,34 @@ SELECT distinct M.Especialidad_Codigo, P.matricula FROM gd_esquema.Maestra M JOI
 --NOMBRE	: ComprarBono
 --OBJETIVO  : Crear un registro en la tabla compras.                                     
 --=============================================================================================================
-CREATE PROCEDURE [SELECT_GROUP].[ComprarBono](@userName VARCHAR(45), @cantidad INT)
-AS
-BEGIN
+--CREATE PROCEDURE [SELECT_GROUP].[ComprarBono](@userName VARCHAR(45), @cantidad INT)
+--AS
+--BEGIN
 
-	DECLARE @nroAfiliado int;
-	DECLARE @contador int;
-	DECLARE @fechaActual datetime;
-	DECLARE @idPlan int;
-	DECLARE @precio int;
-	DECLARE @idCompra int;
-	DECLARE @nroConsulta int;
-	DECLARE @idUser int;
+--	DECLARE @nroAfiliado int;
+--	DECLARE @contador int;
+--	DECLARE @fechaActual datetime;
+--	DECLARE @idPlan int;
+--	DECLARE @precio int;
+--	DECLARE @idCompra int;
+--	DECLARE @nroConsulta int;
+--	DECLARE @idUser int;
 
-	set @fechaActual = sysdatetime();
+--	set @fechaActual = sysdatetime();
 	
-	set @idUser = (SELECT idUsuario FROM Select_Group.Usuario WHERE Usuario.nombreUsuario = @userName);
+--	set @idUser = (SELECT idUsuario FROM Select_Group.Usuario WHERE Usuario.nombreUsuario = @userName);
 
-	set @nroAfiliado = (SELECT idAfiliado FROM Select_Group.Afiliado WHERE idUsuario = @idUser);
+--	set @nroAfiliado = (SELECT idAfiliado FROM Select_Group.Afiliado WHERE idUsuario = @idUser);
 
-	set @idPlan = (SELECT TOP 1 plan_idPlan FROM Select_Group.Afiliado WHERE idAfiliado = @nroAfiliado);
+--	set @idPlan = (SELECT TOP 1 plan_idPlan FROM Select_Group.Afiliado WHERE idAfiliado = @nroAfiliado);
 
-	set @precio = (SELECT precioDelBono_Consulta FROM Select_Group.Plan_Med WHERE Select_Group.Plan_Med.idPlan = @idPlan );
+--	set @precio = (SELECT precioDelBono_Consulta FROM Select_Group.Plan_Med WHERE Select_Group.Plan_Med.idPlan = @idPlan );
 
-	Insert into SELECT_GROUP.Compras(FechaCompra,afiliado_Comprador,unidades,monto)
-	Values(@fechaActual, @nroAfiliado, @cantidad, (@precio * @cantidad));
+--	Insert into SELECT_GROUP.Compras(FechaCompra,afiliado_Comprador,unidades,monto)
+--	Values(@fechaActual, @nroAfiliado, @cantidad, (@precio * @cantidad));
 
-END
-GO
+--END
+--GO
 
 --=============================================================================================================
 --TIPO		: Store Procedure
@@ -419,59 +419,59 @@ GO
 --OBJETIVO  : Obtiene los tipos de especialidades.                                     
 --=============================================================================================================
 
-CREATE PROCEDURE [Select_Group].[ObtenerEspecialidades]
-AS
-BEGIN
-SELECT idTipo, descripcion FROM Select_Group.Tipo_Especialidad
-END
-GO
+--CREATE PROCEDURE [Select_Group].[ObtenerEspecialidades]
+--AS
+--BEGIN
+--SELECT idTipo, descripcion FROM Select_Group.Tipo_Especialidad
+--END
+--GO
 --=============================================================================================================
 --TIPO		: Trigger
 --NOMBRE	: RegistrarBonos
 --OBJETIVO  : Crea una cantidad de registros(Bonos) igual al campo "unidades" de la tabla Compras.                                     
 --=============================================================================================================
 
-CREATE TRIGGER [Select_Group].[RegistrarBonos] ON [Select_Group].[Compras]
-AFTER INSERT
-AS
+--CREATE TRIGGER [Select_Group].[RegistrarBonos] ON [Select_Group].[Compras]
+--AFTER INSERT
+--AS
 
-BEGIN 
-DECLARE @contador int;
-DECLARE @nroConsulta int;
-DECLARE @idPlan int;
-DECLARE @idCompra int;
-DECLARE @fechacompra datetime;
-DECLARE @idAfiliado int;
-DECLARE @unidades int;
-DECLARE @monto int;
-SET @contador = '0';
+--BEGIN 
+--DECLARE @contador int;
+--DECLARE @nroConsulta int;
+--DECLARE @idPlan int;
+--DECLARE @idCompra int;
+--DECLARE @fechacompra datetime;
+--DECLARE @idAfiliado int;
+--DECLARE @unidades int;
+--DECLARE @monto int;
+--SET @contador = '0';
 
-DECLARE CompraDeBonos CURSOR FOR
-SELECT * FROM inserted
+--DECLARE CompraDeBonos CURSOR FOR
+--SELECT * FROM inserted
 
-OPEN CompraDeBonos;
-FETCH NEXT FROM CompraDeBonos into @idCompra,@fechacompra,@idAfiliado,@unidades,@monto;
-WHILE (@@FETCH_STATUS = 0)
-BEGIN
+--OPEN CompraDeBonos;
+--FETCH NEXT FROM CompraDeBonos into @idCompra,@fechacompra,@idAfiliado,@unidades,@monto;
+--WHILE (@@FETCH_STATUS = 0)
+--BEGIN
 
-set @idPlan = (SELECT TOP 1 plan_idPlan FROM Select_Group.Afiliado WHERE idAfiliado = @idAfiliado);
+--set @idPlan = (SELECT TOP 1 plan_idPlan FROM Select_Group.Afiliado WHERE idAfiliado = @idAfiliado);
 	
-	WHILE(@contador < @unidades )
+--	WHILE(@contador < @unidades )
 	
-	BEGIN
-		set @nroConsulta = (SELECT (max(numero_consulta)+1) FROM Select_Group.Bono );
-		Insert into Select_Group.Bono(idCompra,idPlan,idAfiliado,numero_Consulta,estado,bonoConsulta_FechaImpresion)
-		Values(@idCompra, @idPlan, @idAfiliado,@nroConsulta ,'1',@fechacompra);
-		set @contador = @contador + 1;
-	END;
-	FETCH NEXT FROM CompraDeBonos into @idCompra,@fechacompra,@idAfiliado,@unidades,@monto;
-END;
+--	BEGIN
+--		set @nroConsulta = (SELECT (max(numero_consulta)+1) FROM Select_Group.Bono );
+--		Insert into Select_Group.Bono(idCompra,idPlan,idAfiliado,numero_Consulta,estado,bonoConsulta_FechaImpresion)
+--		Values(@idCompra, @idPlan, @idAfiliado,@nroConsulta ,'1',@fechacompra);
+--		set @contador = @contador + 1;
+--	END;
+--	FETCH NEXT FROM CompraDeBonos into @idCompra,@fechacompra,@idAfiliado,@unidades,@monto;
+--END;
 
 
-CLOSE CompraDeBonos;
-DEALLOCATE CompraDeBonos;
-END
-GO
+--CLOSE CompraDeBonos;
+--DEALLOCATE CompraDeBonos;
+--END
+
 
 
 
