@@ -26,6 +26,13 @@ namespace ClinicaFrba.Pedir_Turno
             listView1.Clear();
             DateTime fechaElegida;
             fechaElegida = monthCalendar1.SelectionEnd;
+            DateTime fechaActual = DateTime.Now;
+            if((DateTime.Compare(fechaElegida, fechaActual))>= 0)
+            {
+
+            
+
+
             int diaSemana = (int)fechaElegida.DayOfWeek;       
             
             listView1.Columns.Add("Fecha", 500);
@@ -91,7 +98,7 @@ namespace ClinicaFrba.Pedir_Turno
 
                 }
 
-
+            }
               
             }
 
