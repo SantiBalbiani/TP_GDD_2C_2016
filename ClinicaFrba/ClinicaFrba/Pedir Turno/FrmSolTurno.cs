@@ -71,17 +71,34 @@ namespace ClinicaFrba.Pedir_Turno
 
                 int horaDesd = Int32.Parse(desde);
                 int horaHasta = Int32.Parse(hasta);
-                int cantidadTurnos = ((horaHasta - horaDesd)*30)/60;
+                int cantidadTurnos = ((horaHasta - horaDesd)/100*30)/60;
 
-                TimeSpan turnosDisp = new TimeSpan((horaDesd / 100), (horaDesd % 100), 0);
+                TimeSpan primerTurno = new TimeSpan((horaDesd / 100), (horaDesd % 100), 0);
 
                 TimeSpan intervaloDeTurno = new TimeSpan(0, 30, 0);
+
+                TimeSpan[] horarioTurnos = new TimeSpan[cantidadTurnos + 1];
+
+
+
+                for (int i = 0; i <= cantidadTurnos; i++)
+                {
+                    
+                    horarioTurnos[i].Add(primerTurno);
+                    primerTurno = primerTurno.Add(intervaloDeTurno);
+                }
+
                 
-                arr[1] = fechaElegida.DayOfWeek.ToString();
+
+                foreach (TimeSpan turno in horarioTurnos)
+                {
+                    listView1.Items.Add(turno.ToString());
+                }
+
+                
 
 
-                itm = new ListViewItem(arr);
-                listView1.Items.Add(itm);
+              
             }
 
             arr[0] = diaSemana.ToString();
