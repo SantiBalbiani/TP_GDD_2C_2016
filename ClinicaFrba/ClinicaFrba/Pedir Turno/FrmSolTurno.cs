@@ -98,11 +98,27 @@ namespace ClinicaFrba.Pedir_Turno
 
                     turnosTomados = Conexion.LeerTabla(queryTurnosTomados);
 
-                    // Acá va la lógica que remueve los turnos ocupados
+                    
+                    string turnoOcupado;
+                    DateTime fechaTurnoOcupado;
+                    TimeSpan horaTurnoOcupado;
+
+                    var listaHorarios = horarioTurnos.ToList();
+
+                  
+
+                    foreach (DataRow turnoTomado in turnosTomados.Rows)
+                    {
+                        turnoOcupado = turnoTomado["fecha_Hora_Turno"].ToString();
+                        fechaTurnoOcupado = DateTime.Parse(turnoOcupado);
+                        horaTurnoOcupado = fechaTurnoOcupado.TimeOfDay;
+
+                        listaHorarios.Remove(horaTurnoOcupado);
+
+                    }
 
 
-
-                    foreach (TimeSpan turno in horarioTurnos)
+                    foreach (TimeSpan turno in listaHorarios)
                     {
                         listView1.Items.Add(turno.ToString());
                     }
