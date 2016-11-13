@@ -79,12 +79,13 @@ namespace ClinicaFrba.Pedir_Turno
 
                 TimeSpan[] horarioTurnos = new TimeSpan[cantidadTurnos + 1];
 
-
+                
 
                 for (int i = 0; i <= cantidadTurnos; i++)
                 {
-                    
-                    horarioTurnos[i].Add(primerTurno);
+
+                    horarioTurnos[i] = new TimeSpan(0, 0, 0);
+                    horarioTurnos[i] = horarioTurnos[i].Add(primerTurno);
                     primerTurno = primerTurno.Add(intervaloDeTurno);
                 }
 
@@ -101,13 +102,9 @@ namespace ClinicaFrba.Pedir_Turno
               
             }
 
-            arr[0] = diaSemana.ToString();
-            arr[1] = fechaElegida.DayOfWeek.ToString();
             
-
-            itm = new ListViewItem(arr);
-            listView1.Items.Add(itm);
-
+            
+            
             
 
             
