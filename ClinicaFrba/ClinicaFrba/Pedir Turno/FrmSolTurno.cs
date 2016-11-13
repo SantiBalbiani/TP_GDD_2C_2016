@@ -245,7 +245,8 @@ namespace ClinicaFrba.Pedir_Turno
             finally
             {
                 cnx.Close();
-                MessageBox.Show("Turno Agendado para el"+turnoAReservar.ToString()+"con éxito");
+                string profesional = comboBox3.SelectedText;
+                MessageBox.Show("Turno Agendado con el Dr. "+ comboBox3.SelectedItem.ToString() +" para el "+turnoAReservar.ToString()+" con éxito!");
                 this.Hide();
                 HomeAfiliado frmHome = new HomeAfiliado();
                 frmHome.Show();
