@@ -27,13 +27,62 @@ namespace ClinicaFrba.Pedir_Turno
             DateTime fechaElegida;
             fechaElegida = monthCalendar1.SelectionEnd;
             int diaSemana = (int)fechaElegida.DayOfWeek;
-
+            
             string[] arr = new string[2];
             ListViewItem itm;
             listView1.Columns.Add("Fecha", 500);
             listView1.Columns.Add("Hora Disponible", 550);
             
-            //Llamar SP de hs disponibles
+            
+            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+            SqlCommand cmdUsuario = new SqlCommand("Select_Group.sp_getDiasDisponibles", cnx);
+            cmdUsuario.CommandType = CommandType.StoredProcedure;
+            cmdUsuario.Parameters.Add("@Dia", SqlDbType.Int).Value = diaSemana;
+            ComboboxItem profesional = (ComboboxItem)comboBox3.SelectedItem;
+            cmdUsuario.Parameters.Add("@idProfesional", SqlDbType.Int).Value = profesional.Value;
+
+            try
+            {
+
+                cnx.Open();
+                cmdUsuario.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                string desde = "0";
+                string hasta= "0";
+                DataTable diasDisponibles = new DataTable();
+                SqlDataAdapter adaptador = new SqlDataAdapter(cmdUsuario);
+                adaptador.Fill(diasDisponibles);
+
+
+                foreach (DataRow diaDisponible in diasDisponibles.Rows)
+                {
+                    desde = diaDisponible["horaDesde"].ToString();
+                    hasta = diaDisponible["horaHasta"].ToString();
+                }
+
+
+                cnx.Close();
+
+                int horaDesd = Int32.Parse(desde);
+                int horaHasta = Int32.Parse(hasta);
+                int cantidadTurnos = ((horaHasta - horaDesd)*30)/60;
+
+                TimeSpan turnosDisp = new TimeSpan((horaDesd / 100), (horaDesd % 100), 0);
+
+                TimeSpan intervaloDeTurno = new TimeSpan(0, 30, 0);
+                
+                arr[1] = fechaElegida.DayOfWeek.ToString();
+
+
+                itm = new ListViewItem(arr);
+                listView1.Items.Add(itm);
+            }
 
             arr[0] = diaSemana.ToString();
             arr[1] = fechaElegida.DayOfWeek.ToString();
@@ -139,12 +188,6 @@ namespace ClinicaFrba.Pedir_Turno
             foreach (DataRow especialidad in especialidades.Rows)
             {
 
-                
-                
-               
-              
-
-
                     string desc = especialidad["descripcion"].ToString();
                     ComboboxItem itemEsp = new ComboboxItem();
 
@@ -155,8 +198,7 @@ namespace ClinicaFrba.Pedir_Turno
 
                 }
  
-
-            
+     
             Conexion.conexion.Close();
         }
 
