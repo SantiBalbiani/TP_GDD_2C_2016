@@ -15,6 +15,8 @@ namespace ClinicaFrba.Pedir_Turno
 {
     public partial class FrmSolTurno : Form
     {
+        public static String idAgenda = "0";
+
         public FrmSolTurno()
         {
             InitializeComponent();
@@ -63,6 +65,7 @@ namespace ClinicaFrba.Pedir_Turno
                 {
                     desde = diaDisponible["horaDesde"].ToString();
                     hasta = diaDisponible["horaHasta"].ToString();
+                    idAgenda = diaDisponible["idAgenda"].ToString();
                 }
 
                 cnx.Close();
@@ -216,7 +219,37 @@ namespace ClinicaFrba.Pedir_Turno
 
         private void button1_Click(object sender, EventArgs e)
         {
-   
+            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+            SqlCommand cmdUsuario = new SqlCommand("Select_Group.sp_Agendar_Turno", cnx);
+            cmdUsuario.CommandType = CommandType.StoredProcedure;
+
+            DateTime turnoAReservar = monthCalendar1.SelectionEnd;
+            string strHoraElegida = listView1.SelectedItems[0].Text.ToString();
+            TimeSpan horaElegida = TimeSpan.Parse(strHoraElegida);
+
+            turnoAReservar = turnoAReservar.Date + horaElegida;
+
+            cmdUsuario.Parameters.Add("@fechaHoraTurno", SqlDbType.DateTime).Value = turnoAReservar;
+            cmdUsuario.Parameters.Add("@idAgenda", SqlDbType.Int).Value = idAgenda;
+
+            try
+            {
+
+                cnx.Open();
+                cmdUsuario.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cnx.Close();
+                MessageBox.Show("Turno Agendado para el"+turnoAReservar.ToString()+"con éxito");
+                this.Hide();
+                HomeAfiliado frmHome = new HomeAfiliado();
+                frmHome.Show();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
