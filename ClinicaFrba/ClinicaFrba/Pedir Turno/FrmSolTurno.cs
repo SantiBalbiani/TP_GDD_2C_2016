@@ -26,14 +26,11 @@ namespace ClinicaFrba.Pedir_Turno
             listView1.Clear();
             DateTime fechaElegida;
             fechaElegida = monthCalendar1.SelectionEnd;
-            int diaSemana = (int)fechaElegida.DayOfWeek;
+            int diaSemana = (int)fechaElegida.DayOfWeek;       
             
-            string[] arr = new string[2];
-            ListViewItem itm;
             listView1.Columns.Add("Fecha", 500);
             listView1.Columns.Add("Hora Disponible", 550);
-            
-            
+     
             SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
             SqlCommand cmdUsuario = new SqlCommand("Select_Group.sp_getDiasDisponibles", cnx);
             cmdUsuario.CommandType = CommandType.StoredProcedure;
@@ -43,7 +40,6 @@ namespace ClinicaFrba.Pedir_Turno
 
             try
             {
-
                 cnx.Open();
                 cmdUsuario.ExecuteNonQuery();
             }
@@ -59,44 +55,41 @@ namespace ClinicaFrba.Pedir_Turno
                 SqlDataAdapter adaptador = new SqlDataAdapter(cmdUsuario);
                 adaptador.Fill(diasDisponibles);
 
-
                 foreach (DataRow diaDisponible in diasDisponibles.Rows)
                 {
                     desde = diaDisponible["horaDesde"].ToString();
                     hasta = diaDisponible["horaHasta"].ToString();
                 }
 
-
                 cnx.Close();
-
-                int horaDesd = Int32.Parse(desde);
-                int horaHasta = Int32.Parse(hasta);
-                int cantidadTurnos = ((horaHasta - horaDesd)/100*30)/60;
-
-                TimeSpan primerTurno = new TimeSpan((horaDesd / 100), (horaDesd % 100), 0);
-
-                TimeSpan intervaloDeTurno = new TimeSpan(0, 30, 0);
-
-                TimeSpan[] horarioTurnos = new TimeSpan[cantidadTurnos + 1];
-
-                
-
-                for (int i = 0; i <= cantidadTurnos; i++)
+                if (desde != "0") //Profesional no trabaja ese día
                 {
 
-                    horarioTurnos[i] = new TimeSpan(0, 0, 0);
-                    horarioTurnos[i] = horarioTurnos[i].Add(primerTurno);
-                    primerTurno = primerTurno.Add(intervaloDeTurno);
+                    int horaDesd = Int32.Parse(desde);
+                    int horaHasta = Int32.Parse(hasta);
+                    int cantidadTurnos = ((horaHasta - horaDesd) / 100 * 60) / 30;
+
+                    TimeSpan primerTurno = new TimeSpan((horaDesd / 100), (horaDesd % 100), 0);
+
+                    TimeSpan intervaloDeTurno = new TimeSpan(0, 30, 0);
+
+                    TimeSpan[] horarioTurnos = new TimeSpan[cantidadTurnos + 1];
+
+                    for (int i = 0; i <= cantidadTurnos; i++)
+                    {
+                        horarioTurnos[i] = new TimeSpan(0, 0, 0);
+                        horarioTurnos[i] = horarioTurnos[i].Add(primerTurno);
+                        primerTurno = primerTurno.Add(intervaloDeTurno);
+                    }
+
+
+
+                    foreach (TimeSpan turno in horarioTurnos)
+                    {
+                        listView1.Items.Add(turno.ToString());
+                    }
+
                 }
-
-                
-
-                foreach (TimeSpan turno in horarioTurnos)
-                {
-                    listView1.Items.Add(turno.ToString());
-                }
-
-                
 
 
               
@@ -121,7 +114,7 @@ namespace ClinicaFrba.Pedir_Turno
             comboBox3.Items.Clear();
             comboBox3.ResetText();
             comboBox3.SelectedText = "Seleccione Profesional";
-            
+            listView1.Clear();
             DataTable profesionales = new DataTable();
             Object unItemEspecialidad = comboBox1.SelectedItem;
             ComboboxItem itemEspecialidad = (ComboboxItem)unItemEspecialidad;
@@ -191,13 +184,14 @@ namespace ClinicaFrba.Pedir_Turno
             comboBox3.Items.Clear();
             comboBox3.ResetText();
             comboBox3.SelectedText = "Seleccione Profesional";
+            listView1.Clear();
             DataTable especialidades = new DataTable();
             Object unItem = comboBox2.SelectedItem;
             ComboboxItem unItemCasteado = (ComboboxItem)unItem;
             string cadena = "select idEspecialidad, descripcion from SELECT_GROUP.Especialidad WHERE idTipoEspecialidad = '" + unItemCasteado.Value.ToString() + "'"; 
 
             especialidades = Conexion.LeerTabla(cadena);
-            //DataTable unProfesionaDeUnaEspecialidad = new DataTable();
+            
 
             foreach (DataRow especialidad in especialidades.Rows)
             {
@@ -230,7 +224,7 @@ namespace ClinicaFrba.Pedir_Turno
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            listView1.Clear();
         }
     }
 }
