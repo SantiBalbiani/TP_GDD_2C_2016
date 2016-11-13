@@ -30,9 +30,6 @@ namespace ClinicaFrba.Pedir_Turno
             if((DateTime.Compare(fechaElegida, fechaActual))>= 0)
             {
 
-            
-
-
             int diaSemana = (int)fechaElegida.DayOfWeek;       
             
             listView1.Columns.Add("Fecha", 500);
