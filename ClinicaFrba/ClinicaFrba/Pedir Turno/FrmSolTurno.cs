@@ -247,7 +247,7 @@ namespace ClinicaFrba.Pedir_Turno
         private void button1_Click(object sender, EventArgs e)
         {
             SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-            SqlCommand cmdUsuario = new SqlCommand("Select_Group.sp_Agendar_Turno", cnx);
+            SqlCommand cmdUsuario = new SqlCommand("Select_Group.sp_Reservar_Turno", cnx);
             cmdUsuario.CommandType = CommandType.StoredProcedure;
 
             DateTime turnoAReservar = monthCalendar1.SelectionEnd;
@@ -258,6 +258,7 @@ namespace ClinicaFrba.Pedir_Turno
 
             cmdUsuario.Parameters.Add("@fechaHoraTurno", SqlDbType.DateTime).Value = turnoAReservar;
             cmdUsuario.Parameters.Add("@idAgenda", SqlDbType.Int).Value = idAgenda;
+            cmdUsuario.Parameters.Add("@userName", SqlDbType.VarChar).Value = Globals.userName;
 
             try
             {

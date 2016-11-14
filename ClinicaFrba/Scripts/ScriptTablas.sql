@@ -191,7 +191,7 @@ create table SELECT_GROUP.Estado_Turno(
 )
 
 create table SELECT_GROUP.Turno(
-	idTurno numeric(18,0) not null,
+	idTurno numeric(18,0)  identity(1,1) not null,
 	idAgenda numeric(6,0),
 	fechaTurno datetime,
 	afiliado_idAfiliado numeric(7,0),
