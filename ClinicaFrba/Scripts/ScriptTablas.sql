@@ -187,7 +187,7 @@ create table SELECT_GROUP.Agenda_Detalle(
 create table SELECT_GROUP.Estado_Turno(
 	idEstadoTurno numeric(6,0) not null,
 	descripcion varchar(45),
-	CONSTRAINT pk_idEstadoTurno primary key (idEstadoTurno)
+	CONSTRAINT pk_idEstadoTurno  primary key (idEstadoTurno)
 )
 
 create table SELECT_GROUP.Turno(
@@ -204,6 +204,7 @@ create table SELECT_GROUP.Turno(
 	CONSTRAINT fk_Turno_Cancelacion foreign key (cancelacion_idCancelacion) references SELECT_GROUP.Cancelacion (idCancelacion),
 	CONSTRAINT fk_Turno_Estado foreign key (estado) references SELECT_GROUP.Estado_Turno (idEstadoTurno),
 	CONSTRAINT fk_Turno_Diagnostico foreign key (idDiagnostico) references SELECT_GROUP.Diagnostico (idDiagnostico)
+	
 )
 
 /*Cargo tabla ROL*/
@@ -379,6 +380,75 @@ INSERT INTO Select_Group.Profesional_Por_Especialidad
 ([especialidad_idEspecialidad], [profesional_idProfesional])
 SELECT distinct M.Especialidad_Codigo, P.matricula FROM gd_esquema.Maestra M JOIN Select_Group.Profesional P ON M.Medico_Dni = P.numeroDni 
 
+INSERT INTO [Select_Group].[Agenda]
+           ([profesional_IdProfesional]
+           ,[diaDisponible]
+           ,[horaDesde]
+           ,[horaHasta])
+     VALUES
+           
+           --El día 0(cero) es el día Domingo
+           --Formato HHMM
+           
+
+(1000,2,900,1900),
+(1001,3,900,1900),
+(1002,4,900,1900),
+(1003,1,900,1900),
+(1004,5,900,1900),
+(1005,6,900,1900),
+(1006,7,900,1900),
+(1007,4,900,1900),
+(1008,3,900,1900),
+(1009,2,900,1900),
+(1010,2,900,1900),
+(1011,1,900,1900),
+(1012,4,800,1700),
+(1013,1,800,1700),
+(1014,1,800,1700),
+(1015,2,800,1700),
+(1016,4,800,1700),
+(1017,6,800,1700),
+(1018,6,800,1700),
+(1019,2,800,1700),
+(1020,3,800,1700),
+(1021,5,800,1700),
+(1022,3,800,1700),
+(1023,2,800,1700),
+(1024,1,800,1700),
+(1025,6,1000,2000),
+(1026,7,1000,2000),
+(1027,5,1000,2000),
+(1000,4,1000,2000),
+(1001,4,1000,2000),
+(1002,2,1000,2000),
+(1003,3,1000,2000),
+(1004,2,1000,2000),
+(1005,3,1000,2000),
+(1006,2,1000,2000),
+(1007,2,1000,2000),
+(1008,2,1000,2000),
+(1009,4,1000,2000),
+(1010,4,1000,2000),
+(1011,5,1000,2000),
+(1012,3,1000,2000),
+(1013,2,1000,2000),
+(1014,2,1000,2000),
+(1015,4,1000,2000),
+(1016,1,1000,2000),
+(1017,4,1000,2000),
+(1018,4,1000,2000),
+(1019,3,1000,2000),
+(1020,4,1000,2000),
+(1021,1,1000,2000),
+(1022,2,1000,2000),
+(1023,3,1000,2000),
+(1024,4,1000,2000),
+(1025,2,1000,2000),
+(1026,1,1000,2000),
+(1027,3,1000,2000)
+
+GO
 --=============================================================================================================
 --TIPO		: Procedure
 --NOMBRE	: ComprarBono
