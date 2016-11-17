@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClinicaFrba.Registro_Resultado;
 
 namespace ClinicaFrba.Menu_Principal
 {
@@ -25,6 +26,13 @@ namespace ClinicaFrba.Menu_Principal
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            RegistroResultado frmRegRes = new RegistroResultado();
+            this.Hide();
+            frmRegRes.Show();
         }
     }
 }

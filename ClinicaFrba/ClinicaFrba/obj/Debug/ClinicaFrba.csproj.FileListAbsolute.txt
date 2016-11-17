@@ -109,3 +109,4 @@ C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\bin\D
 C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.exe.manifest
 C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.application
 C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Pedir_Turno.FrmSolTurno.resources
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\ClinicaFrba\obj\Debug\ClinicaFrba.Registro_Resultado.RegistroResultado.resources

@@ -203,11 +203,11 @@
     <Compile Include="Registro Llegada\Llegada.Designer.cs">
       <DependentUpon>Llegada.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registro Resultado\Form1.cs">
+    <Compile Include="Registro Resultado\RegistroResultado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Registro Resultado\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Registro Resultado\RegistroResultado.Designer.cs">
+      <DependentUpon>RegistroResultado.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Abm Afiliado\AltaAfiliado.resx">
       <DependentUpon>AltaAfiliado.cs</DependentUpon>
@@ -262,6 +262,9 @@
     </Compile>
     <EmbeddedResource Include="Registro Llegada\Llegada.resx">
       <DependentUpon>Llegada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registro Resultado\RegistroResultado.resx">
+      <DependentUpon>RegistroResultado.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Base de Datos\App.config">
       <SubType>Designer</SubType>
