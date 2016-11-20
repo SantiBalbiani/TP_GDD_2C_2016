@@ -40,11 +40,12 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtNumeroAfiliado = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnTurnoProf
             // 
-            this.btnTurnoProf.Location = new System.Drawing.Point(251, 93);
+            this.btnTurnoProf.Location = new System.Drawing.Point(263, 93);
             this.btnTurnoProf.Name = "btnTurnoProf";
             this.btnTurnoProf.Size = new System.Drawing.Size(138, 23);
             this.btnTurnoProf.TabIndex = 0;
@@ -91,7 +92,7 @@
             // 
             // btnCargarProfesionales
             // 
-            this.btnCargarProfesionales.Location = new System.Drawing.Point(251, 151);
+            this.btnCargarProfesionales.Location = new System.Drawing.Point(263, 151);
             this.btnCargarProfesionales.Name = "btnCargarProfesionales";
             this.btnCargarProfesionales.Size = new System.Drawing.Size(138, 23);
             this.btnCargarProfesionales.TabIndex = 5;
@@ -109,7 +110,7 @@
             // 
             // btnVerTurnosEspecialidad
             // 
-            this.btnVerTurnosEspecialidad.Location = new System.Drawing.Point(251, 209);
+            this.btnVerTurnosEspecialidad.Location = new System.Drawing.Point(263, 209);
             this.btnVerTurnosEspecialidad.Name = "btnVerTurnosEspecialidad";
             this.btnVerTurnosEspecialidad.Size = new System.Drawing.Size(138, 23);
             this.btnVerTurnosEspecialidad.TabIndex = 7;
@@ -141,14 +142,14 @@
             // 
             // txtNumeroAfiliado
             // 
-            this.txtNumeroAfiliado.Location = new System.Drawing.Point(154, 20);
+            this.txtNumeroAfiliado.Location = new System.Drawing.Point(140, 24);
             this.txtNumeroAfiliado.Name = "txtNumeroAfiliado";
-            this.txtNumeroAfiliado.Size = new System.Drawing.Size(91, 20);
+            this.txtNumeroAfiliado.Size = new System.Drawing.Size(105, 20);
             this.txtNumeroAfiliado.TabIndex = 10;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(251, 18);
+            this.button1.Location = new System.Drawing.Point(263, 22);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(138, 23);
             this.button1.TabIndex = 11;
@@ -156,11 +157,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(263, 299);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(138, 23);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Registrar";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // Llegada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 366);
+            this.ClientSize = new System.Drawing.Size(413, 350);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtNumeroAfiliado);
             this.Controls.Add(this.txtNombre);
@@ -194,5 +205,6 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtNumeroAfiliado;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
