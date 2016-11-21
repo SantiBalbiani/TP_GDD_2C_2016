@@ -32,8 +32,8 @@
             this.asignarRol = new System.Windows.Forms.Label();
             this.btnCrear = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnModificarRol = new System.Windows.Forms.Button();
+            this.btnEliminarRol = new System.Windows.Forms.Button();
             this.Rol = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.altaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crearRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,7 +42,8 @@
             this.modificaciònDeRolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarFuncionalidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitarFuncionalidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnAsignarDesRol = new System.Windows.Forms.Button();
             this.Rol.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +65,7 @@
             this.btnCrear.TabIndex = 5;
             this.btnCrear.Text = "Crear Nuevo Rol";
             this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
             // label4
             // 
@@ -74,24 +76,25 @@
             this.label4.TabIndex = 7;
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // button1
+            // btnModificarRol
             // 
-            this.button1.Location = new System.Drawing.Point(179, 93);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 72);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Modificar Rol Existente";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnModificarRol.Location = new System.Drawing.Point(166, 93);
+            this.btnModificarRol.Name = "btnModificarRol";
+            this.btnModificarRol.Size = new System.Drawing.Size(75, 72);
+            this.btnModificarRol.TabIndex = 11;
+            this.btnModificarRol.Text = "Modificar Rol Existente";
+            this.btnModificarRol.UseVisualStyleBackColor = true;
+            this.btnModificarRol.Click += new System.EventHandler(this.btnModificarRol_Click);
             // 
-            // button2
+            // btnEliminarRol
             // 
-            this.button2.Location = new System.Drawing.Point(297, 93);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 72);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Eliminar Rol";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnEliminarRol.Location = new System.Drawing.Point(272, 93);
+            this.btnEliminarRol.Name = "btnEliminarRol";
+            this.btnEliminarRol.Size = new System.Drawing.Size(75, 72);
+            this.btnEliminarRol.TabIndex = 12;
+            this.btnEliminarRol.Text = "Eliminar Rol";
+            this.btnEliminarRol.UseVisualStyleBackColor = true;
+            this.btnEliminarRol.Click += new System.EventHandler(this.button2_Click);
             // 
             // Rol
             // 
@@ -150,23 +153,34 @@
             this.quitarFuncionalidadToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.quitarFuncionalidadToolStripMenuItem.Text = "Quitar Funcionalidad";
             // 
-            // button3
+            // btnSalir
             // 
-            this.button3.Location = new System.Drawing.Point(346, 231);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "Salir";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnSalir.Location = new System.Drawing.Point(200, 257);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.TabIndex = 13;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            // 
+            // btnAsignarDesRol
+            // 
+            this.btnAsignarDesRol.Location = new System.Drawing.Point(377, 93);
+            this.btnAsignarDesRol.Name = "btnAsignarDesRol";
+            this.btnAsignarDesRol.Size = new System.Drawing.Size(75, 72);
+            this.btnAsignarDesRol.TabIndex = 14;
+            this.btnAsignarDesRol.Text = "Asignar/Desasignar un Rol a un Usuario";
+            this.btnAsignarDesRol.UseVisualStyleBackColor = true;
+            this.btnAsignarDesRol.Click += new System.EventHandler(this.btnAsignarDesRol_Click);
             // 
             // abmMenuRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 310);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(485, 343);
+            this.Controls.Add(this.btnAsignarDesRol);
+            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.btnEliminarRol);
+            this.Controls.Add(this.btnModificarRol);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.asignarRol);
@@ -184,8 +198,8 @@
         private System.Windows.Forms.Label asignarRol;
         private System.Windows.Forms.Button btnCrear;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnModificarRol;
+        private System.Windows.Forms.Button btnEliminarRol;
         private System.Windows.Forms.ContextMenuStrip Rol;
         private System.Windows.Forms.ToolStripMenuItem altaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem crearRolToolStripMenuItem;
@@ -194,6 +208,7 @@
         private System.Windows.Forms.ToolStripMenuItem modificaciònDeRolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarFuncionalidadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitarFuncionalidadToolStripMenuItem;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnAsignarDesRol;
     }
 }

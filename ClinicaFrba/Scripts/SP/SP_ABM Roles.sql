@@ -72,3 +72,54 @@ values ((select idRol from SELECT_GROUP.Rol where nombre = @ROL_DESCRIP),(select
 
 END
 go
+
+CREATE PROCEDURE [SELECT_GROUP].[asignarRol](@ROL VARCHAR(45), @username VARCHAR(45))
+AS
+BEGIN
+
+
+
+if exists ((SELECT * FROM SELECT_GROUP.Usuario_Por_Rol where usuario_username=@rol and rol_idRol=@rol
+
+begin 
+print('Ya existe la asignacion para el Usuario:'+@username'con el Rol:'+@rol)
+return
+end
+
+begin
+INSERT INTO SELECT_GROUP.Usuario_Por_Rol(@ROL,@username)
+end
+
+
+CREATE PROCEDURE [SELECT_GROUP].[desasignarRol](@ROL VARCHAR(45), @username VARCHAR(45))
+AS
+BEGIN
+
+begin
+DELETE FROM SELECT_GROUP.Usuario_Por_Rol(@username, @ROL)
+WHERE rol_idROL = @ROL and usuario_username=@username
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

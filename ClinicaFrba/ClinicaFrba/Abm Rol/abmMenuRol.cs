@@ -45,7 +45,27 @@ namespace ClinicaFrba.AbmRol
 
         private void button2_Click(object sender, EventArgs e)
         {
+            eliminarRol.ActiveForm.Show();
+        }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnCrear_Click(object sender, EventArgs e)
+        {
+            crearRol.ActiveForm.Show();
+        }
+
+        private void btnModificarRol_Click(object sender, EventArgs e)
+        {
+            modificarRol.ActiveForm.Show();
+        }
+
+        private void btnAsignarDesRol_Click(object sender, EventArgs e)
+        {
+            asignarRolUser.ActiveForm.Show();
         }
     }
 }
