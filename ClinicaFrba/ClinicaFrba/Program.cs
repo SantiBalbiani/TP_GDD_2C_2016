@@ -23,18 +23,7 @@ namespace ClinicaFrba
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            DataTable dt = new DataTable();
-           // dt = DBSql.Query("select * from gd_esquema.Maestra");
-           // foreach (DataRow dataRow in dt.Rows)
-           // {
-           //     foreach (var item in dataRow.ItemArray)
-           //     {
-           //         Console.WriteLine(item);
-           //     }
-           // }
-
-         
+            Application.SetCompatibleTextRenderingDefault(false);     
             Application.Run(new Login());
             
         }
