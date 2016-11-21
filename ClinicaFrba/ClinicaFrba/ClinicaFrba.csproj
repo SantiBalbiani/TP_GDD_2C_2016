@@ -109,28 +109,34 @@
     <Compile Include="Abm Profesional\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRol\abmMenuRol.cs">
+    <Compile Include="Abm Rol\abmMenuRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRol\abmMenuRol.Designer.cs">
+    <Compile Include="Abm Rol\abmMenuRol.Designer.cs">
       <DependentUpon>abmMenuRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRol\crearRol.cs">
+    <Compile Include="Abm Rol\asignarRolUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRol\crearRol.Designer.cs">
+    <Compile Include="Abm Rol\asignarRolUser.Designer.cs">
+      <DependentUpon>asignarRolUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Rol\crearRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Rol\crearRol.Designer.cs">
       <DependentUpon>crearRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRol\eliminarRol.cs">
+    <Compile Include="Abm Rol\eliminarRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRol\eliminarRol.Designer.cs">
+    <Compile Include="Abm Rol\eliminarRol.Designer.cs">
       <DependentUpon>eliminarRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRol\modificarRol.cs">
+    <Compile Include="Abm Rol\modificarRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRol\modificarRol.Designer.cs">
+    <Compile Include="Abm Rol\modificarRol.Designer.cs">
       <DependentUpon>modificarRol.cs</DependentUpon>
     </Compile>
     <Compile Include="Base de Datos\Conexion.cs" />
@@ -224,16 +230,19 @@
     <EmbeddedResource Include="Abm Afiliado\AltaPareja.resx">
       <DependentUpon>AltaPareja.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmRol\abmMenuRol.resx">
+    <EmbeddedResource Include="Abm Rol\abmMenuRol.resx">
       <DependentUpon>abmMenuRol.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmRol\crearRol.resx">
+    <EmbeddedResource Include="Abm Rol\asignarRolUser.resx">
+      <DependentUpon>asignarRolUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Rol\crearRol.resx">
       <DependentUpon>crearRol.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmRol\eliminarRol.resx">
+    <EmbeddedResource Include="Abm Rol\eliminarRol.resx">
       <DependentUpon>eliminarRol.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmRol\modificarRol.resx">
+    <EmbeddedResource Include="Abm Rol\modificarRol.resx">
       <DependentUpon>modificarRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cancelar Atencion\CancelacionAfiliado.resx">
@@ -278,6 +287,7 @@
     <EmbeddedResource Include="Registro Resultado\RegistroResultado.resx">
       <DependentUpon>RegistroResultado.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Abm Rol\README.md" />
     <None Include="Base de Datos\App.config">
       <SubType>Designer</SubType>
     </None>

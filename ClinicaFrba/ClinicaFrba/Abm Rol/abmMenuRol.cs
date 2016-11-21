@@ -65,7 +65,7 @@ namespace ClinicaFrba.AbmRol
 
         private void btnAsignarDesRol_Click(object sender, EventArgs e)
         {
-            asignarRolUser.ActiveForm.Show();
+            //asignarRolUser.ActiveForm.Show();
         }
     }
 }
