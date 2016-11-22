@@ -191,19 +191,21 @@ create table SELECT_GROUP.Estado_Turno(
 )
 
 create table SELECT_GROUP.Turno(
-	idTurno numeric(18,0)  identity(1,1) not null,
+	idTurno numeric(18,0),  
 	idAgenda numeric(6,0),
 	fechaTurno datetime,
 	afiliado_idAfiliado numeric(7,0),
 	cancelacion_idCancelacion numeric(6,0),
 	estado numeric(6,0),
 	idDiagnostico numeric(6,0),
+	especialidad numeric(18,0), 
 	CONSTRAINT pk_IdTurno primary key (idTurno),
 	CONSTRAINT fk_Turno_Agenda foreign key (idAgenda) references SELECT_GROUP.Agenda (idAgenda),
 	CONSTRAINT fk_Turno_Afiliado foreign key (afiliado_idAfiliado) references SELECT_GROUP.Afiliado (idAfiliado),
 	CONSTRAINT fk_Turno_Cancelacion foreign key (cancelacion_idCancelacion) references SELECT_GROUP.Cancelacion (idCancelacion),
 	CONSTRAINT fk_Turno_Estado foreign key (estado) references SELECT_GROUP.Estado_Turno (idEstadoTurno),
-	CONSTRAINT fk_Turno_Diagnostico foreign key (idDiagnostico) references SELECT_GROUP.Diagnostico (idDiagnostico)
+	CONSTRAINT fk_Turno_Diagnostico foreign key (idDiagnostico) references SELECT_GROUP.Diagnostico (idDiagnostico),
+	CONSTRAINT fk_ProfesionalXEspecialidad foreign key (especialidad) references SELECT_GROUP.Especialidad (idEspecialidad)
 	
 )
 
@@ -275,6 +277,14 @@ from gd_esquema.Maestra
 where Medico_Dni is not null
 order by Medico_Dni
 
+INSERT INTO SELECT_GROUP.Tipo_Especialidad(idTipo,descripcion)
+SELECT distinct Tipo_Especialidad_Codigo,Tipo_Especialidad_Descripcion from gd_esquema.Maestra
+where Tipo_Especialidad_Codigo is not null
+
+INSERT INTO SELECT_GROUP.Especialidad(idEspecialidad,descripcion)
+SELECT distinct Especialidad_Codigo,Especialidad_Descripcion from gd_esquema.Maestra
+where Especialidad_Codigo is not null
+
 INSERT INTO SELECT_GROUP.Estado_Turno(idEstadoTurno,descripcion) values
 	(1,'Atendido'),
 	(2,'Cancelado'),
@@ -284,8 +294,8 @@ insert into SELECT_GROUP.Tipo_Cancelacion(descripcion) values
 	('Cancela Medico'),
 	('Cancela Afiliado');
 
-INSERT INTO SELECT_GROUP.Turno(idTurno,idAgenda,fechaTurno,cancelacion_idCancelacion,estado,idDiagnostico) 
-SELECT distinct Turno_Numero,null,Turno_Fecha,null,1/*(select idEstadoTurno from SELECT_GROUP.Estado_Turno where descripcion = 'Atendido')*/,1 /*select idDiagnostico from SELECT_GROUP.Diagnostico where sintomas = 'Sintoma 1'*/ from gd_esquema.Maestra
+INSERT INTO SELECT_GROUP.Turno(idTurno,idAgenda,fechaTurno,cancelacion_idCancelacion,estado,idDiagnostico,especialidad ) 
+SELECT distinct Turno_Numero,null,Turno_Fecha,null,1/*(select idEstadoTurno from SELECT_GROUP.Estado_Turno where descripcion = 'Atendido')*/,1, Especialidad_Codigo /*select idDiagnostico from SELECT_GROUP.Diagnostico where sintomas = 'Sintoma 1'*/ from gd_esquema.Maestra
 where Turno_Numero is not null
 
 /*idAgenda en null porque al estar utilizados los turnos no se van a agendar */
@@ -315,13 +325,7 @@ join
 on t.idTurno = dt.idTurno;
 
 
-INSERT INTO SELECT_GROUP.Tipo_Especialidad(idTipo,descripcion)
-SELECT distinct Tipo_Especialidad_Codigo,Tipo_Especialidad_Descripcion from gd_esquema.Maestra
-where Tipo_Especialidad_Codigo is not null
 
-INSERT INTO SELECT_GROUP.Especialidad(idEspecialidad,descripcion)
-SELECT distinct Especialidad_Codigo,Especialidad_Descripcion from gd_esquema.Maestra
-where Especialidad_Codigo is not null
 
 update SELECT_GROUP.Especialidad 
 set idTipoEspecialidad = (CASE 
