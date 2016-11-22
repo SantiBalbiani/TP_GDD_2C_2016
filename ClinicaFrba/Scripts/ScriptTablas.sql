@@ -29,6 +29,7 @@ create table SELECT_GROUP.Usuario(
 	intentosFallidos numeric(1,0),
 	habilitado bit,
 	CONSTRAINT pk_IdUsername primary key (idUsuario),
+	CONSTRAINT AK_nombreUsuario UNIQUE (nombreUsuario)
 	
 )
 create table SELECT_GROUP.Afiliado(
