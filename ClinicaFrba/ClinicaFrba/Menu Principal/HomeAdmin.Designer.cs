@@ -35,6 +35,7 @@
             this.btnAgregarParejaAfiliado = new System.Windows.Forms.Button();
             this.btnAgregarFamiliar = new System.Windows.Forms.Button();
             this.btnRegistrarLlegada = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -110,11 +111,21 @@
             this.btnRegistrarLlegada.UseVisualStyleBackColor = true;
             this.btnRegistrarLlegada.Click += new System.EventHandler(this.btnRegistrarLlegada_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(167, 152);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(144, 23);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Comprar Bono";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // HomeAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRegistrarLlegada);
             this.Controls.Add(this.btnAgregarFamiliar);
             this.Controls.Add(this.btnAgregarParejaAfiliado);
@@ -139,5 +150,6 @@
         private System.Windows.Forms.Button btnAgregarParejaAfiliado;
         private System.Windows.Forms.Button btnAgregarFamiliar;
         private System.Windows.Forms.Button btnRegistrarLlegada;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -70,7 +70,7 @@ namespace ClinicaFrba.Pedir_Turno
                 }
 
                 
-                if (desde != "0") //Profesional no trabaja ese día
+                if (desde != "0") //Si es False, el Profesional no trabaja ese día
                 {
 
                     int horaDesd = Int32.Parse(desde);
