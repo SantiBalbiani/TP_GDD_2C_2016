@@ -88,7 +88,7 @@ namespace ClinicaFrba.Abm_Rol
 
         private void btnRolAsignar_Click(object sender, EventArgs e)
         {
-           /* SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
             SqlCommand cmdRol = new SqlCommand("Select_Group.asignarRol", cnx);
             cmdRol.CommandType = CommandType.StoredProcedure;
             cmdRol.Parameters.Add("@username", SqlDbType.VarChar).Value = username.Text;
@@ -111,7 +111,7 @@ namespace ClinicaFrba.Abm_Rol
                 HomeAfiliado home = new HomeAfiliado();
                 home.Show();
                 this.Close();
-            }*/
+            }
         }
     }
 }

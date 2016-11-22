@@ -32,7 +32,7 @@ namespace ClinicaFrba.AbmRol
 
         private void button1_Click(object sender, EventArgs e)
         {
-           /* +SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
             SqlCommand cmdRol = new SqlCommand("Select_Group.CrearRol", cnx);
             cmdRol.CommandType = CommandType.StoredProcedure;
             cmdRol.Parameters.Add("@ROL_DESCRIP", SqlDbType.VarChar).Value = textBox1.Text;
@@ -55,7 +55,7 @@ namespace ClinicaFrba.AbmRol
                 home.Show();
                 this.Close();
             }
-        */
+        
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
