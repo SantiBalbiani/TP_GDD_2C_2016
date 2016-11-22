@@ -35,7 +35,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.rolDesasignar = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.username = new System.Windows.Forms.TextBox();
             this.rolAsignar = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -105,13 +105,13 @@
             this.label6.Text = "Seleccione el Rol a Asignar";
             this.label6.Click += new System.EventHandler(this.label3_Click);
             // 
-            // textBox1
+            // username
             // 
-            this.textBox1.Location = new System.Drawing.Point(248, 91);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 21;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.username.Location = new System.Drawing.Point(248, 91);
+            this.username.Name = "username";
+            this.username.Size = new System.Drawing.Size(100, 20);
+            this.username.TabIndex = 21;
+            this.username.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // rolAsignar
             // 
@@ -131,14 +131,14 @@
             this.label7.Text = "o";
             this.label7.Click += new System.EventHandler(this.label4_Click);
             // 
-            // asignarRolUsuario
+            // asignarRolUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(511, 374);
             this.Controls.Add(this.rolDesasignar);
             this.Controls.Add(this.rolAsignar);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.username);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
@@ -146,7 +146,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRolDesasignar);
             this.Controls.Add(this.btnRolAsignar);
-            this.Name = "asignarRolUsuario";
+            this.Name = "asignarRolUser";
             this.Text = "Asignar/Desasignar un Rol a un Usuario";
             this.Load += new System.EventHandler(this.asignarRolUsuario_Load);
             this.ResumeLayout(false);
@@ -163,7 +163,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox rolDesasignar;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox username;
         private System.Windows.Forms.TextBox rolAsignar;
         private System.Windows.Forms.Label label7;
 
