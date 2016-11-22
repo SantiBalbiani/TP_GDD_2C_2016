@@ -12,8 +12,8 @@ using ClinicaFrba.Base_de_Datos;
 using System.Configuration;
 
 
-namespace ClinicaFrba.Abm_Rol
-{
+ namespace ClinicaFrba.AbmRol
+{ 
     public partial class asignarRolUser : Form
     {
         public asignarRolUser()

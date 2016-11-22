@@ -1,4 +1,4 @@
-﻿namespace ClinicaFrba.Abm_Rol
+﻿namespace ClinicaFrba.AbmRol
 {
     partial class asignarRolUser
     {
