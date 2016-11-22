@@ -44,7 +44,7 @@ create table SELECT_GROUP.Afiliado(
 	sexo varchar(45),
 	estadoCivil varchar(45),
 	direccion varchar(255),
-	familiares varchar(45),
+	
 	idUsuario numeric(6,0) unique,
 	plan_idPlan numeric(18,0),
 	CONSTRAINT pk_IdAfiliado primary key(idAfiliado),
