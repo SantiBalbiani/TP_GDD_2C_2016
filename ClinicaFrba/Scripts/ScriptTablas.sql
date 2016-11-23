@@ -127,10 +127,10 @@ create table SELECT_GROUP.Cancelacion(
 	idCancelacion numeric(6,0) identity(1,1) not null,
 	motivo varchar(45),
 	tipo_Cancelacion_idTipoCanc numeric(6,0),
-	turno numeric(18,0),
+	/*turno numeric(18,0),*/
 	CONSTRAINT pk_IdCancelacion primary key (idCancelacion),
 	CONSTRAINT fk_Cancelacion_TipoCancelacion foreign key (tipo_Cancelacion_idTipoCanc) references SELECT_GROUP.Tipo_Cancelacion (idTipoCanc),
-	CONSTRAINT fk_Cancelacion_Turno foreign key (Turno) references SELECT_GROUP.Turno (idTurno)
+	/*CONSTRAINT fk_Cancelacion_Turno foreign key (Turno) references SELECT_GROUP.Turno (idTurno)*/
 )
 
 create table SELECT_GROUP.Plan_Historico(
@@ -264,8 +264,8 @@ from gd_esquema.Maestra
 where Consulta_Enfermedades is not null
 
 /*Cargo los afiliados de la tabla maestra */
-INSERT INTO SELECT_GROUP.Afiliado(numeroDni,nombre,apellido,tipoDni,telefono,mail,fechaNac,sexo,estadoCivil,direccion,familiares,idUsuario,plan_idPlan)
-SELECT distinct Paciente_Dni,Paciente_Nombre,Paciente_Apellido,'DNI',Paciente_Telefono,Paciente_mail,Paciente_Fecha_Nac,'SEXO','EC',Paciente_Direccion,'Familiares',(select idUsuario from SELECT_GROUP.Usuario where nombreUsuario = (cast(Paciente_Dni as varchar(45)))),(select idPlan from SELECT_GROUP.Plan_Med where idPlan = 555555) 
+INSERT INTO SELECT_GROUP.Afiliado(numeroDni,nombre,apellido,tipoDni,telefono,mail,fechaNac,sexo,estadoCivil,direccion,idUsuario,plan_idPlan)
+SELECT distinct Paciente_Dni,Paciente_Nombre,Paciente_Apellido,'DNI',Paciente_Telefono,Paciente_mail,Paciente_Fecha_Nac,'SEXO','EC',Paciente_Direccion,(select idUsuario from SELECT_GROUP.Usuario where nombreUsuario = (cast(Paciente_Dni as varchar(45)))),(select idPlan from SELECT_GROUP.Plan_Med where idPlan = 555555) 
 from gd_esquema.Maestra
 where Paciente_Dni is not null
 order by Paciente_Nombre
