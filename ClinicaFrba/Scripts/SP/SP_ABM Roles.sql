@@ -79,24 +79,25 @@ BEGIN
 
 
 
-if exists ((SELECT * FROM SELECT_GROUP.Usuario_Por_Rol where usuario_username=@rol and rol_idRol=@rol
+if( exists (SELECT * FROM SELECT_GROUP.Usuario_Por_Rol where usuario_username=@rol and rol_idRol=@rol))
 
 begin 
-print('Ya existe la asignacion para el Usuario:'+@username'con el Rol:'+@rol)
-return
-end
+print('Ya existe la asignacion para el Usuario:'+@username+'con el Rol:'+@rol)
 
+end
+else 
 begin
-INSERT INTO SELECT_GROUP.Usuario_Por_Rol(@ROL,@username)
+INSERT INTO SELECT_GROUP.Usuario_Por_Rol(rol_idRol,usuario_username)
+values (@ROL,@username)
+end;
 end
-
 
 CREATE PROCEDURE [SELECT_GROUP].[desasignarRol](@ROL VARCHAR(45), @username VARCHAR(45))
 AS
 BEGIN
 
 begin
-DELETE FROM SELECT_GROUP.Usuario_Por_Rol(@username, @ROL)
+DELETE FROM SELECT_GROUP.Usuario_Por_Rol
 WHERE rol_idROL = @ROL and usuario_username=@username
 
 end
