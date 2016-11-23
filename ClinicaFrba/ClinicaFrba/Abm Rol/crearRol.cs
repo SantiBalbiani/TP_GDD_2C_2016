@@ -22,7 +22,15 @@ namespace ClinicaFrba.AbmRol
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            listView1.Clear();
+            string query = "select descripcion from select_group.Funcionalidad";
+            DataTable funcionalidades = new DataTable();
+            funcionalidades = Conexion.LeerTabla(query);
+            listView1.Columns.Add("funcionalidad", 500);
+            foreach (DataRow unaFunc in funcionalidades.Rows)
+            {
+                /*listView1.Items.Add(unaFunc);*/
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -36,7 +44,7 @@ namespace ClinicaFrba.AbmRol
             SqlCommand cmdRol = new SqlCommand("Select_Group.CrearRol", cnx);
             cmdRol.CommandType = CommandType.StoredProcedure;
             cmdRol.Parameters.Add("@ROL_DESCRIP", SqlDbType.VarChar).Value = textBox1.Text;
-            cmdRol.Parameters.Add("@FUNCIONALIDAD_DESCIP", SqlDbType.VarChar).Value = checkedListBox1.Text;
+            cmdRol.Parameters.Add("@FUNCIONALIDAD_DESCIP", SqlDbType.VarChar).Value = checkedListFuncionalidades.Text;
 
             try
             {
