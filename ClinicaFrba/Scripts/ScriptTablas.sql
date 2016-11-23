@@ -44,7 +44,6 @@ create table SELECT_GROUP.Afiliado(
 	sexo varchar(45),
 	estadoCivil varchar(45),
 	direccion varchar(255),
-	
 	idUsuario numeric(6,0) unique,
 	plan_idPlan numeric(18,0),
 	CONSTRAINT pk_IdAfiliado primary key(idAfiliado),
@@ -128,10 +127,10 @@ create table SELECT_GROUP.Cancelacion(
 	idCancelacion numeric(6,0) identity(1,1) not null,
 	motivo varchar(45),
 	tipo_Cancelacion_idTipoCanc numeric(6,0),
-	bono_idBono numeric(18,0),
+	turno numeric(18,0),
 	CONSTRAINT pk_IdCancelacion primary key (idCancelacion),
 	CONSTRAINT fk_Cancelacion_TipoCancelacion foreign key (tipo_Cancelacion_idTipoCanc) references SELECT_GROUP.Tipo_Cancelacion (idTipoCanc),
-	CONSTRAINT fk_Cancelacion_Bono foreign key (bono_idBono) references SELECT_GROUP.Bono (idBono)
+	CONSTRAINT fk_Cancelacion_Turno foreign key (Turno) references SELECT_GROUP.Turno (idTurno)
 )
 
 create table SELECT_GROUP.Plan_Historico(
