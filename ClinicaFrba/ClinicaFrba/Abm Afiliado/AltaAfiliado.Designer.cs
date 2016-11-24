@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
@@ -58,10 +57,8 @@
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.epError = new System.Windows.Forms.ErrorProvider(this.components);
             this.label14 = new System.Windows.Forms.Label();
             this.txtMail = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.epError)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -87,6 +84,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(130, 20);
             this.txtNombre.TabIndex = 2;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // txtNroDocumento
             // 
@@ -333,10 +331,6 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // epError
-            // 
-            this.epError.ContainerControl = this;
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -391,7 +385,6 @@
             this.Controls.Add(this.label1);
             this.Name = "frmAltaAfiliado";
             this.Text = "Alta Afiliado";
-            ((System.ComponentModel.ISupportInitialize)(this.epError)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -428,7 +421,6 @@
         private System.Windows.Forms.Button btnSiguiente;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.ErrorProvider epError;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtMail;
     }

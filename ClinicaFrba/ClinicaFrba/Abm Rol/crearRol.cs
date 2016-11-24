@@ -44,7 +44,7 @@ namespace ClinicaFrba.AbmRol
             SqlCommand cmdRol = new SqlCommand("Select_Group.CrearRol", cnx);
             cmdRol.CommandType = CommandType.StoredProcedure;
             cmdRol.Parameters.Add("@ROL_DESCRIP", SqlDbType.VarChar).Value = textBox1.Text;
-            cmdRol.Parameters.Add("@FUNCIONALIDAD_DESCIP", SqlDbType.VarChar).Value = checkedListFuncionalidades.Text;
+           // cmdRol.Parameters.Add("@FUNCIONALIDAD_DESCIP", SqlDbType.VarChar).Value = checkedListFuncionalidades.Text;
 
             try
             {

@@ -65,117 +65,20 @@ namespace ClinicaFrba.Abm_Afiliado
         {
 
         }
-
+            
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            if(is_validate())
+           /* if(is_validate())
             {
                 epError.Clear();
                 MessageBox.Show("Datos agregados correctamente","Validaciones");
             }
-
+            */
         }
-        private bool is_validate()
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
         {
-            bool no_error = true;
 
-            if(txtNombre.Text == String.Empty){
-
-                epError.SetError(txtNombre, "Ingrese su nombre");
-                no_error = false;
-            }
-            else{
-                try
-                {
-                    string apellido = txtApellido.Text;
-                }
-                catch
-                {
-                    epError.Clear();
-                    epError.SetError(txtApellido,"Ingrese el Apellido");
-                    return false;
-                }
-                try
-                {
-                    int i = Convert.ToInt32(txtNroDocumento.Text);
-
-                }
-                catch
-                {
-                    epError.Clear();
-                    epError.SetError(txtNroDocumento, "Ingrese numero de DNI");
-                    return false;
-                }
-                
-                try{
-                    string direccion = txtDireccion.Text;
-                    }
-                catch{
-                    epError.Clear();
-                    epError.SetError(txtDireccion, "Ingrese su Direccion");
-                    return false;
-                }
-                try{
-                    int telefono = Convert.ToInt32(txtTelefono.Text);
-                    }
-                catch{
-                    epError.Clear();
-                    epError.SetError(txtTelefono, "Ingrese su telefono");
-                    return false;
-                }
-                try 
-                {
-                    DateTime fechaNac = Convert.ToDateTime(txtFechaNacimiento.Text);
-                }
-                catch{
-                    epError.Clear();
-                    epError.SetError(txtFechaNacimiento, "Ingrese su fecha de Nacimiento");
-                    return false;
-                }
-                try
-                {
-                    string mail = txtMail.Text;
-                }
-                catch
-                {
-                    epError.Clear();
-                    epError.SetError(txtMail,"Ingrese su Mail");
-                    return false;
-                }
-                try 
-                {
-                    string sexo = cmbSexo.Text;
-                }
-                catch
-                {
-                    epError.Clear();
-                    epError.SetError(cmbSexo, "Seleccione su Sexo");
-                    return false;
-                }
-                try
-                {
-                    string estadoCivil = cmbEstadoCivil.Text;    
-                }
-                catch
-                {
-                    epError.Clear();
-                    epError.SetError(cmbEstadoCivil, "Seleccione su estado civil");
-                    return false;
-                }
-                //Falta ver los casos de familiares
-
-                try
-                {
-                    int planMedico = Convert.ToInt32(txtPlanMedico.Text);
-                }
-                catch
-                {
-                    epError.Clear();
-                    epError.SetError(txtPlanMedico, "Ingrese su plan Medico");
-                    return false;
-                }
-            }
-            return no_error;
         }         
 
     }
