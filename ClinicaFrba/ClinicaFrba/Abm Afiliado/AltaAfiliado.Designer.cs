@@ -61,8 +61,8 @@
             this.textFechaNac = new Libreria.errorTextBox();
             this.textMail = new Libreria.errorTextBox();
             this.textDireccion = new Libreria.errorTextBox();
-            this.textPlanMed = new Libreria.errorTextBox();
             this.errorTextBox = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cbmPlanMed = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorTextBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -163,6 +163,7 @@
             this.cmbSexo.Name = "cmbSexo";
             this.cmbSexo.Size = new System.Drawing.Size(130, 21);
             this.cmbSexo.TabIndex = 7;
+            this.cmbSexo.SelectedIndexChanged += new System.EventHandler(this.cmbSexo_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -206,16 +207,16 @@
             // textBox2
             // 
             this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(327, 42);
+            this.textBox2.Location = new System.Drawing.Point(296, 46);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(77, 20);
+            this.textBox2.Size = new System.Drawing.Size(106, 20);
             this.textBox2.TabIndex = 20;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(238, 49);
+            this.label11.Location = new System.Drawing.Point(226, 49);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(64, 13);
             this.label11.TabIndex = 21;
@@ -224,7 +225,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(238, 76);
+            this.label12.Location = new System.Drawing.Point(226, 76);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(69, 13);
             this.label12.TabIndex = 22;
@@ -330,7 +331,7 @@
             // 
             // textDni
             // 
-            this.textDni.Location = new System.Drawing.Point(70, 106);
+            this.textDni.Location = new System.Drawing.Point(70, 105);
             this.textDni.Name = "textDni";
             this.textDni.Size = new System.Drawing.Size(100, 20);
             this.textDni.TabIndex = 38;
@@ -338,7 +339,7 @@
             // 
             // textTelefono
             // 
-            this.textTelefono.Location = new System.Drawing.Point(77, 148);
+            this.textTelefono.Location = new System.Drawing.Point(77, 151);
             this.textTelefono.Name = "textTelefono";
             this.textTelefono.Size = new System.Drawing.Size(100, 20);
             this.textTelefono.TabIndex = 39;
@@ -362,30 +363,30 @@
             // 
             // textDireccion
             // 
-            this.textDireccion.Location = new System.Drawing.Point(72, 123);
+            this.textDireccion.Location = new System.Drawing.Point(72, 128);
             this.textDireccion.Name = "textDireccion";
             this.textDireccion.Size = new System.Drawing.Size(100, 20);
             this.textDireccion.TabIndex = 42;
             this.textDireccion.Validar = true;
             // 
-            // textPlanMed
-            // 
-            this.textPlanMed.Location = new System.Drawing.Point(327, 75);
-            this.textPlanMed.Name = "textPlanMed";
-            this.textPlanMed.Size = new System.Drawing.Size(77, 20);
-            this.textPlanMed.TabIndex = 43;
-            this.textPlanMed.Validar = true;
-            // 
             // errorTextBox
             // 
             this.errorTextBox.ContainerControl = this;
+            // 
+            // cbmPlanMed
+            // 
+            this.cbmPlanMed.FormattingEnabled = true;
+            this.cbmPlanMed.Location = new System.Drawing.Point(296, 73);
+            this.cbmPlanMed.Name = "cbmPlanMed";
+            this.cbmPlanMed.Size = new System.Drawing.Size(106, 21);
+            this.cbmPlanMed.TabIndex = 43;
             // 
             // frmAltaAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(415, 419);
-            this.Controls.Add(this.textPlanMed);
+            this.Controls.Add(this.cbmPlanMed);
             this.Controls.Add(this.textDireccion);
             this.Controls.Add(this.textMail);
             this.Controls.Add(this.textFechaNac);
@@ -420,6 +421,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmAltaAfiliado";
             this.Text = "Alta Afiliado";
+            this.Load += new System.EventHandler(this.frmAltaAfiliado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorTextBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -460,7 +462,7 @@
         private Libreria.errorTextBox textFechaNac;
         private Libreria.errorTextBox textMail;
         private Libreria.errorTextBox textDireccion;
-        private Libreria.errorTextBox textPlanMed;
         public System.Windows.Forms.ErrorProvider errorTextBox;
+        private System.Windows.Forms.ComboBox cbmPlanMed;
     }
 }
