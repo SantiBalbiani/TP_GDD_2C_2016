@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Libreria;
+using System.Data.SqlClient;
+using ClinicaFrba.Base_de_Datos;
+using System.Configuration;
 
 namespace ClinicaFrba.Abm_Afiliado
 {
@@ -66,17 +70,45 @@ namespace ClinicaFrba.Abm_Afiliado
 
         }
             
-        private void btnSiguiente_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
-           /* if(is_validate())
-            {
-                epError.Clear();
-                MessageBox.Show("Datos agregados correctamente","Validaciones");
-            }
-            */
+           if(Utilidades.ValidarFormulario(this,errorTextBox) == false)
+           {
+               SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+               SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
+               cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+               cmdAltaAfiliado.Parameters.Add("@Afiliado_nombre", SqlDbType.VarChar).Value = textNombre.Text;
+               cmdAltaAfiliado.Parameters.Add("@Afiliado_Apellido", SqlDbType.VarChar).Value = textApellido.Text;
+               cmdAltaAfiliado.Parameters.Add("@Afiliado_tipoDni", SqlDbType.VarChar).Value = textTipoDoc.Text;
+               cmdAltaAfiliado.Parameters.Add("@Afiliado_numeroDni", SqlDbType.Int).Value = textDni.Text;
+               cmdAltaAfiliado.Parameters.Add("@Afiliado_telefono", SqlDbType.Int).Value = textTelefono.Text;
+               cmdAltaAfiliado.Parameters.Add("@Afiliado_mail", SqlDbType.VarChar).Value = textMail.Text;
+               cmdAltaAfiliado.Parameters.Add("@Afiliado_fechaNac", SqlDbType.DateTime).Value = textFechaNac.Text;
+               cmdAltaAfiliado.Parameters.Add("@Afiliado_Sexo", SqlDbType.VarChar).Value = cmbSexo.Text;
+               cmdAltaAfiliado.Parameters.Add("@Afiliado_EstadoCivil", SqlDbType.VarChar).Value = cmbEstadoCivil.Text;
+               cmdAltaAfiliado.Parameters.Add("@Afiliado_Direccion", SqlDbType.VarChar).Value = textDireccion.Text;
+
+               try
+               {
+
+                   cnx.Open();
+                   cmdAltaAfiliado.ExecuteNonQuery();
+               }
+               catch (SqlException ex)
+               {
+                   MessageBox.Show(ex.Message);
+               }
+
+
+           }    
         }
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
         {
 
         }         

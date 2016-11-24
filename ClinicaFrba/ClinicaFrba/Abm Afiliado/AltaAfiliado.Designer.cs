@@ -28,13 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtApellido = new System.Windows.Forms.TextBox();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtNroDocumento = new System.Windows.Forms.TextBox();
-            this.txtDireccion = new System.Windows.Forms.TextBox();
-            this.txtTelefono = new System.Windows.Forms.TextBox();
-            this.txtFechaNacimiento = new System.Windows.Forms.TextBox();
             this.cmbEstadoCivil = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,14 +46,24 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtPlanMedico = new System.Windows.Forms.TextBox();
             this.btnCargaHijos = new System.Windows.Forms.Button();
             this.btnCargaPareja = new System.Windows.Forms.Button();
-            this.btnSiguiente = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
-            this.txtMail = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textNombre = new Libreria.errorTextBox();
+            this.textApellido = new Libreria.errorTextBox();
+            this.textTipoDoc = new Libreria.errorTextBox();
+            this.textDni = new Libreria.errorTextBox();
+            this.textTelefono = new Libreria.errorTextBox();
+            this.textFechaNac = new Libreria.errorTextBox();
+            this.textMail = new Libreria.errorTextBox();
+            this.textDireccion = new Libreria.errorTextBox();
+            this.textPlanMed = new Libreria.errorTextBox();
+            this.errorTextBox = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorTextBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -69,50 +74,6 @@
             this.label1.Size = new System.Drawing.Size(116, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Ingrese aqui sus datos:";
-            // 
-            // txtApellido
-            // 
-            this.txtApellido.Location = new System.Drawing.Point(83, 73);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(130, 20);
-            this.txtApellido.TabIndex = 1;
-            this.txtApellido.TextChanged += new System.EventHandler(this.txtApellido_TextChanged);
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Location = new System.Drawing.Point(83, 49);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(130, 20);
-            this.txtNombre.TabIndex = 2;
-            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
-            // 
-            // txtNroDocumento
-            // 
-            this.txtNroDocumento.Location = new System.Drawing.Point(83, 96);
-            this.txtNroDocumento.Name = "txtNroDocumento";
-            this.txtNroDocumento.Size = new System.Drawing.Size(130, 20);
-            this.txtNroDocumento.TabIndex = 3;
-            // 
-            // txtDireccion
-            // 
-            this.txtDireccion.Location = new System.Drawing.Point(83, 123);
-            this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(130, 20);
-            this.txtDireccion.TabIndex = 4;
-            // 
-            // txtTelefono
-            // 
-            this.txtTelefono.Location = new System.Drawing.Point(83, 150);
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(130, 20);
-            this.txtTelefono.TabIndex = 5;
-            // 
-            // txtFechaNacimiento
-            // 
-            this.txtFechaNacimiento.Location = new System.Drawing.Point(83, 177);
-            this.txtFechaNacimiento.Name = "txtFechaNacimiento";
-            this.txtFechaNacimiento.Size = new System.Drawing.Size(130, 20);
-            this.txtFechaNacimiento.TabIndex = 6;
             // 
             // cmbEstadoCivil
             // 
@@ -133,7 +94,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 49);
+            this.label2.Location = new System.Drawing.Point(16, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 8;
@@ -142,7 +103,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 76);
+            this.label3.Location = new System.Drawing.Point(16, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 9;
@@ -151,7 +112,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 103);
+            this.label4.Location = new System.Drawing.Point(16, 108);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 13);
             this.label4.TabIndex = 10;
@@ -160,7 +121,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 130);
+            this.label5.Location = new System.Drawing.Point(16, 134);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 13);
             this.label5.TabIndex = 11;
@@ -177,7 +138,7 @@
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(13, 170);
+            this.label7.Location = new System.Drawing.Point(13, 174);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 40);
             this.label7.TabIndex = 13;
@@ -269,13 +230,6 @@
             this.label12.TabIndex = 22;
             this.label12.Text = "Plan Médico:";
             // 
-            // txtPlanMedico
-            // 
-            this.txtPlanMedico.Location = new System.Drawing.Point(309, 69);
-            this.txtPlanMedico.Name = "txtPlanMedico";
-            this.txtPlanMedico.Size = new System.Drawing.Size(95, 20);
-            this.txtPlanMedico.TabIndex = 23;
-            // 
             // btnCargaHijos
             // 
             this.btnCargaHijos.Enabled = false;
@@ -297,22 +251,22 @@
             this.btnCargaPareja.UseVisualStyleBackColor = true;
             this.btnCargaPareja.Click += new System.EventHandler(this.btnCargaPareja_Click);
             // 
-            // btnSiguiente
+            // btnGuardar
             // 
-            this.btnSiguiente.Location = new System.Drawing.Point(12, 371);
-            this.btnSiguiente.Name = "btnSiguiente";
-            this.btnSiguiente.Size = new System.Drawing.Size(90, 23);
-            this.btnSiguiente.TabIndex = 26;
-            this.btnSiguiente.Text = "Siguiente";
-            this.btnSiguiente.UseVisualStyleBackColor = true;
-            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
+            this.btnGuardar.Location = new System.Drawing.Point(12, 371);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(90, 23);
+            this.btnGuardar.TabIndex = 26;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.label13.Location = new System.Drawing.Point(9, 324);
+            this.label13.Location = new System.Drawing.Point(9, 331);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(347, 28);
             this.label13.TabIndex = 27;
@@ -340,26 +294,113 @@
             this.label14.TabIndex = 29;
             this.label14.Text = "Mail:";
             // 
-            // txtMail
+            // label15
             // 
-            this.txtMail.Location = new System.Drawing.Point(84, 203);
-            this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(130, 20);
-            this.txtMail.TabIndex = 30;
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(16, 83);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(54, 13);
+            this.label15.TabIndex = 34;
+            this.label15.Text = "Tipo Doc:";
+            this.label15.Click += new System.EventHandler(this.label15_Click);
+            // 
+            // textNombre
+            // 
+            this.textNombre.Location = new System.Drawing.Point(70, 38);
+            this.textNombre.Name = "textNombre";
+            this.textNombre.Size = new System.Drawing.Size(100, 20);
+            this.textNombre.TabIndex = 35;
+            this.textNombre.Validar = true;
+            // 
+            // textApellido
+            // 
+            this.textApellido.Location = new System.Drawing.Point(70, 61);
+            this.textApellido.Name = "textApellido";
+            this.textApellido.Size = new System.Drawing.Size(100, 20);
+            this.textApellido.TabIndex = 36;
+            this.textApellido.Validar = true;
+            // 
+            // textTipoDoc
+            // 
+            this.textTipoDoc.Location = new System.Drawing.Point(70, 83);
+            this.textTipoDoc.Name = "textTipoDoc";
+            this.textTipoDoc.Size = new System.Drawing.Size(100, 20);
+            this.textTipoDoc.TabIndex = 37;
+            this.textTipoDoc.Validar = true;
+            // 
+            // textDni
+            // 
+            this.textDni.Location = new System.Drawing.Point(70, 106);
+            this.textDni.Name = "textDni";
+            this.textDni.Size = new System.Drawing.Size(100, 20);
+            this.textDni.TabIndex = 38;
+            this.textDni.Validar = true;
+            // 
+            // textTelefono
+            // 
+            this.textTelefono.Location = new System.Drawing.Point(77, 148);
+            this.textTelefono.Name = "textTelefono";
+            this.textTelefono.Size = new System.Drawing.Size(100, 20);
+            this.textTelefono.TabIndex = 39;
+            this.textTelefono.Validar = true;
+            // 
+            // textFechaNac
+            // 
+            this.textFechaNac.Location = new System.Drawing.Point(81, 175);
+            this.textFechaNac.Name = "textFechaNac";
+            this.textFechaNac.Size = new System.Drawing.Size(100, 20);
+            this.textFechaNac.TabIndex = 40;
+            this.textFechaNac.Validar = true;
+            // 
+            // textMail
+            // 
+            this.textMail.Location = new System.Drawing.Point(86, 200);
+            this.textMail.Name = "textMail";
+            this.textMail.Size = new System.Drawing.Size(100, 20);
+            this.textMail.TabIndex = 41;
+            this.textMail.Validar = true;
+            // 
+            // textDireccion
+            // 
+            this.textDireccion.Location = new System.Drawing.Point(72, 123);
+            this.textDireccion.Name = "textDireccion";
+            this.textDireccion.Size = new System.Drawing.Size(100, 20);
+            this.textDireccion.TabIndex = 42;
+            this.textDireccion.Validar = true;
+            // 
+            // textPlanMed
+            // 
+            this.textPlanMed.Location = new System.Drawing.Point(327, 75);
+            this.textPlanMed.Name = "textPlanMed";
+            this.textPlanMed.Size = new System.Drawing.Size(77, 20);
+            this.textPlanMed.TabIndex = 43;
+            this.textPlanMed.Validar = true;
+            // 
+            // errorTextBox
+            // 
+            this.errorTextBox.ContainerControl = this;
             // 
             // frmAltaAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(415, 419);
-            this.Controls.Add(this.txtMail);
+            this.Controls.Add(this.textPlanMed);
+            this.Controls.Add(this.textDireccion);
+            this.Controls.Add(this.textMail);
+            this.Controls.Add(this.textFechaNac);
+            this.Controls.Add(this.textTelefono);
+            this.Controls.Add(this.textDni);
+            this.Controls.Add(this.textTipoDoc);
+            this.Controls.Add(this.textApellido);
+            this.Controls.Add(this.textNombre);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.btnSiguiente);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnCargaPareja);
             this.Controls.Add(this.btnCargaHijos);
-            this.Controls.Add(this.txtPlanMedico);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.textBox2);
@@ -376,15 +417,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbEstadoCivil);
-            this.Controls.Add(this.txtFechaNacimiento);
-            this.Controls.Add(this.txtTelefono);
-            this.Controls.Add(this.txtDireccion);
-            this.Controls.Add(this.txtNroDocumento);
-            this.Controls.Add(this.txtNombre);
-            this.Controls.Add(this.txtApellido);
             this.Controls.Add(this.label1);
             this.Name = "frmAltaAfiliado";
             this.Text = "Alta Afiliado";
+            ((System.ComponentModel.ISupportInitialize)(this.errorTextBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,12 +429,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtApellido;
-        private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.TextBox txtNroDocumento;
-        private System.Windows.Forms.TextBox txtDireccion;
-        private System.Windows.Forms.TextBox txtTelefono;
-        private System.Windows.Forms.TextBox txtFechaNacimiento;
         private System.Windows.Forms.ComboBox cmbEstadoCivil;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -415,13 +445,22 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtPlanMedico;
         private System.Windows.Forms.Button btnCargaHijos;
         private System.Windows.Forms.Button btnCargaPareja;
-        private System.Windows.Forms.Button btnSiguiente;
+        private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox txtMail;
+        private System.Windows.Forms.Label label15;
+        private Libreria.errorTextBox textNombre;
+        private Libreria.errorTextBox textApellido;
+        private Libreria.errorTextBox textTipoDoc;
+        private Libreria.errorTextBox textDni;
+        private Libreria.errorTextBox textTelefono;
+        private Libreria.errorTextBox textFechaNac;
+        private Libreria.errorTextBox textMail;
+        private Libreria.errorTextBox textDireccion;
+        private Libreria.errorTextBox textPlanMed;
+        public System.Windows.Forms.ErrorProvider errorTextBox;
     }
 }

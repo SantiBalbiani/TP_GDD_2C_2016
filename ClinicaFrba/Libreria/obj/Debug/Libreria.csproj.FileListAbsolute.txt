@@ -1,0 +1,5 @@
+E:\Facultad\Cursada 2016\Gestion de Datos\Trabajo Practico Integrador\TP_GDD_2C_2016\ClinicaFrba\Libreria\bin\Debug\Libreria.dll
+E:\Facultad\Cursada 2016\Gestion de Datos\Trabajo Practico Integrador\TP_GDD_2C_2016\ClinicaFrba\Libreria\bin\Debug\Libreria.pdb
+E:\Facultad\Cursada 2016\Gestion de Datos\Trabajo Practico Integrador\TP_GDD_2C_2016\ClinicaFrba\Libreria\obj\Debug\Libreria.csprojResolveAssemblyReference.cache
+E:\Facultad\Cursada 2016\Gestion de Datos\Trabajo Practico Integrador\TP_GDD_2C_2016\ClinicaFrba\Libreria\obj\Debug\Libreria.dll
+E:\Facultad\Cursada 2016\Gestion de Datos\Trabajo Practico Integrador\TP_GDD_2C_2016\ClinicaFrba\Libreria\obj\Debug\Libreria.pdb
