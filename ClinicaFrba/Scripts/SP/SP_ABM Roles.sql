@@ -38,15 +38,12 @@ BEGIN
 	/*set @idUser = (SELECT idUsuario FROM Select_Group.Usuario WHERE Usuario.nombreUsuario = @userName);*/
 
 
-	Insert into SELECT_GROUP.Rol(nombre,habilitado)
-	select @ROL_DESCRIP, 1
-	WHERE not (@ROL_DESCRIP = (select nombre from SELECT_GROUP.Rol));
 
-	/*Insert into SELECT_GROUP.Usuario_por_Rol(idRol,userName(
-	Values(@rol,@idUser)*/
+
+	Insert into SELECT_GROUP.Rol(nombre,habilitado)
+	values (@ROL_DESCRIP, 1)
+
 	
-	Insert into Select_Group.Funcionalidad(descripcion)
-	values(@FUNCIONALIDAD_DESCIP)
 
 	Insert into Select_Group.Funcionalidad_Por_Rol(rol_idRol,funcionalidad_idFuncionalidad)
 	select (select idRol from SELECT_GROUP.Rol where @ROL_DESCRIP = nombre), (select idFuncionalidad from SELECT_GROUP.Funcionalidad where @FUNCIONALIDAD_DESCIP = descripcion)
