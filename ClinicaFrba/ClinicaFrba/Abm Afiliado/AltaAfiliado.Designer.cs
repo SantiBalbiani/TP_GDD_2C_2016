@@ -41,13 +41,10 @@
             this.cmbSexo = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.chkHijos = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtCantHijos = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.btnCargaHijos = new System.Windows.Forms.Button();
-            this.btnCargaPareja = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -63,6 +60,7 @@
             this.textDireccion = new Libreria.errorTextBox();
             this.errorTextBox = new System.Windows.Forms.ErrorProvider(this.components);
             this.cbmPlanMed = new System.Windows.Forms.ComboBox();
+            this.btnCargaPareja = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorTextBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -187,23 +185,6 @@
             this.chkHijos.UseVisualStyleBackColor = true;
             this.chkHijos.CheckedChanged += new System.EventHandler(this.chkHijos_CheckedChanged);
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(108, 288);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(52, 13);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "Cantidad:";
-            // 
-            // txtCantHijos
-            // 
-            this.txtCantHijos.Enabled = false;
-            this.txtCantHijos.Location = new System.Drawing.Point(166, 281);
-            this.txtCantHijos.Name = "txtCantHijos";
-            this.txtCantHijos.Size = new System.Drawing.Size(45, 20);
-            this.txtCantHijos.TabIndex = 19;
-            // 
             // textBox2
             // 
             this.textBox2.Enabled = false;
@@ -240,17 +221,6 @@
             this.btnCargaHijos.TabIndex = 24;
             this.btnCargaHijos.Text = "Cargar hijos";
             this.btnCargaHijos.UseVisualStyleBackColor = true;
-            // 
-            // btnCargaPareja
-            // 
-            this.btnCargaPareja.Enabled = false;
-            this.btnCargaPareja.Location = new System.Drawing.Point(241, 254);
-            this.btnCargaPareja.Name = "btnCargaPareja";
-            this.btnCargaPareja.Size = new System.Drawing.Size(82, 21);
-            this.btnCargaPareja.TabIndex = 25;
-            this.btnCargaPareja.Text = "Cargar pareja";
-            this.btnCargaPareja.UseVisualStyleBackColor = true;
-            this.btnCargaPareja.Click += new System.EventHandler(this.btnCargaPareja_Click);
             // 
             // btnGuardar
             // 
@@ -381,6 +351,17 @@
             this.cbmPlanMed.Size = new System.Drawing.Size(106, 21);
             this.cbmPlanMed.TabIndex = 43;
             // 
+            // btnCargaPareja
+            // 
+            this.btnCargaPareja.Enabled = false;
+            this.btnCargaPareja.Location = new System.Drawing.Point(241, 254);
+            this.btnCargaPareja.Name = "btnCargaPareja";
+            this.btnCargaPareja.Size = new System.Drawing.Size(82, 21);
+            this.btnCargaPareja.TabIndex = 25;
+            this.btnCargaPareja.Text = "Cargar pareja";
+            this.btnCargaPareja.UseVisualStyleBackColor = true;
+            this.btnCargaPareja.Click += new System.EventHandler(this.btnCargaPareja_Click);
+            // 
             // frmAltaAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -405,8 +386,6 @@
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.txtCantHijos);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.chkHijos);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.cmbSexo);
@@ -442,13 +421,10 @@
         private System.Windows.Forms.ComboBox cmbSexo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox chkHijos;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtCantHijos;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnCargaHijos;
-        private System.Windows.Forms.Button btnCargaPareja;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btnCancelar;
@@ -464,5 +440,6 @@
         private Libreria.errorTextBox textDireccion;
         public System.Windows.Forms.ErrorProvider errorTextBox;
         private System.Windows.Forms.ComboBox cbmPlanMed;
+        private System.Windows.Forms.Button btnCargaPareja;
     }
 }
