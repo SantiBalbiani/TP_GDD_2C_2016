@@ -32,7 +32,7 @@ using System.Configuration;
             SqlCommand cmdRol = new SqlCommand("Select_Group.asignarRol", cnx);
             cmdRol.CommandType = CommandType.StoredProcedure;
             cmdRol.Parameters.Add("@username", SqlDbType.VarChar).Value = username.Text;
-            cmdRol.Parameters.Add("@ROL", SqlDbType.Int).Value = rolDesasignar.Text;
+            cmdRol.Parameters.Add("@ROL", SqlDbType.VarChar).Value = rolDesasignar.Text;
 
            
 
@@ -96,7 +96,7 @@ using System.Configuration;
             SqlCommand cmdRol = new SqlCommand("Select_Group.asignarRol", cnx);
             cmdRol.CommandType = CommandType.StoredProcedure;
             cmdRol.Parameters.Add("@username", SqlDbType.VarChar).Value = username.Text;
-            cmdRol.Parameters.Add("@ROL", SqlDbType.Int).Value = rolAsignar.Text;
+            cmdRol.Parameters.Add("@ROL", SqlDbType.VarChar).Value = rolAsignar.Text;
            
 
             try

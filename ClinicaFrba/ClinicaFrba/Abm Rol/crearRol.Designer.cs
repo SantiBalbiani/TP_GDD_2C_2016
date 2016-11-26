@@ -36,7 +36,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,24 +65,24 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 69);
+            this.label2.Location = new System.Drawing.Point(30, 59);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 13);
+            this.label2.Size = new System.Drawing.Size(115, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Nombre del Rol";
+            this.label2.Text = "Nombre del Nuevo Rol";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(116, 69);
+            this.textBox1.Location = new System.Drawing.Point(151, 56);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(147, 20);
             this.textBox1.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 114);
+            this.label3.Location = new System.Drawing.Point(30, 106);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(252, 13);
             this.label3.TabIndex = 4;
@@ -90,28 +90,29 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(322, 229);
+            this.button1.Location = new System.Drawing.Point(371, 276);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 33);
+            this.button1.Size = new System.Drawing.Size(102, 56);
             this.button1.TabIndex = 5;
-            this.button1.Text = "Crear Rol";
+            this.button1.Text = "Crear Rol y Asignar Funcionalidad";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // listView1
+            // checkedListBox1
             // 
-            this.listView1.Location = new System.Drawing.Point(12, 153);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(294, 97);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(33, 146);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(457, 94);
+            this.checkedListBox1.TabIndex = 6;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged_1);
             // 
             // crearRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(448, 274);
-            this.Controls.Add(this.listView1);
+            this.ClientSize = new System.Drawing.Size(552, 354);
+            this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox1);
@@ -135,6 +136,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }

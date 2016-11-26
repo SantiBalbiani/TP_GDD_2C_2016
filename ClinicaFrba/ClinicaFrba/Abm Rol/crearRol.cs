@@ -22,14 +22,26 @@ namespace ClinicaFrba.AbmRol
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            listView1.Clear();
-            string query = "select descripcion from select_group.Funcionalidad";
+           
+            Conexion.conectar();
             DataTable funcionalidades = new DataTable();
-            funcionalidades = Conexion.LeerTabla(query);
-            listView1.Columns.Add("funcionalidad", 500);
-            foreach (DataRow unaFunc in funcionalidades.Rows)
+
+            string consultaStr = "select idFuncionalidad, descripcion from SELECT_GROUP.Funcionalidad";
+
+            funcionalidades = Conexion.LeerTabla(consultaStr);
+
+            DataTable nombreFuncionalidades = new DataTable();
+
+
+            foreach (DataRow idFunc in funcionalidades.Rows)
             {
-                /*listView1.Items.Add(unaFunc);*/
+                ComboboxItem unaFuncionalidad = new ComboboxItem();
+
+                unaFuncionalidad.Text = idFunc["descripcion"].ToString();
+                unaFuncionalidad.Value = idFunc["idFuncionalidad"].ToString();
+
+                checkedListBox1.Items.Add(unaFuncionalidad);
+
             }
         }
 
@@ -75,5 +87,18 @@ namespace ClinicaFrba.AbmRol
         {
 
         }
-    }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+
+       
+         }
+
+        private void checkedListBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+}
+
 }

@@ -42,7 +42,7 @@ namespace ClinicaFrba.AbmRol
             cmdUsuario.CommandType = CommandType.StoredProcedure;
             cmdUsuario.Parameters.Add("@ROL_DESCRIP", SqlDbType.VarChar).Value = comboBox1.Text;
             cmdUsuario.Parameters.Add("@FUNCIONALIDAD_QUITAR", SqlDbType.VarChar).Value = checkedListBox1.Text;
-            cmdUsuario.Parameters.Add("@FUNCIONALIDAD_AGREGAR", SqlDbType.VarChar).Value = textBox2.Text;
+       
             try
             {
 
@@ -59,6 +59,35 @@ namespace ClinicaFrba.AbmRol
                 HomeAfiliado home = new HomeAfiliado();
                 home.Show();
                 this.Close();
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void modificarRol_Load_1(object sender, EventArgs e)
+        {
+            Conexion.conectar();
+            DataTable funcionalidades = new DataTable();
+
+            string consultaStr = "select idFuncionalidad, descripcion from SELECT_GROUP.Funcionalidad";
+
+            funcionalidades = Conexion.LeerTabla(consultaStr);
+
+            DataTable nombreFuncionalidades = new DataTable();
+
+
+            foreach (DataRow idFunc in funcionalidades.Rows)
+            {
+                ComboboxItem unaFuncionalidad = new ComboboxItem();
+
+                unaFuncionalidad.Text = idFunc["descripcion"].ToString();
+                unaFuncionalidad.Value = idFunc["idFuncionalidad"].ToString();
+
+                checkedListBox1.Items.Add(unaFuncionalidad);
+
             }
         }
     }
