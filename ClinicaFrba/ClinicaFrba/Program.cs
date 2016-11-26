@@ -14,6 +14,17 @@ namespace ClinicaFrba
         public static String userName = "0";
 
     }
+
+    public class ComboboxItem
+    {
+        public string Text { get; set; }
+        public object Value { get; set; }
+
+        public override string ToString()
+        {
+            return Text;
+        }
+    }
     static class Program
     {
         /// <summary>

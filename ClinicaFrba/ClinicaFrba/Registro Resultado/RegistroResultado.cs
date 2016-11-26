@@ -26,5 +26,11 @@ namespace ClinicaFrba.Registro_Resultado
         {
 
         }
+
+        private void RegistroResultado_Load(object sender, EventArgs e)
+        {
+            //Llamar SP que levante el turno y cargar los datos
+            
+        }
     }
 }

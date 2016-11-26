@@ -30,6 +30,8 @@ namespace ClinicaFrba.Menu_Principal
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            //Ver que tenga un turno en este horario
+            
             RegistroResultado frmRegRes = new RegistroResultado();
             this.Hide();
             frmRegRes.Show();

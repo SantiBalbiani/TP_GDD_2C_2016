@@ -162,6 +162,7 @@
             this.Controls.Add(this.radioButton1);
             this.Name = "RegistroResultado";
             this.Text = "Registrar Resultado";
+            this.Load += new System.EventHandler(this.RegistroResultado_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

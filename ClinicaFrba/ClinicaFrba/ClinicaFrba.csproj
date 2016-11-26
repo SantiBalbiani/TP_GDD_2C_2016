@@ -194,7 +194,6 @@
     <Compile Include="Menu Principal\HomeProfesional.Designer.cs">
       <DependentUpon>HomeProfesional.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pedir Turno\ComboboxItem_2.cs" />
     <Compile Include="Pedir Turno\FrmSolTurno.cs">
       <SubType>Form</SubType>
     </Compile>
