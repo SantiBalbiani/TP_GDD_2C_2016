@@ -52,6 +52,7 @@ namespace ClinicaFrba.AbmRol
 
         private void button1_Click(object sender, EventArgs e)
         {
+           
             SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
             SqlCommand cmdRol = new SqlCommand("Select_Group.CrearRol", cnx);
             cmdRol.CommandType = CommandType.StoredProcedure;

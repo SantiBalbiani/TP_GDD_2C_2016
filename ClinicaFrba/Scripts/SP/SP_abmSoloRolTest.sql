@@ -1,0 +1,18 @@
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [SELECT_GROUP].[CrearUnRol](@ROL_DESCRIP VARCHAR(45))
+AS
+BEGIN
+
+	Insert into SELECT_GROUP.Rol(nombre,habilitado)
+	values (@ROL_DESCRIP, 1)
+
+
+END
+go
+

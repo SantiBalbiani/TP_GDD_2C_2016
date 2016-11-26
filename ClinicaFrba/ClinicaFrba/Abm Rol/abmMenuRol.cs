@@ -45,9 +45,7 @@ namespace ClinicaFrba.AbmRol
 
         private void button2_Click(object sender, EventArgs e)
         {
-            eliminarRol frmEliminarRol = new eliminarRol();
-            this.Hide();
-            frmEliminarRol.Show();
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -74,6 +72,13 @@ namespace ClinicaFrba.AbmRol
             asignarRolUser frmAsignarRol = new asignarRolUser();
             this.Hide();
             frmAsignarRol.Show(); ;
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            abmMenuRol frmABMRol = new abmMenuRol();
+            this.Hide();
+            frmABMRol.Show();
         }
     }
 }
