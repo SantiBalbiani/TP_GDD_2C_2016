@@ -32,6 +32,9 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnAgregarParejaAfiliado_Click(object sender, EventArgs e)
         {
+            int nroAfiliado;
+            
+            
             //Abm_Afiliado.AltaPareja frmAgregarPareja = new Abm_Afiliado.AltaPareja(); 
             //frmAgregarPareja.Show();
 
