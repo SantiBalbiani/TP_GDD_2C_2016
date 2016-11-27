@@ -29,8 +29,8 @@ namespace ClinicaFrba
         {
             //this.Hide();
             //ClinicaFrba.Abm_Afiliado.frmAltaAfiliado frm = new Abm_Afiliado.frmAltaAfiliado();
-            ClinicaFrba.Abm_Afiliado.AltaPareja frmPareja = new Abm_Afiliado.AltaPareja();
-            frmPareja.Show();
+            //ClinicaFrba.Abm_Afiliado.AltaPareja frmPareja = new Abm_Afiliado.AltaPareja();
+           // frmPareja.Show();
             
         }
 

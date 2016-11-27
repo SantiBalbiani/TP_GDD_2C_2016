@@ -44,7 +44,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.btnCargaHijos = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -212,16 +211,6 @@
             this.label12.TabIndex = 22;
             this.label12.Text = "Plan Médico:";
             // 
-            // btnCargaHijos
-            // 
-            this.btnCargaHijos.Enabled = false;
-            this.btnCargaHijos.Location = new System.Drawing.Point(241, 288);
-            this.btnCargaHijos.Name = "btnCargaHijos";
-            this.btnCargaHijos.Size = new System.Drawing.Size(82, 21);
-            this.btnCargaHijos.TabIndex = 24;
-            this.btnCargaHijos.Text = "Cargar hijos";
-            this.btnCargaHijos.UseVisualStyleBackColor = true;
-            // 
             // btnGuardar
             // 
             this.btnGuardar.Location = new System.Drawing.Point(12, 371);
@@ -382,7 +371,6 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnCargaPareja);
-            this.Controls.Add(this.btnCargaHijos);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.textBox2);
@@ -424,7 +412,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button btnCargaHijos;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btnCancelar;

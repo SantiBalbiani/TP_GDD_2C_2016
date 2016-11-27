@@ -79,11 +79,11 @@
     <Compile Include="Abm Afiliado\AltaAfiliado.Designer.cs">
       <DependentUpon>AltaAfiliado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Afiliado\AltaFamiliar.cs">
+    <Compile Include="Abm Afiliado\AltaHijo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Afiliado\AltaFamiliar.Designer.cs">
-      <DependentUpon>AltaFamiliar.cs</DependentUpon>
+    <Compile Include="Abm Afiliado\AltaHijo.Designer.cs">
+      <DependentUpon>AltaHijo.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Afiliado\AltaPareja.cs">
       <SubType>Form</SubType>
@@ -229,8 +229,8 @@
     <EmbeddedResource Include="Abm Afiliado\AltaAfiliado.resx">
       <DependentUpon>AltaAfiliado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Abm Afiliado\AltaFamiliar.resx">
-      <DependentUpon>AltaFamiliar.cs</DependentUpon>
+    <EmbeddedResource Include="Abm Afiliado\AltaHijo.resx">
+      <DependentUpon>AltaHijo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Afiliado\AltaPareja.resx">
       <DependentUpon>AltaPareja.cs</DependentUpon>
