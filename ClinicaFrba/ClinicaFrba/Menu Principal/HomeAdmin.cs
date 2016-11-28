@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClinicaFrba.AbmRol;
+using ClinicaFrba.Abm_Afiliado;
 
 namespace ClinicaFrba.Menu_Principal
 {
@@ -27,23 +28,16 @@ namespace ClinicaFrba.Menu_Principal
         {
             Abm_Afiliado.frmAltaAfiliado frmAlta = new Abm_Afiliado.frmAltaAfiliado();
             frmAlta.Show();
+            this.Close();
        
-        }
-
-        private void btnAgregarParejaAfiliado_Click(object sender, EventArgs e)
-        {
-            int nroAfiliado;
-            
-            
-            //Abm_Afiliado.AltaPareja frmAgregarPareja = new Abm_Afiliado.AltaPareja(); 
-            //frmAgregarPareja.Show();
-
         }
 
         private void btnAgregarFamiliar_Click(object sender, EventArgs e)
         {
-            //Abm_Afiliado.AltaHijo frmAgregarFamiliar = new Abm_Afiliado.AltaHijo();
-            //frmAgregarFamiliar.Show();
+            AltaFamiliar frmAltaFamiliarAfiliado = new AltaFamiliar();
+            frmAltaFamiliarAfiliado.Show();
+            this.Close();
+            
         }
 
         private void btnRegistrarLlegada_Click(object sender, EventArgs e)

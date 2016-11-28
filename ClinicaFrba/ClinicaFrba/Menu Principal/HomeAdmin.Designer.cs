@@ -31,7 +31,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAltaAfiliado = new System.Windows.Forms.Button();
-            this.btnAgregarParejaAfiliado = new System.Windows.Forms.Button();
             this.btnAgregarFamiliar = new System.Windows.Forms.Button();
             this.btnRegistrarLlegada = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -71,19 +70,9 @@
             this.btnAltaAfiliado.UseVisualStyleBackColor = true;
             this.btnAltaAfiliado.Click += new System.EventHandler(this.btnAltaAfiliado_Click);
             // 
-            // btnAgregarParejaAfiliado
-            // 
-            this.btnAgregarParejaAfiliado.Location = new System.Drawing.Point(163, 87);
-            this.btnAgregarParejaAfiliado.Name = "btnAgregarParejaAfiliado";
-            this.btnAgregarParejaAfiliado.Size = new System.Drawing.Size(145, 23);
-            this.btnAgregarParejaAfiliado.TabIndex = 12;
-            this.btnAgregarParejaAfiliado.Text = "Alta Conyugue de Afiliado ";
-            this.btnAgregarParejaAfiliado.UseVisualStyleBackColor = true;
-            this.btnAgregarParejaAfiliado.Click += new System.EventHandler(this.btnAgregarParejaAfiliado_Click);
-            // 
             // btnAgregarFamiliar
             // 
-            this.btnAgregarFamiliar.Location = new System.Drawing.Point(163, 116);
+            this.btnAgregarFamiliar.Location = new System.Drawing.Point(163, 87);
             this.btnAgregarFamiliar.Name = "btnAgregarFamiliar";
             this.btnAgregarFamiliar.Size = new System.Drawing.Size(145, 23);
             this.btnAgregarFamiliar.TabIndex = 13;
@@ -130,7 +119,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRegistrarLlegada);
             this.Controls.Add(this.btnAgregarFamiliar);
-            this.Controls.Add(this.btnAgregarParejaAfiliado);
             this.Controls.Add(this.btnAltaAfiliado);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -147,7 +135,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAltaAfiliado;
-        private System.Windows.Forms.Button btnAgregarParejaAfiliado;
         private System.Windows.Forms.Button btnAgregarFamiliar;
         private System.Windows.Forms.Button btnRegistrarLlegada;
         private System.Windows.Forms.Button button1;

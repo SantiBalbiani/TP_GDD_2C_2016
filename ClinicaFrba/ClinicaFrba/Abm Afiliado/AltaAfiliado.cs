@@ -17,7 +17,9 @@ namespace ClinicaFrba.Abm_Afiliado
 {
     public partial class frmAltaAfiliado : Form
     {
-        public DataTable afiliadosTable = new DataTable("SELECT_GROUP.Afiliado");
+        public int idUsuario;
+        public int idPlanMed = 0;
+        public DataTable afiliadosTable = new DataTable();
         public Boolean tieneHijos = false;
 
         public frmAltaAfiliado()
@@ -51,7 +53,6 @@ namespace ClinicaFrba.Abm_Afiliado
         {
             string opcionDelCombo = cmbEstadoCivil.SelectedItem.ToString();
 
-            
             switch (opcionDelCombo)
             {
               case "Casado/a":
@@ -65,29 +66,38 @@ namespace ClinicaFrba.Abm_Afiliado
                 break;
                     }
         }
-      
-
-        private void btnCargaPareja_Click(object sender, EventArgs e)
+       private void btnCargaPareja_Click(object sender, EventArgs e)
         {
             if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
             {
                 DataRow afiliado = afiliadosTable.NewRow();
-                afiliado["Nombre"] = textNombre.Text;
-                afiliado["Apellido"] = textApellido.Text;
-                afiliado["TipoDoc"] = textTipoDoc;
-                afiliado["Dni"] = Convert.ToInt32(textDni.Text);
-                afiliado["Direccion"] = textDireccion.Text;
-                afiliado["Telefono"] = textTelefono.Text;
-                afiliado["FechaNac"] = textFechaNac.Text;
-                afiliado["Mail"] = textMail.Text;
-                afiliado["Sexo"] = cmbSexo.Text;
-                afiliado["Estado Civil"] = cmbEstadoCivil.Text;
-                afiliado["Plan Med"] = cbmPlanMed.Text;
+                afiliado["nombre"] = textNombre.Text;
+                afiliado["apellido"] = textApellido.Text;
+                afiliado["tipoDni"] = textTipoDoc.Text;
+                afiliado["numeroDni"] = Convert.ToInt32(textDni.Text);
+                afiliado["telefono"] = Convert.ToInt32(textTelefono.Text);
+                afiliado["mail"] = textMail.Text;
+                afiliado["fechaNac"] = Convert.ToDateTime(textFechaNac.Text);
+                afiliado["sexo"] = cmbSexo.Text;
+                afiliado["estadoCivil"] = cmbEstadoCivil.Text;
+                afiliado["direccion"] = textDireccion.Text;
+               
+                string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + cbmPlanMed.Text + "')";
+                DataTable dt = Conexion.EjecutarComando(query);
+                foreach (DataRow fila in dt.Rows)
+                {
+                    idPlanMed = Convert.ToInt32((fila["idPlan"]));
+                    afiliado["planMed"] = idPlanMed;
+                }
+
+                int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(textDni.Text));
+                afiliado["usuarioId"] = usuarioIdAfiliado;
 
                 afiliadosTable.Rows.Add(afiliado);
 
                 AltaPareja frm = new AltaPareja(afiliadosTable,afiliado,tieneHijos);
                 frm.Show();
+                //this.Close();
               }
             else {
                 MessageBox.Show("Faltan Campos ingresar");
@@ -101,8 +111,92 @@ namespace ClinicaFrba.Abm_Afiliado
             
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
+            {
+                
+                DataRow afiliado = afiliadosTable.NewRow();
+                afiliado["nombre"] = textNombre.Text;
+                afiliado["apellido"] = textApellido.Text;
+                afiliado["tipoDni"] = textTipoDoc.Text;
+                afiliado["numeroDni"] = Convert.ToInt32(textDni.Text);
+                
+                afiliado["telefono"] = Convert.ToInt32(textTelefono.Text);
+                
+                afiliado["mail"] = textMail.Text;
+                afiliado["fechaNac"] = Convert.ToDateTime(textFechaNac.Text);
+                afiliado["sexo"] = cmbSexo.Text;
+                afiliado["estadoCivil"] = cmbEstadoCivil.Text;
+                afiliado["direccion"] = textDireccion.Text;
+
+                string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + cbmPlanMed.Text.Trim() + "')";
+                DataTable dt = Conexion.EjecutarComando(query);
+                foreach (DataRow fila in dt.Rows)
+                {
+                    idPlanMed = Convert.ToInt32((fila["idPlan"]));
+                    afiliado["PlanMed"] = idPlanMed;
+                }
+
+                int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(textDni.Text));
+                afiliado["usuarioId"] = usuarioIdAfiliado;
+
+                afiliadosTable.Rows.Add(afiliado);
+
+                SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+                SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.sp_AltaAfiliado", cnx);
+                cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+                cmdAltaAfiliado.Parameters.Add("@Afiliados", SqlDbType.Structured).Value = afiliadosTable;
+                try
+                {
+                 cnx.Open();
+                 cmdAltaAfiliado.ExecuteNonQuery();
+                 MessageBox.Show("Se han guardado correctamente los datos");
+                 Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
+                 frmAdmin.Show();
+                 this.Close();
+                }
+                catch (ApplicationException error)
+                {
+                  string mensaje = "Se ha producido un error ";
+                  ApplicationException excep = new ApplicationException(mensaje, error);
+                  excep.Source = this.Text;
+                }
+                }else
+            {
+                MessageBox.Show("Faltan Campos ingresar");
+            }
            
-           
+        }
+
+        public int registrarUsuario(int p)
+        {
+
+            string nroDocumento = textDni.Text.Trim();
+            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+            SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.sp_CrearUsuario", cnx);
+            cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+            cmdAltaAfiliado.Parameters.Add("@Dni", SqlDbType.Int).Value = Convert.ToInt32(textDni.Text);
+            try
+            {
+                cnx.Open();
+                cmdAltaAfiliado.ExecuteNonQuery();
+                string query = "select US.idUsuario from SELECT_GROUP.Usuario as US where nombreUsuario = ('" + nroDocumento + "')";
+                DataTable dt = Conexion.EjecutarComando(query);
+                foreach (DataRow fila in dt.Rows)
+                {
+                    idUsuario = Convert.ToInt32((fila["idUsuario"]));
+                    
+                }
+            }
+            catch (ApplicationException error)
+            {
+                string mensaje = "Se ha producido un error ";
+                ApplicationException excep = new ApplicationException(mensaje, error);
+                excep.Source = this.Text;
+                idUsuario = -1;
+                                
+            }
+            return idUsuario;
+
         }
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
@@ -132,17 +226,18 @@ namespace ClinicaFrba.Abm_Afiliado
                 cbmPlanMed.Items.Add(Convert.ToString(fila["descripcion"]));
             }
 
-            DataColumn nombre = afiliadosTable.Columns.Add("Nombre", typeof(String));
-            afiliadosTable.Columns.Add("Apellido", typeof(String));
-            afiliadosTable.Columns.Add("TipoDoc", typeof(String));
-            afiliadosTable.Columns.Add("Dni", typeof(Int32));
-            afiliadosTable.Columns.Add("Direccion", typeof(String));
-            afiliadosTable.Columns.Add("Telefono", typeof(Int32));
-            afiliadosTable.Columns.Add("FechaNac", typeof(DateTime));
-            afiliadosTable.Columns.Add("Mail", typeof(String));
-            afiliadosTable.Columns.Add("Sexo", typeof(String));
-            afiliadosTable.Columns.Add("Estado Civil", typeof(String));
-            afiliadosTable.Columns.Add("Plan Med", typeof(String));
+            DataColumn nombre = afiliadosTable.Columns.Add("nombre", typeof(String));
+            afiliadosTable.Columns.Add("apellido", typeof(String));
+            afiliadosTable.Columns.Add("tipoDni", typeof(String));
+            afiliadosTable.Columns.Add("numeroDni", typeof(Int32));
+            afiliadosTable.Columns.Add("telefono", typeof(Int32));
+            afiliadosTable.Columns.Add("mail", typeof(String));
+            afiliadosTable.Columns.Add("fechaNac", typeof(DateTime));
+            afiliadosTable.Columns.Add("sexo", typeof(String));
+            afiliadosTable.Columns.Add("estadoCivil", typeof(String));
+            afiliadosTable.Columns.Add("direccion", typeof(String));
+            afiliadosTable.Columns.Add("planMed", typeof(Int32));
+            afiliadosTable.Columns.Add("usuarioId", typeof(Int32));
         }
 
     }
