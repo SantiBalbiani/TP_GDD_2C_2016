@@ -88,6 +88,11 @@ namespace ClinicaFrba.AbmRol
                 this.Close();
             }
         }
+
+        private void eliminarRol_Load_1(object sender, EventArgs e)
+        {
+
+        }
         }
     }
 

@@ -115,17 +115,23 @@
     <Compile Include="Abm Profesional\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Rol\abmMenuRol.cs">
+    <Compile Include="Abm Rol\habilitarRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Rol\abmMenuRol.Designer.cs">
-      <DependentUpon>abmMenuRol.cs</DependentUpon>
+    <Compile Include="Abm Rol\habilitarRol.Designer.cs">
+      <DependentUpon>habilitarRol.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Rol\asignarRolUser.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Abm Rol\asignarRolUser.Designer.cs">
       <DependentUpon>asignarRolUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Rol\abmMenuRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Rol\abmMenuRol.Designer.cs">
+      <DependentUpon>abmMenuRol.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Rol\crearRol.cs">
       <SubType>Form</SubType>
@@ -138,12 +144,6 @@
     </Compile>
     <Compile Include="Abm Rol\eliminarRol.Designer.cs">
       <DependentUpon>eliminarRol.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Abm Rol\habilitarRol.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Rol\habilitarRol.Designer.cs">
-      <DependentUpon>habilitarRol.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Rol\modificarRol.cs">
       <SubType>Form</SubType>
@@ -244,20 +244,20 @@
     <EmbeddedResource Include="Abm Afiliado\BusquedaAfiliado.resx">
       <DependentUpon>BusquedaAfiliado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Abm Rol\abmMenuRol.resx">
-      <DependentUpon>abmMenuRol.cs</DependentUpon>
+    <EmbeddedResource Include="Abm Rol\habilitarRol.resx">
+      <DependentUpon>habilitarRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\asignarRolUser.resx">
       <DependentUpon>asignarRolUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Rol\abmMenuRol.resx">
+      <DependentUpon>abmMenuRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\crearRol.resx">
       <DependentUpon>crearRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\eliminarRol.resx">
       <DependentUpon>eliminarRol.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Abm Rol\habilitarRol.resx">
-      <DependentUpon>habilitarRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\modificarRol.resx">
       <DependentUpon>modificarRol.cs</DependentUpon>

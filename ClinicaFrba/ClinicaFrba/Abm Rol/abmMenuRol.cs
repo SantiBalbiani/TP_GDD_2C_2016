@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace ClinicaFrba.AbmRol
 {
     public partial class abmMenuRol : Form
@@ -71,7 +72,7 @@ namespace ClinicaFrba.AbmRol
         {
             asignarRolUser frmAsignarRol = new asignarRolUser();
             this.Hide();
-            frmAsignarRol.Show(); ;
+            frmAsignarRol.Show(); 
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -79,6 +80,14 @@ namespace ClinicaFrba.AbmRol
             abmMenuRol frmABMRol = new abmMenuRol();
             this.Hide();
             frmABMRol.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            habilitarRol frmHabilitarRol = new habilitarRol();
+            this.Hide();
+            frmHabilitarRol.Show();
+
         }
     }
 }

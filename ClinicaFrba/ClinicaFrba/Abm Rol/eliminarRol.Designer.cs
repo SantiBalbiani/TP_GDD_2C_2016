@@ -84,6 +84,7 @@
             this.Controls.Add(this.label1);
             this.Name = "eliminarRol";
             this.Text = "Eliminar un Rol";
+            this.Load += new System.EventHandler(this.eliminarRol_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 
