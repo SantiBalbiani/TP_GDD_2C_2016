@@ -260,6 +260,9 @@ namespace ClinicaFrba.Pedir_Turno
             cmdUsuario.Parameters.Add("@idAgenda", SqlDbType.Int).Value = idAgenda;
             cmdUsuario.Parameters.Add("@userName", SqlDbType.VarChar).Value = Globals.userName;
 
+            Object unItemEspecialidad = comboBox1.SelectedItem;
+            ComboboxItem itemEspecialidad = (ComboboxItem)unItemEspecialidad;
+            cmdUsuario.Parameters.Add("@especialidad", SqlDbType.Int).Value = itemEspecialidad.Value;
             try
             {
 

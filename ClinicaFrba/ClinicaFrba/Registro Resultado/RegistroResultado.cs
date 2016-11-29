@@ -96,7 +96,8 @@ namespace ClinicaFrba.Registro_Resultado
                 MessageBox.Show("No hay turno agendado en este horario");
 
                 this.Hide();
-                
+                HomeProfesional frmHome = new HomeProfesional();
+                frmHome.Show();
             }
         }
 
