@@ -40,7 +40,7 @@ namespace ClinicaFrba.Registro_Resultado
         {
             //Llamar SP que levante el turno y cargar los datos
 
-            TimeSpan intervaloDeTurno = new TimeSpan(0, 30, 0);
+            TimeSpan intervaloDeTurno = new TimeSpan(45, 30, 0);
             DateTime intervaloTurnoMax = DateTime.Now + intervaloDeTurno;
             DateTime intervaloTurnoMin = DateTime.Now - intervaloDeTurno;
             string estadoTurno = "0";
