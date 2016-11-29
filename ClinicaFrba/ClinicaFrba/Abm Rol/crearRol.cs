@@ -86,8 +86,7 @@ namespace ClinicaFrba.AbmRol
                         SqlCommand cmdRol = new SqlCommand("insert into Select_group.Rol (nombre,habilitado) values(@nombreRol,1)", conexion);
                         cmdRol.Parameters.AddWithValue("@nombreRol", nuevoRol.Text);
                         cmdRol.ExecuteNonQuery();
-                        for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
-                        {
+                        foreach ( CheckedListBox item  in checkedListBox1.CheckedItems)
                                                      
                             SqlCommand cmdFuncionalidad = new SqlCommand("insert into Select_group.Funcionalidad_Por_Rol (rol_idRol, funcionalidad_idFuncionalidad) values(@idRol,@idFunc)", conexion);
                             cmdFuncionalidad.Parameters.AddWithValue("@idRol", nuevoRol.Text);
