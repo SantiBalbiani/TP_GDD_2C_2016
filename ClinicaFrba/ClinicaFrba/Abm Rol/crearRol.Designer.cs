@@ -33,7 +33,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.altaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.nuevoRol = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
@@ -72,12 +72,13 @@
             this.label2.Text = "Nombre del Nuevo Rol";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // textBox1
+            // nuevoRol
             // 
-            this.textBox1.Location = new System.Drawing.Point(151, 56);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(147, 20);
-            this.textBox1.TabIndex = 2;
+            this.nuevoRol.Location = new System.Drawing.Point(151, 56);
+            this.nuevoRol.Name = "nuevoRol";
+            this.nuevoRol.Size = new System.Drawing.Size(147, 20);
+            this.nuevoRol.TabIndex = 2;
+            this.nuevoRol.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // label3
             // 
@@ -115,7 +116,7 @@
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.nuevoRol);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "crearRol";
@@ -133,7 +134,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem altaToolStripMenuItem;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox nuevoRol;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckedListBox checkedListBox1;

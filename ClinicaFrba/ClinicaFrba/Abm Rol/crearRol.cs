@@ -52,31 +52,96 @@ namespace ClinicaFrba.AbmRol
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
-            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-            SqlCommand cmdRol = new SqlCommand("Select_Group.CrearRol", cnx);
-            cmdRol.CommandType = CommandType.StoredProcedure;
-            cmdRol.Parameters.Add("@ROL_DESCRIP", SqlDbType.VarChar).Value = textBox1.Text;
-           // cmdRol.Parameters.Add("@FUNCIONALIDAD_DESCIP", SqlDbType.VarChar).Value = checkedListFuncionalidades.Text;
 
+            //Conexion.conectar();
+            SqlConnection conexion;
+            bool conectado = false;
+            //llenar la variable conexión con los parámetros de la variable parametros
+            string parametros = ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString;
+            conexion = new SqlConnection(parametros);
             try
             {
+                //abrir la conexion
+                conexion.Open();
+                conectado = true;
+            }
+            catch (InvalidCastException)
+            {
+                MessageBox.Show("Error al conectar la Base de datos");
+                conectado = false;
+            }
 
-                cnx.Open();
-                cmdRol.ExecuteNonQuery();
+
+            if (conectado == true) {
+
+                try
+                {
+                    //string str[] = new string(checkedListBox1.CheckedItems.Count);
+                    //Dim str(checkedListBox1.CheckedItems.Count) As string;
+                    //string str[checkedListBox1.CheckedItems.Count] = new String(checkedListBox1.CheckedItems.Count);
+                    if (checkedListBox1.CheckedItems.Count > 0)
+                    {
+
+                        //inserta rol nuevo en la tabla rol 
+                        SqlCommand cmdRol = new SqlCommand("insert into Select_group.Rol (nombre,habilitado) values(@nombreRol,1)", conexion);
+                        cmdRol.Parameters.AddWithValue("@nombreRol", nuevoRol.Text);
+                        cmdRol.ExecuteNonQuery();
+                        for (int i = 0; i < checkedListBox1.CheckedItems.Count; i++)
+                        {
+                                                     
+                            SqlCommand cmdFuncionalidad = new SqlCommand("insert into Select_group.Funcionalidad_Por_Rol (rol_idRol, funcionalidad_idFuncionalidad) values(@idRol,@idFunc)", conexion);
+                            cmdFuncionalidad.Parameters.AddWithValue("@idRol", nuevoRol.Text);
+                            cmdFuncionalidad.Parameters.AddWithValue("@idFuncionalidad", checkedListBox1.CheckedItems[i].ToString());
+                            cmdFuncionalidad.ExecuteNonQuery();
+
+
+                            //if (str[i] == "")
+                            //{
+                            //str[i] = checkedListBox1.CheckedItems[i].ToString();
+
+                            //}
+                            //else
+                            //{
+                            //str += "," + checkedListBox1.CheckedItems[i].ToString();
+                            //    str[i+1] = checkedListBox1.CheckedItems[i].ToString();
+                            //}
+
+                        }
+
+
+
+                        //for (int i = 0; i < str.Length; i++) {
+                        //SqlCommand cmdFuncionalidad = new SqlCommand("insert into Select_group.Funcionalidad_Por_Rol (rol_idRol, funcionalidad_idFuncionalidad) values(@idRol,@idFunc)", Conexion.conexion);
+                        //cmdFuncionalidad.Parameters.AddWithValue("@idRol", nuevoRol.Text);
+                        //cmdFuncionalidad.Parameters.AddWithValue("@idFuncionalidad", str[i]);
+                        //cmdFuncionalidad.ExecuteNonQuery();
+                        //}
+
+
+                        MessageBox.Show("Rol creado con exito con las funcionalidades asignadas ");
+                        Conexion.conexion.Close();
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Porfavor seleccione al menos una Funcionalidad");
+                    }
+
+                    while (checkedListBox1.CheckedItems.Count > 0)
+                    {
+                        checkedListBox1.SetItemChecked(checkedListBox1.CheckedIndices[0], false);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                }
             }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                cnx.Close();
-                HomeAfiliado home = new HomeAfiliado();
-                home.Show();
-                this.Close();
-            }
-        
+
+
+
+
+            
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,6 +164,11 @@ namespace ClinicaFrba.AbmRol
         private void checkedListBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+        
         }
 }
 
