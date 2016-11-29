@@ -17,7 +17,7 @@ namespace ClinicaFrba.Abm_Afiliado
     public partial class AltaHijo : Form
     {
         public DataRow afiliadosIngresados;
-        public DataTable tablaAfiliados;
+        public DataTable tablaAfiliados = new DataTable();
         public Boolean otroHijo = false;
         public int idUsuario;
 
@@ -25,7 +25,7 @@ namespace ClinicaFrba.Abm_Afiliado
         {
             InitializeComponent();
             afiliadosIngresados = afiliado;
-            tablaAfiliados = Afiliados;
+            //tablaAfiliados = Afiliados;
         }
 
       
@@ -49,7 +49,19 @@ namespace ClinicaFrba.Abm_Afiliado
             {
                 PlanMedHijo.Text = ((fila["descripcion"]).ToString());
 
-            } 
+            }
+            DataColumn nombre = tablaAfiliados.Columns.Add("nombre", typeof(String));
+            tablaAfiliados.Columns.Add("apellido", typeof(String));
+            tablaAfiliados.Columns.Add("tipoDni", typeof(String));
+            tablaAfiliados.Columns.Add("numeroDni", typeof(Int32));
+            tablaAfiliados.Columns.Add("telefono", typeof(Int32));
+            tablaAfiliados.Columns.Add("mail", typeof(String));
+            tablaAfiliados.Columns.Add("fechaNac", typeof(DateTime));
+            tablaAfiliados.Columns.Add("sexo", typeof(String));
+            tablaAfiliados.Columns.Add("estadoCivil", typeof(String));
+            tablaAfiliados.Columns.Add("direccion", typeof(String));
+            tablaAfiliados.Columns.Add("usuarioId", typeof(Int32));
+            tablaAfiliados.Columns.Add("planMed", typeof(Int32));
          
              
         }

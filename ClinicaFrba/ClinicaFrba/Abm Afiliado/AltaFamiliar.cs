@@ -30,9 +30,9 @@ namespace ClinicaFrba.Abm_Afiliado
                 if (Conexion.conectar())
                 {
                     DataTable afiliados = new DataTable();
-                    int Afiliado = Convert.ToInt32(NroAfiliadoPrincipal.Text);
+                    int afiliado = Convert.ToInt32(NroAfiliadoPrincipal.Text);
 
-                    string cadena = "select * from SELECT_GROUP.Afiliado where idAfiliado=('" + Afiliado + "')";
+                    string cadena = "select * from SELECT_GROUP.Afiliado where idAfiliado=('" + afiliado + "')";
 
                     afiliados = Conexion.LeerTabla(cadena);
 
@@ -68,9 +68,9 @@ namespace ClinicaFrba.Abm_Afiliado
                 if (Conexion.conectar())
                 {
                     DataTable afiliados = new DataTable();
-                    int Afiliado = Convert.ToInt32(NroAfiliadoPrincipal.Text);
+                    int afiliado = Convert.ToInt32(NroAfiliadoPrincipal.Text);
 
-                    string cadena = "select * from SELECT_GROUP.Afiliado where idAfiliado=('" + Afiliado + "')";
+                    string cadena = "select nombre,apellido,tipoDni,numeroDni,telefono,mail,fechaNac,sexo,estadoCivil,direccion,idUsuario,plan_idPlan from SELECT_GROUP.Afiliado where idAfiliado=('" + afiliado + "')";
 
                     afiliados = Conexion.LeerTabla(cadena);
 
