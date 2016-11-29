@@ -103,7 +103,6 @@
     <Compile Include="Abm Afiliado\BusquedaAfiliado.Designer.cs">
       <DependentUpon>BusquedaAfiliado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Afiliado\insertarAfiliado.cs" />
     <Compile Include="Abm Especialidades Medicas\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
