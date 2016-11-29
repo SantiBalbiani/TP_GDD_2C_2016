@@ -77,7 +77,9 @@ namespace ClinicaFrba.Abm_Afiliado
                 afiliado["numeroDni"] = Convert.ToInt32(textDni.Text);
                 afiliado["telefono"] = Convert.ToInt32(textTelefono.Text);
                 afiliado["mail"] = textMail.Text;
-                afiliado["fechaNac"] = Convert.ToDateTime(textFechaNac.Text);
+                afiliado["fechaNac"] = dateTimePicker1.Value.Date;
+                    
+                    //Convert.ToDateTime(textFechaNac.Text);
                 afiliado["sexo"] = cmbSexo.Text;
                 afiliado["estadoCivil"] = cmbEstadoCivil.Text;
                 afiliado["direccion"] = textDireccion.Text;
@@ -124,7 +126,9 @@ namespace ClinicaFrba.Abm_Afiliado
                 afiliado["telefono"] = Convert.ToInt32(textTelefono.Text);
                 
                 afiliado["mail"] = textMail.Text;
-                afiliado["fechaNac"] = Convert.ToDateTime(textFechaNac.Text);
+                afiliado["fechaNac"] = dateTimePicker1.Value.Date;
+                    
+                  //  Convert.ToDateTime(textFechaNac.Text);
                 afiliado["sexo"] = cmbSexo.Text;
                 afiliado["estadoCivil"] = cmbEstadoCivil.Text;
                 afiliado["direccion"] = textDireccion.Text;
@@ -239,6 +243,16 @@ namespace ClinicaFrba.Abm_Afiliado
             afiliadosTable.Columns.Add("direccion", typeof(String));
             afiliadosTable.Columns.Add("usuarioId", typeof(Int32));
             afiliadosTable.Columns.Add("planMed", typeof(Int32));
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textFechaNac_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

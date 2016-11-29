@@ -54,12 +54,12 @@
             this.textTipoDoc = new Libreria.errorTextBox();
             this.textDni = new Libreria.errorTextBox();
             this.textTelefono = new Libreria.errorTextBox();
-            this.textFechaNac = new Libreria.errorTextBox();
             this.textMail = new Libreria.errorTextBox();
             this.textDireccion = new Libreria.errorTextBox();
             this.errorTextBox = new System.Windows.Forms.ErrorProvider(this.components);
             this.cbmPlanMed = new System.Windows.Forms.ComboBox();
             this.btnCargaPareja = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.errorTextBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -304,14 +304,6 @@
             this.textTelefono.TabIndex = 39;
             this.textTelefono.Validar = true;
             // 
-            // textFechaNac
-            // 
-            this.textFechaNac.Location = new System.Drawing.Point(81, 175);
-            this.textFechaNac.Name = "textFechaNac";
-            this.textFechaNac.Size = new System.Drawing.Size(100, 20);
-            this.textFechaNac.TabIndex = 40;
-            this.textFechaNac.Validar = true;
-            // 
             // textMail
             // 
             this.textMail.Location = new System.Drawing.Point(86, 200);
@@ -351,15 +343,24 @@
             this.btnCargaPareja.UseVisualStyleBackColor = true;
             this.btnCargaPareja.Click += new System.EventHandler(this.btnCargaPareja_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(77, 177);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 44;
+            this.dateTimePicker1.Value = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
             // frmAltaAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(415, 419);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.cbmPlanMed);
             this.Controls.Add(this.textDireccion);
             this.Controls.Add(this.textMail);
-            this.Controls.Add(this.textFechaNac);
             this.Controls.Add(this.textTelefono);
             this.Controls.Add(this.textDni);
             this.Controls.Add(this.textTipoDoc);
@@ -422,11 +423,11 @@
         private Libreria.errorTextBox textTipoDoc;
         private Libreria.errorTextBox textDni;
         private Libreria.errorTextBox textTelefono;
-        private Libreria.errorTextBox textFechaNac;
         private Libreria.errorTextBox textMail;
         private Libreria.errorTextBox textDireccion;
         public System.Windows.Forms.ErrorProvider errorTextBox;
         private System.Windows.Forms.ComboBox cbmPlanMed;
         private System.Windows.Forms.Button btnCargaPareja;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
