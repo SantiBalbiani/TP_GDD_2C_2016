@@ -63,6 +63,7 @@
             this.cantidad.Name = "cantidad";
             this.cantidad.Size = new System.Drawing.Size(100, 20);
             this.cantidad.TabIndex = 2;
+            this.cantidad.TextChanged += new System.EventHandler(this.cantidad_TextChanged);
             // 
             // label2
             // 
@@ -83,6 +84,7 @@
             this.txtPlan.Name = "txtPlan";
             this.txtPlan.Size = new System.Drawing.Size(71, 20);
             this.txtPlan.TabIndex = 6;
+            this.txtPlan.TextChanged += new System.EventHandler(this.txtPlan_TextChanged);
             // 
             // label3
             // 
@@ -100,6 +102,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 4;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button1
             // 
@@ -109,6 +112,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "Calcular Monto ";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmComprarBonos
             // 
@@ -122,7 +126,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnComprar);
             this.Name = "FrmComprarBonos";
-            this.Text = "Comprar Bonos";
+            this.Text = "p";
             this.Load += new System.EventHandler(this.FrmComprarBonos_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
