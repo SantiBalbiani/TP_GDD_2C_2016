@@ -154,6 +154,7 @@
             this.txtNumeroAfiliado.Name = "txtNumeroAfiliado";
             this.txtNumeroAfiliado.Size = new System.Drawing.Size(105, 20);
             this.txtNumeroAfiliado.TabIndex = 10;
+            this.txtNumeroAfiliado.TextChanged += new System.EventHandler(this.txtNumeroAfiliado_TextChanged);
             // 
             // button1
             // 
@@ -173,6 +174,7 @@
             this.button2.TabIndex = 12;
             this.button2.Text = "Registrar Llegada";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // listBox1
             // 

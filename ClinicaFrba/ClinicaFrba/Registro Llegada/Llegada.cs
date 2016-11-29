@@ -37,7 +37,27 @@ namespace ClinicaFrba.Registro_Llegada
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(txtNumeroAfiliado.Text.ToString()))
+            {
+                MessageBox.Show("Por favor complete el nro de Afiliado");
+            }else{
+            string nombreYApellido = comboBox2.Text;
+            var nomYapSeparado = nombreYApellido.Split(',');
+            string nombreProf = nomYapSeparado[0];
+            string apellidoProf = nomYapSeparado[1];
+            
+            string consultarTurnosParaProfYAfiliado = "SELECT T.idTurno ,T.idAgenda ,T.fechaTurno ,T.afiliado_idAfiliado ,Afi.nombre ,Afi.apellido FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda JOIN Select_Group.Profesional P ON P.matricula = A.profesional_IdProfesional JOIN Select_Group.Afiliado Afi ON Afi.idAfiliado = T.afiliado_idAfiliado WHERE P.nombre = '"+nombreProf+"' AND P.apellido = '"+apellidoProf+"' AND T.estado = 3 AND T.afiliado_idAfiliado = " + txtNumeroAfiliado.Text.ToString();
+            Conexion.conectar();
+            DataTable Turnos = new DataTable();
 
+            Turnos = Conexion.LeerTabla(consultarTurnosParaProfYAfiliado);
+
+            foreach (DataRow turno in Turnos.Rows)
+            {
+                listBox1.Items.Add(turno["fechaTurno"].ToString()); ;
+            }
+
+            }
         }
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
@@ -62,7 +82,7 @@ namespace ClinicaFrba.Registro_Llegada
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            listBox1.Items.Clear();
         }
 
         private void Llegada_Load(object sender, EventArgs e)
@@ -144,7 +164,7 @@ namespace ClinicaFrba.Registro_Llegada
                 {
 
 
-                    string profesional = filaNombreProf["nombre"].ToString() + ", " + filaNombreProf["apellido"].ToString();
+                    string profesional = filaNombreProf["nombre"].ToString() + "," + filaNombreProf["apellido"].ToString();
                     ComboboxItem itemProf = new ComboboxItem();
 
                     itemProf.Text = profesional;
@@ -163,6 +183,16 @@ namespace ClinicaFrba.Registro_Llegada
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
         
+        }
+
+        private void txtNumeroAfiliado_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
         
     }
