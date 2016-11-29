@@ -89,6 +89,11 @@ namespace ClinicaFrba.AbmRol
 
                         //Aca poner query que busque el Rol por la descripción y levantar el idRol
 
+                        string buscaRol = "SELECT idRol FROM Select_Group.Rol WHERE nombre = '" + nuevoRol.Text.ToString() + "'";
+
+                        
+
+
                         foreach ( Object item  in checkedListBox1.CheckedItems){
 
                             ComboboxItem unItem = new ComboboxItem();
