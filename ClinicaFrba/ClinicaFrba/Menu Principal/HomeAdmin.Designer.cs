@@ -35,6 +35,8 @@
             this.btnRegistrarLlegada = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnAbmRol = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -92,9 +94,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(167, 152);
+            this.button1.Location = new System.Drawing.Point(409, 236);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 23);
+            this.button1.Size = new System.Drawing.Size(133, 23);
             this.button1.TabIndex = 15;
             this.button1.Text = "Comprar Bono";
             this.button1.UseVisualStyleBackColor = true;
@@ -110,11 +112,31 @@
             this.btnAbmRol.UseVisualStyleBackColor = true;
             this.btnAbmRol.Click += new System.EventHandler(this.btnAbmRol_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(364, 210);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(218, 20);
+            this.textBox1.TabIndex = 17;
+            this.textBox1.Text = "Ingrese Nro Afiliado, luego presione Comprar";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(402, 194);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(140, 13);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Comprar Bonos a un Afiliado";
+            // 
             // HomeAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnAbmRol);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRegistrarLlegada);
@@ -139,5 +161,7 @@
         private System.Windows.Forms.Button btnRegistrarLlegada;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnAbmRol;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label3;
     }
 }

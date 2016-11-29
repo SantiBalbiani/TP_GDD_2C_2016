@@ -32,10 +32,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cantidad = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.txtPlan = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnComprar
@@ -74,22 +74,6 @@
             this.label2.Text = "Monto total:";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(147, 145);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 4;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(147, 116);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Calcular Monto ";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // txtPlan
             // 
             this.txtPlan.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -109,6 +93,22 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Plan:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(147, 145);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 4;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(147, 116);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Calcular Monto ";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // FrmComprarBonos
             // 
@@ -135,10 +135,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox cantidad;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txtPlan;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
 
 
     }

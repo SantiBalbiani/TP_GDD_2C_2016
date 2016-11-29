@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClinicaFrba.AbmRol;
 using ClinicaFrba.Abm_Afiliado;
+using ClinicaFrba.Base_de_Datos;
+using ClinicaFrba.Menu_Principal;
+using System.Configuration;
+using System.Data.SqlClient;
+using ClinicaFrba.Compra_Bono;
 
 namespace ClinicaFrba.Menu_Principal
 {
@@ -55,6 +60,44 @@ namespace ClinicaFrba.Menu_Principal
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            string consultaUsername = "SELECT U.nombreUsuario FROM Select_Group.Usuario U JOIN Select_Group.Afiliado A ON A.idUsuario = U.idUsuario WHERE A.idAfiliado = " + textBox1.Text.ToString();
+            DataTable unUserName = new DataTable();
+            Conexion.conectar();
+            try
+            {
+
+                unUserName = Conexion.LeerTabla(consultaUsername);
+
+                foreach (DataRow unUserN in unUserName.Rows)
+                {
+                    Globals.userName = unUserN["nombreUsuario"].ToString();
+                  
+                }
+
+
+            }
+
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Conexion.conexion.Close();
+                
+                this.Hide();
+                FrmComprarBonos frmCompra = new FrmComprarBonos();
+                frmCompra.Show();
+                
+
+            }
+
+
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
