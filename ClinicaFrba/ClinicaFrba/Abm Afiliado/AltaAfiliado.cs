@@ -21,6 +21,7 @@ namespace ClinicaFrba.Abm_Afiliado
         public int idPlanMed = 0;
         public DataTable afiliadosTable = new DataTable();
         public Boolean tieneHijos = false;
+        public Boolean nuevo = true;
 
         public frmAltaAfiliado()
         {
@@ -98,7 +99,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
                 afiliadosTable.Rows.Add(afiliado);
 
-                AltaPareja frm = new AltaPareja(afiliadosTable,afiliado,tieneHijos);
+                AltaPareja frm = new AltaPareja(afiliadosTable,afiliado,tieneHijos,nuevo);
                 frm.Show();
                 this.Close();
               }
