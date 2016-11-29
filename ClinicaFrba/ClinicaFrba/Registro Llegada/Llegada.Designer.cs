@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Llegada));
             this.btnTurnoProf = new System.Windows.Forms.Button();
             this.txtProfesional = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,11 +43,15 @@
             this.txtNumeroAfiliado = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnTurnoProf
             // 
-            this.btnTurnoProf.Location = new System.Drawing.Point(263, 93);
+            this.btnTurnoProf.Location = new System.Drawing.Point(511, 91);
             this.btnTurnoProf.Name = "btnTurnoProf";
             this.btnTurnoProf.Size = new System.Drawing.Size(138, 23);
             this.btnTurnoProf.TabIndex = 0;
@@ -55,7 +61,7 @@
             // 
             // txtProfesional
             // 
-            this.txtProfesional.Location = new System.Drawing.Point(15, 96);
+            this.txtProfesional.Location = new System.Drawing.Point(263, 94);
             this.txtProfesional.Name = "txtProfesional";
             this.txtProfesional.Size = new System.Drawing.Size(230, 20);
             this.txtProfesional.TabIndex = 1;
@@ -65,7 +71,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 76);
+            this.label1.Location = new System.Drawing.Point(260, 74);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(204, 17);
             this.label1.TabIndex = 2;
@@ -76,7 +82,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 133);
+            this.label2.Location = new System.Drawing.Point(258, 131);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(235, 17);
             this.label2.TabIndex = 3;
@@ -85,14 +91,14 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(15, 153);
+            this.comboBox1.Location = new System.Drawing.Point(263, 151);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(230, 21);
             this.comboBox1.TabIndex = 4;
             // 
             // btnCargarProfesionales
             // 
-            this.btnCargarProfesionales.Location = new System.Drawing.Point(263, 151);
+            this.btnCargarProfesionales.Location = new System.Drawing.Point(511, 149);
             this.btnCargarProfesionales.Name = "btnCargarProfesionales";
             this.btnCargarProfesionales.Size = new System.Drawing.Size(138, 23);
             this.btnCargarProfesionales.TabIndex = 5;
@@ -102,7 +108,7 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(15, 211);
+            this.comboBox2.Location = new System.Drawing.Point(263, 209);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(230, 21);
             this.comboBox2.TabIndex = 6;
@@ -110,11 +116,11 @@
             // 
             // btnVerTurnosEspecialidad
             // 
-            this.btnVerTurnosEspecialidad.Location = new System.Drawing.Point(263, 209);
+            this.btnVerTurnosEspecialidad.Location = new System.Drawing.Point(511, 207);
             this.btnVerTurnosEspecialidad.Name = "btnVerTurnosEspecialidad";
             this.btnVerTurnosEspecialidad.Size = new System.Drawing.Size(138, 23);
             this.btnVerTurnosEspecialidad.TabIndex = 7;
-            this.btnVerTurnosEspecialidad.Text = "Buscar Turnos";
+            this.btnVerTurnosEspecialidad.Text = "Buscar Turno";
             this.btnVerTurnosEspecialidad.UseVisualStyleBackColor = true;
             this.btnVerTurnosEspecialidad.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -122,7 +128,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 191);
+            this.label3.Location = new System.Drawing.Point(260, 189);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(175, 17);
             this.label3.TabIndex = 8;
@@ -163,14 +169,52 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(138, 23);
             this.button2.TabIndex = 12;
-            this.button2.Text = "Registrar";
+            this.button2.Text = "Registrar Llegada";
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(15, 77);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(230, 199);
+            this.listBox1.TabIndex = 13;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "ok.png");
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(416, 27);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Verificacion OK";
+            this.label4.Visible = false;
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(418, 49);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(78, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Bono ya usado";
+            this.label5.Visible = false;
             // 
             // Llegada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 350);
+            this.ClientSize = new System.Drawing.Size(662, 350);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtNumeroAfiliado);
@@ -186,6 +230,7 @@
             this.Controls.Add(this.btnTurnoProf);
             this.Name = "Llegada";
             this.Text = "Registrar Llegada";
+            this.Load += new System.EventHandler(this.Llegada_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,5 +251,9 @@
         private System.Windows.Forms.TextBox txtNumeroAfiliado;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

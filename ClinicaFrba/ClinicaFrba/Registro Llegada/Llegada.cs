@@ -44,8 +44,12 @@ namespace ClinicaFrba.Registro_Llegada
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            label4.Visible = true;
+            label5.Visible = false;
             //Al tocar este boton se chequea si posee bonos dispobibles para realizar la consulta, y si tiene se habilitan las opciones, sino, se informa. 
-            //this.        
+            //this.   
+
+     
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -54,6 +58,22 @@ namespace ClinicaFrba.Registro_Llegada
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Llegada_Load(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }
