@@ -288,7 +288,8 @@ where Especialidad_Codigo is not null
 INSERT INTO SELECT_GROUP.Estado_Turno(idEstadoTurno,descripcion) values
 	(1,'Atendido'),
 	(2,'Cancelado'),
-	(3,'En espera');
+	(3,'En espera'),
+	(4,'Presentado en Recepcion');
 
 insert into SELECT_GROUP.Tipo_Cancelacion(descripcion) values
 	('Cancela Medico'),
