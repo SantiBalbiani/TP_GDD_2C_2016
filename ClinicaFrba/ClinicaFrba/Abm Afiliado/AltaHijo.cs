@@ -65,7 +65,8 @@ namespace ClinicaFrba.Abm_Afiliado
                 afiliado["numeroDni"] = Convert.ToInt32(nroDocHijo.Text);
                 afiliado["telefono"] = Convert.ToInt32(telefonoHijo.Text);
                 afiliado["mail"] = mailHijo.Text;
-                afiliado["fechaNac"] = Convert.ToDateTime(fechaNacHijo.Text);
+                //afiliado["fechaNac"] = Convert.ToDateTime(fechaNacHijo.Text);
+                afiliado["fechaNac"] = dateTimePicker1.Value.Date;
                 afiliado["sexo"] = cmbSexoHijo.Text;
                 afiliado["estadoCivil"] = cmbEstadoCivilHijo.Text;
                 afiliado["direccion"] = direccionHijo.Text;

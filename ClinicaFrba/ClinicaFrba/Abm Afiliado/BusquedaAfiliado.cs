@@ -53,7 +53,7 @@ namespace ClinicaFrba.Abm_Afiliado
                         this.Hide();
                         MessageBox.Show("El afiliado es: " + fila["nombre"].ToString()+" " +fila["apellido"]);
                         
-                        AltaPareja frmPareja = new AltaPareja(afiliados,fila,tieneHijos);
+                        AltaPareja frmPareja = new AltaPareja(afiliados,fila,tieneHijos,false);
                         frmPareja.Show();
                     }
                 }

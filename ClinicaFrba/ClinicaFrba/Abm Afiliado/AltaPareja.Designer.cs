@@ -50,10 +50,10 @@
             this.nroDocPareja = new Libreria.errorTextBox();
             this.direccionPareja = new Libreria.errorTextBox();
             this.telefonoPareja = new Libreria.errorTextBox();
-            this.fechaNacPareja = new Libreria.errorTextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.mailPareja = new Libreria.errorTextBox();
             this.errorTextBoxPareja = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.errorTextBoxPareja)).BeginInit();
             this.SuspendLayout();
             // 
@@ -245,14 +245,6 @@
             this.telefonoPareja.TabIndex = 35;
             this.telefonoPareja.Validar = true;
             // 
-            // fechaNacPareja
-            // 
-            this.fechaNacPareja.Location = new System.Drawing.Point(82, 242);
-            this.fechaNacPareja.Name = "fechaNacPareja";
-            this.fechaNacPareja.Size = new System.Drawing.Size(100, 20);
-            this.fechaNacPareja.TabIndex = 36;
-            this.fechaNacPareja.Validar = true;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -274,14 +266,22 @@
             // 
             this.errorTextBoxPareja.ContainerControl = this;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(82, 241);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 65;
+            this.dateTimePicker1.Value = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
+            // 
             // AltaPareja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(415, 373);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.mailPareja);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.fechaNacPareja);
             this.Controls.Add(this.telefonoPareja);
             this.Controls.Add(this.direccionPareja);
             this.Controls.Add(this.nroDocPareja);
@@ -335,9 +335,9 @@
         private Libreria.errorTextBox nroDocPareja;
         private Libreria.errorTextBox direccionPareja;
         private Libreria.errorTextBox telefonoPareja;
-        private Libreria.errorTextBox fechaNacPareja;
         private System.Windows.Forms.Label label10;
         private Libreria.errorTextBox mailPareja;
         private System.Windows.Forms.ErrorProvider errorTextBoxPareja;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

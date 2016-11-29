@@ -16,6 +16,7 @@ namespace ClinicaFrba.Abm_Afiliado
     public partial class AltaFamiliar : Form
     {
         public Boolean altaHijo = false;
+        public Boolean nuevo = false;
 
         public AltaFamiliar()
         {
@@ -81,12 +82,12 @@ namespace ClinicaFrba.Abm_Afiliado
                     }
                     else
                     {
-                        foreach (DataRow fila in afiliados.Rows)
+                         foreach (DataRow fila in afiliados.Rows)
                         {
                             this.Hide();
                             MessageBox.Show("El afiliado es: " + fila["nombre"].ToString() + " " + fila["apellido"]);
-
-                            AltaPareja frmPareja = new AltaPareja(afiliados,fila,altaHijo);
+                            
+                            AltaPareja frmPareja = new AltaPareja(afiliados,fila,altaHijo,nuevo);
                             frmPareja.Show();
                         }
                     }
