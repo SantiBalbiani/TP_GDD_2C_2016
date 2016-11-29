@@ -86,35 +86,23 @@ namespace ClinicaFrba.AbmRol
                         SqlCommand cmdRol = new SqlCommand("insert into Select_group.Rol (nombre,habilitado) values(@nombreRol,1)", conexion);
                         cmdRol.Parameters.AddWithValue("@nombreRol", nuevoRol.Text);
                         cmdRol.ExecuteNonQuery();
-                        foreach ( CheckedListBox item  in checkedListBox1.CheckedItems)
-                                                     
+
+                        //Aca poner query que busque el Rol por la descripción y levantar el idRol
+
+                        foreach ( Object item  in checkedListBox1.CheckedItems){
+
+                            ComboboxItem unItem = new ComboboxItem();
+
+                            unItem = (ComboboxItem)item;
+
                             SqlCommand cmdFuncionalidad = new SqlCommand("insert into Select_group.Funcionalidad_Por_Rol (rol_idRol, funcionalidad_idFuncionalidad) values(@idRol,@idFunc)", conexion);
-                            cmdFuncionalidad.Parameters.AddWithValue("@idRol", nuevoRol.Text);
-                            cmdFuncionalidad.Parameters.AddWithValue("@idFuncionalidad", checkedListBox1.CheckedItems[i].ToString());
+                            cmdFuncionalidad.Parameters.AddWithValue("@idRol", nuevoRol.Text);//Aca pasar el idRol recuperado previamente
+                            cmdFuncionalidad.Parameters.AddWithValue("@idFuncionalidad", unItem.Value);
                             cmdFuncionalidad.ExecuteNonQuery();
 
 
-                            //if (str[i] == "")
-                            //{
-                            //str[i] = checkedListBox1.CheckedItems[i].ToString();
+                                          }
 
-                            //}
-                            //else
-                            //{
-                            //str += "," + checkedListBox1.CheckedItems[i].ToString();
-                            //    str[i+1] = checkedListBox1.CheckedItems[i].ToString();
-                            //}
-
-                        }
-
-
-
-                        //for (int i = 0; i < str.Length; i++) {
-                        //SqlCommand cmdFuncionalidad = new SqlCommand("insert into Select_group.Funcionalidad_Por_Rol (rol_idRol, funcionalidad_idFuncionalidad) values(@idRol,@idFunc)", Conexion.conexion);
-                        //cmdFuncionalidad.Parameters.AddWithValue("@idRol", nuevoRol.Text);
-                        //cmdFuncionalidad.Parameters.AddWithValue("@idFuncionalidad", str[i]);
-                        //cmdFuncionalidad.ExecuteNonQuery();
-                        //}
 
 
                         MessageBox.Show("Rol creado con exito con las funcionalidades asignadas ");
@@ -134,6 +122,7 @@ namespace ClinicaFrba.AbmRol
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.Show(ex.Message);
                 }
             }
 
