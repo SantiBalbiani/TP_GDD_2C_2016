@@ -232,7 +232,9 @@ namespace ClinicaFrba.Abm_Afiliado
                 cbmPlanMed.Items.Add(Convert.ToString(fila["descripcion"]));
             }
 
-            DataColumn nombre = afiliadosTable.Columns.Add("nombre", typeof(String));
+            afiliadosTable = Abm_Afiliado.estructuraBD.crearEstructuraAfiliado(afiliadosTable);
+
+           /* DataColumn nombre = afiliadosTable.Columns.Add("nombre", typeof(String));
             afiliadosTable.Columns.Add("apellido", typeof(String));
             afiliadosTable.Columns.Add("tipoDni", typeof(String));
             afiliadosTable.Columns.Add("numeroDni", typeof(Int32));
@@ -243,7 +245,7 @@ namespace ClinicaFrba.Abm_Afiliado
             afiliadosTable.Columns.Add("estadoCivil", typeof(String));
             afiliadosTable.Columns.Add("direccion", typeof(String));
             afiliadosTable.Columns.Add("usuarioId", typeof(Int32));
-            afiliadosTable.Columns.Add("planMed", typeof(Int32));
+            afiliadosTable.Columns.Add("planMed", typeof(Int32));*/
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

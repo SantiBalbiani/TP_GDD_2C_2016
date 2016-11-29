@@ -50,6 +50,9 @@ namespace ClinicaFrba.Abm_Afiliado
                 PlanMedHijo.Text = ((fila["descripcion"]).ToString());
 
             }
+
+            tablaAfiliados = Abm_Afiliado.estructuraBD.crearEstructuraAfiliado(tablaAfiliados);
+            /*
             DataColumn nombre = tablaAfiliados.Columns.Add("nombre", typeof(String));
             tablaAfiliados.Columns.Add("apellido", typeof(String));
             tablaAfiliados.Columns.Add("tipoDni", typeof(String));
@@ -62,7 +65,7 @@ namespace ClinicaFrba.Abm_Afiliado
             tablaAfiliados.Columns.Add("direccion", typeof(String));
             tablaAfiliados.Columns.Add("usuarioId", typeof(Int32));
             tablaAfiliados.Columns.Add("planMed", typeof(Int32));
-         
+         */
              
         }
 

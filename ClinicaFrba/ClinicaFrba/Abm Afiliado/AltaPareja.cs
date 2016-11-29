@@ -11,7 +11,7 @@ using Libreria;
 using System.Data.SqlClient;
 using ClinicaFrba.Base_de_Datos;
 using System.Configuration;
-
+using ClinicaFrba.Abm_Afiliado;
 
 
 namespace ClinicaFrba.Abm_Afiliado
@@ -152,8 +152,9 @@ namespace ClinicaFrba.Abm_Afiliado
                     PlanMedPareja.Text = ((fila["descripcion"]).ToString());
                 }
             }
-
-            DataColumn nombre = afiliados.Columns.Add("nombre", typeof(String));
+            
+            afiliados = Abm_Afiliado.estructuraBD.crearEstructuraAfiliado(afiliados);
+            /*DataColumn nombre = afiliados.Columns.Add("nombre", typeof(String));
             afiliados.Columns.Add("apellido", typeof(String));
             afiliados.Columns.Add("tipoDni", typeof(String));
             afiliados.Columns.Add("numeroDni", typeof(Int32));
@@ -164,7 +165,7 @@ namespace ClinicaFrba.Abm_Afiliado
             afiliados.Columns.Add("estadoCivil", typeof(String));
             afiliados.Columns.Add("direccion", typeof(String));
             afiliados.Columns.Add("usuarioId", typeof(Int32));
-            afiliados.Columns.Add("planMed", typeof(Int32));
+            afiliados.Columns.Add("planMed", typeof(Int32));*/
         }
     }
 }
