@@ -91,7 +91,15 @@ namespace ClinicaFrba.AbmRol
 
                         string buscaRol = "SELECT idRol FROM Select_Group.Rol WHERE nombre = '" + nuevoRol.Text.ToString() + "'";
 
-                        
+                        DataTable elRolAgregado = new DataTable();
+                        Conexion.conectar();
+                        elRolAgregado = Conexion.LeerTabla(buscaRol);
+                        string idRol = " ";
+                        foreach (DataRow unRol in elRolAgregado.Rows)
+                        {
+                            idRol = unRol["idRol"].ToString();
+                        }
+
 
 
                         foreach ( Object item  in checkedListBox1.CheckedItems){
@@ -101,8 +109,8 @@ namespace ClinicaFrba.AbmRol
                             unItem = (ComboboxItem)item;
 
                             SqlCommand cmdFuncionalidad = new SqlCommand("insert into Select_group.Funcionalidad_Por_Rol (rol_idRol, funcionalidad_idFuncionalidad) values(@idRol,@idFunc)", conexion);
-                            cmdFuncionalidad.Parameters.AddWithValue("@idRol", nuevoRol.Text);//Aca pasar el idRol recuperado previamente
-                            cmdFuncionalidad.Parameters.AddWithValue("@idFuncionalidad", unItem.Value);
+                            cmdFuncionalidad.Parameters.AddWithValue("@idRol", idRol);//Aca pasar el idRol recuperado previamente
+                            cmdFuncionalidad.Parameters.AddWithValue("@idFunc", unItem.Value);
                             cmdFuncionalidad.ExecuteNonQuery();
 
 
