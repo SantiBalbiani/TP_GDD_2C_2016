@@ -105,5 +105,15 @@ namespace ClinicaFrba.Abm_Afiliado
                 altaHijo = true;
             }            
         }
+
+        private void AltaFamiliar_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NroAfiliadoPrincipal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

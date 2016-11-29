@@ -81,6 +81,8 @@ namespace ClinicaFrba.Abm_Afiliado
                 afiliado["sexo"] = cmbSexo.Text;
                 afiliado["estadoCivil"] = cmbEstadoCivil.Text;
                 afiliado["direccion"] = textDireccion.Text;
+                int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(textDni.Text));
+                afiliado["usuarioId"] = usuarioIdAfiliado;
                
                 string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + cbmPlanMed.Text + "')";
                 DataTable dt = Conexion.EjecutarComando(query);
@@ -90,14 +92,13 @@ namespace ClinicaFrba.Abm_Afiliado
                     afiliado["planMed"] = idPlanMed;
                 }
 
-                int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(textDni.Text));
-                afiliado["usuarioId"] = usuarioIdAfiliado;
+                
 
                 afiliadosTable.Rows.Add(afiliado);
 
                 AltaPareja frm = new AltaPareja(afiliadosTable,afiliado,tieneHijos);
                 frm.Show();
-                //this.Close();
+                this.Close();
               }
             else {
                 MessageBox.Show("Faltan Campos ingresar");
@@ -127,7 +128,8 @@ namespace ClinicaFrba.Abm_Afiliado
                 afiliado["sexo"] = cmbSexo.Text;
                 afiliado["estadoCivil"] = cmbEstadoCivil.Text;
                 afiliado["direccion"] = textDireccion.Text;
-
+                int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(textDni.Text));
+                afiliado["usuarioId"] = usuarioIdAfiliado;
                 string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + cbmPlanMed.Text.Trim() + "')";
                 DataTable dt = Conexion.EjecutarComando(query);
                 foreach (DataRow fila in dt.Rows)
@@ -136,8 +138,7 @@ namespace ClinicaFrba.Abm_Afiliado
                     afiliado["PlanMed"] = idPlanMed;
                 }
 
-                int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(textDni.Text));
-                afiliado["usuarioId"] = usuarioIdAfiliado;
+                
 
                 afiliadosTable.Rows.Add(afiliado);
 
@@ -236,8 +237,8 @@ namespace ClinicaFrba.Abm_Afiliado
             afiliadosTable.Columns.Add("sexo", typeof(String));
             afiliadosTable.Columns.Add("estadoCivil", typeof(String));
             afiliadosTable.Columns.Add("direccion", typeof(String));
-            afiliadosTable.Columns.Add("planMed", typeof(Int32));
             afiliadosTable.Columns.Add("usuarioId", typeof(Int32));
+            afiliadosTable.Columns.Add("planMed", typeof(Int32));
         }
 
     }

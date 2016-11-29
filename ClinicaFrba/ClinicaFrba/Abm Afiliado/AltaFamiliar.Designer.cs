@@ -54,6 +54,7 @@
             this.NroAfiliadoPrincipal.Size = new System.Drawing.Size(100, 20);
             this.NroAfiliadoPrincipal.TabIndex = 2;
             this.NroAfiliadoPrincipal.Validar = true;
+            this.NroAfiliadoPrincipal.TextChanged += new System.EventHandler(this.NroAfiliadoPrincipal_TextChanged);
             // 
             // btnAltaConyuge
             // 
@@ -102,6 +103,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AltaFamiliar";
             this.Text = "AltaFamiliar";
+            this.Load += new System.EventHandler(this.AltaFamiliar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorAlta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

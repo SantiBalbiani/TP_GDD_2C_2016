@@ -27,7 +27,7 @@ namespace ClinicaFrba.Abm_Afiliado
         public AltaPareja(DataTable afiliadoPrincipal,DataRow afiliadoIngre,Boolean hijos)
         {
             InitializeComponent();
-
+            tieneHijos = hijos;
             afiliadoIngresado = afiliadoIngre;
             afiliados = afiliadoPrincipal;
          }
@@ -49,10 +49,17 @@ namespace ClinicaFrba.Abm_Afiliado
                 afiliado["sexo"] = cmbSexoPareja.Text;
                 afiliado["estadoCivil"] = "Casado/a";
                 afiliado["direccion"] = direccionPareja.Text;
-                afiliado["planMed"] = PlanMedPareja.Text;
-
                 int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(nroDocPareja.Text));
                 afiliado["usuarioId"] = usuarioIdAfiliado;
+                string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + PlanMedPareja.Text.Trim() + "')";
+                DataTable dt = Conexion.EjecutarComando(query);
+                foreach (DataRow fila in dt.Rows)
+                {
+                    int idPlanMed = Convert.ToInt32((fila["idPlan"]));
+                    afiliado["planMed"] = idPlanMed;
+                }
+              
+                
 
                 afiliados.Rows.Add(afiliado);
 
@@ -60,6 +67,7 @@ namespace ClinicaFrba.Abm_Afiliado
                 {
                     AltaHijo frmHijo = new AltaHijo(afiliados,afiliado);
                     frmHijo.Show();
+                    this.Close();
                 }
                 else {
                     SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
@@ -130,7 +138,17 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void AltaPareja_Load(object sender, EventArgs e)
         {
-             PlanMedPareja.Text = afiliadoIngresado[10].ToString();
+            string idPlan = afiliadoIngresado[11].ToString();
+            
+            string query = "select PM.descripcion from SELECT_GROUP.Plan_Med as PM where idPlan = ('" + idPlan + "')";
+            DataTable dt = Conexion.EjecutarComando(query);
+            foreach (DataRow fila in dt.Rows)
+            {
+                PlanMedPareja.Text = ((fila["descripcion"]).ToString());
+                
+            } 
+            
+             
         }
     }
 }

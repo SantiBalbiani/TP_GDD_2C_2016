@@ -19,6 +19,7 @@ namespace ClinicaFrba.Abm_Afiliado
         public DataRow afiliadosIngresados;
         public DataTable tablaAfiliados;
         public Boolean otroHijo = false;
+        public int idUsuario;
 
         public AltaHijo(DataTable Afiliados,DataRow afiliado)
         {
@@ -40,7 +41,17 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void AltaHijo_Load(object sender, EventArgs e)
         {
-            PlanMedHijo.Text = afiliadosIngresados[10].ToString();
+            string idPlan = afiliadosIngresados[11].ToString();
+
+            string query = "select PM.descripcion from SELECT_GROUP.Plan_Med as PM where idPlan = ('" + idPlan + "')";
+            DataTable dt = Conexion.EjecutarComando(query);
+            foreach (DataRow fila in dt.Rows)
+            {
+                PlanMedHijo.Text = ((fila["descripcion"]).ToString());
+
+            } 
+         
+             
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -48,25 +59,33 @@ namespace ClinicaFrba.Abm_Afiliado
              if (Utilidades.ValidarFormulario(this, errorTextBoxHijo) == false)
             {
                 DataRow afiliado = tablaAfiliados.NewRow();
-                afiliado["Nombre"] = nombreHijo.Text;
-                afiliado["Apellido"] = apellidoHijo.Text;
-                afiliado["TipoDoc"] = tipoDocHijo.Text;
-                afiliado["Dni"] = Convert.ToInt32(nroDocHijo.Text);
-                afiliado["Direccion"] = direccionHijo.Text;
-                afiliado["Telefono"] = telefonoHijo.Text;
-                afiliado["FechaNac"] = fechaNacHijo.Text;
-                afiliado["Mail"] = mailHijo.Text;
-                afiliado["Sexo"] = cmbSexoHijo.Text;
-                afiliado["Estado Civil"] = cmbEstadoCivilHijo.Text;
-                afiliado["Plan Med"] = PlanMedHijo.Text;
-
+                afiliado["nombre"] = nombreHijo.Text;
+                afiliado["apellido"] = apellidoHijo.Text;
+                afiliado["tipoDni"] = tipoDocHijo.Text;
+                afiliado["numeroDni"] = Convert.ToInt32(nroDocHijo.Text);
+                afiliado["telefono"] = Convert.ToInt32(telefonoHijo.Text);
+                afiliado["mail"] = mailHijo.Text;
+                afiliado["fechaNac"] = Convert.ToDateTime(fechaNacHijo.Text);
+                afiliado["sexo"] = cmbSexoHijo.Text;
+                afiliado["estadoCivil"] = cmbEstadoCivilHijo.Text;
+                afiliado["direccion"] = direccionHijo.Text;
+                int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(nroDocHijo.Text));
+                afiliado["usuarioId"] = usuarioIdAfiliado;
+                string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + PlanMedHijo.Text.Trim() + "')";
+                DataTable dt = Conexion.EjecutarComando(query);
+                foreach (DataRow fila in dt.Rows)
+                {
+                    int idPlanMed = Convert.ToInt32((fila["idPlan"]));
+                    afiliado["planMed"] = idPlanMed;
+                }
+                
                 tablaAfiliados.Rows.Add(afiliado);
-                 
+           
                  if (otroHijo)
                 {
-                    this.Close();
                     AltaHijo frmHijo = new AltaHijo(tablaAfiliados,afiliadosIngresados);
                     frmHijo.Show();
+                    this.Close();
                 }
                 else {
                     SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
@@ -77,6 +96,10 @@ namespace ClinicaFrba.Abm_Afiliado
                     {
                         cnx.Open();
                         cmdAltaAfiliado.ExecuteNonQuery();
+                        MessageBox.Show("Se han guardado correctamente los datos");
+                        Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
+                        frmAdmin.Show();
+                        this.Close();
                         
                     }
                     catch (ApplicationException error)
@@ -93,6 +116,38 @@ namespace ClinicaFrba.Abm_Afiliado
                 MessageBox.Show("Faltan Campos ingresar");
             }
             this.Close();
+        }
+
+        public int registrarUsuario(int p)
+        {
+
+            string nroDocumento = nroDocHijo.Text.Trim();
+            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+            SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.sp_CrearUsuario", cnx);
+            cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+            cmdAltaAfiliado.Parameters.Add("@Dni", SqlDbType.Int).Value = Convert.ToInt32(nroDocHijo.Text);
+            try
+            {
+                cnx.Open();
+                cmdAltaAfiliado.ExecuteNonQuery();
+                string query = "select US.idUsuario from SELECT_GROUP.Usuario as US where nombreUsuario = ('" + nroDocumento + "')";
+                DataTable dt = Conexion.EjecutarComando(query);
+                foreach (DataRow fila in dt.Rows)
+                {
+                    idUsuario = Convert.ToInt32((fila["idUsuario"]));
+
+                }
+            }
+            catch (ApplicationException error)
+            {
+                string mensaje = "Se ha producido un error ";
+                ApplicationException excep = new ApplicationException(mensaje, error);
+                excep.Source = this.Text;
+                idUsuario = -1;
+
+            }
+            return idUsuario;
+
         }
 
         private void otro_CheckedChanged(object sender, EventArgs e)
