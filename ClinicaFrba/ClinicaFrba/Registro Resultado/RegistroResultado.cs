@@ -45,6 +45,10 @@ namespace ClinicaFrba.Registro_Resultado
             DateTime intervaloTurnoMin = DateTime.Now - intervaloDeTurno;
             string estadoTurno = "0";
             string idAfiliado = "0";
+            // Agregar SP que obtenga idAgenda
+
+            //Agregarle al criterio idAgenda. No hace falta idAfiliado porque 
+            // se presupone que un profesional no atiende mas de un Afiliado al mismo tiempo.
             string consultaTurnoActual = "SELECT TOP 1 idTurno, afiliado_idAfiliado, estado FROM Select_Group.Turno WHERE fechaTurno BETWEEN '" + intervaloTurnoMin.ToString("MM/dd/yyyy hh:mm tt") + "' AND '" + intervaloTurnoMax.ToString("MM/dd/yyyy hh:mm tt") + "' ORDER BY fechaTurno ASC";
             string nombreAfiliado = " ";
             string apellidoAfiliado = " ";
