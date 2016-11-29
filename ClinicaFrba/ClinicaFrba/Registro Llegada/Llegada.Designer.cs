@@ -95,6 +95,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(230, 21);
             this.comboBox1.TabIndex = 4;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // btnCargarProfesionales
             // 
@@ -104,6 +105,7 @@
             this.btnCargarProfesionales.TabIndex = 5;
             this.btnCargarProfesionales.Text = "Cargar Profesionales";
             this.btnCargarProfesionales.UseVisualStyleBackColor = true;
+            this.btnCargarProfesionales.Click += new System.EventHandler(this.btnCargarProfesionales_Click);
             // 
             // comboBox2
             // 
@@ -179,6 +181,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(230, 199);
             this.listBox1.TabIndex = 13;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // imageList1
             // 
@@ -200,11 +203,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(418, 49);
+            this.label5.Location = new System.Drawing.Point(416, 27);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 13);
+            this.label5.Size = new System.Drawing.Size(137, 13);
             this.label5.TabIndex = 15;
-            this.label5.Text = "Bono ya usado";
+            this.label5.Text = "No tiene Bonos Disponibles";
             this.label5.Visible = false;
             // 
             // Llegada
