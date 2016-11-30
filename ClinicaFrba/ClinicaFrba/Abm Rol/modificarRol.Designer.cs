@@ -38,6 +38,7 @@
             this.btnCambiarNombre = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
+            this.btnAgregar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -99,7 +100,7 @@
             // 
             this.btnQuitar.Location = new System.Drawing.Point(473, 198);
             this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Size = new System.Drawing.Size(93, 36);
+            this.btnQuitar.Size = new System.Drawing.Size(93, 38);
             this.btnQuitar.TabIndex = 11;
             this.btnQuitar.Text = "Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
@@ -107,7 +108,7 @@
             // 
             // btnCambiarNombre
             // 
-            this.btnCambiarNombre.Location = new System.Drawing.Point(343, 70);
+            this.btnCambiarNombre.Location = new System.Drawing.Point(331, 35);
             this.btnCambiarNombre.Name = "btnCambiarNombre";
             this.btnCambiarNombre.Size = new System.Drawing.Size(115, 42);
             this.btnCambiarNombre.TabIndex = 12;
@@ -132,11 +133,21 @@
             this.checkedListBox2.Size = new System.Drawing.Size(417, 94);
             this.checkedListBox2.TabIndex = 14;
             // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Location = new System.Drawing.Point(473, 368);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(93, 34);
+            this.btnAgregar.TabIndex = 15;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            // 
             // modificarRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(602, 488);
+            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.checkedListBox2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCambiarNombre);
@@ -167,5 +178,6 @@
         private System.Windows.Forms.Button btnCambiarNombre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckedListBox checkedListBox2;
+        private System.Windows.Forms.Button btnAgregar;
     }
 }
