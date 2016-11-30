@@ -127,6 +127,13 @@ namespace ClinicaFrba.Menu_Principal
             this.Close();
             frmListados.Show();
         }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Login frmNewLog = new Login();
+            frmNewLog.Show();
+            this.Close();
+        }
         }
 }
 
