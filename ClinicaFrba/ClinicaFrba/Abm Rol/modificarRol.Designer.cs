@@ -34,9 +34,10 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnQuitar = new System.Windows.Forms.Button();
+            this.btnCambiarNombre = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -94,43 +95,52 @@
             this.checkedListBox1.Size = new System.Drawing.Size(417, 94);
             this.checkedListBox1.TabIndex = 10;
             // 
-            // button1
+            // btnQuitar
             // 
-            this.button1.Location = new System.Drawing.Point(473, 198);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(93, 36);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Quitar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnQuitar.Location = new System.Drawing.Point(473, 198);
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Size = new System.Drawing.Size(93, 36);
+            this.btnQuitar.TabIndex = 11;
+            this.btnQuitar.Text = "Quitar";
+            this.btnQuitar.UseVisualStyleBackColor = true;
+            this.btnQuitar.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // button2
+            // btnCambiarNombre
             // 
-            this.button2.Location = new System.Drawing.Point(343, 70);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 42);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Cambiar Nombre del Rol";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCambiarNombre.Location = new System.Drawing.Point(343, 70);
+            this.btnCambiarNombre.Name = "btnCambiarNombre";
+            this.btnCambiarNombre.Size = new System.Drawing.Size(115, 42);
+            this.btnCambiarNombre.TabIndex = 12;
+            this.btnCambiarNombre.Text = "Cambiar Nombre del Rol";
+            this.btnCambiarNombre.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 332);
+            this.label3.Location = new System.Drawing.Point(13, 322);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(235, 13);
             this.label3.TabIndex = 13;
             this.label3.Text = "Deseo agregar del Rol la/s sig. funcionalidad/es";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
+            // checkedListBox2
+            // 
+            this.checkedListBox2.FormattingEnabled = true;
+            this.checkedListBox2.Location = new System.Drawing.Point(29, 368);
+            this.checkedListBox2.Name = "checkedListBox2";
+            this.checkedListBox2.Size = new System.Drawing.Size(417, 94);
+            this.checkedListBox2.TabIndex = 14;
+            // 
             // modificarRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(602, 438);
+            this.ClientSize = new System.Drawing.Size(602, 488);
+            this.Controls.Add(this.checkedListBox2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCambiarNombre);
+            this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox1);
@@ -153,8 +163,9 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnQuitar;
+        private System.Windows.Forms.Button btnCambiarNombre;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckedListBox checkedListBox2;
     }
 }
