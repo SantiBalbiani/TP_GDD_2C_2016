@@ -61,12 +61,80 @@ namespace ClinicaFrba.AbmRol
 
         private void habilitarRol_Load(object sender, EventArgs e)
         {
-        
+
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
 
-      
+            //Conexion.conectar();
+            SqlConnection conexion;
+            bool conectado = false;
+            //llenar la variable conexión con los parámetros de la variable parametros
+            string parametros = ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString;
+            conexion = new SqlConnection(parametros);
+            try
+            {
+                //abrir la conexion
+                conexion.Open();
+                conectado = true;
+            }
+            catch (InvalidCastException)
+            {
+                MessageBox.Show("Error al conectar la Base de datos");
+                conectado = false;
+            }
+
+
+            if (conectado == true)
+            {
+
+                try
+                {
+
+                    if (checkedListBox1.CheckedItems.Count > 0)
+                    {
+
+                        //le pone el valor 1 al rol habilitado 
+                        foreach (Object item in checkedListBox1.CheckedItems)
+                        {
+
+                            ComboboxItem unItem = new ComboboxItem();
+
+                            unItem = (ComboboxItem)item;
+
+                            //le pone el valor 1 al rol habilitado 
+                            SqlCommand cmdRol = new SqlCommand("update into Select_group.Rol (nombre,habilitado) values(@nombreRol,1)", conexion);
+                            cmdRol.Parameters.AddWithValue("@nombreRol", unItem.Text);
+                            cmdRol.ExecuteNonQuery();
+                            MessageBox.Show("Rol ha sido habilitado con exito con las funcionalidades asignadas ");
+                            Conexion.conexion.Close();
+                        }
+
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Porfavor seleccione al menos un Rol");
+                    }
+
+                    while (checkedListBox1.CheckedItems.Count > 0)
+                    {
+                        checkedListBox1.SetItemChecked(checkedListBox1.CheckedIndices[0], false);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+
+            }
         }
-    
+        private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+    }  
 }

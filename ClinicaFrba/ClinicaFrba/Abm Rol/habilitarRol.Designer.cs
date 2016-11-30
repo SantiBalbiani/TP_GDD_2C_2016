@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // button1
@@ -41,14 +41,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Habilitar Rol";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // checkedListBox2
-            // 
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Location = new System.Drawing.Point(61, 68);
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(303, 94);
-            this.checkedListBox2.TabIndex = 1;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -58,6 +51,15 @@
             this.label1.Size = new System.Drawing.Size(219, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Seleccione el/los Rol/es que desea habilitar:";
+            // 
+            // checkedListBox2
+            // 
+            this.checkedListBox2.FormattingEnabled = true;
+            this.checkedListBox2.Location = new System.Drawing.Point(46, 68);
+            this.checkedListBox2.Name = "checkedListBox2";
+            this.checkedListBox2.Size = new System.Drawing.Size(408, 94);
+            this.checkedListBox2.TabIndex = 1;
+            this.checkedListBox2.SelectedIndexChanged += new System.EventHandler(this.checkedListBox2_SelectedIndexChanged);
             // 
             // habilitarRol
             // 
@@ -86,7 +88,7 @@
         private System.Windows.Forms.ToolStripMenuItem quitarFuncionalidadToolStripMenuItem;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckedListBox checkedListBox2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckedListBox checkedListBox2;
     }
 }

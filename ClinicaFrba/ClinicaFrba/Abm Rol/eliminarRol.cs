@@ -11,10 +11,12 @@ using ClinicaFrba.Base_de_Datos;
 using System.Configuration;
 using System.Data.SqlClient;
 
+
+
 namespace ClinicaFrba.AbmRol
 {
     public partial class eliminarRol : Form
-    {
+    {   
         public eliminarRol()
         {
             InitializeComponent();
@@ -25,72 +27,105 @@ namespace ClinicaFrba.AbmRol
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-            SqlCommand cmdRol = new SqlCommand("Select_Group.BAJA_ROL", cnx);
-            cmdRol.CommandType = CommandType.StoredProcedure;
-            cmdRol.Parameters.Add("@ROL", SqlDbType.VarChar).Value = comboBox1.Text;
-            try
-            {
-
-                cnx.Open();
-                cmdRol.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                cnx.Close();
-                HomeAfiliado home = new HomeAfiliado();
-                home.Show();
-                this.Close();
-            }
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
         
-        }
-
-        private void eliminarRol_Load(object sender, EventArgs e)
-        {
-            string query = "select r.nombre from SELECT_GROUP.Rol as r";
-             DataTable dt = Conexion.EjecutarComando(query);
-            foreach(DataRow fila in dt.Rows){
-                comboBox1.Items.Add(Convert.ToString(fila["nombre"]));
-            }  
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-            SqlCommand cmdUsuario = new SqlCommand("Select_Group.Habilitar_Rol", cnx);
-            cmdUsuario.CommandType = CommandType.StoredProcedure;
-            cmdUsuario.Parameters.Add("@ROL", SqlDbType.VarChar).Value = comboBox1.Text;
-            try
-            {
-
-                cnx.Open();
-                cmdUsuario.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                cnx.Close();
-                HomeAfiliado home = new HomeAfiliado();
-                home.Show();
-                this.Close();
-            }
-        }
-
         private void eliminarRol_Load_1(object sender, EventArgs e)
         {
+            Conexion.conectar();
+            DataTable roles = new DataTable();
+
+            string consultaStr = "select idRol, nombre from SELECT_GROUP.Rol where rol.habilitado=1";
+
+            roles = Conexion.LeerTabla(consultaStr);
+
+            DataTable otrosRoles = new DataTable();
+
+
+            foreach (DataRow idRol in otrosRoles.Rows)
+            {
+                ComboboxItem unRol = new ComboboxItem();
+
+                unRol.Text = idRol["nombre"].ToString();
+                unRol.Value = idRol["idRol"].ToString();
+
+                checkedListBox1.Items.Add(unRol);
+            }
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+            //Conexion.conectar();
+            SqlConnection conexion;
+            bool conectado = false;
+            //llenar la variable conexión con los parámetros de la variable parametros
+            string parametros = ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString;
+            conexion = new SqlConnection(parametros);
+            try
+            {
+                //abrir la conexion
+                conexion.Open();
+                conectado = true;
+            }
+            catch (InvalidCastException)
+            {
+                MessageBox.Show("Error al conectar la Base de datos");
+                conectado = false;
+            }
+
+
+            if (conectado == true)
+            {
+
+                try
+                {
+
+                    if (checkedListBox1.CheckedItems.Count > 0)
+                    {
+                     
+                        foreach (Object item in checkedListBox1.CheckedItems)
+                        {
+
+                            ComboboxItem unItem = new ComboboxItem();
+
+                            unItem = (ComboboxItem)item;
+
+                            //le pone el valor 1 al rol habilitado 
+                            SqlCommand cmdRol = new SqlCommand("update into Select_group.Rol (nombre,habilitado) values(@nombreRol,0)", conexion);
+                            cmdRol.Parameters.AddWithValue("@nombreRol", unItem.Text);
+                            cmdRol.ExecuteNonQuery();
+                            MessageBox.Show("Rol ha sigo inhabilitado con exito ");
+                            Conexion.conexion.Close();
+                        }
+
+
+                        
+
+                        
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Porfavor seleccione al menos un Rol");
+                    }
+
+                    while (checkedListBox1.CheckedItems.Count > 0)
+                    {
+                        checkedListBox1.SetItemChecked(checkedListBox1.CheckedIndices[0], false);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+
+            }
 
         }
         }

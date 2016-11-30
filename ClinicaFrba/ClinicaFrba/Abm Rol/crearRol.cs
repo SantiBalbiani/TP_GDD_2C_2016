@@ -114,7 +114,7 @@ namespace ClinicaFrba.AbmRol
                             cmdFuncionalidad.ExecuteNonQuery();
 
 
-                                          }
+                         }
 
 
 
