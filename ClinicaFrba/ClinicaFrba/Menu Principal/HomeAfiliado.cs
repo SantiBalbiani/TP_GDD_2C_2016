@@ -22,7 +22,7 @@ namespace ClinicaFrba
             InitializeComponent();
             this.txtBonosDisponibles.Enabled = false; 
         }
-
+        public string strAfiliado = "0";
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -46,7 +46,7 @@ namespace ClinicaFrba
         {
 
             DataTable idAfiliado = new DataTable();
-            string strAfiliado = "0";
+            
             string consultaAfiliado = "SELECT A.idAfiliado FROM Select_Group.Usuario U JOIN Select_Group.Afiliado A ON A.idUsuario = U.idUsuario WHERE U.nombreUsuario = '"+ Globals.userName + "'";
             
              Conexion.conectar();
@@ -102,6 +102,14 @@ namespace ClinicaFrba
 
         private void label3_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Cancelar_Atencion.CancelacionAfiliado frmCancel = new Cancelar_Atencion.CancelacionAfiliado(strAfiliado);
+            frmCancel.Show();
+            this.Close();
 
         }
     }

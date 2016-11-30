@@ -12,9 +12,16 @@ namespace ClinicaFrba.Cancelar_Atencion
 {
     public partial class CancelacionAfiliado : Form
     {
-        public CancelacionAfiliado()
+        public string idAfiliado;
+        public CancelacionAfiliado(string strAfiliado)
         {
             InitializeComponent();
+            idAfiliado = strAfiliado;
+        }
+        
+        private void CancelacionAfiliado_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

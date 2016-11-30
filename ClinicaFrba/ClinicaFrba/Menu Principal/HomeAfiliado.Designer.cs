@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.btnAlta = new System.Windows.Forms.Button();
             this.btnComprar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBonosDisponibles = new System.Windows.Forms.TextBox();
             this.lblBonos = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -50,16 +50,6 @@
             this.label1.Text = "◉‿◉     Seleccione que desea realizar     ◉‿◉\r\n";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // btnAlta
-            // 
-            this.btnAlta.Location = new System.Drawing.Point(458, 103);
-            this.btnAlta.Name = "btnAlta";
-            this.btnAlta.Size = new System.Drawing.Size(124, 23);
-            this.btnAlta.TabIndex = 1;
-            this.btnAlta.Text = "Dar de Alta Familiar";
-            this.btnAlta.UseVisualStyleBackColor = true;
-            this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
             // 
             // btnComprar
             // 
@@ -121,6 +111,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(458, 99);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(124, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Cancelar Turno";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // HomeAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -128,13 +128,13 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources._39929033_Sillas_de_colores_y_cinco_relojes_diferentes_en_la_sala_de_espera_Foto_de_archivo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblBonos);
             this.Controls.Add(this.txtBonosDisponibles);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnComprar);
-            this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.label1);
             this.Name = "HomeAfiliado";
             this.Text = "Panel de Control Afiliado";
@@ -147,12 +147,12 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnAlta;
         private System.Windows.Forms.Button btnComprar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBonosDisponibles;
         private System.Windows.Forms.Label lblBonos;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
