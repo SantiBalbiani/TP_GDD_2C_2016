@@ -122,7 +122,7 @@ namespace ClinicaFrba.AbmRol
                             unItem = (ComboboxItem)item;
 
                             //le pone el valor 1 al rol habilitado 
-                            SqlCommand cmdRol = new SqlCommand("update into Select_group.Rol (nombre,habilitado) values(@nombreRol,1)", conexion);
+                            SqlCommand cmdRol = new SqlCommand("update Select_group.Rol set habilitado=1 where nombre=@nombreRol", conexion);
                             cmdRol.Parameters.AddWithValue("@nombreRol", unItem.Text);
                             cmdRol.ExecuteNonQuery();
                             MessageBox.Show("Rol ha sido habilitado con exito con las funcionalidades asignadas ");

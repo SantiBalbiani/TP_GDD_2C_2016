@@ -84,9 +84,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(321, 152);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(155, 13);
+            this.label5.Size = new System.Drawing.Size(137, 13);
             this.label5.TabIndex = 20;
-            this.label5.Text = "Seleccione el Rol a Desasignar";
+            this.label5.Text = "Escriba el Rol a Desasignar";
             // 
             // rolDesasignar
             // 
@@ -100,9 +100,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(34, 152);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(137, 13);
+            this.label6.Size = new System.Drawing.Size(119, 13);
             this.label6.TabIndex = 18;
-            this.label6.Text = "Seleccione el Rol a Asignar";
+            this.label6.Text = "Escriba el Rol a Asignar";
             this.label6.Click += new System.EventHandler(this.label3_Click);
             // 
             // username
