@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClinicaFrba.Compra_Bono;
 using ClinicaFrba.Pedir_Turno;
+using ClinicaFrba.Base_de_Datos;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace ClinicaFrba
 {
@@ -41,6 +44,39 @@ namespace ClinicaFrba
 
         private void HomeAfiliado_Load(object sender, EventArgs e)
         {
+
+            DataTable idAfiliado = new DataTable();
+            string strAfiliado = "0";
+            string consultaAfiliado = "SELECT A.idAfiliado FROM Select_Group.Usuario U JOIN Select_Group.Afiliado A ON A.idUsuario = U.idUsuario WHERE U.nombreUsuario = '"+ Globals.userName + "'";
+            
+             Conexion.conectar();
+
+             idAfiliado = Conexion.LeerTabla(consultaAfiliado);
+
+             foreach (DataRow unAfi in idAfiliado.Rows)
+            {
+                strAfiliado = unAfi["idAfiliado"].ToString();
+            }
+
+            Conexion.conexion.Close();
+            
+
+            string consultaBonosDisp = "SELECT idBono  FROM Select_Group.Bono  WHERE idAfiliado = " + strAfiliado + "  AND estado = 1";
+
+       
+            DataTable bonosDisponibles = new DataTable();
+
+            Conexion.conectar();
+
+            bonosDisponibles = Conexion.LeerTabla(consultaBonosDisp);
+            int cantBonos = 0;
+            foreach (DataRow unBonoDisp in bonosDisponibles.Rows)
+            {
+                cantBonos++;
+            }
+
+            Conexion.conexion.Close();
+            txtBonosDisponibles.Text = Convert.ToString(cantBonos);
 
         }
 

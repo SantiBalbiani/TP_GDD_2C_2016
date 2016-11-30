@@ -75,8 +75,7 @@ namespace ClinicaFrba.Registro_Llegada
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            label4.Visible = true;
-            label5.Visible = false;
+            
             //Al tocar este boton se chequea si posee bonos dispobibles para realizar la consulta, y si tiene se habilitan las opciones, sino, se informa. 
 
             if (String.IsNullOrEmpty(txtNumeroAfiliado.Text.ToString()))
@@ -85,7 +84,7 @@ namespace ClinicaFrba.Registro_Llegada
             }
             else
             {
-                string consultaBonosDisp = "SELECT idBono  FROM Select_Group.Bono  WHERE idAfiliado = " + txtNumeroAfiliado.Text.ToString() + "  AND estado = 3";
+                string consultaBonosDisp = "SELECT idBono  FROM Select_Group.Bono  WHERE idAfiliado = " + txtNumeroAfiliado.Text.ToString() + "  AND estado = 1";
                 
 
                 DataTable bonosDisponibles = new DataTable();
@@ -99,10 +98,13 @@ namespace ClinicaFrba.Registro_Llegada
                     unIdBono = unBonoDisp["idBono"].ToString();
                 }
 
+                Conexion.conexion.Close();
+
                 if (unIdBono == "0")
                 {
                     label4.Visible = false;
                     label5.Visible = true;
+                    button2.Enabled = false;
 
 
                 }
@@ -110,6 +112,7 @@ namespace ClinicaFrba.Registro_Llegada
                 {
                     label4.Visible = true;
                     label5.Visible = false;
+                    button2.Enabled = true;
                 }
 
 
@@ -134,7 +137,7 @@ namespace ClinicaFrba.Registro_Llegada
             comboBox1.Items.Clear();
             comboBox1.ResetText();
             comboBox1.SelectedText = "Seleccione Especialidad";
-        
+            
             listBox1.ClearSelected();
             DataTable especialidades = new DataTable();
            
