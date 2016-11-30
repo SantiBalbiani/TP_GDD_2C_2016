@@ -59,6 +59,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.Enabled = false;
             this.btnCancelar.Location = new System.Drawing.Point(269, 334);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(125, 23);
@@ -74,6 +75,7 @@
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(192, 21);
             this.cmbTipo.TabIndex = 3;
+            this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.cmbTipo_SelectedIndexChanged);
             // 
             // lbltipo
             // 
@@ -106,6 +108,7 @@
             this.txtMotivo.Name = "txtMotivo";
             this.txtMotivo.Size = new System.Drawing.Size(192, 79);
             this.txtMotivo.TabIndex = 6;
+            this.txtMotivo.TextChanged += new System.EventHandler(this.txtMotivo_TextChanged);
             // 
             // CancelacionProfesional
             // 
@@ -121,6 +124,7 @@
             this.Controls.Add(this.Calendar);
             this.Name = "CancelacionProfesional";
             this.Text = "Cancelar Atención";
+            this.Load += new System.EventHandler(this.CancelacionProfesional_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
