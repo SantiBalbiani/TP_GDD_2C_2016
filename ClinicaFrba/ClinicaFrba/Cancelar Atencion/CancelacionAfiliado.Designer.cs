@@ -45,6 +45,7 @@
             this.txtMotivo.Name = "txtMotivo";
             this.txtMotivo.Size = new System.Drawing.Size(192, 79);
             this.txtMotivo.TabIndex = 11;
+            this.txtMotivo.TextChanged += new System.EventHandler(this.txtMotivo_TextChanged);
             // 
             // lblMotivo
             // 
@@ -77,6 +78,7 @@
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(192, 21);
             this.cmbTipo.TabIndex = 8;
+            this.cmbTipo.Text = "Seleccione un Tipo";
             this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.cmbTipo_SelectedIndexChanged);
             // 
             // btnCancelar
@@ -87,6 +89,7 @@
             this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Confirmar cancelación";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // label1
             // 
@@ -104,6 +107,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(367, 134);
             this.listBox1.TabIndex = 13;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // button1
             // 

@@ -16,6 +16,10 @@ namespace ClinicaFrba.Cancelar_Atencion
     public partial class CancelacionAfiliado : Form
     {
         public string idAfiliado;
+        private bool eligioTurno = false;
+        private bool eligioTipo = false;
+        private bool escibioMotivo = false;
+
         public CancelacionAfiliado(string strAfiliado)
         {
             InitializeComponent();
@@ -26,7 +30,7 @@ namespace ClinicaFrba.Cancelar_Atencion
         {
             string consultarTurnosParaProfYAfiliado = "SELECT T.idTurno ,T.idAgenda ,T.fechaTurno ,T.afiliado_idAfiliado  FROM Select_Group.Turno T WHERE T.estado = 3 AND T.afiliado_idAfiliado = " + idAfiliado;
             Conexion.conectar();
-            
+            btnCancelar.Enabled = false;
             
             DataTable Turnos = new DataTable();
 
@@ -63,7 +67,37 @@ namespace ClinicaFrba.Cancelar_Atencion
 
         private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            eligioTipo = true;
+            if (eligioTipo && eligioTurno && escibioMotivo)
+            {
+                btnCancelar.Enabled = true;
+            }
+        }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            
+             
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            eligioTurno = true;
+            if (eligioTipo && eligioTurno && escibioMotivo)
+            {
+                btnCancelar.Enabled = true;
+            }
+        }
+
+        private void txtMotivo_TextChanged(object sender, EventArgs e)
+        {
+            escibioMotivo = true;
+
+            if (eligioTipo && eligioTurno && escibioMotivo)
+            {
+                btnCancelar.Enabled = true;
+            }
         }
     }
 }
