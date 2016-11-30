@@ -310,6 +310,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Registrar Agenda Medico\RegistroAgenda.resx">
       <DependentUpon>RegistroAgenda.cs</DependentUpon>
@@ -356,6 +357,9 @@
       <Project>{E2E86361-9214-45A5-B152-6ED7F9D38AF8}</Project>
       <Name>Libreria</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clinica-la-arruzafa-doctores.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
