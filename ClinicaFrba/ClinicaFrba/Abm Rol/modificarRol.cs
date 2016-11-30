@@ -64,7 +64,9 @@ namespace ClinicaFrba.AbmRol
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-
+            Conexion.conectar();
+            comboBox1.Items.Clear();
+            comboBox1.ResetText();
         }
 
         private void modificarRol_Load_1(object sender, EventArgs e)
