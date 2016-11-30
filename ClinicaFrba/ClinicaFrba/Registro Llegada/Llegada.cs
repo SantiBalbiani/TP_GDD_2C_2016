@@ -15,6 +15,9 @@ namespace ClinicaFrba.Registro_Llegada
 {
     public partial class Llegada : Form
     {
+        public string unIdBono = "0";
+        public string idTurno = "0";
+
         public Llegada()
         {
             InitializeComponent();
@@ -49,12 +52,17 @@ namespace ClinicaFrba.Registro_Llegada
             string consultarTurnosParaProfYAfiliado = "SELECT T.idTurno ,T.idAgenda ,T.fechaTurno ,T.afiliado_idAfiliado ,Afi.nombre ,Afi.apellido FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda JOIN Select_Group.Profesional P ON P.matricula = A.profesional_IdProfesional JOIN Select_Group.Afiliado Afi ON Afi.idAfiliado = T.afiliado_idAfiliado WHERE P.nombre = '"+nombreProf+"' AND P.apellido = '"+apellidoProf+"' AND T.estado = 3 AND T.afiliado_idAfiliado = " + txtNumeroAfiliado.Text.ToString();
             Conexion.conectar();
             DataTable Turnos = new DataTable();
-
+            
             Turnos = Conexion.LeerTabla(consultarTurnosParaProfYAfiliado);
 
             foreach (DataRow turno in Turnos.Rows)
             {
-                listBox1.Items.Add(turno["fechaTurno"].ToString()); ;
+                ComboboxItem unItem = new ComboboxItem();
+
+                unItem.Text = turno["fechaTurno"].ToString();
+                unItem.Value = turno["idTurno"].ToString();
+
+                listBox1.Items.Add(unItem); 
             }
 
             }
@@ -70,8 +78,43 @@ namespace ClinicaFrba.Registro_Llegada
             label4.Visible = true;
             label5.Visible = false;
             //Al tocar este boton se chequea si posee bonos dispobibles para realizar la consulta, y si tiene se habilitan las opciones, sino, se informa. 
-               
-            
+
+            if (String.IsNullOrEmpty(txtNumeroAfiliado.Text.ToString()))
+            {
+                MessageBox.Show("Por favor complete el nro de Afiliado");
+            }
+            else
+            {
+                string consultaBonosDisp = "SELECT idBono  FROM Select_Group.Bono  WHERE idAfiliado = " + txtNumeroAfiliado.Text.ToString() + "  AND estado = 3";
+                
+
+                DataTable bonosDisponibles = new DataTable();
+
+                Conexion.conectar();
+
+                bonosDisponibles = Conexion.LeerTabla(consultaBonosDisp);
+
+                foreach (DataRow unBonoDisp in bonosDisponibles.Rows)
+                {
+                    unIdBono = unBonoDisp["idBono"].ToString();
+                }
+
+                if (unIdBono == "0")
+                {
+                    label4.Visible = false;
+                    label5.Visible = true;
+
+
+                }
+                else
+                {
+                    label4.Visible = true;
+                    label5.Visible = false;
+                }
+
+
+
+            }
      
         }
 
@@ -192,6 +235,38 @@ namespace ClinicaFrba.Registro_Llegada
 
         private void button2_Click(object sender, EventArgs e)
         {
+            
+            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+            SqlCommand cmdUsuario = new SqlCommand("Select_Group.sp_registrar_llegada", cnx);
+            cmdUsuario.CommandType = CommandType.StoredProcedure;
+            cmdUsuario.Parameters.Add("@idBono", SqlDbType.Int).Value = unIdBono;
+
+            Object elItem = listBox1.SelectedItem;
+            ComboboxItem itemElegido = new ComboboxItem();
+            itemElegido = (ComboboxItem)elItem;
+
+            idTurno = itemElegido.Value.ToString();
+
+            cmdUsuario.Parameters.Add("@idTurno", SqlDbType.Int).Value = idTurno;
+
+            try
+            {
+
+                cnx.Open();
+                cmdUsuario.ExecuteNonQuery();
+                MessageBox.Show("Se registró la recepción del Afiliado!");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cnx.Close();
+                HomeAfiliado home = new HomeAfiliado();
+                home.Show();
+                this.Close();
+            }
 
         }
         
