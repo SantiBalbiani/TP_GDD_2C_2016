@@ -110,11 +110,11 @@
     <Compile Include="Abm Especialidades Medicas\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Planes\Form1.cs">
+    <Compile Include="Abm Planes\CambiarPlan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Planes\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Abm Planes\CambiarPlan.Designer.cs">
+      <DependentUpon>CambiarPlan.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Profesional\Form1.cs">
       <SubType>Form</SubType>
@@ -253,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Afiliado\BusquedaAfiliado.resx">
       <DependentUpon>BusquedaAfiliado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Planes\CambiarPlan.resx">
+      <DependentUpon>CambiarPlan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\habilitarRol.resx">
       <DependentUpon>habilitarRol.cs</DependentUpon>

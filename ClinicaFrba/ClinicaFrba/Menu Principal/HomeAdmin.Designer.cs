@@ -37,6 +37,8 @@
             this.btnAbmRol = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnCambiarPlan = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -74,7 +76,7 @@
             // 
             // btnAgregarFamiliar
             // 
-            this.btnAgregarFamiliar.Location = new System.Drawing.Point(163, 87);
+            this.btnAgregarFamiliar.Location = new System.Drawing.Point(12, 116);
             this.btnAgregarFamiliar.Name = "btnAgregarFamiliar";
             this.btnAgregarFamiliar.Size = new System.Drawing.Size(145, 23);
             this.btnAgregarFamiliar.TabIndex = 13;
@@ -84,7 +86,7 @@
             // 
             // btnRegistrarLlegada
             // 
-            this.btnRegistrarLlegada.Location = new System.Drawing.Point(12, 152);
+            this.btnRegistrarLlegada.Location = new System.Drawing.Point(12, 145);
             this.btnRegistrarLlegada.Name = "btnRegistrarLlegada";
             this.btnRegistrarLlegada.Size = new System.Drawing.Size(145, 23);
             this.btnRegistrarLlegada.TabIndex = 14;
@@ -94,9 +96,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(409, 236);
+            this.button1.Location = new System.Drawing.Point(426, 134);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 23);
+            this.button1.Size = new System.Drawing.Size(135, 23);
             this.button1.TabIndex = 15;
             this.button1.Text = "Comprar Bono";
             this.button1.UseVisualStyleBackColor = true;
@@ -104,7 +106,7 @@
             // 
             // btnAbmRol
             // 
-            this.btnAbmRol.Location = new System.Drawing.Point(15, 194);
+            this.btnAbmRol.Location = new System.Drawing.Point(12, 174);
             this.btnAbmRol.Name = "btnAbmRol";
             this.btnAbmRol.Size = new System.Drawing.Size(145, 23);
             this.btnAbmRol.TabIndex = 16;
@@ -114,27 +116,49 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(364, 210);
+            this.textBox1.Location = new System.Drawing.Point(426, 108);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(218, 20);
+            this.textBox1.Size = new System.Drawing.Size(135, 20);
             this.textBox1.TabIndex = 17;
-            this.textBox1.Text = "Ingrese Nro Afiliado, luego presione Comprar";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(402, 194);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(351, 77);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 13);
+            this.label3.Size = new System.Drawing.Size(146, 13);
             this.label3.TabIndex = 18;
-            this.label3.Text = "Comprar Bonos a un Afiliado";
+            this.label3.Text = "Operaciones por Afiliado";
+            // 
+            // btnCambiarPlan
+            // 
+            this.btnCambiarPlan.Location = new System.Drawing.Point(426, 163);
+            this.btnCambiarPlan.Name = "btnCambiarPlan";
+            this.btnCambiarPlan.Size = new System.Drawing.Size(135, 23);
+            this.btnCambiarPlan.TabIndex = 19;
+            this.btnCambiarPlan.Text = "Cambiar Plan";
+            this.btnCambiarPlan.UseVisualStyleBackColor = true;
+            this.btnCambiarPlan.Click += new System.EventHandler(this.btnCambiarPlan_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(285, 111);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(137, 13);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Ingrese Numero de Afiliado:\r\n";
             // 
             // HomeAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnCambiarPlan);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnAbmRol);
@@ -163,5 +187,7 @@
         private System.Windows.Forms.Button btnAbmRol;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnCambiarPlan;
+        private System.Windows.Forms.Label label4;
     }
 }

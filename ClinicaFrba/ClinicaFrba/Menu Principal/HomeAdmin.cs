@@ -93,13 +93,22 @@ namespace ClinicaFrba.Menu_Principal
 
             }
 
-
-
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
-    }
+
+        private void btnCambiarPlan_Click(object sender, EventArgs e)
+        {
+
+                Abm_Planes.CambiarPlan frmCambiarPlan = new Abm_Planes.CambiarPlan(textBox1.Text);
+                this.Hide();
+                frmCambiarPlan.Show();
+
+
+            }
+        }
 }
+
