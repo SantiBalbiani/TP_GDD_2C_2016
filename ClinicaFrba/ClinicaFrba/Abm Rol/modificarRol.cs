@@ -87,8 +87,21 @@ namespace ClinicaFrba.AbmRol
                 unaFuncionalidad.Value = idFunc["idFuncionalidad"].ToString();
 
                 checkedListBox1.Items.Add(unaFuncionalidad);
-
             }
+
+            DataTable nombreFuncionalidades2 = new DataTable();
+                foreach (DataRow idFunc2 in funcionalidades.Rows)
+                {
+                    ComboboxItem unaFuncionalidad2 = new ComboboxItem();
+
+                    unaFuncionalidad2.Text = idFunc2["descripcion"].ToString();
+                    unaFuncionalidad2.Value = idFunc2["idFuncionalidad"].ToString();
+
+                    checkedListBox2.Items.Add(unaFuncionalidad2);
+                }               
+
+
+            
         }
 
         private void button1_Click_1(object sender, EventArgs e)
