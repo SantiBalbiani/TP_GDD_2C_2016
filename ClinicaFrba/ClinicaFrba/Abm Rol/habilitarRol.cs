@@ -61,7 +61,25 @@ namespace ClinicaFrba.AbmRol
 
         private void habilitarRol_Load(object sender, EventArgs e)
         {
+            Conexion.conectar();
+            DataTable roles = new DataTable();
 
+            string consultaStr = "select idRol, nombre from SELECT_GROUP.Rol where rol.habilitado=0";
+
+            roles = Conexion.LeerTabla(consultaStr);
+
+            DataTable otrosRoles = new DataTable();
+
+
+            foreach (DataRow idRol in otrosRoles.Rows)
+            {
+                ComboboxItem unRol = new ComboboxItem();
+
+                unRol.Text = idRol["nombre"].ToString();
+                unRol.Value = idRol["idRol"].ToString();
+
+                checkedListBox1.Items.Add(unRol);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

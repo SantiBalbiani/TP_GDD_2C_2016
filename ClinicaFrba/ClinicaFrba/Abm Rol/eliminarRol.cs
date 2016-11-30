@@ -30,6 +30,7 @@ namespace ClinicaFrba.AbmRol
         
         private void eliminarRol_Load_1(object sender, EventArgs e)
         {
+
             Conexion.conectar();
             DataTable roles = new DataTable();
 
@@ -37,18 +38,22 @@ namespace ClinicaFrba.AbmRol
 
             roles = Conexion.LeerTabla(consultaStr);
 
-            DataTable otrosRoles = new DataTable();
+            DataTable nombreRoles = new DataTable();
 
 
-            foreach (DataRow idRol in otrosRoles.Rows)
+            foreach (DataRow idFunc in roles.Rows)
             {
                 ComboboxItem unRol = new ComboboxItem();
 
-                unRol.Text = idRol["nombre"].ToString();
-                unRol.Value = idRol["idRol"].ToString();
+                unRol.Text = idFunc["nombre"].ToString();
+                unRol.Value = idFunc["idRol"].ToString();
 
                 checkedListBox1.Items.Add(unRol);
+
             }
+         
+
+ 
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
