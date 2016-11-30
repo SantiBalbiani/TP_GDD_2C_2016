@@ -40,6 +40,7 @@
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(220, 438);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(123, 23);
@@ -50,6 +51,7 @@
             // 
             // monthCalendar1
             // 
+            this.monthCalendar1.Enabled = false;
             this.monthCalendar1.Location = new System.Drawing.Point(346, 30);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 2;

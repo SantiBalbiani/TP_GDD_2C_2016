@@ -139,7 +139,7 @@ namespace ClinicaFrba.Pedir_Turno
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            button1.Enabled = true;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -294,6 +294,7 @@ namespace ClinicaFrba.Pedir_Turno
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             listView1.Clear();
+            monthCalendar1.Enabled = true;
         }
     }
 }
