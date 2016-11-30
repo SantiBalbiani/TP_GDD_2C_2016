@@ -40,11 +40,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnEstadisticas = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAltaAfiliado
             // 
-            this.btnAltaAfiliado.Location = new System.Drawing.Point(446, 113);
+            this.btnAltaAfiliado.Location = new System.Drawing.Point(446, 190);
             this.btnAltaAfiliado.Name = "btnAltaAfiliado";
             this.btnAltaAfiliado.Size = new System.Drawing.Size(136, 23);
             this.btnAltaAfiliado.TabIndex = 11;
@@ -54,7 +55,7 @@
             // 
             // btnAgregarFamiliar
             // 
-            this.btnAgregarFamiliar.Location = new System.Drawing.Point(446, 142);
+            this.btnAgregarFamiliar.Location = new System.Drawing.Point(446, 224);
             this.btnAgregarFamiliar.Name = "btnAgregarFamiliar";
             this.btnAgregarFamiliar.Size = new System.Drawing.Size(136, 23);
             this.btnAgregarFamiliar.TabIndex = 13;
@@ -64,7 +65,7 @@
             // 
             // btnRegistrarLlegada
             // 
-            this.btnRegistrarLlegada.Location = new System.Drawing.Point(446, 190);
+            this.btnRegistrarLlegada.Location = new System.Drawing.Point(304, 190);
             this.btnRegistrarLlegada.Name = "btnRegistrarLlegada";
             this.btnRegistrarLlegada.Size = new System.Drawing.Size(136, 23);
             this.btnRegistrarLlegada.TabIndex = 14;
@@ -163,6 +164,16 @@
             this.label5.Text = "Bienvenido: ";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // btnEstadisticas
+            // 
+            this.btnEstadisticas.Location = new System.Drawing.Point(446, 93);
+            this.btnEstadisticas.Name = "btnEstadisticas";
+            this.btnEstadisticas.Size = new System.Drawing.Size(136, 23);
+            this.btnEstadisticas.TabIndex = 24;
+            this.btnEstadisticas.Text = "Ver Estadisticas";
+            this.btnEstadisticas.UseVisualStyleBackColor = true;
+            this.btnEstadisticas.Click += new System.EventHandler(this.btnEstadisticas_Click);
+            // 
             // HomeAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,6 +181,7 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.clinica_la_arruzafa_doctores;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.btnEstadisticas);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -205,5 +217,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnEstadisticas;
     }
 }

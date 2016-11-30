@@ -183,6 +183,12 @@
     <Compile Include="ElegirRol.Designer.cs">
       <DependentUpon>ElegirRol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Listados\ListadoEstadistico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoEstadistico.Designer.cs">
+      <DependentUpon>ListadoEstadistico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu Principal\HomeAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,12 +200,6 @@
     </Compile>
     <Compile Include="Menu Principal\HomeAfiliado.Designer.cs">
       <DependentUpon>HomeAfiliado.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Listados\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Listados\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -291,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ElegirRol.resx">
       <DependentUpon>ElegirRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoEstadistico.resx">
+      <DependentUpon>ListadoEstadistico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu Principal\HomeAdmin.resx">
       <DependentUpon>HomeAdmin.cs</DependentUpon>
