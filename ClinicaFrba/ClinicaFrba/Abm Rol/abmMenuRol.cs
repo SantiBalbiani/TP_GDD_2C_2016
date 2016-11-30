@@ -46,7 +46,9 @@ namespace ClinicaFrba.AbmRol
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            eliminarRol frmeliminarRol = new eliminarRol();
+            this.Hide();
+            frmeliminarRol.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
