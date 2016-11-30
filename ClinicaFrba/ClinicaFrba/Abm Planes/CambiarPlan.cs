@@ -21,6 +21,8 @@ namespace ClinicaFrba.Abm_Planes
             InitializeComponent();
             textBox1.Text = strIdAfiliado;
         }
+      
+
 
         private void CambiarPlan_Load(object sender, EventArgs e)
         {
@@ -30,7 +32,7 @@ namespace ClinicaFrba.Abm_Planes
             cbmPlanMed.ResetText();
             cbmPlanMed.SelectedText = "Seleccione Nuevo Plan";
             DataTable Planes = new DataTable();
-            string cadena = "select descripcion from SELECT_GROUP.Plan_Med";
+            string cadena = "select  idPlan, descripcion from SELECT_GROUP.Plan_Med";
 
             Planes = Conexion.LeerTabla(cadena);
 
@@ -38,12 +40,12 @@ namespace ClinicaFrba.Abm_Planes
             {
 
                 string desc = planes["descripcion"].ToString();
-                ComboboxItem itemEsp = new ComboboxItem();
+                ComboboxItem itemPlan = new ComboboxItem();
 
-                itemEsp.Text = desc;
-                itemEsp.Value = planes["descripcion"].ToString();
+                itemPlan.Text = planes["descripcion"].ToString();
+                itemPlan.Value = planes["idPlan"].ToString();
 
-                cbmPlanMed.Items.Add(itemEsp);
+                cbmPlanMed.Items.Add(itemPlan);
 
             }
             Conexion.conexion.Close();
@@ -58,7 +60,32 @@ namespace ClinicaFrba.Abm_Planes
 
         private void button1_Click(object sender, EventArgs e)
         {
+            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+            SqlCommand cmdUsuario = new SqlCommand("Select_Group.ActualizarPlan", cnx);
+            cmdUsuario.CommandType = CommandType.StoredProcedure;
+            cmdUsuario.Parameters.Add("@idAfiliado", SqlDbType.Int).Value = textBox1.Text.ToString();
 
+            Object itemGenerico = cbmPlanMed.SelectedItem;
+            ComboboxItem itemCasteado = (ComboboxItem)itemGenerico;
+            cmdUsuario.Parameters.Add("@idPlan", SqlDbType.Int).Value = itemCasteado.Value.ToString();
+
+            try
+            {
+
+                cnx.Open();
+                cmdUsuario.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cnx.Close();
+                Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();
+                home.Show();
+                this.Close();
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
