@@ -89,12 +89,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(277, 120);
+            this.BackgroundImage = global::ClinicaFrba.Properties.Resources.login;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ClientSize = new System.Drawing.Size(277, 127);
             this.Controls.Add(this.comboBoxRoles);
             this.Controls.Add(this.lblRol);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnContinuar);
             this.Controls.Add(this.txtUsuario);
+            this.DoubleBuffered = true;
             this.Name = "ElegirRol";
             this.Text = "Clinica FRBA";
             this.Load += new System.EventHandler(this.ElegirRol_Load);

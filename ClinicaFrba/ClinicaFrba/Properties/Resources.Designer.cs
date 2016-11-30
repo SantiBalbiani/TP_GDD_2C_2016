@@ -63,9 +63,40 @@ namespace ClinicaFrba.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _39929033_Sillas_de_colores_y_cinco_relojes_diferentes_en_la_sala_de_espera_Foto_de_archivo {
+            get {
+                object obj = ResourceManager.GetObject("39929033-Sillas-de-colores-y-cinco-relojes-diferentes-en-la-sala-de-espera-Foto-d" +
+                        "e-archivo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap clinica_la_arruzafa_doctores {
             get {
                 object obj = ResourceManager.GetObject("clinica-la-arruzafa-doctores", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap login {
+            get {
+                object obj = ResourceManager.GetObject("login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wiki_doctor {
+            get {
+                object obj = ResourceManager.GetObject("wiki-doctor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
