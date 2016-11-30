@@ -76,7 +76,19 @@ namespace ClinicaFrba.Cancelar_Atencion
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            
+            Object turno = listBox1.SelectedItem;
+            ComboboxItem turnoElegido = (ComboboxItem)turno;
+            DateTime fechTurno = DateTime.Parse(turnoElegido.Text.ToString());
+            double diasAnticipacion = (fechTurno - DateTime.Now).TotalDays;
+            if (diasAnticipacion < 1)
+            {
+                MessageBox.Show("Solo se pueden cancelar turnos con 1 día de anticipación");
+            }
+            else 
+            {
+                //Llamar SP que impacte en tabla Cancelacion y actualice Turno.estado y Turno.idCancelacion
+            }
+
              
 
         }
@@ -87,6 +99,7 @@ namespace ClinicaFrba.Cancelar_Atencion
             if (eligioTipo && eligioTurno && escibioMotivo)
             {
                 btnCancelar.Enabled = true;
+
             }
         }
 
