@@ -26,6 +26,8 @@ namespace ClinicaFrba.Cancelar_Atencion
         {
             string consultarTurnosParaProfYAfiliado = "SELECT T.idTurno ,T.idAgenda ,T.fechaTurno ,T.afiliado_idAfiliado  FROM Select_Group.Turno T WHERE T.estado = 3 AND T.afiliado_idAfiliado = " + idAfiliado;
             Conexion.conectar();
+            
+            
             DataTable Turnos = new DataTable();
 
             Turnos = Conexion.LeerTabla(consultarTurnosParaProfYAfiliado);
@@ -39,6 +41,29 @@ namespace ClinicaFrba.Cancelar_Atencion
 
                 listBox1.Items.Add(unItem);
             }
+
+            string queryTiposCanc = "Select idTipoCanc, descripcion FROM Select_Group.Tipo_Cancelacion";
+            DataTable tiposCancelacion = new DataTable();
+
+            tiposCancelacion = Conexion.LeerTabla(queryTiposCanc);
+
+            foreach (DataRow unTipoCanc in tiposCancelacion.Rows)
+            {
+                ComboboxItem unItem = new ComboboxItem();
+
+                unItem.Text = unTipoCanc["descripcion"].ToString();
+                unItem.Value = unTipoCanc["idTipoCanc"].ToString();
+
+                cmbTipo.Items.Add(unItem);
+            }
+
+
+            Conexion.conexion.Close();
+        }
+
+        private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

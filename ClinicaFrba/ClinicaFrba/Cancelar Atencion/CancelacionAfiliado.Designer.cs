@@ -77,6 +77,7 @@
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(192, 21);
             this.cmbTipo.TabIndex = 8;
+            this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.cmbTipo_SelectedIndexChanged);
             // 
             // btnCancelar
             // 
