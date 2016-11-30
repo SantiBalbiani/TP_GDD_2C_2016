@@ -69,18 +69,34 @@ namespace ClinicaFrba.Registro_Resultado
 
                 }
 
-                string consultaNombreAfiliado = "SELECT nombre, apellido FROM Select_Group.Afiliado WHERE idAfiliado = " + idAfiliado;
 
-                unAfiliado = Conexion.LeerTabla(consultaNombreAfiliado);
-
-                foreach (DataRow unNomAfiliado in unAfiliado.Rows)
+                if (idAfiliado != "0")
                 {
-                    nombreAfiliado = unNomAfiliado["nombre"].ToString();
-                    apellidoAfiliado = unNomAfiliado["apellido"].ToString();
-                    
-                }
 
-                label5.Text = nombreAfiliado + ", " + apellidoAfiliado;
+                    string consultaNombreAfiliado = "SELECT nombre, apellido FROM Select_Group.Afiliado WHERE idAfiliado = " + idAfiliado;
+
+                    unAfiliado = Conexion.LeerTabla(consultaNombreAfiliado);
+
+                    foreach (DataRow unNomAfiliado in unAfiliado.Rows)
+                    {
+                        nombreAfiliado = unNomAfiliado["nombre"].ToString();
+                        apellidoAfiliado = unNomAfiliado["apellido"].ToString();
+
+                    }
+
+                    label5.Text = nombreAfiliado + ", " + apellidoAfiliado;
+
+                }
+                else 
+                {
+                    MessageBox.Show("No hay turnos disponibles");
+                    
+                    HomeProfesional frmHome = new HomeProfesional();
+                    frmHome.Show();
+                    this.Close();
+                }
+            
+            
             }
             catch (SqlException ex)
             {
@@ -89,16 +105,18 @@ namespace ClinicaFrba.Registro_Resultado
             finally
             {
                 Conexion.conexion.Close();
+                if ((nombreAfiliado == " ") || (estadoTurno == "1") || (estadoTurno == "2"))
+                {
+                    MessageBox.Show("No hay turno agendado en este horario");
+
+                    
+                    HomeProfesional frmHome = new HomeProfesional();
+                    frmHome.Show();
+                    this.Close();
+                }
                
             }
-            if ((nombreAfiliado == " ") || (estadoTurno == "1") || (estadoTurno == "2"))
-            {
-                MessageBox.Show("No hay turno agendado en este horario");
-
-                this.Hide();
-                HomeProfesional frmHome = new HomeProfesional();
-                frmHome.Show();
-            }
+           
         }
 
         private void label5_Click(object sender, EventArgs e)
