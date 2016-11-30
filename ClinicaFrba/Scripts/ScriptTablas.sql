@@ -292,8 +292,9 @@ INSERT INTO SELECT_GROUP.Estado_Turno(idEstadoTurno,descripcion) values
 	(4,'Presentado en Recepcion');
 
 insert into SELECT_GROUP.Tipo_Cancelacion(descripcion) values
-	('Cancela Medico'),
-	('Cancela Afiliado');
+	('Razones Personales'),
+	('Disconformidad con el Profesional'),
+	('Solicitud de Turno Equivocada');
 
 INSERT INTO SELECT_GROUP.Turno(idTurno,idAgenda,fechaTurno,cancelacion_idCancelacion,estado,idDiagnostico,especialidad ) 
 SELECT distinct Turno_Numero,null,Turno_Fecha,null,1/*(select idEstadoTurno from SELECT_GROUP.Estado_Turno where descripcion = 'Atendido')*/,1, Especialidad_Codigo /*select idDiagnostico from SELECT_GROUP.Diagnostico where sintomas = 'Sintoma 1'*/ from gd_esquema.Maestra
