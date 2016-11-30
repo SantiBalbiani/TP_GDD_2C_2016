@@ -51,6 +51,30 @@ namespace ClinicaFrba.Abm_Planes
             Conexion.conexion.Close();
             // Fin de carga del plan
 
+            // Comienzo carga Plan
+            string consultaPlan = "select plan_idPlan from SELECT_GROUP.Afiliado where idAfiliado = " + textBox1.Text.ToString();
+            string plan = " ";
+            DataTable unUserName = new DataTable();
+            Conexion.conectar();
+            try
+            {
+                unUserName = Conexion.LeerTabla(consultaPlan);
+                foreach (DataRow unUserN in unUserName.Rows)
+                {
+                  plan = unUserN["plan_idPlan"].ToString();
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Conexion.conexion.Close();
+                txtPlan.Text = plan;
+            }
+            //Fin de Obtencion del plan
+
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -60,6 +84,7 @@ namespace ClinicaFrba.Abm_Planes
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
             SqlCommand cmdUsuario = new SqlCommand("Select_Group.ActualizarPlan", cnx);
             cmdUsuario.CommandType = CommandType.StoredProcedure;
@@ -81,6 +106,7 @@ namespace ClinicaFrba.Abm_Planes
             }
             finally
             {
+                MessageBox.Show("El Plan fue cambiado exitosamente!");
                 cnx.Close();
                 Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();
                 home.Show();

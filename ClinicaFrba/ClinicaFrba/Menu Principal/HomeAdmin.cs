@@ -61,38 +61,44 @@ namespace ClinicaFrba.Menu_Principal
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string consultaUsername = "SELECT U.nombreUsuario FROM Select_Group.Usuario U JOIN Select_Group.Afiliado A ON A.idUsuario = U.idUsuario WHERE A.idAfiliado = " + textBox1.Text.ToString();
-            DataTable unUserName = new DataTable();
-            Conexion.conectar();
-            try
+            if (String.IsNullOrEmpty(textBox1.Text.ToString()))
             {
-
-                unUserName = Conexion.LeerTabla(consultaUsername);
-
-                foreach (DataRow unUserN in unUserName.Rows)
+                MessageBox.Show("Por favor complete el nro de Afiliado");
+            }
+            else
+            {
+                string consultaUsername = "SELECT U.nombreUsuario FROM Select_Group.Usuario U JOIN Select_Group.Afiliado A ON A.idUsuario = U.idUsuario WHERE A.idAfiliado = " + textBox1.Text.ToString();
+                DataTable unUserName = new DataTable();
+                Conexion.conectar();
+                try
                 {
-                    Globals.userName = unUserN["nombreUsuario"].ToString();
-                  
+
+                    unUserName = Conexion.LeerTabla(consultaUsername);
+
+                    foreach (DataRow unUserN in unUserName.Rows)
+                    {
+                        Globals.userName = unUserN["nombreUsuario"].ToString();
+
+                    }
+
+
                 }
 
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Conexion.conexion.Close();
 
+                    this.Hide();
+                    FrmComprarBonos frmCompra = new FrmComprarBonos();
+                    frmCompra.Show();
+
+
+                }
             }
-
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                Conexion.conexion.Close();
-                
-                this.Hide();
-                FrmComprarBonos frmCompra = new FrmComprarBonos();
-                frmCompra.Show();
-                
-
-            }
-
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -102,11 +108,16 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnCambiarPlan_Click(object sender, EventArgs e)
         {
-
+            if (String.IsNullOrEmpty(textBox1.Text.ToString()))
+            {
+                MessageBox.Show("Por favor complete el nro de Afiliado");
+            }
+            else
+            {
                 Abm_Planes.CambiarPlan frmCambiarPlan = new Abm_Planes.CambiarPlan(textBox1.Text);
                 this.Hide();
                 frmCambiarPlan.Show();
-
+            }
 
             }
         }
