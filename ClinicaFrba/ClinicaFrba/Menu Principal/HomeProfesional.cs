@@ -82,5 +82,12 @@ namespace ClinicaFrba.Menu_Principal
 
 
         }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Login frmNewLog = new Login();
+            frmNewLog.Show();
+            this.Close();
+        }
     }
 }

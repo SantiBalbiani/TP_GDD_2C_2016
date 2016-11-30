@@ -112,5 +112,12 @@ namespace ClinicaFrba
             this.Close();
 
         }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Login frmNewLog = new Login();
+            frmNewLog.Show();
+            this.Close();
+        }
     }
 }

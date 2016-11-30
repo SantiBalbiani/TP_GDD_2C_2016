@@ -41,6 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnEstadisticas = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAltaAfiliado
@@ -174,6 +175,16 @@
             this.btnEstadisticas.UseVisualStyleBackColor = true;
             this.btnEstadisticas.Click += new System.EventHandler(this.btnEstadisticas_Click);
             // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Location = new System.Drawing.Point(489, 293);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(93, 23);
+            this.btnCerrar.TabIndex = 25;
+            this.btnCerrar.Text = "Cerrar Sesion";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
             // HomeAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,6 +192,7 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.clinica_la_arruzafa_doctores;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnEstadisticas);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
@@ -218,5 +230,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnEstadisticas;
+        private System.Windows.Forms.Button btnCerrar;
     }
 }
