@@ -41,6 +41,7 @@
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.CausesValidation = false;
             this.textBox1.Location = new System.Drawing.Point(132, 32);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(145, 13);

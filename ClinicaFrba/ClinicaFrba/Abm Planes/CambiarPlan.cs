@@ -49,17 +49,6 @@ namespace ClinicaFrba.Abm_Planes
             Conexion.conexion.Close();
             // Fin de carga del plan
 
-
-            //////Agrego
-            //string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + cbmPlanMed.Text.Trim() + "')";
-            //DataTable dt = Conexion.EjecutarComando(query);
-           // foreach (DataRow fila in dt.Rows)
-            //{
-            //    idPlanMed = Convert.ToInt32((fila["idPlan"]));
-           //     //afiliado["PlanMed"] = idPlanMed;
-            //}
-         
-
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
