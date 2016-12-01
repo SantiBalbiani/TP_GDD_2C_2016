@@ -28,26 +28,7 @@ namespace ClinicaFrba.AbmRol
         private void modificarRol_Load(object sender, EventArgs e)
         {
 
-            Conexion.conectar();
-            DataTable funcionalidades = new DataTable();
-
-            string consultaStr = "select idFuncionalidad, descripcion from SELECT_GROUP.Funcionalidad";
-
-            funcionalidades = Conexion.LeerTabla(consultaStr);
-
-            DataTable nombreFuncionalidades = new DataTable();
-
-
-            foreach (DataRow idFunc in funcionalidades.Rows)
-            {
-                ComboboxItem unaFuncionalidad = new ComboboxItem();
-
-                unaFuncionalidad.Text = idFunc["descripcion"].ToString();
-                unaFuncionalidad.Value = idFunc["idFuncionalidad"].ToString();
-
-                checkedListBox2.Items.Add(unaFuncionalidad);
-
-            }
+      
          
         }
 
@@ -151,26 +132,67 @@ namespace ClinicaFrba.AbmRol
         {
 
 
-           Conexion.conectar();
+            Conexion.conectar();
             DataTable roles = new DataTable();
 
-            string consultaStr = "select idFuncionalidad, descripcion from  SELECT_GROUP.Funcionalidad_por_Rol inner join SELECT_GROUP.Rol on Funcionalidad_por_Rol.rol_idRol = rol.idRol and Rol.nombre='" + rolABuscar + " inner join Select_Group.Funcionalidad on  Funcionalidad_por_Rol=Funcionalidad.idFuncionalidad";
+            List<ComboboxItem> funcdeunRol = new List<ComboboxItem>();
+
+            string consultaStr = "SELECT R.idRol, F.descripcion, F.idFuncionalidad  FROM Select_Group.Rol R JOIN Select_Group.Funcionalidad_Por_Rol FR ON FR.rol_idRol = R.idRol JOIN Select_Group.Funcionalidad F ON F.idFuncionalidad = FR.funcionalidad_idFuncionalidad WHERE nombre = '" + rolABuscar.Text.ToString() + "'";
 
             roles = Conexion.LeerTabla(consultaStr);
 
-           DataTable otrosRoles = new DataTable();
 
 
-            foreach (DataRow idRol in otrosRoles.Rows)
+
+            foreach (DataRow idRol in roles.Rows)
             {
-               ComboboxItem unRol = new ComboboxItem();
+                ComboboxItem unRol = new ComboboxItem();
 
-                unRol.Text = idRol["nombre"].ToString();
-                unRol.Value = idRol["idRol"].ToString();
+                unRol.Text = idRol["descripcion"].ToString().Trim();
+                unRol.Value = idRol["idFuncionalidad"].ToString().Trim();
 
-                checkedListBox1.Items.Add(unRol);
+                funcdeunRol.Add(unRol);
 
 
+
+            }
+
+            string queryTodasLasFunc = "SELECT idFuncionalidad, descripcion FROM Select_Group.Funcionalidad";
+
+            DataTable todaslasFunc = new DataTable();
+
+            todaslasFunc = Conexion.LeerTabla(queryTodasLasFunc);
+
+            foreach (DataRow unaFunc in todaslasFunc.Rows)
+            {
+                ComboboxItem Func = new ComboboxItem();
+
+                Func.Value = unaFunc["idFuncionalidad"].ToString();
+                Func.Text = unaFunc["descripcion"].ToString();
+
+                checkedListBox1.Items.Add(Func);
+
+
+            }
+
+
+            for (int i = 0; i < checkedListBox1.Items.Count - 1; i++)
+            {
+
+
+                foreach (ComboboxItem unItem in funcdeunRol)
+                {
+
+                    ComboboxItem itemCheckList = new ComboboxItem();
+
+                    itemCheckList = (ComboboxItem)checkedListBox1.Items[i];
+
+                    if (unItem.Value.Equals(itemCheckList.Value))
+                    {
+                        checkedListBox1.SetItemChecked(i, true);
+
+                    }
+                }
 
             }
         }
@@ -178,92 +200,97 @@ namespace ClinicaFrba.AbmRol
         private void button1_Click(object sender, EventArgs e)
         {
 
-             //Conexion.conectar();
-            SqlConnection conexion;
-            bool conectado = false;
-            //llenar la variable conexión con los parámetros de la variable parametros
-            string parametros = ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString;
-            conexion = new SqlConnection(parametros);
-            try
-            {
-                //abrir la conexion
-                conexion.Open();
-                conectado = true;
-            }
-            catch (InvalidCastException)
-            {
-                MessageBox.Show("Error al conectar la Base de datos");
-                conectado = false;
-            }
+            // //Conexion.conectar();
+            //SqlConnection conexion;
+            //bool conectado = false;
+            ////llenar la variable conexión con los parámetros de la variable parametros
+            //string parametros = ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString;
+            //conexion = new SqlConnection(parametros);
+            //try
+            //{
+            //    //abrir la conexion
+            //    conexion.Open();
+            //    conectado = true;
+            //}
+            //catch (InvalidCastException)
+            //{
+            //    MessageBox.Show("Error al conectar la Base de datos");
+            //    conectado = false;
+            //}
 
 
-            if (conectado == true)
-            {
+            //if (conectado == true)
+            //{
 
-                try
-                {
-                    //string str[] = new string(checkedListBox1.CheckedItems.Count);
-                    //Dim str(checkedListBox1.CheckedItems.Count) As string;
-                    //string str[checkedListBox1.CheckedItems.Count] = new String(checkedListBox1.CheckedItems.Count);
-                    if (checkedListBox2.CheckedItems.Count > 0)
-                    {
+            //    try
+            //    {
+            //        //string str[] = new string(checkedListBox1.CheckedItems.Count);
+            //        //Dim str(checkedListBox1.CheckedItems.Count) As string;
+            //        //string str[checkedListBox1.CheckedItems.Count] = new String(checkedListBox1.CheckedItems.Count);
+            //        if (checkedListBox2.CheckedItems.Count > 0)
+            //        {
 
                      
 
-                        //Aca poner query que busque el Rol por la descripción y levantar el idRol
+            //            //Aca poner query que busque el Rol por la descripción y levantar el idRol
 
-                        string buscaRol = "SELECT idRol FROM Select_Group.Rol WHERE nombre = '" + rolABuscar.Text.ToString() + "'";
+            //            string buscaRol = "SELECT idRol FROM Select_Group.Rol WHERE nombre = '" + rolABuscar.Text.ToString() + "'";
 
-                        DataTable elRolAgregado = new DataTable();
-                        Conexion.conectar();
-                        elRolAgregado = Conexion.LeerTabla(buscaRol);
-                        string idRol = " ";
-                        foreach (DataRow unRol in elRolAgregado.Rows)
-                        {
-                            idRol = unRol["idRol"].ToString();
-                        }
-
-
-
-                        foreach (Object item in checkedListBox2.CheckedItems)
-                        {
-
-                            ComboboxItem unItem = new ComboboxItem();
-
-                            unItem = (ComboboxItem)item;
-
-                            SqlCommand cmdFuncionalidad = new SqlCommand("insert into Select_group.Funcionalidad_Por_Rol (rol_idRol, funcionalidad_idFuncionalidad) values(@idRol,@idFunc)", conexion);
-                            cmdFuncionalidad.Parameters.AddWithValue("@idRol", idRol);//Aca pasar el idRol recuperado previamente
-                            cmdFuncionalidad.Parameters.AddWithValue("@idFunc", unItem.Value);
-                            cmdFuncionalidad.ExecuteNonQuery();
-
-
-                        }
+            //            DataTable elRolAgregado = new DataTable();
+            //            Conexion.conectar();
+            //            elRolAgregado = Conexion.LeerTabla(buscaRol);
+            //            string idRol = " ";
+            //            foreach (DataRow unRol in elRolAgregado.Rows)
+            //            {
+            //                idRol = unRol["idRol"].ToString();
+            //            }
 
 
 
-                        MessageBox.Show("Rol creado con exito con las funcionalidades asignadas ");
-                        Conexion.conexion.Close();
-                    }
+            //            foreach (Object item in checkedListBox2.CheckedItems)
+            //            {
 
-                    else
-                    {
-                        MessageBox.Show("Porfavor seleccione al menos una Funcionalidad");
-                    }
+            //                ComboboxItem unItem = new ComboboxItem();
 
-                    while (checkedListBox2.CheckedItems.Count > 0)
-                    {
-                        checkedListBox2.SetItemChecked(checkedListBox2.CheckedIndices[0], false);
-                    }
+            //                unItem = (ComboboxItem)item;
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+            //                SqlCommand cmdFuncionalidad = new SqlCommand("insert into Select_group.Funcionalidad_Por_Rol (rol_idRol, funcionalidad_idFuncionalidad) values(@idRol,@idFunc)", conexion);
+            //                cmdFuncionalidad.Parameters.AddWithValue("@idRol", idRol);//Aca pasar el idRol recuperado previamente
+            //                cmdFuncionalidad.Parameters.AddWithValue("@idFunc", unItem.Value);
+            //                cmdFuncionalidad.ExecuteNonQuery();
 
-            }
 
+            //            }
+
+
+
+            //            MessageBox.Show("Rol creado con exito con las funcionalidades asignadas ");
+            //            Conexion.conexion.Close();
+            //        }
+
+            //        else
+            //        {
+            //            MessageBox.Show("Porfavor seleccione al menos una Funcionalidad");
+            //        }
+
+            //        while (checkedListBox2.CheckedItems.Count > 0)
+            //        {
+            //            checkedListBox2.SetItemChecked(checkedListBox2.CheckedIndices[0], false);
+            //        }
+
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+
+            //}
+
+
+        }
+
+        private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
