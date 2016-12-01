@@ -31,7 +31,9 @@ namespace ClinicaFrba.Abm_Afiliado
       
         private void btnCancelar_Click_1(object sender, EventArgs e)
         {
-
+            Menu_Principal.HomeAdmin frmadmin = new Menu_Principal.HomeAdmin();
+            frmadmin.Show();
+            this.Close();
         }
 
         private void label13_Click(object sender, EventArgs e)

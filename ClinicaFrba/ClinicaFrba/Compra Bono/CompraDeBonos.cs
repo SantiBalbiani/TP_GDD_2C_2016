@@ -16,14 +16,18 @@ namespace ClinicaFrba.Compra_Bono
     public partial class FrmComprarBonos : Form
     {
         public int precioBonoSegunPlan = 0;
+       // public formulario(int strFlag);
+       // int flag;
 
         public FrmComprarBonos()
         {
             InitializeComponent();
+        //    flag = strFlag;
         }
 
         private void FrmComprarBonos_Load(object sender, EventArgs e)
         {
+           
             string consultaPlan = "SELECT idAfiliado, P.descripcion, P.precioDelBono_Consulta FROM Select_Group.Afiliado A JOIN Select_Group.Usuario U ON A.idUsuario = U.idUsuario AND U.nombreUsuario = '" + Globals.userName + "' JOIN Select_Group.Plan_Med P ON P.idPlan = plan_idPlan";
             string plan = " ";
             

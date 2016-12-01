@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.nroAfiliadoPrincipal = new System.Windows.Forms.TextBox();
             this.checkHijos = new System.Windows.Forms.CheckBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -47,7 +48,7 @@
             // button1
             // 
             this.button1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button1.Location = new System.Drawing.Point(168, 89);
+            this.button1.Location = new System.Drawing.Point(168, 106);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 23);
             this.button1.TabIndex = 1;
@@ -65,7 +66,7 @@
             // checkHijos
             // 
             this.checkHijos.AutoSize = true;
-            this.checkHijos.Location = new System.Drawing.Point(168, 52);
+            this.checkHijos.Location = new System.Drawing.Point(219, 51);
             this.checkHijos.Name = "checkHijos";
             this.checkHijos.Size = new System.Drawing.Size(49, 17);
             this.checkHijos.TabIndex = 3;
@@ -73,12 +74,24 @@
             this.checkHijos.UseVisualStyleBackColor = true;
             this.checkHijos.CheckedChanged += new System.EventHandler(this.checkHijos_CheckedChanged);
             // 
+            // button2
+            // 
+            this.button2.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button2.Location = new System.Drawing.Point(12, 106);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Ir Atrás";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // BusquedaAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(296, 141);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.checkHijos);
             this.Controls.Add(this.nroAfiliadoPrincipal);
             this.Controls.Add(this.button1);
@@ -97,5 +110,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox nroAfiliadoPrincipal;
         private System.Windows.Forms.CheckBox checkHijos;
+        private System.Windows.Forms.Button button2;
     }
 }
