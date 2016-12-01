@@ -78,6 +78,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "Afiliados con mayor cantidad de bonos comprados";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
