@@ -55,6 +55,91 @@ namespace ClinicaFrba.AbmRol
         private void button1_Click_1(object sender, EventArgs e)
         {
 
+
+            //Conexion.conectar();
+            SqlConnection conexion;
+            bool conectado = false;
+            //llenar la variable conexión con los parámetros de la variable parametros
+            string parametros = ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString;
+            conexion = new SqlConnection(parametros);
+            try
+            {
+                //abrir la conexion
+                conexion.Open();
+                conectado = true;
+            }
+            catch (InvalidCastException)
+            {
+                MessageBox.Show("Error al conectar la Base de datos");
+                conectado = false;
+            }
+
+
+            if (conectado == true)
+            {
+
+                try
+                {
+                    
+                    if (checkedListBox1.CheckedItems.Count > 0)
+                    {
+
+                        //Aca poner query que busque el Rol por la descripción y levantar el idRol
+
+                        string buscaRol = "SELECT idRol FROM Select_Group.Rol WHERE nombre = '" + rolABuscar.Text.ToString() + "'";
+
+                        DataTable elRolAgregado = new DataTable();
+                        Conexion.conectar();
+                        elRolAgregado = Conexion.LeerTabla(buscaRol);
+                        string idRol = " ";
+                        foreach (DataRow unRol in elRolAgregado.Rows)
+                        {
+                            idRol = unRol["idRol"].ToString();
+                        }
+
+
+
+                        foreach (Object item in checkedListBox1.CheckedItems)
+                        {
+
+                            ComboboxItem unItem = new ComboboxItem();
+
+                            unItem = (ComboboxItem)item;
+
+                            SqlCommand cmdFuncionalidad = new SqlCommand("delete from Select_group.Funcionalidad_Por_Rol (rol_idRol, funcionalidad_idFuncionalidad) where Funcionalidad_por_Rol.rol_idRol= @idRol and Funcionalidad_por_Rol.funcionalidad_idFuncionalidad = @idFunc)", conexion);
+                            cmdFuncionalidad.Parameters.AddWithValue("@idRol", idRol);//Aca pasar el idRol recuperado previamente
+                            cmdFuncionalidad.Parameters.AddWithValue("@idFunc", unItem.Value);
+                            cmdFuncionalidad.ExecuteNonQuery();
+
+
+                        }
+
+
+
+                        MessageBox.Show("Bien! Rol con las nuevas funcionalidades asignadas ");
+                        Conexion.conexion.Close();
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Porfavor seleccione al menos una Funcionalidad");
+                    }
+
+                    while (checkedListBox1.CheckedItems.Count > 0)
+                    {
+                        checkedListBox1.SetItemChecked(checkedListBox1.CheckedIndices[0], false);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+
+
+
         }
 
         private void label3_Click(object sender, EventArgs e)

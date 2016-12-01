@@ -133,8 +133,8 @@ namespace ClinicaFrba.Cancelar_Atencion
         private void btnAtras_Click(object sender, EventArgs e)
         {
             Menu_Principal.HomeProfesional frmPro = new Menu_Principal.HomeProfesional();
-            frmPro.Show()
-            this.Close()
+            frmPro.Show();
+            this.Close();
         }
 
    }
