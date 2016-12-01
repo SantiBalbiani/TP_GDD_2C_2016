@@ -59,7 +59,7 @@
             // 
             // btnCrear
             // 
-            this.btnCrear.Location = new System.Drawing.Point(57, 93);
+            this.btnCrear.Location = new System.Drawing.Point(61, 93);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(75, 72);
             this.btnCrear.TabIndex = 5;
@@ -78,17 +78,17 @@
             // 
             // btnModificarRol
             // 
-            this.btnModificarRol.Location = new System.Drawing.Point(166, 93);
+            this.btnModificarRol.Location = new System.Drawing.Point(157, 93);
             this.btnModificarRol.Name = "btnModificarRol";
-            this.btnModificarRol.Size = new System.Drawing.Size(75, 72);
+            this.btnModificarRol.Size = new System.Drawing.Size(100, 72);
             this.btnModificarRol.TabIndex = 11;
-            this.btnModificarRol.Text = "Modificar Rol Existente";
+            this.btnModificarRol.Text = "Modificar Funcionalidades a un Rol Existente";
             this.btnModificarRol.UseVisualStyleBackColor = true;
             this.btnModificarRol.Click += new System.EventHandler(this.btnModificarRol_Click);
             // 
             // btnEliminarRol
             // 
-            this.btnEliminarRol.Location = new System.Drawing.Point(272, 93);
+            this.btnEliminarRol.Location = new System.Drawing.Point(279, 93);
             this.btnEliminarRol.Name = "btnEliminarRol";
             this.btnEliminarRol.Size = new System.Drawing.Size(75, 72);
             this.btnEliminarRol.TabIndex = 12;
@@ -155,7 +155,7 @@
             // 
             // btnAsignarDesRol
             // 
-            this.btnAsignarDesRol.Location = new System.Drawing.Point(377, 93);
+            this.btnAsignarDesRol.Location = new System.Drawing.Point(379, 93);
             this.btnAsignarDesRol.Name = "btnAsignarDesRol";
             this.btnAsignarDesRol.Size = new System.Drawing.Size(75, 72);
             this.btnAsignarDesRol.TabIndex = 14;
@@ -165,7 +165,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(485, 93);
+            this.button1.Location = new System.Drawing.Point(489, 93);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 72);
             this.button1.TabIndex = 15;
