@@ -205,7 +205,7 @@
             // 
             this.tipoDocHijo.Location = new System.Drawing.Point(82, 88);
             this.tipoDocHijo.Name = "tipoDocHijo";
-            this.tipoDocHijo.Size = new System.Drawing.Size(100, 20);
+            this.tipoDocHijo.Size = new System.Drawing.Size(130, 20);
             this.tipoDocHijo.TabIndex = 51;
             this.tipoDocHijo.Validar = false;
             // 
@@ -223,7 +223,7 @@
             // 
             this.nombreHijo.Location = new System.Drawing.Point(82, 29);
             this.nombreHijo.Name = "nombreHijo";
-            this.nombreHijo.Size = new System.Drawing.Size(100, 20);
+            this.nombreHijo.Size = new System.Drawing.Size(130, 20);
             this.nombreHijo.TabIndex = 53;
             this.nombreHijo.Validar = true;
             // 
@@ -231,7 +231,7 @@
             // 
             this.apellidoHijo.Location = new System.Drawing.Point(82, 58);
             this.apellidoHijo.Name = "apellidoHijo";
-            this.apellidoHijo.Size = new System.Drawing.Size(100, 20);
+            this.apellidoHijo.Size = new System.Drawing.Size(130, 20);
             this.apellidoHijo.TabIndex = 54;
             this.apellidoHijo.Validar = true;
             // 
@@ -239,7 +239,7 @@
             // 
             this.nroDocHijo.Location = new System.Drawing.Point(82, 115);
             this.nroDocHijo.Name = "nroDocHijo";
-            this.nroDocHijo.Size = new System.Drawing.Size(100, 20);
+            this.nroDocHijo.Size = new System.Drawing.Size(130, 20);
             this.nroDocHijo.TabIndex = 55;
             this.nroDocHijo.Validar = true;
             // 
@@ -247,7 +247,7 @@
             // 
             this.direccionHijo.Location = new System.Drawing.Point(81, 142);
             this.direccionHijo.Name = "direccionHijo";
-            this.direccionHijo.Size = new System.Drawing.Size(100, 20);
+            this.direccionHijo.Size = new System.Drawing.Size(130, 20);
             this.direccionHijo.TabIndex = 56;
             this.direccionHijo.Validar = true;
             // 
@@ -255,7 +255,7 @@
             // 
             this.mailHijo.Location = new System.Drawing.Point(81, 170);
             this.mailHijo.Name = "mailHijo";
-            this.mailHijo.Size = new System.Drawing.Size(100, 20);
+            this.mailHijo.Size = new System.Drawing.Size(130, 20);
             this.mailHijo.TabIndex = 57;
             this.mailHijo.Validar = true;
             // 
@@ -263,7 +263,7 @@
             // 
             this.telefonoHijo.Location = new System.Drawing.Point(81, 195);
             this.telefonoHijo.Name = "telefonoHijo";
-            this.telefonoHijo.Size = new System.Drawing.Size(100, 20);
+            this.telefonoHijo.Size = new System.Drawing.Size(130, 20);
             this.telefonoHijo.TabIndex = 58;
             this.telefonoHijo.Validar = true;
             // 

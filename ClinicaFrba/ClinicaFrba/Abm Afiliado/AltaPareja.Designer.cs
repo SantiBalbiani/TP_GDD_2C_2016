@@ -215,7 +215,7 @@
             // 
             this.nombrePareja.Location = new System.Drawing.Point(83, 49);
             this.nombrePareja.Name = "nombrePareja";
-            this.nombrePareja.Size = new System.Drawing.Size(100, 20);
+            this.nombrePareja.Size = new System.Drawing.Size(129, 20);
             this.nombrePareja.TabIndex = 29;
             this.nombrePareja.Validar = true;
             this.nombrePareja.TextChanged += new System.EventHandler(this.nombrePareja_TextChanged);
@@ -224,7 +224,7 @@
             // 
             this.apellidoPareja.Location = new System.Drawing.Point(83, 76);
             this.apellidoPareja.Name = "apellidoPareja";
-            this.apellidoPareja.Size = new System.Drawing.Size(100, 20);
+            this.apellidoPareja.Size = new System.Drawing.Size(129, 20);
             this.apellidoPareja.TabIndex = 30;
             this.apellidoPareja.Validar = true;
             this.apellidoPareja.TextChanged += new System.EventHandler(this.apellidoPareja_TextChanged);
@@ -244,7 +244,7 @@
             // 
             this.tipoDocPareja.Location = new System.Drawing.Point(82, 103);
             this.tipoDocPareja.Name = "tipoDocPareja";
-            this.tipoDocPareja.Size = new System.Drawing.Size(100, 20);
+            this.tipoDocPareja.Size = new System.Drawing.Size(129, 20);
             this.tipoDocPareja.TabIndex = 32;
             this.tipoDocPareja.Validar = true;
             this.tipoDocPareja.TextChanged += new System.EventHandler(this.tipoDocPareja_TextChanged);
@@ -253,7 +253,7 @@
             // 
             this.nroDocPareja.Location = new System.Drawing.Point(82, 129);
             this.nroDocPareja.Name = "nroDocPareja";
-            this.nroDocPareja.Size = new System.Drawing.Size(100, 20);
+            this.nroDocPareja.Size = new System.Drawing.Size(129, 20);
             this.nroDocPareja.TabIndex = 33;
             this.nroDocPareja.Validar = true;
             this.nroDocPareja.TextChanged += new System.EventHandler(this.nroDocPareja_TextChanged);
@@ -262,7 +262,7 @@
             // 
             this.direccionPareja.Location = new System.Drawing.Point(82, 154);
             this.direccionPareja.Name = "direccionPareja";
-            this.direccionPareja.Size = new System.Drawing.Size(100, 20);
+            this.direccionPareja.Size = new System.Drawing.Size(129, 20);
             this.direccionPareja.TabIndex = 34;
             this.direccionPareja.Validar = true;
             this.direccionPareja.TextChanged += new System.EventHandler(this.direccionPareja_TextChanged);
@@ -271,7 +271,7 @@
             // 
             this.telefonoPareja.Location = new System.Drawing.Point(82, 185);
             this.telefonoPareja.Name = "telefonoPareja";
-            this.telefonoPareja.Size = new System.Drawing.Size(100, 20);
+            this.telefonoPareja.Size = new System.Drawing.Size(129, 20);
             this.telefonoPareja.TabIndex = 35;
             this.telefonoPareja.Validar = true;
             this.telefonoPareja.TextChanged += new System.EventHandler(this.telefonoPareja_TextChanged);
@@ -291,7 +291,7 @@
             // 
             this.mailPareja.Location = new System.Drawing.Point(82, 210);
             this.mailPareja.Name = "mailPareja";
-            this.mailPareja.Size = new System.Drawing.Size(100, 20);
+            this.mailPareja.Size = new System.Drawing.Size(129, 20);
             this.mailPareja.TabIndex = 39;
             this.mailPareja.Validar = true;
             this.mailPareja.TextChanged += new System.EventHandler(this.mailPareja_TextChanged);
