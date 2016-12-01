@@ -62,7 +62,6 @@ namespace ClinicaFrba.AbmRol
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-          /*
             Conexion.conectar();
             SqlConnection conexion;
             bool conectado = false;
@@ -91,10 +90,10 @@ namespace ClinicaFrba.AbmRol
                     if (checkedListBox1.CheckedItems.Count > 0)
                     {
 
-                        //Aca poner query que busque el Rol por la descripción y levantar el idRol
+                        
 
 
-                        //string buscaRol = "SELECT idRol FROM Select_Group.Rol WHERE nombre = '" + rolABuscar.Text.ToString() + "'";
+                        string buscaRol = "SELECT idRol FROM Select_Group.Rol WHERE nombre = '";
 
                         DataTable elRolAgregado = new DataTable();
                         Conexion.conectar();
@@ -157,10 +156,7 @@ namespace ClinicaFrba.AbmRol
                 {
                     MessageBox.Show(ex.Message);
                 }
-              
-             
             }
-            */
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -181,11 +177,17 @@ namespace ClinicaFrba.AbmRol
             Conexion.conectar();
             DataTable roles = new DataTable();
 
+
+
+            ComboboxItem rolelejido = (ComboboxItem)comboBox1.SelectedItem;
+
+            string consultaStr = "SELECT R.idRol, F.descripcion, F.idFuncionalidad  FROM Select_Group.Rol R JOIN Select_Group.Funcionalidad_Por_Rol FR ON FR.rol_idRol = R.idRol JOIN Select_Group.Funcionalidad F ON F.idFuncionalidad = FR.funcionalidad_idFuncionalidad WHERE nombre = '" + rolelejido.Text.ToString() + "'";
+
+            roles = Conexion.LeerTabla(consultaStr);
+
             List<ComboboxItem> funcdeunRol = new List<ComboboxItem>();
 
-            //string consultaStr = "SELECT R.idRol, F.descripcion, F.idFuncionalidad  FROM Select_Group.Rol R JOIN Select_Group.Funcionalidad_Por_Rol FR ON FR.rol_idRol = R.idRol JOIN Select_Group.Funcionalidad F ON F.idFuncionalidad = FR.funcionalidad_idFuncionalidad WHERE nombre = '" + rolABuscar.Text.ToString() + "'";
 
-            //roles = Conexion.LeerTabla(consultaStr);
             foreach (DataRow idRol in roles.Rows)
             {
                 ComboboxItem unRol = new ComboboxItem();
@@ -194,6 +196,9 @@ namespace ClinicaFrba.AbmRol
                 unRol.Value = idRol["idFuncionalidad"].ToString().Trim();
 
                 funcdeunRol.Add(unRol);
+
+
+
             }
 
             string queryTodasLasFunc = "SELECT idFuncionalidad, descripcion FROM Select_Group.Funcionalidad";
@@ -232,7 +237,6 @@ namespace ClinicaFrba.AbmRol
 
                     }
                 }
-
             }
         }
 
