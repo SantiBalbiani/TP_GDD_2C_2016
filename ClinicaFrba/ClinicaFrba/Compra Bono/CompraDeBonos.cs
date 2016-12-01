@@ -117,6 +117,8 @@ namespace ClinicaFrba.Compra_Bono
 
         private void button2_Click(object sender, EventArgs e)
         {
+            HomeAfiliado frmHome = new HomeAfiliado();
+            frmHome.Show();
             this.Close();
         }
 
