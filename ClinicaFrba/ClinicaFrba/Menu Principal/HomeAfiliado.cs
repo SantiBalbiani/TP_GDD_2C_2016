@@ -17,6 +17,9 @@ namespace ClinicaFrba
 {
     public partial class HomeAfiliado : Form
     {
+
+        private string nombreAfil;
+        private string apellidoAfil;
         public HomeAfiliado()
         {
             InitializeComponent();
@@ -44,7 +47,25 @@ namespace ClinicaFrba
 
         private void HomeAfiliado_Load(object sender, EventArgs e)
         {
+            string queryDatosProf = "SELECT nombre ,apellido FROM SELECT_GROUP.Afiliado where numeroDni = '" + Globals.userName + "'";
 
+            DataTable datosProf = new DataTable();
+
+            Conexion.conectar();
+
+            datosProf = Conexion.LeerTabla(queryDatosProf);
+
+            foreach (DataRow datosUnProf in datosProf.Rows)
+            {
+                nombreAfil = datosUnProf["nombre"].ToString();
+                apellidoAfil = datosUnProf["apellido"].ToString();
+
+            }
+
+            label3.Text = nombreAfil + ", " + apellidoAfil;
+
+
+            // Andaba            
             DataTable idAfiliado = new DataTable();
             
             string consultaAfiliado = "SELECT A.idAfiliado FROM Select_Group.Usuario U JOIN Select_Group.Afiliado A ON A.idUsuario = U.idUsuario WHERE U.nombreUsuario = '"+ Globals.userName + "'";

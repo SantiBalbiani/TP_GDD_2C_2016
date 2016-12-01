@@ -163,6 +163,7 @@
             this.label2.Size = new System.Drawing.Size(188, 20);
             this.label2.TabIndex = 22;
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label5
             // 

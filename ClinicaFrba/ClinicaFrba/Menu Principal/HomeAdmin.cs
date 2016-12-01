@@ -19,7 +19,9 @@ namespace ClinicaFrba.Menu_Principal
 {
     public partial class HomeAdmin : Form
     {
-        int flag = 1;
+        //int flag = 1;
+        //private string nombreAdmin = "Administrador";
+        
         public HomeAdmin()
         {
             InitializeComponent();
@@ -27,7 +29,22 @@ namespace ClinicaFrba.Menu_Principal
 
         private void HomeAdmin_Load(object sender, EventArgs e)
         {
+           /* string queryDatosProf = "SELECT nombre ,apellido FROM Select_Group.Profesional P JOIN Select_Group.Usuario U ON U.idUsuario = P.idUsuario AND U.nombreUsuario = '" + Globals.userName + "'";
 
+            DataTable datosProf = new DataTable();
+
+            Conexion.conectar();
+
+            datosProf = Conexion.LeerTabla(queryDatosProf);
+
+            foreach (DataRow datosUnProf in datosProf.Rows)
+            {
+                idProf = datosUnProf["matricula"].ToString();
+                nombreProf = datosUnProf["nombre"].ToString();
+                apellidoProf = datosUnProf["apellido"].ToString();
+            }
+
+            label3.Text = apellidoProf + ", " + nombreProf; */
         }
 
         private void btnAltaAfiliado_Click(object sender, EventArgs e)
@@ -135,6 +152,11 @@ namespace ClinicaFrba.Menu_Principal
             Login frmNewLog = new Login();
             frmNewLog.Show();
             this.Close();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
         }
 }
