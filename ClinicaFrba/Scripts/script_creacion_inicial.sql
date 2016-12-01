@@ -2,7 +2,7 @@ BEGIN TRANSACTION creacionTablas
 use GD2C2016
 
 GO
-create schema SELECT_GROUP
+--create schema SELECT_GROUP
 GO
 
 
@@ -36,8 +36,8 @@ create table SELECT_GROUP.Afiliado(
 	nroAfiliado numeric(10,0),
 	nombre varchar(255),
 	apellido varchar(255),
-	tipoDni varchar(45),
-	numeroDni numeric(18,0) unique,
+	tipoDoc varchar(45),
+	numeroDoc numeric(18,0) unique,
 	telefono numeric(18,0),
 	mail varchar(255),
 	fechaNac datetime,
@@ -784,7 +784,8 @@ GO
 --NOMBRE	: AltaAfiliado
 --OBJETIVO  : da de alta un afiliado.                                     
 --=============================================================================================================
-CREATE PROCEDURE [SELECT_GROUP].[AltaAfiliado](@Afiliado_nombre VARCHAR(255), @Afiliado_Apellido VARCHAR(255),@Afiliado_tipoDni VARCHAR(45), 
+
+/*CREATE PROCEDURE [SELECT_GROUP].[AltaAfiliado](@Afiliado_nombre VARCHAR(255), @Afiliado_Apellido VARCHAR(255),@Afiliado_tipoDni VARCHAR(45), 
 												@Afiliado_numeroDni NUMERIC(18,0),@Afiliado_telefono NUMERIC(18,0),@Afiliado_mail VARCHAR(255),
 												@Afiliado_fechaNac datetime,@Afiliado_Sexo varchar(45), @Afiliado_EstadoCivil VARCHAR(45), 
 												@Afiliado_Direccion VARCHAR(255))
@@ -794,7 +795,36 @@ BEGIN
 	(@Afiliado_nombre, @Afiliado_Apellido,@Afiliado_tipoDni, @Afiliado_numeroDni,@Afiliado_telefono,@Afiliado_mail,@Afiliado_fechaNac,
 	@Afiliado_Sexo, @Afiliado_EstadoCivil, @Afiliado_Direccion)
 END
+GO*/
+CREATE TYPE Select_Group.dt_Afiliados AS TABLE
+
+(
+	nroAfiliado numeric(10,0) NOT NULL
+	,nombre varchar(255) NOT NULL
+	,apellido varchar(255) NOT NULL
+	,tipoDoc varchar(45) NOT NULL
+	,numeroDoc numeric(18,0) NOT NULL
+	,telefono numeric (18,0) NOT NULL
+	,mail varchar(255) NOT NULL
+	,fechaNac datetime NOT NULL
+	,sexo varchar(45) NOT NULL
+	,estadoCivil varchar(45) NOT NULL
+	,direccion varchar(255) NOT NULL
+	,idUsuario varchar(45) NOT NULL
+	,plan_idPlan numeric(18,0) NOT NULL
+)
 GO
+
+
+CREATE PROCEDURE [SELECT_GROUP].[AltaAfiliado] 
+@Afiliados SELECT_GROUP.dt_Afiliados READONLY
+AS
+BEGIN
+	Insert into SELECT_GROUP.Afiliado(nroAfiliado,nombre,apellido,tipoDoc,numeroDoc,telefono,mail,fechaNac,sexo,estadoCivil,direccion,idUsuario,plan_idPlan) 
+	SELECT * FROM @Afiliados
+
+END
+go
 
 --=============================================================================================================
 --TIPO		: Trigger
