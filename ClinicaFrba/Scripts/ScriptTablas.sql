@@ -274,6 +274,9 @@ order by Paciente_Nombre
 /*Inserto nro de afiliado para cada uno de los afiliados principales */
 update SELECT_GROUP.Afiliado set nroAfiliado = ((idAfiliado * 100) + 1)
 
+alter table SELECT_GROUP.Afiliado 
+alter column nroAfiliado numeric(10,0) not null
+
 
 /*Cargo los Profesionales de la tabla maestra */
 INSERT INTO SELECT_GROUP.Profesional(numeroDni,nombre,apellido,telefono,direccion,mail,fechaNac,sexo,idUsuario)
