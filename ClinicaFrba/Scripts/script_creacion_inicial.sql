@@ -2,8 +2,8 @@ BEGIN TRANSACTION creacionTablas
 use GD2C2016
 
 GO
---create schema SELECT_GROUP
---GO
+create schema SELECT_GROUP
+GO
 
 
 create table SELECT_GROUP.Plan_Med(

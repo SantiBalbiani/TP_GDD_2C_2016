@@ -16,6 +16,8 @@ DROP PROCEDURE Select_Group.sp_guardarDiagnostico;
 DROP PROCEDURE Select_Group.sp_registrar_llegada;
 DROP PROCEDURE Select_Group.sp_registrarCancelacion;
 DROP PROCEDURE Select_Group.sp_Reservar_Turno;
+DROP PROCEDURE Select_Group.ActualizarPlan;
+DROP PROCEDURE Select_Group.AltaAfiliado;
 GO
 
 
