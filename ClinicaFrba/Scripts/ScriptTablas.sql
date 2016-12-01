@@ -460,94 +460,384 @@ GO
 --NOMBRE	: ComprarBono
 --OBJETIVO  : Crear un registro en la tabla compras.                                     
 --=============================================================================================================
---CREATE PROCEDURE [SELECT_GROUP].[ComprarBono](@userName VARCHAR(45), @cantidad INT)
---AS
---BEGIN
+CREATE PROCEDURE [Select_Group].[ComprarBono](@userName VARCHAR(45), @cantidad INT)
+AS
+BEGIN
+BEGIN TRAN
+	DECLARE @nroAfiliado int;
+	DECLARE @contador int;
+	DECLARE @fechaActual datetime;
+	DECLARE @idPlan int;
+	DECLARE @precio int;
+	DECLARE @idCompra int;
+	DECLARE @nroConsulta int;
+	DECLARE @idUser int;
 
---	DECLARE @nroAfiliado int;
---	DECLARE @contador int;
---	DECLARE @fechaActual datetime;
---	DECLARE @idPlan int;
---	DECLARE @precio int;
---	DECLARE @idCompra int;
---	DECLARE @nroConsulta int;
---	DECLARE @idUser int;
-
---	set @fechaActual = sysdatetime();
+	set @fechaActual = sysdatetime();
 	
---	set @idUser = (SELECT idUsuario FROM Select_Group.Usuario WHERE Usuario.nombreUsuario = @userName);
+	set @idUser = (SELECT idUsuario FROM Select_Group.Usuario WHERE Usuario.nombreUsuario = @userName);
 
---	set @nroAfiliado = (SELECT idAfiliado FROM Select_Group.Afiliado WHERE idUsuario = @idUser);
+	set @nroAfiliado = (SELECT idAfiliado FROM Select_Group.Afiliado WHERE idUsuario = @idUser);
 
---	set @idPlan = (SELECT TOP 1 plan_idPlan FROM Select_Group.Afiliado WHERE idAfiliado = @nroAfiliado);
+	set @idPlan = (SELECT TOP 1 plan_idPlan FROM Select_Group.Afiliado WHERE idAfiliado = @nroAfiliado);
 
---	set @precio = (SELECT precioDelBono_Consulta FROM Select_Group.Plan_Med WHERE Select_Group.Plan_Med.idPlan = @idPlan );
+	set @precio = (SELECT precioDelBono_Consulta FROM Select_Group.Plan_Med WHERE Select_Group.Plan_Med.idPlan = @idPlan );
 
---	Insert into SELECT_GROUP.Compras(FechaCompra,afiliado_Comprador,unidades,monto)
---	Values(@fechaActual, @nroAfiliado, @cantidad, (@precio * @cantidad));
+	Insert into Select_Group.Compras(FechaCompra,afiliado_Comprador,unidades,monto)
+	Values(@fechaActual, @nroAfiliado, @cantidad, (@precio * @cantidad));
 
---END
---GO
+
+
+	
+
+COMMIT TRAN
+
+END
+GO
+--=============================================================================================================
+--TIPO		: Store Procedure
+--NOMBRE	: sp_Reservar_Turno
+--OBJETIVO  : un afiliado cancela un turno                                  
+--=============================================================================================================
+
+CREATE PROCEDURE [Select_Group].[sp_Reservar_Turno](@idAgenda int, @fechaHoraTurno datetime, @userName VARCHAR(45), @especialidad int )
+	
+AS
+BEGIN
+BEGIN TRANSACTION RESERVARTURNO
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	DECLARE @idUser int;
+	DECLARE @nroAfiliado int;
+	DECLARE @idTurno int;
+
+
+    -- Insert statements for procedure here
+
+	set @idUser = (SELECT idUsuario FROM Select_Group.Usuario WHERE Usuario.nombreUsuario = @userName);
+
+	set @nroAfiliado = (SELECT idAfiliado FROM Select_Group.Afiliado WHERE idUsuario = @idUser);
+
+	set @idTurno = 1;
+
+	set @idTurno = @idTurno +(Select isnull(max(idTurno),0) FROM Select_Group.Turno);
+
+	 INSERT into Select_Group.Turno(idTurno, idAgenda, fechaTurno,afiliado_idAfiliado,cancelacion_idCancelacion,estado,idDiagnostico, especialidad)
+	VALUES (@idTurno, @idAgenda, @fechaHoraTurno,@nroAfiliado, null, 3,null, @especialidad);
+
+	INSERT into Select_Group.Agenda_Detalle(fecha_Hora_Turno, estaCancelado, idAgenda)
+	VALUES (@fechaHoraTurno,0,@idAgenda);
+
+COMMIT TRANSACTION RESERVARTURNO
+END
+GO
+--=============================================================================================================
+--TIPO		: Store Procedure
+--NOMBRE	: sp_registrarCancelacion
+--OBJETIVO  : un afiliado cancela un turno                                  
+--=============================================================================================================
+
+CREATE PROCEDURE [Select_Group].[sp_registrarCancelacion](@idTipoCanc int, @Motivo varchar(45),  @idTurno int)
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	INSERT INTO Select_Group.Cancelacion(motivo,tipo_Cancelacion_idTipoCanc)
+	VALUES (@Motivo, @idTipoCanc)
+
+	declare @idCanc numeric(6,0);
+
+	SET @idCanc = (SELECT max(idCancelacion) FROM Select_Group.Cancelacion);
+
+	UPDATE Select_Group.Turno
+	Set cancelacion_idCancelacion = @idCanc,
+	estado = 2
+	WHERE idTurno = @idTurno;
+
+	Declare @idAgenda int;
+
+	SET @idAgenda = (Select idAgenda FROM Select_Group.Turno WHERE idTurno = @idTurno);
+
+	UPDATE Select_Group.Agenda_Detalle
+	Set estaCancelado = 1
+	WHERE idAgenda = @idAgenda;
+    
+	
+END
+GO
+--=============================================================================================================
+--TIPO		: Store Procedure
+--NOMBRE	: sp_registrar_llegada
+--OBJETIVO  : actualiza el bono como usado y el turno como presentado en recepcion                                   
+--=============================================================================================================
+
+
+CREATE PROCEDURE Select_Group.sp_registrar_llegada (@idBono int, @idTurno int)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+BEGIN TRAN
+
+   UPDATE Select_Group.Bono
+   Set estado = 0
+   WHERE idBono = @idBono
+
+   UPDATE Select_Group.Turno
+   Set estado = 4
+   WHERE idTurno = @idTurno
+
+COMMIT TRAN
+
+END
+GO
+
 
 --=============================================================================================================
 --TIPO		: Store Procedure
---NOMBRE	: ObtenerEspecialidades
---OBJETIVO  : Obtiene los tipos de especialidades.                                     
+--NOMBRE	: sp_getDiasDisponibles
+--OBJETIVO  : obtiene el horario de trabajo de un profesional para un dia de la semana                                   
+--=============================================================================================================
+CREATE PROCEDURE [Select_Group].[sp_getDiasDisponibles] (@Dia int,  @idProfesional int)
+
+AS
+BEGIN
+	
+
+	SELECT idAgenda, profesional_idProfesional, horaDesde, horaHasta
+	
+	FROM Select_Group.Agenda WHERE diaDisponible = @Dia AND profesional_IdProfesional = @idProfesional
+
+END
+GO
+
+
+--=============================================================================================================
+--TIPO		: Store Procedure
+--NOMBRE	: sp_CrearUsuario
+--OBJETIVO  : Crea un usuario                                    
 --=============================================================================================================
 
---CREATE PROCEDURE [Select_Group].[ObtenerEspecialidades]
---AS
---BEGIN
---SELECT idTipo, descripcion FROM Select_Group.Tipo_Especialidad
---END
---GO
+CREATE PROCEDURE Select_Group.sp_CrearUsuario 
+					(@Dni numeric(18,0))
+	
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	BEGIN TRY
+
+		INSERT into Select_Group.Usuario
+				(nombreUsuario, contraseña, intentosFallidos, habilitado) values
+				(cast(@Dni as varchar(45)), HASHBYTES('SHA2_256',cast(@Dni as varchar(45))),0,1)
+
+
+
+	END TRY
+
+	BEGIN CATCH
+
+		DECLARE @MensajeError nvarchar(4000) = ERROR_MESSAGE(), @ErrNum INT = ERROR_NUMBER(), @ErrProc nvarchar(126) = ERROR_PROCEDURE();
+
+		DECLARE @DatosError nvarchar(4000) = 'Hubo un error al insertar los datos en la tabla Usuario'
+		+ @MensajeError
+		RAISERROR (@DatosError, 16,1)
+
+	END CATCH
+
+    
+END
+GO
+
+
+--=============================================================================================================
+--TIPO		: Store Procedure
+--NOMBRE	: sp_guardarDiagnostico
+--OBJETIVO  : Cuando un profesional registra resultado                                    
+--=============================================================================================================
+CREATE PROCEDURE [Select_Group].[sp_guardarDiagnostico](@sintomas VARCHAR(255), @enfermedades VARCHAR(255), @idTurno int )
+
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	
+
+	DECLARE @idDiagnostico int;
+
+	IF (@sintomas <> 'NO SE COMPLETO DIAGNOSTICO')
+
+	BEGIN
+    INSERT INTO Select_Group.Diagnostico (sintomas, enfermedades, fechaYHora)
+	VALUES ( @sintomas, @enfermedades, GETDATE());
+
+	SET @idDiagnostico = ((SELECT max(idDiagnostico) FROM Select_Group.Diagnostico));
+
+	UPDATE Select_Group.Turno
+
+	SET 
+	estado = 1,
+	idDiagnostico = @idDiagnostico
+	WHERE idTurno = @idTurno;
+
+	END
+	ELSE
+	BEGIN
+
+	UPDATE Select_Group.Turno
+
+	SET estado = 2 --Si no se completó el diagnóstico el Afiliado se retiró antes y el turno queda cancelado
+	WHERE idTurno = @idTurno;
+
+	END
+	
+END
+GO
+
+--=============================================================================================================
+--TIPO		: Store Procedure
+--NOMBRE	: sp_cancelacionProfesional
+--OBJETIVO  : Cuando un profesional cancela un turno                                    
+--=============================================================================================================
+
+CREATE PROCEDURE [Select_Group].[sp_cancelacionProfesional](@Motivo varchar(45), @tipoMot int, @idProf int, @fechaDesde datetime, @fechaHasta datetime)
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+    DECLARE turnos CURSOR FOR
+	SELECT T.idTurno
+	FROM Select_Group.Agenda A
+	JOIN Select_Group.Turno T ON T.idAgenda = A.idAgenda
+	WHERE A.profesional_IdProfesional = @idProf
+	AND T.fechaTurno BETWEEN @fechaDesde AND @fechaHasta
+
+	
+	declare @idCanc int;
+	declare @idTurno int;
+
+	INSERT INTO Select_Group.Cancelacion(motivo, tipo_Cancelacion_idTipoCanc)
+	VALUES(@Motivo, @tipoMot);
+
+	SET @idCanc = (SELECT max(idCancelacion) FROM Select_Group.Cancelacion);
+
+	OPEN turnos;
+
+	FETCH NEXT FROM turnos INTO @idTurno;
+
+	WHILE (@@FETCH_STATUS = 0)
+
+	BEGIN
+
+	UPDATE [Select_Group].[Turno]
+	SET estado = 2,
+	cancelacion_idCancelacion = @idCanc
+	WHERE 
+	idTurno = @idTurno;
+
+
+	FETCH NEXT FROM turnos INTO @idTurno;
+	END;
+
+	CLOSE turnos;
+	DEALLOCATE turnos;
+
+END
+GO
+--=============================================================================================================
+--TIPO		: Store Procedure
+--NOMBRE	: ActualizarPlan
+--OBJETIVO  : Actualiza el plan de un afiliado.                                     
+--=============================================================================================================
+
+CREATE PROCEDURE SELECT_GROUP.ActualizarPlan(@idPlan int,@idAfiliado int)
+		
+AS
+
+BEGIN
+	SET NOCOUNT ON;
+
+	UPDATE Select_Group.Afiliado
+		Set plan_idPlan = @idPlan
+		Where idAfiliado = @idAfiliado
+
+END
+GO
+
+--=============================================================================================================
+--TIPO		: Store Procedure
+--NOMBRE	: AltaAfiliado
+--OBJETIVO  : da de alta un afiliado.                                     
+--=============================================================================================================
+CREATE PROCEDURE [SELECT_GROUP].[AltaAfiliado](@Afiliado_nombre VARCHAR(255), @Afiliado_Apellido VARCHAR(255),@Afiliado_tipoDni VARCHAR(45), 
+												@Afiliado_numeroDni NUMERIC(18,0),@Afiliado_telefono NUMERIC(18,0),@Afiliado_mail VARCHAR(255),
+												@Afiliado_fechaNac datetime,@Afiliado_Sexo varchar(45), @Afiliado_EstadoCivil VARCHAR(45), 
+												@Afiliado_Direccion VARCHAR(255))
+AS
+BEGIN
+	Insert into SELECT_GROUP.Afiliado(nombre,apellido,tipoDni,numeroDni,telefono,mail,fechaNac,sexo,estadoCivil,direccion) values
+	(@Afiliado_nombre, @Afiliado_Apellido,@Afiliado_tipoDni, @Afiliado_numeroDni,@Afiliado_telefono,@Afiliado_mail,@Afiliado_fechaNac,
+	@Afiliado_Sexo, @Afiliado_EstadoCivil, @Afiliado_Direccion)
+END
+GO
+
 --=============================================================================================================
 --TIPO		: Trigger
 --NOMBRE	: RegistrarBonos
 --OBJETIVO  : Crea una cantidad de registros(Bonos) igual al campo "unidades" de la tabla Compras.                                     
 --=============================================================================================================
 
---CREATE TRIGGER [Select_Group].[RegistrarBonos] ON [Select_Group].[Compras]
---AFTER INSERT
---AS
+CREATE TRIGGER [Select_Group].[RegistrarBonos] ON [Select_Group].[Compras]
+AFTER INSERT
+AS
 
---BEGIN 
---DECLARE @contador int;
---DECLARE @nroConsulta int;
---DECLARE @idPlan int;
---DECLARE @idCompra int;
---DECLARE @fechacompra datetime;
---DECLARE @idAfiliado int;
---DECLARE @unidades int;
---DECLARE @monto int;
---SET @contador = '0';
+BEGIN TRAN
+DECLARE @contador int;
+DECLARE @nroConsulta int;
+DECLARE @idPlan int;
+DECLARE @idCompra int;
+DECLARE @fechacompra datetime;
+DECLARE @idAfiliado int;
+DECLARE @unidades int;
+DECLARE @monto int;
+SET @contador = '0';
 
---DECLARE CompraDeBonos CURSOR FOR
---SELECT * FROM inserted
+DECLARE CompraDeBonos CURSOR FOR
+SELECT * FROM inserted
 
---OPEN CompraDeBonos;
---FETCH NEXT FROM CompraDeBonos into @idCompra,@fechacompra,@idAfiliado,@unidades,@monto;
---WHILE (@@FETCH_STATUS = 0)
---BEGIN
+OPEN CompraDeBonos;
+FETCH NEXT FROM CompraDeBonos into @idCompra,@fechacompra,@idAfiliado,@unidades,@monto;
+WHILE (@@FETCH_STATUS = 0)
+BEGIN
 
---set @idPlan = (SELECT TOP 1 plan_idPlan FROM Select_Group.Afiliado WHERE idAfiliado = @idAfiliado);
+set @idPlan = (SELECT TOP 1 plan_idPlan FROM Select_Group.Afiliado WHERE idAfiliado = @idAfiliado);
 	
---	WHILE(@contador < @unidades )
+	WHILE(@contador < @unidades )
 	
---	BEGIN
---		set @nroConsulta = (SELECT (max(numero_consulta)+1) FROM Select_Group.Bono );
---		Insert into Select_Group.Bono(idCompra,idPlan,idAfiliado,numero_Consulta,estado,bonoConsulta_FechaImpresion)
---		Values(@idCompra, @idPlan, @idAfiliado,@nroConsulta ,'1',@fechacompra);
---		set @contador = @contador + 1;
---	END;
---	FETCH NEXT FROM CompraDeBonos into @idCompra,@fechacompra,@idAfiliado,@unidades,@monto;
---END;
+	BEGIN
+		set @nroConsulta = (SELECT isnull((max(numero_consulta)),0) FROM Select_Group.Bono WHERE idAfiliado = @idAfiliado);
+		set @nroConsulta = @nroConsulta + 1;
+		
+		Insert into Select_Group.Bono(idCompra,idPlan,idAfiliado,numero_Consulta,estado,bonoConsulta_FechaImpresion)
+		Values(@idCompra, @idPlan, @idAfiliado,@nroConsulta ,'1',@fechacompra);
+		set @contador = @contador + 1;
+	END;
+	FETCH NEXT FROM CompraDeBonos into @idCompra,@fechacompra,@idAfiliado,@unidades,@monto;
+END;
 
 
---CLOSE CompraDeBonos;
---DEALLOCATE CompraDeBonos;
---END
+CLOSE CompraDeBonos;
+DEALLOCATE CompraDeBonos;
 
+COMMIT TRAN
+GO
 
 
 
