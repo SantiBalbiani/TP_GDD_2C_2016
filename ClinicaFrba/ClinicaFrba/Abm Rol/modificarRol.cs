@@ -19,7 +19,7 @@ namespace ClinicaFrba.AbmRol
         {
             InitializeComponent();
         }
-
+        public string unidRol = "0";
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -87,14 +87,28 @@ namespace ClinicaFrba.AbmRol
 
                             unItem = (ComboboxItem)item;
 
-                            SqlCommand cmdFuncionalidad = new SqlCommand("delete from Select_group.Funcionalidad_Por_Rol (rol_idRol, funcionalidad_idFuncionalidad) where Funcionalidad_por_Rol.rol_idRol= @idRol and Funcionalidad_por_Rol.funcionalidad_idFuncionalidad = @idFunc)", conexion);
-                            cmdFuncionalidad.Parameters.AddWithValue("@idRol", idRol);//Aca pasar el idRol recuperado previamente
-                            cmdFuncionalidad.Parameters.AddWithValue("@idFunc", unItem.Value);
+                            SqlCommand cmdFuncionalidad = new SqlCommand("delete from Select_group.Funcionalidad_Por_Rol  where Funcionalidad_por_Rol.rol_idRol= @idRol ", conexion);
+                            cmdFuncionalidad.Parameters.AddWithValue("@idRol", unidRol);//Aca pasar el idRol recuperado previamente
+                            
                             cmdFuncionalidad.ExecuteNonQuery();
 
 
                         }
 
+                        foreach (Object item in checkedListBox1.CheckedItems)
+                        {
+
+                            ComboboxItem unItem = new ComboboxItem();
+
+                            unItem = (ComboboxItem)item;
+
+                            SqlCommand cmdFuncionalidad = new SqlCommand("insert into Select_group.Funcionalidad_Por_Rol (rol_idRol, funcionalidad_idFuncionalidad) values(@idRol,@idFunc)", conexion);
+                            cmdFuncionalidad.Parameters.AddWithValue("@idRol", unidRol);//Aca pasar el idRol recuperado previamente
+                            cmdFuncionalidad.Parameters.AddWithValue("@idFunc", unItem.Value);
+                            cmdFuncionalidad.ExecuteNonQuery();
+
+
+                        }
 
 
                         MessageBox.Show("Bien! Rol con las nuevas funcionalidades asignadas ");
@@ -142,12 +156,12 @@ namespace ClinicaFrba.AbmRol
             roles = Conexion.LeerTabla(consultaStr);
 
 
-
+            
 
             foreach (DataRow idRol in roles.Rows)
             {
                 ComboboxItem unRol = new ComboboxItem();
-
+                unidRol = idRol["idRol"].ToString().Trim();
                 unRol.Text = idRol["descripcion"].ToString().Trim();
                 unRol.Value = idRol["idFuncionalidad"].ToString().Trim();
 
