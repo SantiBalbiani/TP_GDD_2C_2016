@@ -14,7 +14,6 @@ create table SELECT_GROUP.Plan_Med(
 	CONSTRAINT pk_planMed primary key(idPlan)
 )
 
-
 create table SELECT_GROUP.Rol(
 	idRol numeric(6,0) identity(1,1) not null,
 	nombre varchar(45),
@@ -33,7 +32,8 @@ create table SELECT_GROUP.Usuario(
 	
 )
 create table SELECT_GROUP.Afiliado(
-	idAfiliado numeric(7,0) identity(001,100) not null,
+	idAfiliado numeric(7,0) identity(1,1) not null,
+	nroAfiliado numeric(10,0),
 	nombre varchar(255),
 	apellido varchar(255),
 	tipoDni varchar(45),
@@ -269,6 +269,11 @@ SELECT distinct Paciente_Dni,Paciente_Nombre,Paciente_Apellido,'DNI',Paciente_Te
 from gd_esquema.Maestra
 where Paciente_Dni is not null
 order by Paciente_Nombre
+
+
+/*Inserto nro de afiliado para cada uno de los afiliados principales */
+update SELECT_GROUP.Afiliado set nroAfiliado = ((idAfiliado * 100) + 1)
+
 
 /*Cargo los Profesionales de la tabla maestra */
 INSERT INTO SELECT_GROUP.Profesional(numeroDni,nombre,apellido,telefono,direccion,mail,fechaNac,sexo,idUsuario)
