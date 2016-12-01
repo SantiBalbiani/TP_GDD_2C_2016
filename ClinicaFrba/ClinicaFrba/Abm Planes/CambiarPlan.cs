@@ -84,8 +84,7 @@ namespace ClinicaFrba.Abm_Planes
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+          SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
             SqlCommand cmdUsuario = new SqlCommand("Select_Group.ActualizarPlan", cnx);
             cmdUsuario.CommandType = CommandType.StoredProcedure;
             cmdUsuario.Parameters.Add("@idAfiliado", SqlDbType.Int).Value = textBox1.Text.ToString();
@@ -112,6 +111,7 @@ namespace ClinicaFrba.Abm_Planes
                 home.Show();
                 this.Close();
             }
+             
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

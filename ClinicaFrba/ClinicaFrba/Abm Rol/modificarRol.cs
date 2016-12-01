@@ -18,6 +18,7 @@ namespace ClinicaFrba.AbmRol
         public modificarRol()
         {
             InitializeComponent();
+          
         }
         public string unidRol = "0";
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -27,32 +28,41 @@ namespace ClinicaFrba.AbmRol
 
         private void modificarRol_Load(object sender, EventArgs e)
         {
-            Conexion.conectar();
+            //comboBox1.Items.Clear();
+            //comboBox1.ResetText();
 
-            DataTable roles = new DataTable();
+
+            //Cargo el plan
+            Conexion.conectar();
+            comboBox1.Items.Clear();
+            comboBox1.ResetText();
+            comboBox1.SelectedText = "Seleccione Rol";
+            DataTable Roles = new DataTable();
             string cadena = "select idRol, nombre from SELECT_GROUP.Rol";
 
-            roles = Conexion.LeerTabla(cadena);
+            Roles = Conexion.LeerTabla(cadena);
 
-            foreach (DataRow fila in roles.Rows)
+            foreach (DataRow roles in Roles.Rows)
             {
-                ComboboxItem item = new ComboboxItem();
-                item.Text = fila["nombre"].ToString();
-                item.Value = fila["idRol"];
-                comboBox1.Items.Add(item);
-               
-             
 
+                string desc = roles["nombre"].ToString();
+                ComboboxItem itemRol = new ComboboxItem();
+
+                itemRol.Text = roles["nombre"].ToString();
+                itemRol.Value = roles["idRol"].ToString();
+
+                comboBox1.Items.Add(itemRol);
             }
             Conexion.conexion.Close();
-      
-         
+
+            //Fin de carga
+   
         }
 
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-
+          /*
             Conexion.conectar();
             SqlConnection conexion;
             bool conectado = false;
@@ -84,11 +94,11 @@ namespace ClinicaFrba.AbmRol
                         //Aca poner query que busque el Rol por la descripción y levantar el idRol
 
 
-                        string buscaRol = "SELECT idRol FROM Select_Group.Rol WHERE nombre = '" + rolABuscar.Text.ToString() + "'";
+                        //string buscaRol = "SELECT idRol FROM Select_Group.Rol WHERE nombre = '" + rolABuscar.Text.ToString() + "'";
 
                         DataTable elRolAgregado = new DataTable();
                         Conexion.conectar();
-                        elRolAgregado = Conexion.LeerTabla(buscaRol);
+                        //elRolAgregado = Conexion.LeerTabla(buscaRol);
                         string idRol = " ";
                         foreach (DataRow unRol in elRolAgregado.Rows)
                         {
@@ -147,12 +157,10 @@ namespace ClinicaFrba.AbmRol
                 {
                     MessageBox.Show(ex.Message);
                 }
+              
+             
             }
-
-
-
-
-
+            */
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -160,21 +168,24 @@ namespace ClinicaFrba.AbmRol
 
         }
 
+        public void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            Object rolABuscar = comboBox1.SelectedItem;
+        }
+
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            checkedListBox1.ResetText();
+            checkedListBox1.Items.Clear();
 
             Conexion.conectar();
             DataTable roles = new DataTable();
 
             List<ComboboxItem> funcdeunRol = new List<ComboboxItem>();
 
-            string consultaStr = "SELECT R.idRol, F.descripcion, F.idFuncionalidad  FROM Select_Group.Rol R JOIN Select_Group.Funcionalidad_Por_Rol FR ON FR.rol_idRol = R.idRol JOIN Select_Group.Funcionalidad F ON F.idFuncionalidad = FR.funcionalidad_idFuncionalidad WHERE nombre = '" + rolABuscar.Text.ToString() + "'";
+            //string consultaStr = "SELECT R.idRol, F.descripcion, F.idFuncionalidad  FROM Select_Group.Rol R JOIN Select_Group.Funcionalidad_Por_Rol FR ON FR.rol_idRol = R.idRol JOIN Select_Group.Funcionalidad F ON F.idFuncionalidad = FR.funcionalidad_idFuncionalidad WHERE nombre = '" + rolABuscar.Text.ToString() + "'";
 
-            roles = Conexion.LeerTabla(consultaStr);
-
-
-
-
+            //roles = Conexion.LeerTabla(consultaStr);
             foreach (DataRow idRol in roles.Rows)
             {
                 ComboboxItem unRol = new ComboboxItem();
@@ -183,9 +194,6 @@ namespace ClinicaFrba.AbmRol
                 unRol.Value = idRol["idFuncionalidad"].ToString().Trim();
 
                 funcdeunRol.Add(unRol);
-
-
-
             }
 
             string queryTodasLasFunc = "SELECT idFuncionalidad, descripcion FROM Select_Group.Funcionalidad";
@@ -231,93 +239,6 @@ namespace ClinicaFrba.AbmRol
         private void button1_Click(object sender, EventArgs e)
         {
 
-            // //Conexion.conectar();
-            //SqlConnection conexion;
-            //bool conectado = false;
-            ////llenar la variable conexión con los parámetros de la variable parametros
-            //string parametros = ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString;
-            //conexion = new SqlConnection(parametros);
-            //try
-            //{
-            //    //abrir la conexion
-            //    conexion.Open();
-            //    conectado = true;
-            //}
-            //catch (InvalidCastException)
-            //{
-            //    MessageBox.Show("Error al conectar la Base de datos");
-            //    conectado = false;
-            //}
-
-
-            //if (conectado == true)
-            //{
-
-            //    try
-            //    {
-            //        //string str[] = new string(checkedListBox1.CheckedItems.Count);
-            //        //Dim str(checkedListBox1.CheckedItems.Count) As string;
-            //        //string str[checkedListBox1.CheckedItems.Count] = new String(checkedListBox1.CheckedItems.Count);
-            //        if (checkedListBox2.CheckedItems.Count > 0)
-            //        {
-
-                     
-
-            //            //Aca poner query que busque el Rol por la descripción y levantar el idRol
-
-            //            string buscaRol = "SELECT idRol FROM Select_Group.Rol WHERE nombre = '" + rolABuscar.Text.ToString() + "'";
-
-            //            DataTable elRolAgregado = new DataTable();
-            //            Conexion.conectar();
-            //            elRolAgregado = Conexion.LeerTabla(buscaRol);
-            //            string idRol = " ";
-            //            foreach (DataRow unRol in elRolAgregado.Rows)
-            //            {
-            //                idRol = unRol["idRol"].ToString();
-            //            }
-
-
-
-            //            foreach (Object item in checkedListBox2.CheckedItems)
-            //            {
-
-            //                ComboboxItem unItem = new ComboboxItem();
-
-            //                unItem = (ComboboxItem)item;
-
-            //                SqlCommand cmdFuncionalidad = new SqlCommand("insert into Select_group.Funcionalidad_Por_Rol (rol_idRol, funcionalidad_idFuncionalidad) values(@idRol,@idFunc)", conexion);
-            //                cmdFuncionalidad.Parameters.AddWithValue("@idRol", idRol);//Aca pasar el idRol recuperado previamente
-            //                cmdFuncionalidad.Parameters.AddWithValue("@idFunc", unItem.Value);
-            //                cmdFuncionalidad.ExecuteNonQuery();
-
-
-            //            }
-
-
-
-            //            MessageBox.Show("Rol creado con exito con las funcionalidades asignadas ");
-            //            Conexion.conexion.Close();
-            //        }
-
-            //        else
-            //        {
-            //            MessageBox.Show("Porfavor seleccione al menos una Funcionalidad");
-            //        }
-
-            //        while (checkedListBox2.CheckedItems.Count > 0)
-            //        {
-            //            checkedListBox2.SetItemChecked(checkedListBox2.CheckedIndices[0], false);
-            //        }
-
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message);
-            //    }
-
-            //}
-
-
         }
 
         private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -325,15 +246,13 @@ namespace ClinicaFrba.AbmRol
 
         }
 
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void button1_Click_2(object sender, EventArgs e)
         {
-            Conexion.conectar();
-            comboBox1.Items.Clear();
-            comboBox1.ResetText();
-            comboBox1.SelectedText = "Seleccione un Rol";
-            Object rolABuscar = comboBox1.SelectedItem;
-           
-
+            abmMenuRol frmMenu = new abmMenuRol();
+            frmMenu.Show();
+            this.Close();
         }
+
+     
     }
 }
