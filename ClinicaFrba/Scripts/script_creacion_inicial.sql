@@ -264,7 +264,7 @@ from gd_esquema.Maestra
 where Consulta_Enfermedades is not null
 
 /*Cargo los afiliados de la tabla maestra */
-INSERT INTO SELECT_GROUP.Afiliado(numeroDni,nombre,apellido,tipoDni,telefono,mail,fechaNac,sexo,estadoCivil,direccion,idUsuario,plan_idPlan)
+INSERT INTO SELECT_GROUP.Afiliado(numeroDoc,nombre,apellido,tipoDoc,telefono,mail,fechaNac,sexo,estadoCivil,direccion,idUsuario,plan_idPlan)
 SELECT distinct Paciente_Dni,Paciente_Nombre,Paciente_Apellido,'DNI',Paciente_Telefono,Paciente_mail,Paciente_Fecha_Nac,'SEXO','EC',Paciente_Direccion,(select idUsuario from SELECT_GROUP.Usuario where nombreUsuario = (cast(Paciente_Dni as varchar(45)))),(select idPlan from SELECT_GROUP.Plan_Med where idPlan = 555555) 
 from gd_esquema.Maestra
 where Paciente_Dni is not null
@@ -349,7 +349,7 @@ set idTipoEspecialidad = (CASE
 		END);	
 
 INSERT INTO SELECT_GROUP.Compras(FechaCompra,afiliado_Comprador,unidades)
-SELECT distinct Compra_Bono_Fecha, (select idAfiliado from SELECT_GROUP.Afiliado where numeroDni = Paciente_Dni ), count(*)
+SELECT distinct Compra_Bono_Fecha, (select idAfiliado from SELECT_GROUP.Afiliado where numeroDoc = Paciente_Dni ), count(*)
 from gd_esquema.Maestra
 where Compra_Bono_Fecha is not null
 group by Compra_Bono_Fecha,Paciente_Dni
@@ -366,7 +366,7 @@ SELECT distinct Bono_Consulta_Numero,C.idCompra,Afi.plan_idPlan,Afi.idAfiliado, 
 
   FROM gd_esquema.Maestra as M
   
-  JOIN Select_Group.Afiliado as Afi ON Afi.numeroDni = M.Paciente_Dni
+  JOIN Select_Group.Afiliado as Afi ON Afi.numeroDoc = M.Paciente_Dni
   inner JOIN Select_Group.Compras as C ON  C.afiliado_Comprador = Afi.idAfiliado and C.FechaCompra = M.Compra_Bono_Fecha
   
   WHERE M.Bono_Consulta_Numero is not null
