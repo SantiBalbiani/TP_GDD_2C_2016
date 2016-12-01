@@ -36,8 +36,7 @@ namespace ClinicaFrba.AbmRol
         private void button1_Click_1(object sender, EventArgs e)
         {
 
-
-            //Conexion.conectar();
+            Conexion.conectar();
             SqlConnection conexion;
             bool conectado = false;
             //llenar la variable conexión con los parámetros de la variable parametros
@@ -61,7 +60,7 @@ namespace ClinicaFrba.AbmRol
 
                 try
                 {
-                    
+
                     if (checkedListBox1.CheckedItems.Count > 0)
                     {
 
@@ -89,7 +88,7 @@ namespace ClinicaFrba.AbmRol
 
                             SqlCommand cmdFuncionalidad = new SqlCommand("delete from Select_group.Funcionalidad_Por_Rol  where Funcionalidad_por_Rol.rol_idRol= @idRol ", conexion);
                             cmdFuncionalidad.Parameters.AddWithValue("@idRol", unidRol);//Aca pasar el idRol recuperado previamente
-                            
+
                             cmdFuncionalidad.ExecuteNonQuery();
 
 
@@ -135,6 +134,7 @@ namespace ClinicaFrba.AbmRol
 
 
 
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -144,7 +144,6 @@ namespace ClinicaFrba.AbmRol
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-
 
             Conexion.conectar();
             DataTable roles = new DataTable();
@@ -156,7 +155,7 @@ namespace ClinicaFrba.AbmRol
             roles = Conexion.LeerTabla(consultaStr);
 
 
-            
+
 
             foreach (DataRow idRol in roles.Rows)
             {
