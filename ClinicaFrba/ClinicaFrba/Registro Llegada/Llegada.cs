@@ -272,6 +272,13 @@ namespace ClinicaFrba.Registro_Llegada
             }
 
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            Menu_Principal.HomeAdmin frmMenu = new Menu_Principal.HomeAdmin();
+            frmMenu.Show();
+            this.Close();
+        }
         
     }
 }

@@ -49,6 +49,7 @@ namespace ClinicaFrba.Menu_Principal
         {
             Registro_Llegada.Llegada frmRegistrar = new Registro_Llegada.Llegada();
             frmRegistrar.Show();
+            this.Close()
         }
 
         private void btnAbmRol_Click(object sender, EventArgs e)

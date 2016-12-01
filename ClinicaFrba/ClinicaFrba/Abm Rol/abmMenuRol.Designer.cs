@@ -44,24 +44,28 @@
             this.quitarFuncionalidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAsignarDesRol = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.Rol.SuspendLayout();
             this.SuspendLayout();
             // 
             // asignarRol
             // 
             this.asignarRol.AutoSize = true;
-            this.asignarRol.Location = new System.Drawing.Point(27, 31);
+            this.asignarRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.asignarRol.ForeColor = System.Drawing.Color.White;
+            this.asignarRol.Location = new System.Drawing.Point(142, 31);
             this.asignarRol.Name = "asignarRol";
-            this.asignarRol.Size = new System.Drawing.Size(183, 13);
+            this.asignarRol.Size = new System.Drawing.Size(234, 16);
             this.asignarRol.TabIndex = 0;
             this.asignarRol.Text = "Presione la accion que desea realizar";
             this.asignarRol.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnCrear
             // 
-            this.btnCrear.Location = new System.Drawing.Point(61, 93);
+            this.btnCrear.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnCrear.Location = new System.Drawing.Point(12, 72);
             this.btnCrear.Name = "btnCrear";
-            this.btnCrear.Size = new System.Drawing.Size(75, 72);
+            this.btnCrear.Size = new System.Drawing.Size(161, 34);
             this.btnCrear.TabIndex = 5;
             this.btnCrear.Text = "Crear Nuevo Rol";
             this.btnCrear.UseVisualStyleBackColor = true;
@@ -78,9 +82,10 @@
             // 
             // btnModificarRol
             // 
-            this.btnModificarRol.Location = new System.Drawing.Point(157, 93);
+            this.btnModificarRol.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnModificarRol.Location = new System.Drawing.Point(12, 112);
             this.btnModificarRol.Name = "btnModificarRol";
-            this.btnModificarRol.Size = new System.Drawing.Size(100, 72);
+            this.btnModificarRol.Size = new System.Drawing.Size(161, 44);
             this.btnModificarRol.TabIndex = 11;
             this.btnModificarRol.Text = "Modificar Funcionalidades a un Rol Existente";
             this.btnModificarRol.UseVisualStyleBackColor = true;
@@ -88,9 +93,10 @@
             // 
             // btnEliminarRol
             // 
-            this.btnEliminarRol.Location = new System.Drawing.Point(279, 93);
+            this.btnEliminarRol.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnEliminarRol.Location = new System.Drawing.Point(346, 72);
             this.btnEliminarRol.Name = "btnEliminarRol";
-            this.btnEliminarRol.Size = new System.Drawing.Size(75, 72);
+            this.btnEliminarRol.Size = new System.Drawing.Size(161, 34);
             this.btnEliminarRol.TabIndex = 12;
             this.btnEliminarRol.Text = "Eliminar Rol";
             this.btnEliminarRol.UseVisualStyleBackColor = true;
@@ -155,9 +161,10 @@
             // 
             // btnAsignarDesRol
             // 
-            this.btnAsignarDesRol.Location = new System.Drawing.Point(379, 93);
+            this.btnAsignarDesRol.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnAsignarDesRol.Location = new System.Drawing.Point(179, 72);
             this.btnAsignarDesRol.Name = "btnAsignarDesRol";
-            this.btnAsignarDesRol.Size = new System.Drawing.Size(75, 72);
+            this.btnAsignarDesRol.Size = new System.Drawing.Size(161, 34);
             this.btnAsignarDesRol.TabIndex = 14;
             this.btnAsignarDesRol.Text = "Asignar/Desasignar un Rol a un Usuario";
             this.btnAsignarDesRol.UseVisualStyleBackColor = true;
@@ -165,19 +172,33 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(489, 93);
+            this.button1.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button1.Location = new System.Drawing.Point(346, 112);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 72);
+            this.button1.Size = new System.Drawing.Size(161, 44);
             this.button1.TabIndex = 15;
             this.button1.Text = "Habilitar un Rol Eliminado";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button2.Location = new System.Drawing.Point(412, 182);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(95, 22);
+            this.button2.TabIndex = 16;
+            this.button2.Text = "Ir Atrás";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // abmMenuRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(605, 260);
+            this.BackColor = System.Drawing.Color.MidnightBlue;
+            this.ClientSize = new System.Drawing.Size(522, 216);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAsignarDesRol);
             this.Controls.Add(this.btnEliminarRol);
@@ -211,5 +232,6 @@
         private System.Windows.Forms.ToolStripMenuItem quitarFuncionalidadToolStripMenuItem;
         private System.Windows.Forms.Button btnAsignarDesRol;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
