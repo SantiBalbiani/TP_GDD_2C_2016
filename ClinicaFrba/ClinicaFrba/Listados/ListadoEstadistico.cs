@@ -31,7 +31,42 @@ namespace ClinicaFrba.Listados
 
         private void btnCancelaciones_Click(object sender, EventArgs e)
         {
+            Conexion.conectar();
 
+            //string contador;
+
+            DataTable Lista = new DataTable();
+            string cadena = "SELECT TOP 5 T.especialidad FROM Select_Group.Turno T WHERE T.cancelacion_idCancelacion is not null GROUP BY T.especialidad ORDER BY count(*) desc";
+            Lista = Conexion.LeerTabla(cadena);
+            listView1.Clear();
+
+            listView1.View = View.Details;
+            listView1.GridLines = true;
+            listView1.FullRowSelect = true;
+
+            listView1.Columns.Add("Especialidades", 200);
+            //listView1.Columns.Add("Cantidad Veces", 100);
+            // listView1.Columns.Add("Quantity", 70);
+
+            foreach (DataRow listado in Lista.Rows)
+            {
+
+                string especialidad = listado["especialidad"].ToString();
+                //string veces = listado["veces"].ToString();
+
+                //Add items in the listview
+                string[] arr = new string[1];
+                ListViewItem itm;
+
+                //Add first item
+                arr[0] = especialidad;
+                //arr[1] = veces;
+                //arr[2] = "10";
+                itm = new ListViewItem(arr);
+                listView1.Items.Add(itm);
+            }
+            Conexion.conexion.Close();
+            //Finalizo consulta
         }
 
         private void button2_Click(object sender, EventArgs e)

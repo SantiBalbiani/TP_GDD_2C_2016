@@ -46,6 +46,7 @@
             // 
             // btnAltaAfiliado
             // 
+            this.btnAltaAfiliado.ForeColor = System.Drawing.Color.MidnightBlue;
             this.btnAltaAfiliado.Location = new System.Drawing.Point(446, 195);
             this.btnAltaAfiliado.Name = "btnAltaAfiliado";
             this.btnAltaAfiliado.Size = new System.Drawing.Size(136, 23);
@@ -56,6 +57,7 @@
             // 
             // btnAgregarFamiliar
             // 
+            this.btnAgregarFamiliar.ForeColor = System.Drawing.Color.MidnightBlue;
             this.btnAgregarFamiliar.Location = new System.Drawing.Point(446, 224);
             this.btnAgregarFamiliar.Name = "btnAgregarFamiliar";
             this.btnAgregarFamiliar.Size = new System.Drawing.Size(136, 23);
@@ -66,6 +68,7 @@
             // 
             // btnRegistrarLlegada
             // 
+            this.btnRegistrarLlegada.ForeColor = System.Drawing.Color.MidnightBlue;
             this.btnRegistrarLlegada.Location = new System.Drawing.Point(304, 195);
             this.btnRegistrarLlegada.Name = "btnRegistrarLlegada";
             this.btnRegistrarLlegada.Size = new System.Drawing.Size(136, 23);
@@ -76,6 +79,7 @@
             // 
             // button1
             // 
+            this.button1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.button1.Location = new System.Drawing.Point(155, 247);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(135, 23);
@@ -86,6 +90,7 @@
             // 
             // btnAbmRol
             // 
+            this.btnAbmRol.ForeColor = System.Drawing.Color.MidnightBlue;
             this.btnAbmRol.Location = new System.Drawing.Point(446, 64);
             this.btnAbmRol.Name = "btnAbmRol";
             this.btnAbmRol.Size = new System.Drawing.Size(136, 23);
@@ -96,6 +101,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.textBox1.Location = new System.Drawing.Point(155, 221);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(135, 20);
@@ -107,6 +113,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(68, 190);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(146, 13);
@@ -115,6 +122,7 @@
             // 
             // btnCambiarPlan
             // 
+            this.btnCambiarPlan.ForeColor = System.Drawing.Color.MidnightBlue;
             this.btnCambiarPlan.Location = new System.Drawing.Point(155, 276);
             this.btnCambiarPlan.Name = "btnCambiarPlan";
             this.btnCambiarPlan.Size = new System.Drawing.Size(135, 23);
@@ -126,6 +134,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(14, 224);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(137, 13);
@@ -136,7 +145,7 @@
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(265, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(317, 20);
@@ -148,7 +157,7 @@
             // 
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.DarkBlue;
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(71, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(188, 20);
@@ -158,6 +167,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(-1, 11);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 13);
@@ -167,6 +177,7 @@
             // 
             // btnEstadisticas
             // 
+            this.btnEstadisticas.ForeColor = System.Drawing.Color.MidnightBlue;
             this.btnEstadisticas.Location = new System.Drawing.Point(304, 64);
             this.btnEstadisticas.Name = "btnEstadisticas";
             this.btnEstadisticas.Size = new System.Drawing.Size(136, 23);
@@ -177,6 +188,7 @@
             // 
             // btnCerrar
             // 
+            this.btnCerrar.ForeColor = System.Drawing.Color.MidnightBlue;
             this.btnCerrar.Location = new System.Drawing.Point(489, 293);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(93, 23);
@@ -189,6 +201,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MidnightBlue;
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.clinica_la_arruzafa_doctores;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(594, 328);
@@ -207,6 +220,7 @@
             this.Controls.Add(this.btnAgregarFamiliar);
             this.Controls.Add(this.btnAltaAfiliado);
             this.DoubleBuffered = true;
+            this.ForeColor = System.Drawing.Color.White;
             this.Name = "HomeAdmin";
             this.Text = "Panel de Control Administrativo";
             this.Load += new System.EventHandler(this.HomeAdmin_Load);

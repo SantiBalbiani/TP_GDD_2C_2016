@@ -19,6 +19,7 @@ namespace ClinicaFrba.Menu_Principal
 {
     public partial class HomeAdmin : Form
     {
+        int flag = 1;
         public HomeAdmin()
         {
             InitializeComponent();
@@ -49,7 +50,7 @@ namespace ClinicaFrba.Menu_Principal
         {
             Registro_Llegada.Llegada frmRegistrar = new Registro_Llegada.Llegada();
             frmRegistrar.Show();
-            this.Close()
+            this.Close();
         }
 
         private void btnAbmRol_Click(object sender, EventArgs e)
