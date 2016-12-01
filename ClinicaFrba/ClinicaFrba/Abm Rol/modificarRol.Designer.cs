@@ -32,8 +32,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.btnQuitar = new System.Windows.Forms.Button();
-            this.rolABuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -72,13 +72,6 @@
             this.btnQuitar.UseVisualStyleBackColor = true;
             this.btnQuitar.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // rolABuscar
-            // 
-            this.rolABuscar.Location = new System.Drawing.Point(92, 35);
-            this.rolABuscar.Name = "rolABuscar";
-            this.rolABuscar.Size = new System.Drawing.Size(100, 20);
-            this.rolABuscar.TabIndex = 12;
-            // 
             // btnBuscar
             // 
             this.btnBuscar.Location = new System.Drawing.Point(248, 35);
@@ -89,13 +82,22 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(92, 35);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 14;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
+            // 
             // modificarRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(546, 322);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.rolABuscar);
             this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.label4);
@@ -114,7 +116,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Button btnQuitar;
-        private System.Windows.Forms.TextBox rolABuscar;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

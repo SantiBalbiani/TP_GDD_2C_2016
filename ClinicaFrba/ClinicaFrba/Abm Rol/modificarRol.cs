@@ -27,7 +27,24 @@ namespace ClinicaFrba.AbmRol
 
         private void modificarRol_Load(object sender, EventArgs e)
         {
+            Conexion.conectar();
 
+            DataTable roles = new DataTable();
+            string cadena = "select idRol, nombre from SELECT_GROUP.Rol";
+
+            roles = Conexion.LeerTabla(cadena);
+
+            foreach (DataRow fila in roles.Rows)
+            {
+                ComboboxItem item = new ComboboxItem();
+                item.Text = fila["nombre"].ToString();
+                item.Value = fila["idRol"];
+                comboBox1.Items.Add(item);
+               
+             
+
+            }
+            Conexion.conexion.Close();
       
          
         }
@@ -65,6 +82,7 @@ namespace ClinicaFrba.AbmRol
                     {
 
                         //Aca poner query que busque el Rol por la descripción y levantar el idRol
+
 
                         string buscaRol = "SELECT idRol FROM Select_Group.Rol WHERE nombre = '" + rolABuscar.Text.ToString() + "'";
 
@@ -304,6 +322,17 @@ namespace ClinicaFrba.AbmRol
 
         private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            Conexion.conectar();
+            comboBox1.Items.Clear();
+            comboBox1.ResetText();
+            comboBox1.SelectedText = "Seleccione un Rol";
+            Object rolABuscar = comboBox1.SelectedItem;
+           
 
         }
     }
