@@ -40,43 +40,47 @@
             // 
             // txtMotivo
             // 
-            this.txtMotivo.Location = new System.Drawing.Point(201, 216);
+            this.txtMotivo.Location = new System.Drawing.Point(216, 216);
             this.txtMotivo.Multiline = true;
             this.txtMotivo.Name = "txtMotivo";
-            this.txtMotivo.Size = new System.Drawing.Size(192, 79);
+            this.txtMotivo.Size = new System.Drawing.Size(177, 79);
             this.txtMotivo.TabIndex = 11;
             this.txtMotivo.TextChanged += new System.EventHandler(this.txtMotivo_TextChanged);
             // 
             // lblMotivo
             // 
-            this.lblMotivo.BackColor = System.Drawing.SystemColors.Control;
+            this.lblMotivo.BackColor = System.Drawing.Color.MidnightBlue;
             this.lblMotivo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lblMotivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMotivo.ForeColor = System.Drawing.Color.White;
             this.lblMotivo.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.lblMotivo.Location = new System.Drawing.Point(7, 219);
+            this.lblMotivo.Location = new System.Drawing.Point(12, 216);
             this.lblMotivo.Multiline = true;
             this.lblMotivo.Name = "lblMotivo";
-            this.lblMotivo.Size = new System.Drawing.Size(183, 24);
+            this.lblMotivo.Size = new System.Drawing.Size(221, 24);
             this.lblMotivo.TabIndex = 10;
             this.lblMotivo.Text = "Indique el motivo de la cancelación:";
             // 
             // lbltipo
             // 
-            this.lbltipo.BackColor = System.Drawing.SystemColors.Control;
+            this.lbltipo.BackColor = System.Drawing.Color.MidnightBlue;
             this.lbltipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lbltipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltipo.ForeColor = System.Drawing.Color.White;
             this.lbltipo.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.lbltipo.Location = new System.Drawing.Point(26, 177);
+            this.lbltipo.Location = new System.Drawing.Point(12, 177);
             this.lbltipo.Multiline = true;
             this.lbltipo.Name = "lbltipo";
-            this.lbltipo.Size = new System.Drawing.Size(160, 24);
+            this.lbltipo.Size = new System.Drawing.Size(183, 24);
             this.lbltipo.TabIndex = 9;
             this.lbltipo.Text = "Seleccione tipo de cancelación:";
             // 
             // cmbTipo
             // 
             this.cmbTipo.FormattingEnabled = true;
-            this.cmbTipo.Location = new System.Drawing.Point(201, 174);
+            this.cmbTipo.Location = new System.Drawing.Point(216, 174);
             this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(192, 21);
+            this.cmbTipo.Size = new System.Drawing.Size(177, 21);
             this.cmbTipo.TabIndex = 8;
             this.cmbTipo.Text = "Seleccione un Tipo";
             this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.cmbTipo_SelectedIndexChanged);
@@ -94,34 +98,38 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(95, 9);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(80, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(198, 13);
+            this.label1.Size = new System.Drawing.Size(262, 17);
             this.label1.TabIndex = 12;
             this.label1.Text = "Seleccione el turno que desea cancelar:";
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(26, 25);
+            this.listBox1.Location = new System.Drawing.Point(26, 51);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(367, 134);
+            this.listBox1.Size = new System.Drawing.Size(367, 108);
             this.listBox1.TabIndex = 13;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(26, 316);
+            this.button1.Location = new System.Drawing.Point(12, 338);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 23);
+            this.button1.Size = new System.Drawing.Size(86, 23);
             this.button1.TabIndex = 14;
             this.button1.Text = "Ir Atrás";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // CancelacionAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(414, 373);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBox1);

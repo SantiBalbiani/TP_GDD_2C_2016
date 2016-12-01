@@ -40,9 +40,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.BackColor = System.Drawing.Color.MidnightBlue;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.CausesValidation = false;
+            this.textBox1.ForeColor = System.Drawing.Color.White;
             this.textBox1.Location = new System.Drawing.Point(178, 32);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(145, 13);
@@ -51,8 +52,9 @@
             // 
             // textBox2
             // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.BackColor = System.Drawing.Color.MidnightBlue;
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.ForeColor = System.Drawing.Color.White;
             this.textBox2.Location = new System.Drawing.Point(72, 32);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 13);
@@ -61,6 +63,7 @@
             // 
             // button1
             // 
+            this.button1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.button1.Location = new System.Drawing.Point(178, 111);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(145, 23);
@@ -72,6 +75,8 @@
             // 
             // cbmPlanMed
             // 
+            this.cbmPlanMed.BackColor = System.Drawing.Color.White;
+            this.cbmPlanMed.ForeColor = System.Drawing.Color.MidnightBlue;
             this.cbmPlanMed.FormattingEnabled = true;
             this.cbmPlanMed.Location = new System.Drawing.Point(178, 84);
             this.cbmPlanMed.Name = "cbmPlanMed";
@@ -81,8 +86,9 @@
             // 
             // textBox3
             // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox3.BackColor = System.Drawing.Color.MidnightBlue;
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.ForeColor = System.Drawing.Color.White;
             this.textBox3.Location = new System.Drawing.Point(72, 87);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 13);
@@ -91,8 +97,9 @@
             // 
             // txtPlan
             // 
-            this.txtPlan.BackColor = System.Drawing.SystemColors.Control;
+            this.txtPlan.BackColor = System.Drawing.Color.MidnightBlue;
             this.txtPlan.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPlan.ForeColor = System.Drawing.Color.White;
             this.txtPlan.Location = new System.Drawing.Point(178, 58);
             this.txtPlan.Name = "txtPlan";
             this.txtPlan.Size = new System.Drawing.Size(145, 13);
@@ -101,8 +108,9 @@
             // 
             // textBox5
             // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox5.BackColor = System.Drawing.Color.MidnightBlue;
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox5.ForeColor = System.Drawing.Color.White;
             this.textBox5.Location = new System.Drawing.Point(72, 58);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 13);
@@ -111,6 +119,7 @@
             // 
             // btnVolver
             // 
+            this.btnVolver.ForeColor = System.Drawing.Color.MidnightBlue;
             this.btnVolver.Location = new System.Drawing.Point(26, 152);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
@@ -122,6 +131,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MidnightBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(345, 187);
             this.Controls.Add(this.btnVolver);

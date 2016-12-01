@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancelaciones = new System.Windows.Forms.Button();
+            this.btnConsultados = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -38,24 +38,25 @@
             this.btnVolver = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // btnCancelaciones
             // 
-            this.button1.Location = new System.Drawing.Point(52, 79);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(275, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Especialidades con más cancelaciones";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCancelaciones.Location = new System.Drawing.Point(52, 79);
+            this.btnCancelaciones.Name = "btnCancelaciones";
+            this.btnCancelaciones.Size = new System.Drawing.Size(275, 23);
+            this.btnCancelaciones.TabIndex = 0;
+            this.btnCancelaciones.Text = "Especialidades con más cancelaciones";
+            this.btnCancelaciones.UseVisualStyleBackColor = true;
+            this.btnCancelaciones.Click += new System.EventHandler(this.btnCancelaciones_Click);
             // 
-            // button2
+            // btnConsultados
             // 
-            this.button2.Location = new System.Drawing.Point(52, 108);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(275, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Profesionales más consultados por Plan";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnConsultados.Location = new System.Drawing.Point(52, 108);
+            this.btnConsultados.Name = "btnConsultados";
+            this.btnConsultados.Size = new System.Drawing.Size(275, 23);
+            this.btnConsultados.TabIndex = 1;
+            this.btnConsultados.Text = "Profesionales más consultados por Plan";
+            this.btnConsultados.UseVisualStyleBackColor = true;
+            this.btnConsultados.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -87,10 +88,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(146, 32);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(162, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(388, 18);
+            this.label1.Size = new System.Drawing.Size(416, 20);
             this.label1.TabIndex = 5;
             this.label1.Text = "Seleccione una opción para ver las estadisticas deseadas";
             // 
@@ -98,13 +100,14 @@
             // 
             this.listView1.Location = new System.Drawing.Point(345, 79);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(359, 142);
+            this.listView1.Size = new System.Drawing.Size(330, 142);
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(606, 255);
+            this.btnVolver.Location = new System.Drawing.Point(577, 255);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(98, 23);
             this.btnVolver.TabIndex = 7;
@@ -116,15 +119,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(751, 290);
+            this.BackColor = System.Drawing.Color.MidnightBlue;
+            this.ClientSize = new System.Drawing.Size(723, 306);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnConsultados);
+            this.Controls.Add(this.btnCancelaciones);
             this.Name = "ListadoEstadistico";
             this.Text = "Listado Estadistico";
             this.ResumeLayout(false);
@@ -134,8 +138,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancelaciones;
+        private System.Windows.Forms.Button btnConsultados;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;

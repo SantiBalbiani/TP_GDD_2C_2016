@@ -144,5 +144,12 @@ namespace ClinicaFrba.Cancelar_Atencion
                 btnCancelar.Enabled = true;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            HomeAfiliado frmHome = new HomeAfiliado();
+            frmHome.Show();
+            this.Close();
+        }
     }
 }
