@@ -154,5 +154,12 @@ namespace ClinicaFrba.AbmRol
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            abmMenuRol frmMenu = new abmMenuRol();
+            frmMenu.Show();
+            this.Close();
+        }
     }  
 }
