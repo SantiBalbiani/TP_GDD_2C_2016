@@ -46,7 +46,7 @@
             // 
             // btnAltaAfiliado
             // 
-            this.btnAltaAfiliado.Location = new System.Drawing.Point(446, 190);
+            this.btnAltaAfiliado.Location = new System.Drawing.Point(446, 195);
             this.btnAltaAfiliado.Name = "btnAltaAfiliado";
             this.btnAltaAfiliado.Size = new System.Drawing.Size(136, 23);
             this.btnAltaAfiliado.TabIndex = 11;
@@ -66,7 +66,7 @@
             // 
             // btnRegistrarLlegada
             // 
-            this.btnRegistrarLlegada.Location = new System.Drawing.Point(304, 190);
+            this.btnRegistrarLlegada.Location = new System.Drawing.Point(304, 195);
             this.btnRegistrarLlegada.Name = "btnRegistrarLlegada";
             this.btnRegistrarLlegada.Size = new System.Drawing.Size(136, 23);
             this.btnRegistrarLlegada.TabIndex = 14;
@@ -167,7 +167,7 @@
             // 
             // btnEstadisticas
             // 
-            this.btnEstadisticas.Location = new System.Drawing.Point(446, 93);
+            this.btnEstadisticas.Location = new System.Drawing.Point(304, 64);
             this.btnEstadisticas.Name = "btnEstadisticas";
             this.btnEstadisticas.Size = new System.Drawing.Size(136, 23);
             this.btnEstadisticas.TabIndex = 24;

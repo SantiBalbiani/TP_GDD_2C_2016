@@ -47,8 +47,9 @@ namespace ClinicaFrba.AbmRol
         private void button2_Click(object sender, EventArgs e)
         {
             eliminarRol frmeliminarRol = new eliminarRol();
-            this.Hide();
             frmeliminarRol.Show();
+            this.Close();
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -59,37 +60,48 @@ namespace ClinicaFrba.AbmRol
         private void btnCrear_Click(object sender, EventArgs e)
         {
             crearRol frmCrearRol = new crearRol();
-            this.Hide();
             frmCrearRol.Show();
+            this.Close();
+
         }
 
         private void btnModificarRol_Click(object sender, EventArgs e)
         {
             modificarRol frmModificarRol = new modificarRol();
-            this.Hide();
             frmModificarRol.Show();
+            this.Close();
+            
         }
 
         private void btnAsignarDesRol_Click(object sender, EventArgs e)
         {
             asignarRolUser frmAsignarRol = new asignarRolUser();
-            this.Hide();
-            frmAsignarRol.Show(); 
+            frmAsignarRol.Show();
+            this.Close();
+            
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
             abmMenuRol frmABMRol = new abmMenuRol();
-            this.Hide();
             frmABMRol.Show();
+            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             habilitarRol frmHabilitarRol = new habilitarRol();
-            this.Hide();
             frmHabilitarRol.Show();
+            this.Close();
+            
 
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Menu_Principal.HomeAdmin frmMenu = new Menu_Principal.HomeAdmin();
+            frmMenu.Show();
+            this.Close();
         }
     }
 }
