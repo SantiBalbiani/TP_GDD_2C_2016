@@ -227,7 +227,48 @@ namespace ClinicaFrba.Listados
 
         private void button4_Click(object sender, EventArgs e)
         {
+        
+            
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //Inicio Consulta
+            Conexion.conectar();
+
+            //string contador;
+
+            DataTable Lista = new DataTable();
             string query4 = "SELECT TOP 5 PE.especialidad_idEspecialidad, Esp.descripcion FROM Select_Group.Turno T JOIN Select_Group.Agenda Ag ON Ag.idAgenda = T.idAgenda JOIN Select_Group.Profesional_Por_Especialidad PE ON PE.profesional_idProfesional = Ag.profesional_IdProfesional JOIN Select_Group.Bono Bo ON Bo.estado = 0 AND Bo.idAfiliado = T.afiliado_idAfiliado JOIN Select_Group.Especialidad Esp ON Esp.idEspecialidad = T.especialidad GROUP BY PE.especialidad_idEspecialidad, Esp.descripcion ORDER BY count (*) desc";
+            Lista = Conexion.LeerTabla(query4);
+            listView1.Clear();
+
+            listView1.View = View.Details;
+            listView1.GridLines = true;
+            listView1.FullRowSelect = true;
+
+            listView1.Columns.Add("especialidad_idEspecialidad", 100);
+            listView1.Columns.Add("descripcion", 100);
+            // listView1.Columns.Add("Quantity", 70);
+
+            foreach (DataRow listado in Lista.Rows)
+            {
+
+                string idEspecialidad = listado["especialidad_idEspecialidad"].ToString();
+                string descripcion = listado["descripcion"].ToString();
+
+                //Add items in the listview
+                string[] arr = new string[4];
+                ListViewItem itm;
+
+                //Add first item
+                arr[0] = idEspecialidad;
+                arr[1] = descripcion;
+                itm = new ListViewItem(arr);
+                listView1.Items.Add(itm);
+            }
+            Conexion.conexion.Close();
+            //Finalizo consulta
         }
 
 

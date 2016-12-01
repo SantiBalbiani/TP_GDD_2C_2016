@@ -38,11 +38,14 @@
             this.btnVolver = new System.Windows.Forms.Button();
             this.cbmPlanMed = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancelaciones
             // 
-            this.btnCancelaciones.Location = new System.Drawing.Point(52, 79);
+            this.btnCancelaciones.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnCancelaciones.Location = new System.Drawing.Point(49, 79);
             this.btnCancelaciones.Name = "btnCancelaciones";
             this.btnCancelaciones.Size = new System.Drawing.Size(275, 23);
             this.btnCancelaciones.TabIndex = 0;
@@ -52,7 +55,8 @@
             // 
             // btnConsultados
             // 
-            this.btnConsultados.Location = new System.Drawing.Point(52, 108);
+            this.btnConsultados.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnConsultados.Location = new System.Drawing.Point(49, 108);
             this.btnConsultados.Name = "btnConsultados";
             this.btnConsultados.Size = new System.Drawing.Size(275, 23);
             this.btnConsultados.TabIndex = 1;
@@ -62,9 +66,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(51, 138);
+            this.button3.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button3.Location = new System.Drawing.Point(10, 41);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(276, 23);
+            this.button3.Size = new System.Drawing.Size(273, 23);
             this.button3.TabIndex = 2;
             this.button3.Text = "Profesionales con menos horas trabajadas";
             this.button3.UseVisualStyleBackColor = true;
@@ -72,7 +77,8 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(52, 168);
+            this.button4.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button4.Location = new System.Drawing.Point(49, 137);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(275, 23);
             this.button4.TabIndex = 3;
@@ -82,12 +88,14 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(52, 198);
+            this.button5.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button5.Location = new System.Drawing.Point(49, 167);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(275, 23);
             this.button5.TabIndex = 4;
             this.button5.Text = "Especialidades con más bonos consulta utilizados";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label1
             // 
@@ -102,6 +110,7 @@
             // 
             // listView1
             // 
+            this.listView1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.listView1.Location = new System.Drawing.Point(345, 79);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(330, 142);
@@ -111,7 +120,8 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(577, 255);
+            this.btnVolver.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnVolver.Location = new System.Drawing.Point(577, 271);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(98, 23);
             this.btnVolver.TabIndex = 7;
@@ -121,8 +131,9 @@
             // 
             // cbmPlanMed
             // 
+            this.cbmPlanMed.ForeColor = System.Drawing.Color.MidnightBlue;
             this.cbmPlanMed.FormattingEnabled = true;
-            this.cbmPlanMed.Location = new System.Drawing.Point(251, 255);
+            this.cbmPlanMed.Location = new System.Drawing.Point(161, 15);
             this.cbmPlanMed.Name = "cbmPlanMed";
             this.cbmPlanMed.Size = new System.Drawing.Size(121, 21);
             this.cbmPlanMed.TabIndex = 8;
@@ -130,13 +141,25 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(52, 255);
+            this.comboBox1.Location = new System.Drawing.Point(10, 14);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(146, 21);
             this.comboBox1.TabIndex = 9;
             this.comboBox1.Text = "Seleccione Especialidad";
             this.comboBox1.Visible = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cbmPlanMed);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Location = new System.Drawing.Point(41, 189);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(295, 71);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
             // 
             // ListadoEstadistico
             // 
@@ -144,19 +167,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(723, 306);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.cbmPlanMed);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.btnConsultados);
             this.Controls.Add(this.btnCancelaciones);
+            this.Controls.Add(this.groupBox1);
             this.Name = "ListadoEstadistico";
             this.Text = "Listado Estadistico";
             this.Load += new System.EventHandler(this.ListadoEstadistico_Load);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,5 +196,6 @@
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.ComboBox cbmPlanMed;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
