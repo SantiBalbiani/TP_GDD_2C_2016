@@ -54,7 +54,7 @@
             this.btnTurnoProf.Name = "btnTurnoProf";
             this.btnTurnoProf.Size = new System.Drawing.Size(138, 23);
             this.btnTurnoProf.TabIndex = 0;
-            this.btnTurnoProf.Text = "Buscar Turnos";
+            this.btnTurnoProf.Text = "Buscar Profesionales";
             this.btnTurnoProf.UseVisualStyleBackColor = true;
             this.btnTurnoProf.Click += new System.EventHandler(this.btnTurno_Click);
             // 
@@ -74,9 +74,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(260, 74);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(204, 17);
+            this.label1.Size = new System.Drawing.Size(269, 17);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Buscar Profesional por nombre";
+            this.label1.Text = "Buscar Profesional por nombre o apellido";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2

@@ -26,11 +26,71 @@ namespace ClinicaFrba.Registro_Llegada
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+            comboBox2.ResetText(); ;
+            comboBox2.Items.Clear();
         }
 
         private void btnTurno_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(txtNumeroAfiliado.Text.ToString()))
+            {
+                MessageBox.Show("Por favor complete el nro de Afiliado");
+            }
+            else
+            {
+                if (String.IsNullOrEmpty(txtProfesional.Text.ToString()))
+                {
+                    MessageBox.Show("Por favor ingrese Nombre aproximado del Profesional");
+                }
+                else
+                {
 
+                    string nombreProf = txtProfesional.Text.ToString();
+
+
+
+                    string consultarTurnosParaProfYAfiliado = "SELECT P.matricula, P.nombre, P.apellido FROM Select_Group.Profesional P WHERE P.nombre LIKE '%" + nombreProf + "%' OR  P.apellido LIKE '%" + nombreProf + "%'";
+                    Conexion.conectar();
+                    DataTable Turnos = new DataTable();
+
+                    try
+                    {
+
+                        Turnos = Conexion.LeerTabla(consultarTurnosParaProfYAfiliado);
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        Conexion.conexion.Close();
+
+
+
+                        string ultimoProf = " ";
+
+                        foreach (DataRow turno in Turnos.Rows)
+                        {
+                            ComboboxItem unItem = new ComboboxItem();
+
+                            unItem.Text = turno["apellido"].ToString() + ", " + turno["nombre"].ToString();
+                            unItem.Value = turno["matricula"].ToString();
+                            ultimoProf = unItem.Text.ToString();
+                            comboBox2.Items.Add(unItem);
+                        }
+                        if (ultimoProf == " ")
+                        {
+                            MessageBox.Show("No se encontraron profesionales");
+                        }
+                        else
+                        {
+                            comboBox2.Text = "Seleccione Profesional";
+                            comboBox1.Text = " ";
+                        }
+                    }
+                }
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -178,6 +238,7 @@ namespace ClinicaFrba.Registro_Llegada
         {
             comboBox2.Items.Clear();
             comboBox2.ResetText();
+            txtProfesional.Text = " ";
         }
 
         private void btnCargarProfesionales_Click(object sender, EventArgs e)
