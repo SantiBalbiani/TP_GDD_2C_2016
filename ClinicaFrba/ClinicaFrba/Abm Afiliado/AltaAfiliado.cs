@@ -74,34 +74,14 @@ namespace ClinicaFrba.Abm_Afiliado
         {
             if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
             {
-                DataRow afiliado = afiliadosTable.NewRow();
-                afiliado["nombre"] = textNombre.Text;
-                afiliado["apellido"] = textApellido.Text;
-                afiliado["tipoDni"] = textTipoDoc.Text;
-                afiliado["numeroDni"] = Convert.ToInt32(textDni.Text);
-                afiliado["telefono"] = Convert.ToInt32(textTelefono.Text);
-                afiliado["mail"] = textMail.Text;
-                afiliado["fechaNac"] = dateTimePicker1.Value.Date;
-                    
-                    //Convert.ToDateTime(textFechaNac.Text);
-                afiliado["sexo"] = cmbSexo.Text;
-                afiliado["estadoCivil"] = cmbEstadoCivil.Text;
-                afiliado["direccion"] = textDireccion.Text;
-                int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(textDni.Text));
-                afiliado["usuarioId"] = usuarioIdAfiliado;
-               
-                string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + cbmPlanMed.Text + "')";
-                DataTable dt = Conexion.EjecutarComando(query);
-                foreach (DataRow fila in dt.Rows)
-                {
-                    idPlanMed = Convert.ToInt32((fila["idPlan"]));
-                    afiliado["planMed"] = idPlanMed;
-                }
+                afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable,01, textNombre.Text, textApellido.Text,
+                                                                                    textTipoDoc.Text, Convert.ToInt32(textDni.Text),
+                                                                                    Convert.ToInt32(textTelefono.Text), textMail.Text,
+                                                                                    dateTimePicker1.Value.Date,cmbSexo.Text,cmbEstadoCivil.Text,
+                                                                                    textDireccion.Text, cbmPlanMed.Text);
 
-                
-
-                afiliadosTable.Rows.Add(afiliado);
-
+                DataRow afiliado = new DataRow();
+                afiliado = afiliadosTable.Rows[1];
                 AltaPareja frm = new AltaPareja(afiliadosTable,afiliado,tieneHijos,nuevo);
                 frm.Show();
                 this.Close();
@@ -122,32 +102,27 @@ namespace ClinicaFrba.Abm_Afiliado
             {
                 
                 DataRow afiliado = afiliadosTable.NewRow();
+                afiliado["nroAfiliado"] = 01;
                 afiliado["nombre"] = textNombre.Text;
                 afiliado["apellido"] = textApellido.Text;
-                afiliado["tipoDni"] = textTipoDoc.Text;
-                afiliado["numeroDni"] = Convert.ToInt32(textDni.Text);
-                
+                afiliado["tipoDoc"] = textTipoDoc.Text;
+                afiliado["numeroDoc"] = Convert.ToInt32(textDni.Text);
                 afiliado["telefono"] = Convert.ToInt32(textTelefono.Text);
-                
                 afiliado["mail"] = textMail.Text;
                 afiliado["fechaNac"] = dateTimePicker1.Value.Date;
-                    
                   //  Convert.ToDateTime(textFechaNac.Text);
                 afiliado["sexo"] = cmbSexo.Text;
                 afiliado["estadoCivil"] = cmbEstadoCivil.Text;
                 afiliado["direccion"] = textDireccion.Text;
                 int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(textDni.Text));
-                afiliado["usuarioId"] = usuarioIdAfiliado;
+                afiliado["idUsuario"] = usuarioIdAfiliado;
                 string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + cbmPlanMed.Text.Trim() + "')";
                 DataTable dt = Conexion.EjecutarComando(query);
                 foreach (DataRow fila in dt.Rows)
                 {
                     idPlanMed = Convert.ToInt32((fila["idPlan"]));
-                    afiliado["PlanMed"] = idPlanMed;
+                    afiliado["plan_idPlan"] = idPlanMed;
                 }
-
-                
-
                 afiliadosTable.Rows.Add(afiliado);
 
                 SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
@@ -176,37 +151,7 @@ namespace ClinicaFrba.Abm_Afiliado
            
         }
 
-        public int registrarUsuario(int p)
-        {
-
-            string nroDocumento = textDni.Text.Trim();
-            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-            SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.sp_CrearUsuario", cnx);
-            cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
-            cmdAltaAfiliado.Parameters.Add("@Dni", SqlDbType.Int).Value = Convert.ToInt32(textDni.Text);
-            try
-            {
-                cnx.Open();
-                cmdAltaAfiliado.ExecuteNonQuery();
-                string query = "select US.idUsuario from SELECT_GROUP.Usuario as US where nombreUsuario = ('" + nroDocumento + "')";
-                DataTable dt = Conexion.EjecutarComando(query);
-                foreach (DataRow fila in dt.Rows)
-                {
-                    idUsuario = Convert.ToInt32((fila["idUsuario"]));
-                    
-                }
-            }
-            catch (ApplicationException error)
-            {
-                string mensaje = "Se ha producido un error ";
-                ApplicationException excep = new ApplicationException(mensaje, error);
-                excep.Source = this.Text;
-                idUsuario = -1;
-                                
-            }
-            return idUsuario;
-
-        }
+       
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
