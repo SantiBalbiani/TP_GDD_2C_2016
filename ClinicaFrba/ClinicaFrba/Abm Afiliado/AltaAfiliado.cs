@@ -22,7 +22,7 @@ namespace ClinicaFrba.Abm_Afiliado
         public DataTable afiliadosTable = new DataTable();
         public Boolean tieneHijos = false;
         public Boolean nuevo = true;
-
+        
         public frmAltaAfiliado()
         {
             InitializeComponent();
@@ -70,18 +70,18 @@ namespace ClinicaFrba.Abm_Afiliado
                 break;
                     }
         }
-       private void btnCargaPareja_Click(object sender, EventArgs e)
+        private void btnCargaPareja_Click(object sender, EventArgs e)
         {
             if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
             {
-                afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable,01, textNombre.Text, textApellido.Text,
+                afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable, 01, textNombre.Text, textApellido.Text,
                                                                                     textTipoDoc.Text, Convert.ToInt32(textDni.Text),
                                                                                     Convert.ToInt32(textTelefono.Text), textMail.Text,
-                                                                                    dateTimePicker1.Value.Date,cmbSexo.Text,cmbEstadoCivil.Text,
+                                                                                    dateTimePicker1.Value.Date, cmbSexo.Text, cmbEstadoCivil.Text,
                                                                                     textDireccion.Text, cbmPlanMed.Text);
 
-                DataRow afiliado = new DataRow();
-                afiliado = afiliadosTable.Rows[1];
+                DataRow afiliado = afiliadosTable.Rows[0];
+                
                 AltaPareja frm = new AltaPareja(afiliadosTable,afiliado,tieneHijos,nuevo);
                 frm.Show();
                 this.Close();
@@ -89,7 +89,8 @@ namespace ClinicaFrba.Abm_Afiliado
             else {
                 MessageBox.Show("Faltan Campos ingresar");
             }
-        }
+         }
+        
 
         private void txtApellido_TextChanged(object sender, EventArgs e)
         {
@@ -114,7 +115,7 @@ namespace ClinicaFrba.Abm_Afiliado
                 afiliado["sexo"] = cmbSexo.Text;
                 afiliado["estadoCivil"] = cmbEstadoCivil.Text;
                 afiliado["direccion"] = textDireccion.Text;
-                int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(textDni.Text));
+                int usuarioIdAfiliado = estructuraBD.registrarUsuario(Convert.ToInt32(textDni.Text));
                 afiliado["idUsuario"] = usuarioIdAfiliado;
                 string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + cbmPlanMed.Text.Trim() + "')";
                 DataTable dt = Conexion.EjecutarComando(query);
@@ -126,9 +127,16 @@ namespace ClinicaFrba.Abm_Afiliado
                 afiliadosTable.Rows.Add(afiliado);
 
                 SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-                SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.sp_AltaAfiliado", cnx);
+                SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
                 cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
-                cmdAltaAfiliado.Parameters.Add("@Afiliados", SqlDbType.Structured).Value = afiliadosTable;
+               // cmdAltaAfiliado.Parameters.Add("@Afiliados", SqlDbType.Structured).Value = afiliadosTable;
+
+                SqlParameter unParametro = cmdAltaAfiliado.Parameters.AddWithValue("@Afiliados", afiliadosTable);
+                unParametro.SqlDbType = SqlDbType.Structured;
+                unParametro.TypeName = "Select_Group.dt_Afiliados";
+
+
+
                 try
                 {
                  cnx.Open();

@@ -16,16 +16,17 @@ namespace ClinicaFrba.Abm_Afiliado
 {
     public partial class AltaHijo : Form
     {
-        public DataRow afiliadosIngresados;
+        public DataRow afiliadoIngresado;
         public DataTable tablaAfiliados = new DataTable();
         public Boolean otroHijo = false;
         public int idUsuario;
+        
 
         public AltaHijo(DataTable Afiliados,DataRow afiliado)
         {
             InitializeComponent();
-            afiliadosIngresados = afiliado;
-            //tablaAfiliados = Afiliados;
+            afiliadoIngresado = afiliado;
+            tablaAfiliados = Afiliados;
         }
 
       
@@ -43,7 +44,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void AltaHijo_Load(object sender, EventArgs e)
         {
-            string idPlan = afiliadosIngresados[11].ToString();
+            string idPlan = afiliadoIngresado[11].ToString();
 
             string query = "select PM.descripcion from SELECT_GROUP.Plan_Med as PM where idPlan = ('" + idPlan + "')";
             DataTable dt = Conexion.EjecutarComando(query);
@@ -76,10 +77,14 @@ namespace ClinicaFrba.Abm_Afiliado
              if (Utilidades.ValidarFormulario(this, errorTextBoxHijo) == false)
             {
                 DataRow afiliado = tablaAfiliados.NewRow();
+                int nroAfiliado = Convert.ToInt32(afiliadoIngresado["nroAfiliado"]);
+                nroAfiliado++;
+                
+                afiliado["nroAfiliado"] = nroAfiliado;
                 afiliado["nombre"] = nombreHijo.Text;
                 afiliado["apellido"] = apellidoHijo.Text;
-                afiliado["tipoDni"] = tipoDocHijo.Text;
-                afiliado["numeroDni"] = Convert.ToInt32(nroDocHijo.Text);
+                afiliado["tipoDoc"] = tipoDocHijo.Text;
+                afiliado["numeroDoc"] = Convert.ToInt32(nroDocHijo.Text);
                 afiliado["telefono"] = Convert.ToInt32(telefonoHijo.Text);
                 afiliado["mail"] = mailHijo.Text;
                 //afiliado["fechaNac"] = Convert.ToDateTime(fechaNacHijo.Text);
@@ -88,26 +93,28 @@ namespace ClinicaFrba.Abm_Afiliado
                 afiliado["estadoCivil"] = cmbEstadoCivilHijo.Text;
                 afiliado["direccion"] = direccionHijo.Text;
                 int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(nroDocHijo.Text));
-                afiliado["usuarioId"] = usuarioIdAfiliado;
+                afiliado["idUsuario"] = usuarioIdAfiliado;
                 string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + PlanMedHijo.Text.Trim() + "')";
                 DataTable dt = Conexion.EjecutarComando(query);
                 foreach (DataRow fila in dt.Rows)
                 {
                     int idPlanMed = Convert.ToInt32((fila["idPlan"]));
-                    afiliado["planMed"] = idPlanMed;
+                    afiliado["plan_idPlan"] = idPlanMed;
                 }
-                
+
+                afiliado["plan_idPlan"] = afiliadoIngresado["plan_idPlan"];
+
                 tablaAfiliados.Rows.Add(afiliado);
            
                  if (otroHijo)
                 {
-                    AltaHijo frmHijo = new AltaHijo(tablaAfiliados,afiliadosIngresados);
+                    AltaHijo frmHijo = new AltaHijo(tablaAfiliados,afiliado);
                     frmHijo.Show();
                     this.Close();
                 }
                 else {
                     SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-                    SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.sp_AltaAfiliado", cnx);
+                    SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
                     cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
                     cmdAltaAfiliado.Parameters.Add("@Afiliados", SqlDbType.Structured).Value = tablaAfiliados;
                     try

@@ -362,7 +362,6 @@
             // 
             // btnCargaPareja
             // 
-            this.btnCargaPareja.Enabled = false;
             this.btnCargaPareja.ForeColor = System.Drawing.Color.MidnightBlue;
             this.btnCargaPareja.Location = new System.Drawing.Point(229, 287);
             this.btnCargaPareja.Name = "btnCargaPareja";

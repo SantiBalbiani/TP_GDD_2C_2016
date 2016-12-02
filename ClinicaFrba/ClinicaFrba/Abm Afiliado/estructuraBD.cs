@@ -19,8 +19,10 @@ namespace ClinicaFrba.Abm_Afiliado
         
         public static DataTable crearEstructuraAfiliado(DataTable afiliados)
         {
-            DataColumn nroAfiliado = afiliados.Columns.Add("nroAfiliado", typeof(Int32));
-            afiliados.Columns.Add("nombre", typeof(String));
+            DataColumn nroAfiliado =
+
+            afiliados.Columns.Add("nombre", typeof(String));    
+            afiliados.Columns.Add("nroAfiliado", typeof(Int32));
             afiliados.Columns.Add("apellido", typeof(String));
             afiliados.Columns.Add("tipoDoc", typeof(String));
             afiliados.Columns.Add("numeroDoc", typeof(Int32));
@@ -44,8 +46,9 @@ namespace ClinicaFrba.Abm_Afiliado
             int idUsuario, plan_idPlan;
 
             DataRow afiliado = afiliados.NewRow();
-            afiliado["nroAfiliado"] = nroAfiliado;
             afiliado["nombre"] = nombre;
+            afiliado["nroAfiliado"] = nroAfiliado;
+            
             afiliado["apellido"] = apellido;
             afiliado["tipoDoc"] = tipoDoc;
             afiliado["numeroDoc"] = numeroDoc;
@@ -65,6 +68,8 @@ namespace ClinicaFrba.Abm_Afiliado
                 plan_idPlan = Convert.ToInt32((fila["idPlan"]));
                 afiliado["plan_idPlan"] = plan_idPlan;
             }
+
+            afiliados.Rows.Add(afiliado);
 
             return afiliados;
 
