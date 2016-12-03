@@ -64,7 +64,7 @@ namespace ClinicaFrba.AbmRol
             Conexion.conectar();
             DataTable roles = new DataTable();
 
-            string consultaStr = "select idRol, nombre from SELECT_GROUP.Rol where rol.habilitado=0";
+            string consultaStr = "select idRol, nombre from SELECT_GROUP.Rol where Rol.habilitado=0";
 
             roles = Conexion.LeerTabla(consultaStr);
 

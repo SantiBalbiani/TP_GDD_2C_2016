@@ -100,7 +100,7 @@ namespace ClinicaFrba.AbmRol
                             unItem = (ComboboxItem)item;
 
                             //le pone el valor 0 al rol eliminado 
-                            SqlCommand cmdRol = new SqlCommand("update Select_group.Rol set habilitado=1 where nombre=@nombreRol", conexion); 
+                            SqlCommand cmdRol = new SqlCommand("update Select_group.Rol set habilitado=0 where nombre=@nombreRol", conexion); 
                             cmdRol.Parameters.AddWithValue("@nombreRol", unItem.Text);
                             cmdRol.ExecuteNonQuery();
                             MessageBox.Show("Rol ha sigo inhabilitado con exito ");
