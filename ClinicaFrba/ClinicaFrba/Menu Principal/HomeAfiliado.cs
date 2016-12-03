@@ -105,6 +105,7 @@ namespace ClinicaFrba
         {
             this.Hide();
             FrmComprarBonos frmComprarBonos = new FrmComprarBonos();
+            frmComprarBonos.menuAnterior = "Afiliado";
             frmComprarBonos.Show();
         }
 

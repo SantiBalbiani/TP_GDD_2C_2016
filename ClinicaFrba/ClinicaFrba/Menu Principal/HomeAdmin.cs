@@ -113,6 +113,7 @@ namespace ClinicaFrba.Menu_Principal
 
                     this.Hide();
                     FrmComprarBonos frmCompra = new FrmComprarBonos();
+                    frmCompra.menuAnterior = "Admin";
                     frmCompra.Show();
 
 

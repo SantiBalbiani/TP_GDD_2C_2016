@@ -16,6 +16,7 @@ namespace ClinicaFrba.Compra_Bono
     public partial class FrmComprarBonos : Form
     {
         public int precioBonoSegunPlan = 0;
+        public string menuAnterior;
        // public formulario(int strFlag);
        // int flag;
 
@@ -83,9 +84,18 @@ namespace ClinicaFrba.Compra_Bono
             finally
             {
                 cnx.Close();
-                HomeAfiliado home = new HomeAfiliado();
-                home.Show();
-                this.Close();
+                if (menuAnterior == "Admin")
+                {
+                    Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();
+                    home.Show();
+                    this.Close();
+                }
+                if (menuAnterior == "Afiliado")
+                {
+                    HomeAfiliado home = new HomeAfiliado();
+                    home.Show();
+                    this.Close();
+                }
             }
         }
 
@@ -121,9 +131,18 @@ namespace ClinicaFrba.Compra_Bono
 
         private void button2_Click(object sender, EventArgs e)
         {
-            HomeAfiliado frmHome = new HomeAfiliado();
-            frmHome.Show();
-            this.Close();
+           if (menuAnterior == "Admin")
+                {
+                    Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();
+                    home.Show();
+                    this.Close();
+                }
+           if (menuAnterior == "Afiliado")
+           {
+               HomeAfiliado home = new HomeAfiliado();
+               home.Show();
+               this.Close();
+           }
         }
 
 
