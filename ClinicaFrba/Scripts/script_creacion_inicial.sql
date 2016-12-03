@@ -799,8 +799,8 @@ GO*/
 CREATE TYPE Select_Group.dt_Afiliados AS TABLE
 
 (
-	nroAfiliado numeric(10,0) NOT NULL
-	,nombre varchar(255) NOT NULL
+	nombre varchar(255) NOT NULL
+	,nroAfiliado numeric(10,0) NOT NULL
 	,apellido varchar(255) NOT NULL
 	,tipoDoc varchar(45) NOT NULL
 	,numeroDoc numeric(18,0) NOT NULL
@@ -820,7 +820,7 @@ CREATE PROCEDURE [SELECT_GROUP].[AltaAfiliado]
 @Afiliados SELECT_GROUP.dt_Afiliados READONLY
 AS
 BEGIN
-	Insert into SELECT_GROUP.Afiliado(nroAfiliado,nombre,apellido,tipoDoc,numeroDoc,telefono,mail,fechaNac,sexo,estadoCivil,direccion,idUsuario,plan_idPlan) 
+	Insert into SELECT_GROUP.Afiliado(nombre,nroAfiliado,apellido,tipoDoc,numeroDoc,telefono,mail,fechaNac,sexo,estadoCivil,direccion,idUsuario,plan_idPlan) 
 	SELECT * FROM @Afiliados
 
 END

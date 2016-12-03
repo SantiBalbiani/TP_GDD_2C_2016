@@ -101,8 +101,17 @@ namespace ClinicaFrba.Abm_Afiliado
         {
             if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
             {
-                
-                DataRow afiliado = afiliadosTable.NewRow();
+
+                afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable, 01, textNombre.Text, textApellido.Text,
+                                                                                   textTipoDoc.Text, Convert.ToInt32(textDni.Text),
+                                                                                   Convert.ToInt32(textTelefono.Text), textMail.Text,
+                                                                                   dateTimePicker1.Value.Date, cmbSexo.Text, cmbEstadoCivil.Text,
+                                                                                   textDireccion.Text, cbmPlanMed.Text);
+
+
+                DataRow afiliado = afiliadosTable.Rows[0];
+
+                /*DataRow afiliado = afiliadosTable.NewRow();
                 afiliado["nroAfiliado"] = 01;
                 afiliado["nombre"] = textNombre.Text;
                 afiliado["apellido"] = textApellido.Text;
@@ -123,9 +132,9 @@ namespace ClinicaFrba.Abm_Afiliado
                 {
                     idPlanMed = Convert.ToInt32((fila["idPlan"]));
                     afiliado["plan_idPlan"] = idPlanMed;
-                }
-                afiliadosTable.Rows.Add(afiliado);
-
+                }*/
+                //afiliadosTable.Rows.Add(afiliado);
+                
                 SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
                 SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
                 cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
@@ -134,9 +143,7 @@ namespace ClinicaFrba.Abm_Afiliado
                 SqlParameter unParametro = cmdAltaAfiliado.Parameters.AddWithValue("@Afiliados", afiliadosTable);
                 unParametro.SqlDbType = SqlDbType.Structured;
                 unParametro.TypeName = "Select_Group.dt_Afiliados";
-
-
-
+                
                 try
                 {
                  cnx.Open();
