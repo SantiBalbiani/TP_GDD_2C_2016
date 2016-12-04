@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.btnQuitar = new System.Windows.Forms.Button();
+            this.btnActualizar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -67,15 +67,15 @@
             this.checkedListBox1.Size = new System.Drawing.Size(417, 94);
             this.checkedListBox1.TabIndex = 10;
             // 
-            // btnQuitar
+            // btnActualizar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(16, 235);
-            this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Size = new System.Drawing.Size(90, 24);
-            this.btnQuitar.TabIndex = 11;
-            this.btnQuitar.Text = "Actualizar";
-            this.btnQuitar.UseVisualStyleBackColor = true;
-            this.btnQuitar.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnActualizar.Location = new System.Drawing.Point(16, 235);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(90, 24);
+            this.btnActualizar.TabIndex = 11;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // btnBuscar
             // 
@@ -116,7 +116,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.btnQuitar);
+            this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
@@ -133,7 +133,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.Button btnQuitar;
+        private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button2;

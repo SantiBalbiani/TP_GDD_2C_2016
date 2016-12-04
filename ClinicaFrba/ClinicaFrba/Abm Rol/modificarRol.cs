@@ -93,11 +93,11 @@ namespace ClinicaFrba.AbmRol
                         
 
 
-                        string buscaRol = "SELECT idRol FROM Select_Group.Rol WHERE nombre = '";
+                        string buscaRol = "SELECT idRol FROM Select_Group.Rol WHERE nombre = '' ";
 
                         DataTable elRolAgregado = new DataTable();
                         Conexion.conectar();
-                        //elRolAgregado = Conexion.LeerTabla(buscaRol);
+                        elRolAgregado = Conexion.LeerTabla(buscaRol); //Descomento esta linea, sino no lee nada (4/12)
                         string idRol = " ";
                         foreach (DataRow unRol in elRolAgregado.Rows)
                         {
