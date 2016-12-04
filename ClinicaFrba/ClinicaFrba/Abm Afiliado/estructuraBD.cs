@@ -58,7 +58,7 @@ namespace ClinicaFrba.Abm_Afiliado
             afiliado["fechaNac"] = fechaNac;
             afiliado["sexo"] = sexo;
             afiliado["estadoCivil"] = estadoCivil;
-            afiliados["cantidadHijos"] = cantidadHijos;
+            afiliado["cantidadHijos"] = cantidadHijos;
             afiliado["direccion"] = direccion;
             idUsuario = registrarUsuario(numeroDoc);
             afiliado["idUsuario"] = idUsuario;
