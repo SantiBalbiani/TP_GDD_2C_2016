@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -50,7 +50,10 @@ namespace ClinicaFrba.Abm_Afiliado
             if (true)
             {
                 tieneHijos = true;
-            }            
+                this.btnCargarHijos.Enabled = true;
+                this.textCantHijos.Enabled = true;
+            }
+            
         }
 
         private void cmbEstadoCivil_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,7 +81,7 @@ namespace ClinicaFrba.Abm_Afiliado
                                                                                     textTipoDoc.Text, Convert.ToInt32(textDni.Text),
                                                                                     Convert.ToInt32(textTelefono.Text), textMail.Text,
                                                                                     dateTimePicker1.Value.Date, cmbSexo.Text, cmbEstadoCivil.Text,
-                                                                                    textDireccion.Text, cbmPlanMed.Text);
+                                                                                    Convert.ToInt32(textCantHijos.Text),textDireccion.Text, cbmPlanMed.Text);
 
                 DataRow afiliado = afiliadosTable.Rows[0];
                 
@@ -106,7 +109,7 @@ namespace ClinicaFrba.Abm_Afiliado
                                                                                    textTipoDoc.Text, Convert.ToInt32(textDni.Text),
                                                                                    Convert.ToInt32(textTelefono.Text), textMail.Text,
                                                                                    dateTimePicker1.Value.Date, cmbSexo.Text, cmbEstadoCivil.Text,
-                                                                                   textDireccion.Text, cbmPlanMed.Text);
+                                                                                   Convert.ToInt32(textCantHijos.Text), textDireccion.Text, cbmPlanMed.Text);
 
 
                 DataRow afiliado = afiliadosTable.Rows[0];
@@ -186,8 +189,10 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void frmAltaAfiliado_Load(object sender, EventArgs e)
         {
-            
-           
+            this.textCantHijos.Enabled = false;
+            this.btnCargaPareja.Enabled = false;
+            this.btnCargarHijos.Enabled = false;
+
             string query = "select PM.descripcion from SELECT_GROUP.Plan_Med as PM";
             DataTable dt = Conexion.EjecutarComando(query);
             foreach (DataRow fila in dt.Rows)
