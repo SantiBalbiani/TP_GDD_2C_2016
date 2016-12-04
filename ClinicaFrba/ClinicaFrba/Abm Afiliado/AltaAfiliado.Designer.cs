@@ -1,4 +1,4 @@
-﻿namespace ClinicaFrba.Abm_Afiliado
+namespace ClinicaFrba.Abm_Afiliado
 {
     partial class frmAltaAfiliado
     {
