@@ -34,7 +34,7 @@ namespace ClinicaFrba
                 users = Conexion.LeerTabla(cadena);
                 if (users.Rows.Count == 0)
                 {
-                    MessageBox.Show("error al ingresar el usuario o contraseña");
+                    MessageBox.Show("Error al ingresar usuario o contraseña");
                     cadena = "update SELECT_GROUP.Usuario set intentosFallidos=intentosFallidos+1 where nombreUsuario=upper('" + cod.Trim() + "')";
                     this.txtContraseña.ResetText();
                     this.txtUsuario.ResetText();
@@ -46,14 +46,14 @@ namespace ClinicaFrba
                         if (int.Parse((fila["intentosFallidos"].ToString())) < 3)
                         {
                             this.Hide();
-                            MessageBox.Show("bienvenido " + fila["nombreUsuario"].ToString());
+                            MessageBox.Show("Bienvenido " + fila["nombreUsuario"].ToString());
                             Globals.userName = cod.Trim();
                             ElegirRol frmRol = new ElegirRol(txtUsuario.Text);
                             frmRol.Show();
                         }
                         else
                         {
-                            MessageBox.Show("el usuario" + fila["nombreUsuario"].ToString() + " está bloqueado");
+                            MessageBox.Show("El usuario" + fila["nombreUsuario"].ToString() + " está bloqueado");
 
                         }
                     }

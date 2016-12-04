@@ -29,7 +29,7 @@ namespace ClinicaFrba.Menu_Principal
 
         private void HomeAdmin_Load(object sender, EventArgs e)
         {
-           /* string queryDatosProf = "SELECT nombre ,apellido FROM Select_Group.Profesional P JOIN Select_Group.Usuario U ON U.idUsuario = P.idUsuario AND U.nombreUsuario = '" + Globals.userName + "'";
+            /*string queryDatosProf = "SELECT nombre ,apellido FROM SELECT_GROUP.Afiliado where numeroDni = '" + Globals.userName + "'";
 
             DataTable datosProf = new DataTable();
 
@@ -39,12 +39,13 @@ namespace ClinicaFrba.Menu_Principal
 
             foreach (DataRow datosUnProf in datosProf.Rows)
             {
-                idProf = datosUnProf["matricula"].ToString();
-                nombreProf = datosUnProf["nombre"].ToString();
-                apellidoProf = datosUnProf["apellido"].ToString();
-            }
+                nombreAfil = datosUnProf["nombre"].ToString();
+                apellidoAfil = datosUnProf["apellido"].ToString();
 
-            label3.Text = apellidoProf + ", " + nombreProf; */
+            }
+            label3.Text = nombreAfil + ", " + apellidoAfil; 
+            */ //Comentado Hasta que haya base de datos para administradores
+            label2.Text = "Administrador";
         }
 
         private void btnAltaAfiliado_Click(object sender, EventArgs e)
@@ -121,11 +122,37 @@ namespace ClinicaFrba.Menu_Principal
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+           textBox1.Text = textBox1.Text.Trim();
+           textBox1.Text = textBox1.Text.Replace(" ", "");
+           textBox1.SelectionStart = textBox1.Text.Length;
+        }
+        
+
+    
+        ///
+                
         private void btnCambiarPlan_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(textBox1.Text.ToString()))
@@ -157,7 +184,7 @@ namespace ClinicaFrba.Menu_Principal
 
         private void label2_Click(object sender, EventArgs e)
         {
-
+            
         }
         }
 }
