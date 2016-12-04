@@ -820,9 +820,24 @@ CREATE PROCEDURE [SELECT_GROUP].[AltaAfiliado]
 @Afiliados SELECT_GROUP.dt_Afiliados READONLY
 AS
 BEGIN
+	
+	declare @nroAfiliado int;
+	declare @idAfiliado int;
+	declare @nroDocumento int;
+
+	set @nroDocumento = (select numeroDoc from @Afiliados)
+	set @nroAfiliado =  (select nroAfiliado from @Afiliados)
+	
 	Insert into SELECT_GROUP.Afiliado(nombre,nroAfiliado,apellido,tipoDoc,numeroDoc,telefono,mail,fechaNac,sexo,estadoCivil,direccion,idUsuario,plan_idPlan) 
 	SELECT * FROM @Afiliados
 
+	set @idAfiliado = (SELECT max(idAfiliado) FROM Select_Group.Afiliado)
+
+
+	update SELECT_GROUP.Afiliado
+		set nroAfiliado = ((@idAfiliado * 100) + @nroAfiliado)
+		where numeroDoc = @nroDocumento
+		
 END
 go
 
