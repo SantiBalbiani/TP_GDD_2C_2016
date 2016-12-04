@@ -7,10 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using ClinicaFrba.Base_de_Datos;
 using System.Configuration;
-
+using System.Data.SqlClient;
 
 namespace ClinicaFrba.AbmRol
 {
@@ -31,33 +30,6 @@ namespace ClinicaFrba.AbmRol
 
         }
 
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            Conexion.conectar();
-            DataTable roles = new DataTable();
-
-            string consultaStr = "select idRol, nombre from SELECT_GROUP.Rol where rol.habilitado=0";
-
-            roles = Conexion.LeerTabla(consultaStr);
-
-            DataTable nombreFuncionalidades = new DataTable();
-
-
-            foreach (DataRow idRol in roles.Rows)
-            {
-                ComboboxItem unRol = new ComboboxItem();
-
-                unRol.Text = idRol["nombre"].ToString();
-                unRol.Value = idRol["idRol"].ToString();
-
-                checkedListBox1.Items.Add(unRol);
-            }
-        }
 
         private void habilitarRol_Load(object sender, EventArgs e)
         {
@@ -71,15 +43,18 @@ namespace ClinicaFrba.AbmRol
             DataTable otrosRoles = new DataTable();
 
 
-            foreach (DataRow idRol in otrosRoles.Rows)
+            foreach (DataRow idRol in roles.Rows)
             {
                 ComboboxItem unRol = new ComboboxItem();
 
                 unRol.Text = idRol["nombre"].ToString();
                 unRol.Value = idRol["idRol"].ToString();
 
-                checkedListBox1.Items.Add(unRol);
+                checkedListBox2.Items.Add(unRol);
+
             }
+
+                
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -110,11 +85,11 @@ namespace ClinicaFrba.AbmRol
                 try
                 {
 
-                    if (checkedListBox1.CheckedItems.Count > 0)
+                    if (checkedListBox2.CheckedItems.Count > 0)
                     {
 
                         //le pone el valor 1 al rol habilitado 
-                        foreach (Object item in checkedListBox1.CheckedItems)
+                        foreach (Object item in checkedListBox2.CheckedItems)
                         {
 
                             ComboboxItem unItem = new ComboboxItem();
@@ -122,7 +97,7 @@ namespace ClinicaFrba.AbmRol
                             unItem = (ComboboxItem)item;
 
                             //le pone el valor 1 al rol habilitado 
-                            SqlCommand cmdRol = new SqlCommand("update Select_group.Rol set habilitado=1 where nombre=@nombreRol", conexion);
+                            SqlCommand cmdRol = new SqlCommand("update Select_group.Rol set habilitado=1 where nombre=@nombreRol;", conexion);
                             cmdRol.Parameters.AddWithValue("@nombreRol", unItem.Text);
                             cmdRol.ExecuteNonQuery();
                             MessageBox.Show("Rol ha sido habilitado con exito con las funcionalidades asignadas ");
@@ -136,9 +111,9 @@ namespace ClinicaFrba.AbmRol
                         MessageBox.Show("Porfavor seleccione al menos un Rol");
                     }
 
-                    while (checkedListBox1.CheckedItems.Count > 0)
+                    while (checkedListBox2.CheckedItems.Count > 0)
                     {
-                        checkedListBox1.SetItemChecked(checkedListBox1.CheckedIndices[0], false);
+                        checkedListBox2.SetItemChecked(checkedListBox2.CheckedIndices[0], false);
                     }
 
                 }
@@ -153,7 +128,12 @@ namespace ClinicaFrba.AbmRol
         private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
+            if (checkedListBox2.Items.Count < 1)
+            {
+                MessageBox.Show("No existen roles a eliminar");
+            }
+            
+        }   
 
         private void button2_Click(object sender, EventArgs e)
         {

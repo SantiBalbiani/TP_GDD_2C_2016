@@ -86,6 +86,7 @@
             this.Controls.Add(this.button1);
             this.ForeColor = System.Drawing.Color.MediumBlue;
             this.Name = "habilitarRol";
+            this.Text = "Habilitar Rol Eliminado";
             this.Load += new System.EventHandler(this.habilitarRol_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
