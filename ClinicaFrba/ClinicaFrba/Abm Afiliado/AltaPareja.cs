@@ -52,7 +52,7 @@ namespace ClinicaFrba.Abm_Afiliado
                 afiliado["direccion"] = direccionPareja.Text;
                 int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(nroDocPareja.Text));
                 afiliado["idUsuario"] = usuarioIdAfiliado;
-                //afiliado["usuarioId"] = usuarioIdAfiliado;
+                
                 string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + PlanMedPareja.Text.Trim() + "')";
                 DataTable dt = Conexion.EjecutarComando(query);
                 foreach (DataRow fila in dt.Rows)

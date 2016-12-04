@@ -31,6 +31,7 @@ namespace ClinicaFrba.Abm_Afiliado
             afiliados.Columns.Add("fechaNac", typeof(DateTime));
             afiliados.Columns.Add("sexo", typeof(String));
             afiliados.Columns.Add("estadoCivil", typeof(String));
+            afiliados.Columns.Add("cantidadHijos", typeof(Int32));
             afiliados.Columns.Add("direccion", typeof(String));
             afiliados.Columns.Add("idUsuario", typeof(Int32));
             afiliados.Columns.Add("plan_idPlan", typeof(Int32));
@@ -41,7 +42,7 @@ namespace ClinicaFrba.Abm_Afiliado
         
         public static DataTable cargarEstructuraAfiliado(DataTable afiliados, int nroAfiliado, string nombre, string apellido, string tipoDoc,
                                                         int numeroDoc, int telefono, string mail, DateTime fechaNac, string sexo,
-                                                      string estadoCivil, string direccion,string planMed)
+                                                      string estadoCivil,int cantidadHijos ,string direccion,string planMed)
         {
             int idUsuario, plan_idPlan;
 
@@ -57,6 +58,7 @@ namespace ClinicaFrba.Abm_Afiliado
             afiliado["fechaNac"] = fechaNac;
             afiliado["sexo"] = sexo;
             afiliado["estadoCivil"] = estadoCivil;
+            afiliados["cantidadHijos"] = cantidadHijos;
             afiliado["direccion"] = direccion;
             idUsuario = registrarUsuario(numeroDoc);
             afiliado["idUsuario"] = idUsuario;

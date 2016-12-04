@@ -116,7 +116,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(24, 188);
+            this.label6.Location = new System.Drawing.Point(24, 183);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 13);
             this.label6.TabIndex = 12;
@@ -126,7 +126,7 @@
             // label7
             // 
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(13, 230);
+            this.label7.Location = new System.Drawing.Point(11, 210);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 40);
             this.label7.TabIndex = 13;
@@ -269,7 +269,7 @@
             // 
             // telefonoPareja
             // 
-            this.telefonoPareja.Location = new System.Drawing.Point(82, 185);
+            this.telefonoPareja.Location = new System.Drawing.Point(82, 181);
             this.telefonoPareja.Name = "telefonoPareja";
             this.telefonoPareja.Size = new System.Drawing.Size(129, 20);
             this.telefonoPareja.TabIndex = 35;
@@ -280,7 +280,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(47, 213);
+            this.label10.Location = new System.Drawing.Point(42, 246);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(29, 13);
             this.label10.TabIndex = 38;
@@ -289,7 +289,7 @@
             // 
             // mailPareja
             // 
-            this.mailPareja.Location = new System.Drawing.Point(82, 210);
+            this.mailPareja.Location = new System.Drawing.Point(82, 239);
             this.mailPareja.Name = "mailPareja";
             this.mailPareja.Size = new System.Drawing.Size(129, 20);
             this.mailPareja.TabIndex = 39;
@@ -302,7 +302,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(82, 241);
+            this.dateTimePicker1.Location = new System.Drawing.Point(82, 210);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 65;
