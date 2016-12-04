@@ -207,6 +207,12 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menu Principal\HomeCustom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu Principal\HomeCustom.Designer.cs">
+      <DependentUpon>HomeCustom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu Principal\HomeProfesional.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,6 +309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu Principal\HomeCustom.resx">
+      <DependentUpon>HomeCustom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu Principal\HomeProfesional.resx">
       <DependentUpon>HomeProfesional.cs</DependentUpon>

@@ -56,7 +56,7 @@
             // 
             this.btnComprar.Location = new System.Drawing.Point(169, 60);
             this.btnComprar.Name = "btnComprar";
-            this.btnComprar.Size = new System.Drawing.Size(90, 23);
+            this.btnComprar.Size = new System.Drawing.Size(100, 23);
             this.btnComprar.TabIndex = 2;
             this.btnComprar.Text = "Comprar Bono";
             this.btnComprar.UseVisualStyleBackColor = true;
@@ -104,7 +104,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(458, 60);
+            this.button1.Location = new System.Drawing.Point(15, 113);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(124, 23);
             this.button1.TabIndex = 8;
@@ -114,7 +114,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(458, 99);
+            this.button2.Location = new System.Drawing.Point(145, 113);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(124, 23);
             this.button2.TabIndex = 9;
