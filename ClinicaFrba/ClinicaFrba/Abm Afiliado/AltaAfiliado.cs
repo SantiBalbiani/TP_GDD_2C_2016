@@ -18,6 +18,8 @@ namespace ClinicaFrba.Abm_Afiliado
     public partial class frmAltaAfiliado : Form
     {
         public int idUsuario;
+        public int cantidadHijos;
+        public int nroAfiliado = 0;
         public int idPlanMed = 0;
         public DataTable afiliadosTable = new DataTable();
         public Boolean tieneHijos = false;
@@ -46,15 +48,20 @@ namespace ClinicaFrba.Abm_Afiliado
             this.Close();
         }
 
-        private void chkHijos_CheckedChanged(object sender, EventArgs e){
-            if (true)
+        public int generarNumeroAfiliado()
+        {
+            
+            string query = "select max(AF.idAfiliado) as idAfiliado from SELECT_GROUP.Afiliado as AF";
+            DataTable dt = Conexion.EjecutarComando(query);
+            foreach (DataRow fila in dt.Rows)
             {
-                tieneHijos = true;
-                this.btnCargarHijos.Enabled = true;
-                this.textCantHijos.Enabled = true;
+                nroAfiliado = (((Convert.ToInt32(fila["idAfiliado"]) + 1) * 100) + 1);
             }
+            return nroAfiliado;
             
         }
+
+
 
         private void cmbEstadoCivil_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -77,15 +84,22 @@ namespace ClinicaFrba.Abm_Afiliado
         {
             if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
             {
-                afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable, 01, textNombre.Text, textApellido.Text,
+                cantidadHijos = Convert.ToInt32(textCantHijos.Text);
+                nroAfiliado = generarNumeroAfiliado();
+                
+                afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable, nroAfiliado, textNombre.Text, textApellido.Text,
                                                                                     textTipoDoc.Text, Convert.ToInt32(textDni.Text),
                                                                                     Convert.ToInt32(textTelefono.Text), textMail.Text,
                                                                                     dateTimePicker1.Value.Date, cmbSexo.Text, cmbEstadoCivil.Text,
-                                                                                    Convert.ToInt32(textCantHijos.Text),textDireccion.Text, cbmPlanMed.Text);
+                                                                                    cantidadHijos,textDireccion.Text, cbmPlanMed.Text);
 
                 DataRow afiliado = afiliadosTable.Rows[0];
                 
-                AltaPareja frm = new AltaPareja(afiliadosTable,afiliado,tieneHijos,nuevo);
+                if(Convert.ToInt32(textCantHijos.Text) > 0)
+                    {
+                        tieneHijos = true;
+                    }
+                AltaPareja frm = new AltaPareja(afiliadosTable,afiliado,tieneHijos,nuevo,cantidadHijos);
                 frm.Show();
                 this.Close();
               }
@@ -105,7 +119,9 @@ namespace ClinicaFrba.Abm_Afiliado
             if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
             {
 
-                afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable, 01, textNombre.Text, textApellido.Text,
+                nroAfiliado = generarNumeroAfiliado();                
+
+                afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable, nroAfiliado, textNombre.Text, textApellido.Text,
                                                                                    textTipoDoc.Text, Convert.ToInt32(textDni.Text),
                                                                                    Convert.ToInt32(textTelefono.Text), textMail.Text,
                                                                                    dateTimePicker1.Value.Date, cmbSexo.Text, cmbEstadoCivil.Text,
@@ -189,9 +205,9 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void frmAltaAfiliado_Load(object sender, EventArgs e)
         {
-            this.textCantHijos.Enabled = false;
+            
             this.btnCargaPareja.Enabled = false;
-            this.btnCargarHijos.Enabled = false;
+            
 
             string query = "select PM.descripcion from SELECT_GROUP.Plan_Med as PM";
             DataTable dt = Conexion.EjecutarComando(query);
@@ -224,6 +240,39 @@ namespace ClinicaFrba.Abm_Afiliado
         private void textFechaNac_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCargarHijos_Click(object sender, EventArgs e)
+        {
+            cantidadHijos = Convert.ToInt32(textCantHijos.Text);
+            if(cantidadHijos > 0)
+                {
+                    if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
+                    {
+                        
+                        nroAfiliado = generarNumeroAfiliado();
+                        afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable, nroAfiliado, textNombre.Text, textApellido.Text,
+                                                                                            textTipoDoc.Text, Convert.ToInt32(textDni.Text),
+                                                                                            Convert.ToInt32(textTelefono.Text), textMail.Text,
+                                                                                            dateTimePicker1.Value.Date, cmbSexo.Text, cmbEstadoCivil.Text,
+                                                                                            cantidadHijos, textDireccion.Text, cbmPlanMed.Text);
+
+                        DataRow afiliado = afiliadosTable.Rows[0];
+
+                        
+                        AltaHijo frm = new AltaHijo(afiliadosTable, afiliado,cantidadHijos,nuevo);
+                        frm.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Faltan Campos ingresar");
+                    }
+
+                }
+            else{
+                MessageBox.Show("No ingreso una cantidad de hijos valida");                
+            }
         }
 
     }

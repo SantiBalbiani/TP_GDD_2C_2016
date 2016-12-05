@@ -20,13 +20,19 @@ namespace ClinicaFrba.Abm_Afiliado
         public DataTable tablaAfiliados = new DataTable();
         public Boolean otroHijo = false;
         public int idUsuario;
+        public int hijos;
+        public string planMedHijo;
+        public int contador = 0;
+        public int nroAfiliado;
+        public Boolean nuevo = false;
         
 
-        public AltaHijo(DataTable Afiliados,DataRow afiliado)
+        public AltaHijo(DataTable Afiliados,DataRow afiliado,int cantHijos, bool esNuevo )
         {
             InitializeComponent();
             afiliadoIngresado = afiliado;
             tablaAfiliados = Afiliados;
+            hijos = cantHijos;
         }
 
       
@@ -44,135 +50,173 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void AltaHijo_Load(object sender, EventArgs e)
         {
-            string idPlan = afiliadoIngresado[11].ToString();
+            string idPlan = afiliadoIngresado[13].ToString();
 
             string query = "select PM.descripcion from SELECT_GROUP.Plan_Med as PM where idPlan = ('" + idPlan + "')";
             DataTable dt = Conexion.EjecutarComando(query);
             foreach (DataRow fila in dt.Rows)
             {
-                PlanMedHijo.Text = ((fila["descripcion"]).ToString());
-
+                planMedHijo = ((fila["descripcion"]).ToString());
+                PlanMedHijo.Text = planMedHijo;
             }
 
             tablaAfiliados = Abm_Afiliado.estructuraBD.crearEstructuraAfiliado(tablaAfiliados);
-            /*
-            DataColumn nombre = tablaAfiliados.Columns.Add("nombre", typeof(String));
-            tablaAfiliados.Columns.Add("apellido", typeof(String));
-            tablaAfiliados.Columns.Add("tipoDni", typeof(String));
-            tablaAfiliados.Columns.Add("numeroDni", typeof(Int32));
-            tablaAfiliados.Columns.Add("telefono", typeof(Int32));
-            tablaAfiliados.Columns.Add("mail", typeof(String));
-            tablaAfiliados.Columns.Add("fechaNac", typeof(DateTime));
-            tablaAfiliados.Columns.Add("sexo", typeof(String));
-            tablaAfiliados.Columns.Add("estadoCivil", typeof(String));
-            tablaAfiliados.Columns.Add("direccion", typeof(String));
-            tablaAfiliados.Columns.Add("usuarioId", typeof(Int32));
-            tablaAfiliados.Columns.Add("planMed", typeof(Int32));
-         */
-             
+                        
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
              if (Utilidades.ValidarFormulario(this, errorTextBoxHijo) == false)
             {
-                DataRow afiliado = tablaAfiliados.NewRow();
-                int nroAfiliado = Convert.ToInt32(afiliadoIngresado["nroAfiliado"]);
-                nroAfiliado++;
+                contador++; 
+                int numeroFilas = tablaAfiliados.Rows.Count;
+                int nroAfiliado = (Convert.ToInt32(afiliadoIngresado["nroAfiliado"]) + 1);
                 
-                afiliado["nroAfiliado"] = nroAfiliado;
-                afiliado["nombre"] = nombreHijo.Text;
-                afiliado["apellido"] = apellidoHijo.Text;
-                afiliado["tipoDoc"] = tipoDocHijo.Text;
-                afiliado["numeroDoc"] = Convert.ToInt32(nroDocHijo.Text);
-                afiliado["telefono"] = Convert.ToInt32(telefonoHijo.Text);
-                afiliado["mail"] = mailHijo.Text;
-                //afiliado["fechaNac"] = Convert.ToDateTime(fechaNacHijo.Text);
-                afiliado["fechaNac"] = dateTimePicker1.Value.Date;
-                afiliado["sexo"] = cmbSexoHijo.Text;
-                afiliado["estadoCivil"] = cmbEstadoCivilHijo.Text;
-                afiliado["direccion"] = direccionHijo.Text;
-                int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(nroDocHijo.Text));
-                afiliado["idUsuario"] = usuarioIdAfiliado;
-                string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + PlanMedHijo.Text.Trim() + "')";
-                DataTable dt = Conexion.EjecutarComando(query);
-                foreach (DataRow fila in dt.Rows)
+                 if(nuevo){
+                 
+                 if (numeroFilas == 1)
                 {
-                    int idPlanMed = Convert.ToInt32((fila["idPlan"]));
-                    afiliado["plan_idPlan"] = idPlanMed;
-                }
+                    nroAfiliado++;
 
-                afiliado["plan_idPlan"] = afiliadoIngresado["plan_idPlan"];
+                    tablaAfiliados = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(tablaAfiliados, nroAfiliado, nombreHijo.Text, apellidoHijo.Text,
+                                                                                   tipoDocHijo.Text, Convert.ToInt32(nroDocHijo.Text),
+                                                                                   Convert.ToInt32(telefonoHijo.Text), mailHijo.Text,
+                                                                                   dateTimePicker1.Value.Date, cmbSexoHijo.Text, cmbEstadoCivilHijo.Text,
+                                                                                   0, direccionHijo.Text, planMedHijo);
+                    int count = tablaAfiliados.Rows.Count;
+                    afiliadoIngresado = tablaAfiliados.Rows[count - 1];
 
-                tablaAfiliados.Rows.Add(afiliado);
-           
-                 if (otroHijo)
-                {
-                    AltaHijo frmHijo = new AltaHijo(tablaAfiliados,afiliado);
-                    frmHijo.Show();
-                    this.Close();
-                }
-                else {
-                    SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-                    SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
-                    cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
-                    cmdAltaAfiliado.Parameters.Add("@Afiliados", SqlDbType.Structured).Value = tablaAfiliados;
-                    try
+                    if (hijos > contador && otroHijo)
                     {
-                        cnx.Open();
-                        cmdAltaAfiliado.ExecuteNonQuery();
-                        MessageBox.Show("Se han guardado correctamente los datos");
-                        Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
-                        frmAdmin.Show();
+                        AltaHijo frmHijo = new AltaHijo(tablaAfiliados, afiliadoIngresado, (hijos - 1),nuevo);
+                        frmHijo.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+                        SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
+                        cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+                        cmdAltaAfiliado.Parameters.Add("@Afiliados", SqlDbType.Structured).Value = tablaAfiliados;
+                        try
+                        {
+                            cnx.Open();
+                            cmdAltaAfiliado.ExecuteNonQuery();
+                            MessageBox.Show("Se han guardado correctamente los datos");
+                            Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
+                            frmAdmin.Show();
+                            this.Close();
+                        }
+                        catch (ApplicationException error)
+                        {
+                            string mensaje = "Se ha producido un error";
+                            ApplicationException excep = new ApplicationException(mensaje, error);
+                            excep.Source = this.Text;
+                        }
+
+                    }
+                }
+                else { 
+                    
+                    tablaAfiliados = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(tablaAfiliados, nroAfiliado, nombreHijo.Text, apellidoHijo.Text,
+                                                                                   tipoDocHijo.Text, Convert.ToInt32(nroDocHijo.Text),
+                                                                                   Convert.ToInt32(telefonoHijo.Text), mailHijo.Text,
+                                                                                   dateTimePicker1.Value.Date, cmbSexoHijo.Text, cmbEstadoCivilHijo.Text,
+                                                                                   0, direccionHijo.Text, planMedHijo);
+
+                    int count = tablaAfiliados.Rows.Count;
+                    afiliadoIngresado = tablaAfiliados.Rows[count - 1];
+
+                    if (hijos > contador && otroHijo)
+                    {
+                        nroAfiliado++;
+                        AltaHijo frmHijo = new AltaHijo(tablaAfiliados, afiliadoIngresado, hijos,nuevo);
+                        frmHijo.Show();
                         this.Close();
                         
                     }
-                    catch (ApplicationException error)
+                    else
                     {
-                        string mensaje = "Se ha producido un error";
-                        ApplicationException excep = new ApplicationException(mensaje, error);
-                        excep.Source = this.Text;
+                        SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+                        SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
+                        cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+                        cmdAltaAfiliado.Parameters.Add("@Afiliados", SqlDbType.Structured).Value = tablaAfiliados;
+                        try
+                        {
+                            cnx.Open();
+                            cmdAltaAfiliado.ExecuteNonQuery();
+                            MessageBox.Show("Se han guardado correctamente los datos");
+                            Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
+                            frmAdmin.Show();
+                            this.Close();
+                        }
+                        catch (ApplicationException error)
+                        {
+                            string mensaje = "Se ha producido un error";
+                            ApplicationException excep = new ApplicationException(mensaje, error);
+                            excep.Source = this.Text;
+                        }
+
+
+                        }
                     }
-                }
- 
+                 }
+                 else
+                 {
+                     nroAfiliado++;
+
+                     DataTable tablaAfiliados2 = new DataTable(); 
+
+                     tablaAfiliados2 = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(tablaAfiliados2, nroAfiliado, nombreHijo.Text, apellidoHijo.Text,
+                                                                                   tipoDocHijo.Text, Convert.ToInt32(nroDocHijo.Text),
+                                                                                   Convert.ToInt32(telefonoHijo.Text), mailHijo.Text,
+                                                                                   dateTimePicker1.Value.Date, cmbSexoHijo.Text, cmbEstadoCivilHijo.Text,
+                                                                                   0, direccionHijo.Text, planMedHijo);
+
+
+                      int count = tablaAfiliados.Rows.Count;
+                    afiliadoIngresado = tablaAfiliados.Rows[count - 1];
+
+                    if (hijos > contador && otroHijo)
+                    {
+                        nroAfiliado++;
+                        AltaHijo frmHijo = new AltaHijo(tablaAfiliados, afiliadoIngresado, hijos,nuevo);
+                        frmHijo.Show();
+                        this.Close();
+                        
+                    }
+                    else
+                    {
+                        SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+                        SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
+                        cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+                        cmdAltaAfiliado.Parameters.Add("@Afiliados", SqlDbType.Structured).Value = tablaAfiliados;
+                        try
+                        {
+                            cnx.Open();
+                            cmdAltaAfiliado.ExecuteNonQuery();
+                            MessageBox.Show("Se han guardado correctamente los datos");
+                            Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
+                            frmAdmin.Show();
+                            this.Close();
+                        }
+                        catch (ApplicationException error)
+                        {
+                            string mensaje = "Se ha producido un error";
+                            ApplicationException excep = new ApplicationException(mensaje, error);
+                            excep.Source = this.Text;
+                        }
+
+                    }
+                 }
             }
-            else
-            {
-                MessageBox.Show("Faltan Campos ingresar");
-            }
-            this.Close();
-        }
+             else
+             {
+                    MessageBox.Show("Faltan Campos ingresar");
+                 }
 
-        public int registrarUsuario(int p)
-        {
 
-            string nroDocumento = nroDocHijo.Text.Trim();
-            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-            SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.sp_CrearUsuario", cnx);
-            cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
-            cmdAltaAfiliado.Parameters.Add("@Dni", SqlDbType.Int).Value = Convert.ToInt32(nroDocHijo.Text);
-            try
-            {
-                cnx.Open();
-                cmdAltaAfiliado.ExecuteNonQuery();
-                string query = "select US.idUsuario from SELECT_GROUP.Usuario as US where nombreUsuario = ('" + nroDocumento + "')";
-                DataTable dt = Conexion.EjecutarComando(query);
-                foreach (DataRow fila in dt.Rows)
-                {
-                    idUsuario = Convert.ToInt32((fila["idUsuario"]));
-
-                }
-            }
-            catch (ApplicationException error)
-            {
-                string mensaje = "Se ha producido un error ";
-                ApplicationException excep = new ApplicationException(mensaje, error);
-                excep.Source = this.Text;
-                idUsuario = -1;
-
-            }
-            return idUsuario;
-
+             this.Close();
         }
 
         private void otro_CheckedChanged(object sender, EventArgs e)

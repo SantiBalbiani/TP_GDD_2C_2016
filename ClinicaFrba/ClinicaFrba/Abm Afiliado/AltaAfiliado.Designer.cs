@@ -40,7 +40,6 @@ namespace ClinicaFrba.Abm_Afiliado
             this.label8 = new System.Windows.Forms.Label();
             this.cmbSexo = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.chkHijos = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
@@ -59,8 +58,8 @@ namespace ClinicaFrba.Abm_Afiliado
             this.btnCargaPareja = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnCargarHijos = new System.Windows.Forms.Button();
-            this.textCantHijos = new Libreria.errorTextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.textCantHijos = new Libreria.errorTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorTextBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -183,20 +182,6 @@ namespace ClinicaFrba.Abm_Afiliado
             this.label9.TabIndex = 16;
             this.label9.Text = "Estado Civil:";
             // 
-            // chkHijos
-            // 
-            this.chkHijos.AutoSize = true;
-            this.chkHijos.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkHijos.ForeColor = System.Drawing.Color.White;
-            this.chkHijos.Location = new System.Drawing.Point(0, 279);
-            this.chkHijos.Name = "chkHijos";
-            this.chkHijos.Size = new System.Drawing.Size(91, 17);
-            this.chkHijos.TabIndex = 17;
-            this.chkHijos.Text = "¿Tiene Hijos?";
-            this.chkHijos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkHijos.UseVisualStyleBackColor = true;
-            this.chkHijos.CheckedChanged += new System.EventHandler(this.chkHijos_CheckedChanged);
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -224,7 +209,7 @@ namespace ClinicaFrba.Abm_Afiliado
             this.label13.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.White;
             this.label13.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.label13.Location = new System.Drawing.Point(9, 341);
+            this.label13.Location = new System.Drawing.Point(9, 331);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(347, 28);
             this.label13.TabIndex = 27;
@@ -344,7 +329,7 @@ namespace ClinicaFrba.Abm_Afiliado
             // btnCargaPareja
             // 
             this.btnCargaPareja.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnCargaPareja.Location = new System.Drawing.Point(229, 270);
+            this.btnCargaPareja.Location = new System.Drawing.Point(229, 251);
             this.btnCargaPareja.Name = "btnCargaPareja";
             this.btnCargaPareja.Size = new System.Drawing.Size(82, 21);
             this.btnCargaPareja.TabIndex = 25;
@@ -364,30 +349,31 @@ namespace ClinicaFrba.Abm_Afiliado
             // btnCargarHijos
             // 
             this.btnCargarHijos.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnCargarHijos.Location = new System.Drawing.Point(229, 297);
+            this.btnCargarHijos.Location = new System.Drawing.Point(229, 278);
             this.btnCargarHijos.Name = "btnCargarHijos";
             this.btnCargarHijos.Size = new System.Drawing.Size(82, 40);
             this.btnCargarHijos.TabIndex = 46;
             this.btnCargarHijos.Text = "Cargar Hijos / Familiares";
             this.btnCargarHijos.UseVisualStyleBackColor = true;
-            // 
-            // textCantHijos
-            // 
-            this.textCantHijos.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.textCantHijos.Location = new System.Drawing.Point(70, 302);
-            this.textCantHijos.Name = "textCantHijos";
-            this.textCantHijos.Size = new System.Drawing.Size(130, 20);
-            this.textCantHijos.TabIndex = 47;
-            this.textCantHijos.Validar = true;
+            this.btnCargarHijos.Click += new System.EventHandler(this.btnCargarHijos_Click);
             // 
             // label11
             // 
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(2, 297);
+            this.label11.Location = new System.Drawing.Point(3, 274);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(65, 40);
             this.label11.TabIndex = 49;
-            this.label11.Text = "Cant Hijos / Familiares";
+            this.label11.Text = "Cant Hijos / Familiares:";
+            // 
+            // textCantHijos
+            // 
+            this.textCantHijos.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.textCantHijos.Location = new System.Drawing.Point(70, 278);
+            this.textCantHijos.Name = "textCantHijos";
+            this.textCantHijos.Size = new System.Drawing.Size(130, 20);
+            this.textCantHijos.TabIndex = 47;
+            this.textCantHijos.Validar = true;
             // 
             // frmAltaAfiliado
             // 
@@ -414,7 +400,6 @@ namespace ClinicaFrba.Abm_Afiliado
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnCargaPareja);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.chkHijos);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.cmbSexo);
             this.Controls.Add(this.label8);
@@ -448,7 +433,6 @@ namespace ClinicaFrba.Abm_Afiliado
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cmbSexo;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.CheckBox chkHijos;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label label13;
@@ -467,7 +451,7 @@ namespace ClinicaFrba.Abm_Afiliado
         private System.Windows.Forms.Button btnCargaPareja;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnCargarHijos;
-        private Libreria.errorTextBox textCantHijos;
         private System.Windows.Forms.Label label11;
+        private Libreria.errorTextBox textCantHijos;
     }
 }

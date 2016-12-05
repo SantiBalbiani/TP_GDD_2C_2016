@@ -23,21 +23,39 @@ namespace ClinicaFrba.Abm_Afiliado
         public int idUsuario;
         public Boolean tieneHijos;
         public Boolean nuevo;
+        public int nroAfiliado = 0;
+        public string planMedPareja;
+        public int hijosCant;
+        
 
-        public AltaPareja(DataTable afiliadoPrincipal,DataRow afiliadoIngre,Boolean hijos,Boolean afiliadoPrincipalNuevo)
+        public AltaPareja(DataTable afiliadoPrincipal,DataRow afiliadoIngre,Boolean hijos,Boolean afiliadoPrincipalNuevo,int cantHijos)
         {
             InitializeComponent();
             tieneHijos = hijos;
             afiliadoIngresado = afiliadoIngre;
             afiliados = afiliadoPrincipal;
             nuevo = afiliadoPrincipalNuevo;
+            hijosCant = cantHijos;
          }
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
             
             if (Utilidades.ValidarFormulario(this, errorTextBoxPareja) == false)
             {
-                DataRow afiliado = afiliados.NewRow();
+                hijosCant = Convert.ToInt32(textCantHijos.Text);
+                string estadoCivilPareja = Convert.ToString(afiliadoIngresado["estadoCivil"]);
+                nroAfiliado = Convert.ToInt32(afiliadoIngresado["nroAfiliado"]) + 1;
+                
+
+                afiliados = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliados, nroAfiliado, nombrePareja.Text, apellidoPareja.Text,
+                                                                                    tipoDocPareja.Text, Convert.ToInt32(nroDocPareja.Text),
+                                                                                    Convert.ToInt32(telefonoPareja.Text), mailPareja.Text,
+                                                                                    dateTimePicker1.Value.Date, cmbSexoPareja.Text, estadoCivilPareja,
+                                                                                    hijosCant, direccionPareja.Text, planMedPareja);
+                
+
+
+               /* DataRow afiliado = afiliados.NewRow();
                 afiliado["nroAfiliado"] = Convert.ToInt32(afiliadoIngresado["nroAfiliado"]) +1 ;
                 afiliado["nombre"] = nombrePareja.Text;
                 afiliado["apellido"] = apellidoPareja.Text;
@@ -48,7 +66,8 @@ namespace ClinicaFrba.Abm_Afiliado
                 //afiliado["fechaNac"] = Convert.ToDateTime(fechaNacPareja.Text);
                 afiliado["fechaNac"] = dateTimePicker1.Value.Date;
                 afiliado["sexo"] = cmbSexoPareja.Text;
-                afiliado["estadoCivil"] = "Casado/a";
+                afiliado["estadoCivil"] = afiliadoIngresado["estadoCivil"];
+                afiliado["cantidadHijos"] = Convert.ToInt32(textCantHijos.Text);
                 afiliado["direccion"] = direccionPareja.Text;
                 int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(nroDocPareja.Text));
                 afiliado["idUsuario"] = usuarioIdAfiliado;
@@ -62,13 +81,13 @@ namespace ClinicaFrba.Abm_Afiliado
                 }
                 
                 //Para que ande
-                afiliado["plan_idPlan"] = afiliadoIngresado["plan_idPlan"];
+                afiliado["plan_idPlan"] = afiliadoIngresado["plan_idPlan"];*/
 
-                afiliados.Rows.Add(afiliado);
+                DataRow afiliado = afiliados.Rows[1];
 
                 if (tieneHijos)
                 {
-                    AltaHijo frmHijo = new AltaHijo(afiliados,afiliado);
+                    AltaHijo frmHijo = new AltaHijo(afiliados,afiliado,hijosCant,nuevo);
                     frmHijo.Show();
                     this.Close();
                 }
@@ -142,17 +161,18 @@ namespace ClinicaFrba.Abm_Afiliado
 
             if (nuevo)
             {
-                string idPlan = afiliadoIngresado[11].ToString();
+                string idPlan = afiliadoIngresado[13].ToString();
 
                 string query = "select PM.descripcion from SELECT_GROUP.Plan_Med as PM where idPlan = ('" + idPlan + "')";
                 DataTable dt = Conexion.EjecutarComando(query);
                 foreach (DataRow fila in dt.Rows)
                 {
-                    PlanMedPareja.Text = ((fila["descripcion"]).ToString());
+                    planMedPareja = ((fila["descripcion"]).ToString());
+                    PlanMedPareja.Text = planMedPareja;
                 }
             }
             else {
-                string query = "select PM.descripcion from SELECT_GROUP.Plan_Med as PM where idPlan = ('" + afiliadoIngresado[11] + "')";
+                string query = "select PM.descripcion from SELECT_GROUP.Plan_Med as PM where idPlan = ('" + afiliadoIngresado[13] + "')";
                 DataTable dt = Conexion.EjecutarComando(query);
                 foreach (DataRow fila in dt.Rows)
                 {

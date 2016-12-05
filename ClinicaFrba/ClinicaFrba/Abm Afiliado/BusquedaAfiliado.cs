@@ -16,6 +16,7 @@ namespace ClinicaFrba.Abm_Afiliado
     public partial class BusquedaAfiliado : Form
     {
         public Boolean tieneHijos = false;
+        public int cantHijos = 0;
 
         public BusquedaAfiliado()
         {
@@ -36,7 +37,7 @@ namespace ClinicaFrba.Abm_Afiliado
                 DataTable afiliados = new DataTable();
                 int Afiliado = Convert.ToInt32(nroAfiliadoPrincipal.Text);
 
-                string cadena = "select * from SELECT_GROUP.Afiliado where idAfiliado=('" + Afiliado + "')";
+                string cadena = "select * from SELECT_GROUP.Afiliado where nroAfiliado=('" + Afiliado + "')";
 
                 afiliados = Conexion.LeerTabla(cadena);
 
@@ -52,8 +53,9 @@ namespace ClinicaFrba.Abm_Afiliado
                     {
                         this.Hide();
                         MessageBox.Show("El afiliado es: " + fila["nombre"].ToString()+" " +fila["apellido"]);
+                        cantHijos = Convert.ToInt32(fila["cantidadHijos"].ToString());
                         
-                        AltaPareja frmPareja = new AltaPareja(afiliados,fila,tieneHijos,false);
+                        AltaPareja frmPareja = new AltaPareja(afiliados,fila,tieneHijos,false,cantHijos);
                         frmPareja.Show();
                     }
                 }

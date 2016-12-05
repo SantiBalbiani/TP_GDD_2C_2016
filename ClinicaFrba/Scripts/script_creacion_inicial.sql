@@ -827,19 +827,26 @@ BEGIN
 	declare @idAfiliado int;
 	declare @nroDocumento int;
 
-	set @nroDocumento = (select numeroDoc from @Afiliados)
-	set @nroAfiliado =  (select nroAfiliado from @Afiliados)
+	--set @nroDocumento = (select numeroDoc from @Afiliados)
+	--set @nroAfiliado =  (select nroAfiliado from @Afiliados)
 	
-	Insert into SELECT_GROUP.Afiliado(nombre,nroAfiliado,apellido,tipoDoc,numeroDoc,telefono,mail,fechaNac,sexo,estadoCivil,cantidadHijos,direccion,idUsuario,plan_idPlan) 
+	Insert into SELECT_GROUP.Afiliado(nombre,nroAfiliado,apellido,tipoDoc,numeroDoc,telefono,mail,fechaNac,sexo,estadoCivil
+										,cantidadHijos,direccion,idUsuario,plan_idPlan) 
 	SELECT * FROM @Afiliados
 
-	set @idAfiliado = (SELECT max(idAfiliado) FROM Select_Group.Afiliado)
+	--set @idAfiliado = (SELECT min(idAfiliado) FROM Select_Group.Afiliado as AF0, @Afiliados as AF1 where AF0.numeroDoc = AF1.numeroDoc)
 
 
-	update SELECT_GROUP.Afiliado
-		set nroAfiliado = ((@idAfiliado * 100) + @nroAfiliado)
-		where numeroDoc = @nroDocumento
-		
+	--update SELECT_GROUP.Afiliado
+		--set nroAfiliado = ((@idAfiliado * 100) + @nroAfiliado)
+		--where numeroDoc = @nroDocumento
+	--update SELECT_GROUP.Afiliado
+	--	set nroAfiliado = case (select nroAfiliado from @Afiliados) 
+	--		when 1 then ((@idAfiliado * 100) + 1)
+	--		when 2 then ((@idAfiliado * 100) + 2)
+	--	end
+	--where numeroDoc in (select numeroDoc from @Afiliados)	
+	
 END
 go
 

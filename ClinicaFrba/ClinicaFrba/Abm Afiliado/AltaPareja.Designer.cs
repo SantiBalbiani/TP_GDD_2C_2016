@@ -54,6 +54,8 @@
             this.mailPareja = new Libreria.errorTextBox();
             this.errorTextBoxPareja = new System.Windows.Forms.ErrorProvider(this.components);
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.textCantHijos = new Libreria.errorTextBox();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorTextBoxPareja)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,11 +169,11 @@
             // btnSiguiente
             // 
             this.btnSiguiente.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnSiguiente.Location = new System.Drawing.Point(82, 336);
+            this.btnSiguiente.Location = new System.Drawing.Point(83, 369);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(90, 23);
             this.btnSiguiente.TabIndex = 26;
-            this.btnSiguiente.Text = "Ir Atrás";
+            this.btnSiguiente.Text = "Siguiente";
             this.btnSiguiente.UseVisualStyleBackColor = true;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
@@ -180,18 +182,18 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(9, 298);
+            this.label13.Location = new System.Drawing.Point(11, 327);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(234, 28);
             this.label13.TabIndex = 27;
-            this.label13.Text = "Una vez haya terminado de cargar su pareja\r\nhaga clic para volver atrás";
+            this.label13.Text = "Una vez haya terminado de cargar su pareja\r\n haga click en Siguiente";
             this.label13.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnCancelar.Location = new System.Drawing.Point(328, 336);
+            this.btnCancelar.Location = new System.Drawing.Point(331, 367);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 25);
             this.btnCancelar.TabIndex = 28;
@@ -309,12 +311,32 @@
             this.dateTimePicker1.Value = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
+            // textCantHijos
+            // 
+            this.textCantHijos.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.textCantHijos.Location = new System.Drawing.Point(81, 294);
+            this.textCantHijos.Name = "textCantHijos";
+            this.textCantHijos.Size = new System.Drawing.Size(130, 20);
+            this.textCantHijos.TabIndex = 66;
+            this.textCantHijos.Validar = true;
+            // 
+            // label11
+            // 
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(11, 287);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 40);
+            this.label11.TabIndex = 67;
+            this.label11.Text = "Cant Hijos / Familiares:";
+            // 
             // AltaPareja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(415, 373);
+            this.ClientSize = new System.Drawing.Size(418, 404);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.textCantHijos);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.mailPareja);
             this.Controls.Add(this.label10);
@@ -375,5 +397,7 @@
         private Libreria.errorTextBox mailPareja;
         private System.Windows.Forms.ErrorProvider errorTextBoxPareja;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private Libreria.errorTextBox textCantHijos;
+        private System.Windows.Forms.Label label11;
     }
 }

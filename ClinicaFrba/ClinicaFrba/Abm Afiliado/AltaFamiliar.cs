@@ -17,6 +17,7 @@ namespace ClinicaFrba.Abm_Afiliado
     {
         public Boolean altaHijo = false;
         public Boolean nuevo = false;
+        public int cantHijos = 0;
 
         public AltaFamiliar()
         {
@@ -32,7 +33,7 @@ namespace ClinicaFrba.Abm_Afiliado
                     DataTable afiliados = new DataTable();
                     int afiliado = Convert.ToInt32(NroAfiliadoPrincipal.Text);
 
-                    string cadena = "select * from SELECT_GROUP.Afiliado where idAfiliado=('" + afiliado + "')";
+                    string cadena = "select nroAfiliado,nombre,apellido,tipoDoc,numeroDoc,telefono,mail,fechaNac,sexo,estadoCivil,cantidadHijos,direccion,idUsuario,plan_idPlan from SELECT_GROUP.Afiliado where nroAfiliado=('" + afiliado + "')";
 
                     afiliados = Conexion.LeerTabla(cadena);
 
@@ -48,8 +49,8 @@ namespace ClinicaFrba.Abm_Afiliado
                         {
                             this.Hide();
                             MessageBox.Show("El afiliado es: " + fila["nombre"].ToString() + " " + fila["apellido"]);
-
-                            AltaHijo frmHijo = new AltaHijo(afiliados, fila);
+                            cantHijos = Convert.ToInt32(fila["cantidadHijos"].ToString());
+                            AltaHijo frmHijo = new AltaHijo(afiliados,fila,cantHijos,nuevo);
                             frmHijo.Show();
                         }
                     }
@@ -70,7 +71,7 @@ namespace ClinicaFrba.Abm_Afiliado
                     DataTable afiliados = new DataTable();
                     int afiliado = Convert.ToInt32(NroAfiliadoPrincipal.Text);
 
-                    string cadena = "select nombre,apellido,tipoDni,numeroDni,telefono,mail,fechaNac,sexo,estadoCivil,direccion,idUsuario,plan_idPlan from SELECT_GROUP.Afiliado where idAfiliado=('" + afiliado + "')";
+                    string cadena = "select nombre,nroAfiliado,apellido,tipoDoc,numeroDoc,telefono,mail,fechaNac,sexo,estadoCivil,cantidadHijos,direccion,idUsuario,plan_idPlan from SELECT_GROUP.Afiliado where nroAfiliado=('" + afiliado + "')";
 
                     afiliados = Conexion.LeerTabla(cadena);
 
@@ -86,8 +87,8 @@ namespace ClinicaFrba.Abm_Afiliado
                         {
                             this.Hide();
                             MessageBox.Show("El afiliado es: " + fila["nombre"].ToString() + " " + fila["apellido"]);
-                            
-                            AltaPareja frmPareja = new AltaPareja(afiliados,fila,altaHijo,nuevo);
+                            cantHijos = Convert.ToInt32(fila["cantidadHijos"].ToString());
+                            AltaPareja frmPareja = new AltaPareja(afiliados,fila,altaHijo,nuevo,cantHijos);
                             frmPareja.Show();
                         }
                     }
