@@ -36,7 +36,7 @@ namespace ClinicaFrba.Listados
             //string contador;
 
             DataTable Lista = new DataTable();
-            string cadena = "SELECT TOP 5 T.especialidad FROM Select_Group.Turno T WHERE T.cancelacion_idCancelacion is not null GROUP BY T.especialidad ORDER BY count(*) desc";
+            string cadena = "SELECT [especialidad] FROM [Select_Group].[V_Las5EspConMasCancelaciones]";
             Lista = Conexion.LeerTabla(cadena);
             listView1.Clear();
 
@@ -78,7 +78,7 @@ namespace ClinicaFrba.Listados
             //string contador;
 
             DataTable Lista = new DataTable();
-            string cadena = "SELECT TOP 5 P.matricula , P.apellido, P.nombre, E.descripcion FROM Select_Group.Profesional P JOIN Select_Group.Profesional_Por_Especialidad PE ON PE.profesional_idProfesional = P.matricula JOIN Select_Group.Especialidad E ON E.idEspecialidad = PE.especialidad_idEspecialidad JOIN Select_Group.Agenda Ag ON Ag.profesional_IdProfesional = P.matricula  JOIN Select_Group.Turno T ON T.idAgenda = Ag.idAgenda JOIN Select_Group.Afiliado Af ON Af.idAfiliado = T.afiliado_idAfiliado GROUP BY P.matricula, Af.plan_idPlan, E.descripcion, P.apellido, P.nombre  ORDER BY count(Af.plan_idPlan)";
+            string cadena = "SELECT  matricula  ,apellido ,nombre ,descripcion FROM Select_Group.ProfMasConsultados";
             Lista = Conexion.LeerTabla(cadena);
             listView1.Clear();
 
@@ -239,7 +239,7 @@ namespace ClinicaFrba.Listados
             //string contador;
 
             DataTable Lista = new DataTable();
-            string query4 = "SELECT TOP 5 PE.especialidad_idEspecialidad, Esp.descripcion FROM Select_Group.Turno T JOIN Select_Group.Agenda Ag ON Ag.idAgenda = T.idAgenda JOIN Select_Group.Profesional_Por_Especialidad PE ON PE.profesional_idProfesional = Ag.profesional_IdProfesional JOIN Select_Group.Bono Bo ON Bo.estado = 0 AND Bo.idAfiliado = T.afiliado_idAfiliado JOIN Select_Group.Especialidad Esp ON Esp.idEspecialidad = T.especialidad GROUP BY PE.especialidad_idEspecialidad, Esp.descripcion ORDER BY count (*) desc";
+            string query4 = "SELECT [especialidad_idEspecialidad] ,[descripcion] FROM [Select_Group].[V_Las5EspConMasBonos]";
             Lista = Conexion.LeerTabla(query4);
             listView1.Clear();
 
