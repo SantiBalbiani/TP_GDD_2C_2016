@@ -72,38 +72,47 @@ namespace ClinicaFrba.Compra_Bono
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-            SqlCommand cmdUsuario = new SqlCommand("Select_Group.ComprarBono", cnx);
-            cmdUsuario.CommandType = CommandType.StoredProcedure;
-            cmdUsuario.Parameters.Add("@userName", SqlDbType.VarChar).Value = Globals.userName;
-            cmdUsuario.Parameters.Add("@cantidad", SqlDbType.Int).Value = cantidad.Text;
+            if (txtCantidad.Text != "")
+            {
+                SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+                SqlCommand cmdUsuario = new SqlCommand("Select_Group.ComprarBono", cnx);
+                cmdUsuario.CommandType = CommandType.StoredProcedure;
+                cmdUsuario.Parameters.Add("@userName", SqlDbType.VarChar).Value = Globals.userName;
+                cmdUsuario.Parameters.Add("@cantidad", SqlDbType.Int).Value = txtCantidad.Text;
 
-            try
-            {
+                try
+                {
 
-                cnx.Open();
-                cmdUsuario.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                cnx.Close();
-                if (menuAnterior == "Admin")
-                {
-                    Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();
-                    home.Show();
-                    this.Close();
+                    cnx.Open();
+                    cmdUsuario.ExecuteNonQuery();
                 }
-                if (menuAnterior == "Afiliado")
+                catch (SqlException ex)
                 {
-                    HomeAfiliado home = new HomeAfiliado();
-                    home.Show();
-                    this.Close();
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    cnx.Close();
+                    MessageBox.Show("Compra exitosa");
+                    if (menuAnterior == "Admin")
+                    {
+                        Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();
+                        home.Show();
+                        this.Close();
+                    }
+                    if (menuAnterior == "Afiliado")
+                    {
+                        HomeAfiliado home = new HomeAfiliado();
+                        home.Show();
+                        this.Close();
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("Ingrese Cantidad de Bonos a comprar");
+            } 
+            
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -118,7 +127,7 @@ namespace ClinicaFrba.Compra_Bono
 
         private void txtPlan_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -128,12 +137,42 @@ namespace ClinicaFrba.Compra_Bono
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = (precioBonoSegunPlan * (Convert.ToInt32(cantidad.Text))).ToString();
+            if (txtCantidad.Text != "")
+            {
+                textBox1.Text = (precioBonoSegunPlan * (Convert.ToInt32(txtCantidad.Text))).ToString();
+            }
+            else
+            {
+                MessageBox.Show("Ingrese Cantidad de Bonos a comprar");
+            }
         }
 
-        private void cantidad_TextChanged(object sender, EventArgs e)
-        {
 
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+            txtCantidad.Text = txtCantidad.Text.Trim();
+            txtCantidad.Text = txtCantidad.Text.Replace(" ", "");
+            txtCantidad.SelectionStart = txtCantidad.Text.Length;
         }
 
         private void button2_Click(object sender, EventArgs e)

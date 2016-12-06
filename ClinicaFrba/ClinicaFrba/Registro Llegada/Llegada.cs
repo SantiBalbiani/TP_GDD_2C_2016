@@ -292,9 +292,31 @@ namespace ClinicaFrba.Registro_Llegada
         
         }
 
+        private void txtNumeroAfiliado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
         private void txtNumeroAfiliado_TextChanged(object sender, EventArgs e)
         {
-
+            txtNumeroAfiliado.Text = txtNumeroAfiliado.Text.Trim();
+            txtNumeroAfiliado.Text = txtNumeroAfiliado.Text.Replace(" ", "");
+            txtNumeroAfiliado.SelectionStart = txtNumeroAfiliado.Text.Length;
         }
 
         private void button2_Click(object sender, EventArgs e)

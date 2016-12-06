@@ -30,7 +30,7 @@
         {
             this.btnComprar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.cantidad = new System.Windows.Forms.TextBox();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPlan = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -59,14 +59,15 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Cantidad de Bonos: ";
             // 
-            // cantidad
+            // txtCantidad
             // 
-            this.cantidad.ForeColor = System.Drawing.Color.Black;
-            this.cantidad.Location = new System.Drawing.Point(22, 96);
-            this.cantidad.Name = "cantidad";
-            this.cantidad.Size = new System.Drawing.Size(100, 20);
-            this.cantidad.TabIndex = 2;
-            this.cantidad.TextChanged += new System.EventHandler(this.cantidad_TextChanged);
+            this.txtCantidad.ForeColor = System.Drawing.Color.Black;
+            this.txtCantidad.Location = new System.Drawing.Point(22, 96);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(100, 20);
+            this.txtCantidad.TabIndex = 2;
+            this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
             // label2
             // 
@@ -107,6 +108,7 @@
             this.textBox1.ForeColor = System.Drawing.Color.Black;
             this.textBox1.Location = new System.Drawing.Point(147, 127);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 4;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -142,7 +144,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.cantidad);
+            this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnComprar);
             this.Name = "FrmComprarBonos";
@@ -157,7 +159,7 @@
 
         private System.Windows.Forms.Button btnComprar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox cantidad;
+        private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPlan;
         private System.Windows.Forms.Label label3;
