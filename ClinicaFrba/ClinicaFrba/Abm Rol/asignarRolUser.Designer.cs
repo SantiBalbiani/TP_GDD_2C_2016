@@ -39,12 +39,15 @@
             this.rolAsignar = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnRolAsignar
             // 
             this.btnRolAsignar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnRolAsignar.Location = new System.Drawing.Point(21, 186);
+            this.btnRolAsignar.Location = new System.Drawing.Point(196, 215);
             this.btnRolAsignar.Name = "btnRolAsignar";
             this.btnRolAsignar.Size = new System.Drawing.Size(123, 23);
             this.btnRolAsignar.TabIndex = 14;
@@ -68,11 +71,11 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.MidnightBlue;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(58, 68);
+            this.label1.Location = new System.Drawing.Point(26, 68);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 13);
+            this.label1.Size = new System.Drawing.Size(142, 13);
             this.label1.TabIndex = 16;
-            this.label1.Text = "Seleccione el Usuario";
+            this.label1.Text = "Ingrese Nombre de Usuario: ";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
@@ -111,7 +114,7 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.MidnightBlue;
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(32, 121);
+            this.label6.Location = new System.Drawing.Point(197, 108);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(108, 13);
             this.label6.TabIndex = 18;
@@ -130,7 +133,7 @@
             // rolAsignar
             // 
             this.rolAsignar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.rolAsignar.Location = new System.Drawing.Point(21, 160);
+            this.rolAsignar.Location = new System.Drawing.Point(196, 137);
             this.rolAsignar.Name = "rolAsignar";
             this.rolAsignar.Size = new System.Drawing.Size(123, 20);
             this.rolAsignar.TabIndex = 22;
@@ -141,7 +144,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.MidnightBlue;
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(171, 121);
+            this.label7.Location = new System.Drawing.Point(261, 95);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(13, 13);
             this.label7.TabIndex = 19;
@@ -159,12 +162,43 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(280, 62);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(52, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Buscar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(12, 115);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(175, 139);
+            this.checkedListBox1.TabIndex = 26;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(57, 260);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 27;
+            this.button3.Text = "Actualizar";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // asignarRolUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(344, 277);
+            this.ClientSize = new System.Drawing.Size(344, 303);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.rolDesasignar);
             this.Controls.Add(this.rolAsignar);
@@ -197,6 +231,9 @@
         private System.Windows.Forms.TextBox rolAsignar;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.Button button3;
 
     }
 }
