@@ -87,7 +87,7 @@ namespace ClinicaFrba.Menu_Principal
             }
             else
             {
-                string consultaUsername = "SELECT U.nombreUsuario FROM Select_Group.Usuario U JOIN Select_Group.Afiliado A ON A.idUsuario = U.idUsuario WHERE A.nroAfiliado = " + textBox1.Text.ToString();
+                string consultaUsername = "SELECT U.nombreUsuario FROM Select_Group.Usuario U JOIN Select_Group.Afiliado A ON A.idUsuario = U.idUsuario WHERE A.idAfiliado = " + textBox1.Text.ToString();
                 DataTable unUserName = new DataTable();
                 Conexion.conectar();
                 try

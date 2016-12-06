@@ -108,9 +108,11 @@ namespace ClinicaFrba.Registro_Llegada
             var nomYapSeparado = nombreYApellido.Split(',');
             string nombreProf = nomYapSeparado[0];
             string apellidoProf = nomYapSeparado[1];
+
+            string consultarTurnosParaProfYAfiliado = "SELECT T.idTurno ,T.idAgenda ,T.fechaTurno ,T.afiliado_idAfiliado ,Afi.nombre ,Afi.apellido FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda JOIN Select_Group.Profesional P ON P.matricula = A.profesional_IdProfesional JOIN Select_Group.Afiliado Afi ON Afi.nroAfiliado = " + txtNumeroAfiliado.Text.ToString() + " WHERE P.nombre = '" + apellidoProf.ToString().Trim() + "' AND P.apellido = '" + nombreProf.ToString().Trim() + "' AND T.estado = 3";
             
-            string consultarTurnosParaProfYAfiliado = "SELECT T.idTurno ,T.idAgenda ,T.fechaTurno ,T.afiliado_idAfiliado ,Afi.nombre ,Afi.apellido FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda JOIN Select_Group.Profesional P ON P.matricula = A.profesional_IdProfesional JOIN Select_Group.Afiliado Afi ON Afi.idAfiliado = T.afiliado_idAfiliado WHERE P.nombre = '"+nombreProf+"' AND P.apellido = '"+apellidoProf+"' AND T.estado = 3 AND T.afiliado_idAfiliado = " + txtNumeroAfiliado.Text.ToString();
-            Conexion.conectar();
+                
+             Conexion.conectar();
             DataTable Turnos = new DataTable();
             
             Turnos = Conexion.LeerTabla(consultarTurnosParaProfYAfiliado);
@@ -144,7 +146,7 @@ namespace ClinicaFrba.Registro_Llegada
             }
             else
             {
-                string consultaBonosDisp = "SELECT idBono  FROM Select_Group.Bono  WHERE idAfiliado = " + txtNumeroAfiliado.Text.ToString() + "  AND estado = 1";
+                string consultaBonosDisp = "SELECT idBono  FROM Select_Group.Bono B JOIN Select_Group.Afiliado A ON A.idAfiliado = B.idAfiliado  WHERE A.nroAfiliado = " + txtNumeroAfiliado.Text.ToString() + "  AND estado = 1";
                 
 
                 DataTable bonosDisponibles = new DataTable();
