@@ -46,6 +46,7 @@ create table SELECT_GROUP.Afiliado(
 	estadoCivil varchar(45),
 	cantidadHijos numeric(2,0),
 	direccion varchar(255),
+	habilitado bit,
 	idUsuario numeric(6,0) unique,
 	plan_idPlan numeric(18,0),
 	CONSTRAINT pk_IdAfiliado primary key(idAfiliado),
@@ -266,8 +267,8 @@ from gd_esquema.Maestra
 where Consulta_Enfermedades is not null
 
 /*Cargo los afiliados de la tabla maestra */
-INSERT INTO SELECT_GROUP.Afiliado(numeroDoc,nombre,apellido,tipoDoc,telefono,mail,fechaNac,sexo,estadoCivil,cantidadHijos,direccion,idUsuario,plan_idPlan)
-SELECT distinct Paciente_Dni,Paciente_Nombre,Paciente_Apellido,'DNI',Paciente_Telefono,Paciente_mail,Paciente_Fecha_Nac,'SEXO','EC',0,Paciente_Direccion,(select idUsuario from SELECT_GROUP.Usuario where nombreUsuario = (cast(Paciente_Dni as varchar(45)))),(select idPlan from SELECT_GROUP.Plan_Med where idPlan = 555555) 
+INSERT INTO SELECT_GROUP.Afiliado(numeroDoc,nombre,apellido,tipoDoc,telefono,mail,fechaNac,sexo,estadoCivil,cantidadHijos,direccion,habilitado,idUsuario,plan_idPlan)
+SELECT distinct Paciente_Dni,Paciente_Nombre,Paciente_Apellido,'DNI',Paciente_Telefono,Paciente_mail,Paciente_Fecha_Nac,'SEXO','EC',0,Paciente_Direccion,1,(select idUsuario from SELECT_GROUP.Usuario where nombreUsuario = (cast(Paciente_Dni as varchar(45)))),(select idPlan from SELECT_GROUP.Plan_Med where idPlan = 555555) 
 from gd_esquema.Maestra
 where Paciente_Dni is not null
 order by Paciente_Nombre
@@ -813,6 +814,7 @@ CREATE TYPE Select_Group.dt_Afiliados AS TABLE
 	,estadoCivil varchar(45) NOT NULL
 	,cantidadHijos numeric(2,0) not null
 	,direccion varchar(255) NOT NULL
+	,habilitado bit
 	,idUsuario varchar(45) NOT NULL
 	,plan_idPlan numeric(18,0) NOT NULL
 )
@@ -828,25 +830,10 @@ BEGIN
 	declare @idAfiliado int;
 	declare @nroDocumento int;
 
-	--set @nroDocumento = (select numeroDoc from @Afiliados)
-	--set @nroAfiliado =  (select nroAfiliado from @Afiliados)
-	
 	Insert into SELECT_GROUP.Afiliado(nombre,nroAfiliado,apellido,tipoDoc,numeroDoc,telefono,mail,fechaNac,sexo,estadoCivil
-										,cantidadHijos,direccion,idUsuario,plan_idPlan) 
+										,cantidadHijos,direccion,habilitado,idUsuario,plan_idPlan) 
 	SELECT * FROM @Afiliados
 
-	--set @idAfiliado = (SELECT min(idAfiliado) FROM Select_Group.Afiliado as AF0, @Afiliados as AF1 where AF0.numeroDoc = AF1.numeroDoc)
-
-
-	--update SELECT_GROUP.Afiliado
-		--set nroAfiliado = ((@idAfiliado * 100) + @nroAfiliado)
-		--where numeroDoc = @nroDocumento
-	--update SELECT_GROUP.Afiliado
-	--	set nroAfiliado = case (select nroAfiliado from @Afiliados) 
-	--		when 1 then ((@idAfiliado * 100) + 1)
-	--		when 2 then ((@idAfiliado * 100) + 2)
-	--	end
-	--where numeroDoc in (select numeroDoc from @Afiliados)	
 	
 END
 go

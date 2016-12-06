@@ -33,6 +33,7 @@ namespace ClinicaFrba.Abm_Afiliado
             afiliados.Columns.Add("estadoCivil", typeof(String));
             afiliados.Columns.Add("cantidadHijos", typeof(Int32));
             afiliados.Columns.Add("direccion", typeof(String));
+            afiliados.Columns.Add("habilitado", typeof(Boolean));
             afiliados.Columns.Add("idUsuario", typeof(Int32));
             afiliados.Columns.Add("plan_idPlan", typeof(Int32));
 
@@ -60,6 +61,7 @@ namespace ClinicaFrba.Abm_Afiliado
             afiliado["estadoCivil"] = estadoCivil;
             afiliado["cantidadHijos"] = cantidadHijos;
             afiliado["direccion"] = direccion;
+            afiliado["habilitado"] = true;
             idUsuario = registrarUsuario(numeroDoc);
             afiliado["idUsuario"] = idUsuario;
 
