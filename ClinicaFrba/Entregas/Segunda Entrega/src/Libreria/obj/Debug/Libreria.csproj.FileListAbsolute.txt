@@ -1,0 +1,4 @@
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\Libreria\bin\Debug\Libreria.dll
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\Libreria\bin\Debug\Libreria.pdb
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\Libreria\obj\Debug\Libreria.dll
+C:\Users\IBM_ADMIN\Documents\GitHub\TP_GDD_2C_2016\ClinicaFrba\Libreria\obj\Debug\Libreria.pdb
