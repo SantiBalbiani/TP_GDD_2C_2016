@@ -24,7 +24,7 @@ namespace ClinicaFrba.Pedir_Turno
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
-
+            button1.Enabled = false;
             listView1.Clear();
             DateTime fechaElegida;
             fechaElegida = monthCalendar1.SelectionEnd;
@@ -144,6 +144,7 @@ namespace ClinicaFrba.Pedir_Turno
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            button1.Enabled = false;
             Conexion.conectar();
             comboBox3.Items.Clear();
             comboBox3.ResetText();
@@ -211,6 +212,7 @@ namespace ClinicaFrba.Pedir_Turno
         }
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            button1.Enabled = false;
             Conexion.conectar();
             comboBox1.Items.Clear();
             comboBox1.ResetText();
@@ -293,6 +295,7 @@ namespace ClinicaFrba.Pedir_Turno
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            button1.Enabled = false;
             listView1.Clear();
             monthCalendar1.Enabled = true;
         }

@@ -38,16 +38,18 @@
             this.btnCambiarPlan = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnEstadisticas = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAltaAfiliado
             // 
             this.btnAltaAfiliado.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnAltaAfiliado.Location = new System.Drawing.Point(446, 195);
+            this.btnAltaAfiliado.Location = new System.Drawing.Point(446, 115);
             this.btnAltaAfiliado.Name = "btnAltaAfiliado";
             this.btnAltaAfiliado.Size = new System.Drawing.Size(136, 23);
             this.btnAltaAfiliado.TabIndex = 11;
@@ -58,7 +60,7 @@
             // btnAgregarFamiliar
             // 
             this.btnAgregarFamiliar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnAgregarFamiliar.Location = new System.Drawing.Point(446, 224);
+            this.btnAgregarFamiliar.Location = new System.Drawing.Point(446, 144);
             this.btnAgregarFamiliar.Name = "btnAgregarFamiliar";
             this.btnAgregarFamiliar.Size = new System.Drawing.Size(136, 23);
             this.btnAgregarFamiliar.TabIndex = 13;
@@ -69,7 +71,7 @@
             // btnRegistrarLlegada
             // 
             this.btnRegistrarLlegada.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnRegistrarLlegada.Location = new System.Drawing.Point(304, 195);
+            this.btnRegistrarLlegada.Location = new System.Drawing.Point(304, 115);
             this.btnRegistrarLlegada.Name = "btnRegistrarLlegada";
             this.btnRegistrarLlegada.Size = new System.Drawing.Size(136, 23);
             this.btnRegistrarLlegada.TabIndex = 14;
@@ -107,8 +109,8 @@
             this.textBox1.Size = new System.Drawing.Size(135, 20);
             this.textBox1.TabIndex = 17;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label3
             // 
@@ -147,34 +149,23 @@
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(265, 9);
+            this.label1.Location = new System.Drawing.Point(200, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(317, 20);
+            this.label1.Size = new System.Drawing.Size(382, 20);
             this.label1.TabIndex = 21;
             this.label1.Text = "◉‿◉     Seleccione que desea realizar     ◉‿◉\r\n";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label2
-            // 
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(71, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(188, 20);
-            this.label2.TabIndex = 22;
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(-1, 11);
+            this.label5.Location = new System.Drawing.Point(23, 14);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 13);
+            this.label5.Size = new System.Drawing.Size(171, 15);
             this.label5.TabIndex = 23;
-            this.label5.Text = "Bienvenido: ";
+            this.label5.Text = "Bienvenido Administrador";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnEstadisticas
@@ -199,6 +190,36 @@
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // button2
+            // 
+            this.button2.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button2.Location = new System.Drawing.Point(446, 188);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(136, 23);
+            this.button2.TabIndex = 26;
+            this.button2.Text = "Baja Afiliado";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button3.Location = new System.Drawing.Point(446, 217);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(136, 23);
+            this.button3.TabIndex = 27;
+            this.button3.Text = "Restituir Afiliado";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button4.Location = new System.Drawing.Point(304, 188);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(136, 23);
+            this.button4.TabIndex = 28;
+            this.button4.Text = "Modificar Afiliado";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
             // HomeAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,10 +228,12 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.clinica_la_arruzafa_doctores;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnEstadisticas);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnCambiarPlan);
@@ -243,9 +266,11 @@
         private System.Windows.Forms.Button btnCambiarPlan;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnEstadisticas;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
