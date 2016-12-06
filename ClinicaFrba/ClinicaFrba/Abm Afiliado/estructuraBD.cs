@@ -12,6 +12,7 @@ using System.Configuration;
 using ClinicaFrba.Base_de_Datos;
 
 
+
 namespace ClinicaFrba.Abm_Afiliado
 {
     class estructuraBD
@@ -63,9 +64,11 @@ namespace ClinicaFrba.Abm_Afiliado
             afiliado["direccion"] = direccion;
             afiliado["habilitado"] = true;
             idUsuario = registrarUsuario(numeroDoc);
+            insertarRolAUsuario(idUsuario);
             afiliado["idUsuario"] = idUsuario;
 
             string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + planMed + "')";
+            
             DataTable dt = Conexion.EjecutarComando(query);
             foreach (DataRow fila in dt.Rows)
             {
@@ -107,6 +110,26 @@ namespace ClinicaFrba.Abm_Afiliado
 
             return idUsuario;
         }
-    }
+    
+    public static void insertarRolAUsuario(int idUsuario){
+    
+            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+            SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.sp_InsertarRolAfiliado", cnx);
+            cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+            cmdAltaAfiliado.Parameters.Add("@idUsuario", SqlDbType.Int).Value = idUsuario;
+            try
+            {
+                cnx.Open();
+                cmdAltaAfiliado.ExecuteNonQuery();
+                
+              }
+            catch (ApplicationException error)
+            {
+                string mensaje = "Se ha producido un error ";
+                ApplicationException excep = new ApplicationException(mensaje, error);
+               
+            }
 
+}
+}
 }

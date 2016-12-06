@@ -274,8 +274,14 @@
     <EmbeddedResource Include="Abm Afiliado\AltaPareja.resx">
       <DependentUpon>AltaPareja.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Afiliado\BajaAfiliado.resx">
+      <DependentUpon>BajaAfiliado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Afiliado\BusquedaAfiliado.resx">
       <DependentUpon>BusquedaAfiliado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Afiliado\ModificarAfiliado.resx">
+      <DependentUpon>ModificarAfiliado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Planes\CambiarPlan.resx">
       <DependentUpon>CambiarPlan.cs</DependentUpon>

@@ -668,6 +668,45 @@ GO
 
 --=============================================================================================================
 --TIPO		: Store Procedure
+--NOMBRE	: sp_InsertaRolAfiliado
+--OBJETIVO  : Cuando se da alta un afiliado, se le asigna su rol.                                   
+--=============================================================================================================
+
+
+CREATE PROCEDURE [Select_Group].[sp_InsertarRolAfiliado]
+					(@idUsuario numeric(18,0))
+	
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	BEGIN TRY
+
+		INSERT into Select_Group.Usuario_Por_Rol
+				(rol_idRol, usuario_username) values
+				(3,@idUsuario)
+
+
+
+	END TRY
+
+	BEGIN CATCH
+
+		DECLARE @MensajeError nvarchar(4000) = ERROR_MESSAGE(), @ErrNum INT = ERROR_NUMBER(), @ErrProc nvarchar(126) = ERROR_PROCEDURE();
+
+		DECLARE @DatosError nvarchar(4000) = 'Hubo un error al insertar los datos en la tabla Usuario_Por_Rol'
+		+ @MensajeError
+		RAISERROR (@DatosError, 16,1)
+
+	END CATCH
+
+    
+END
+GO
+
+--=============================================================================================================
+--TIPO		: Store Procedure
 --NOMBRE	: sp_guardarDiagnostico
 --OBJETIVO  : Cuando un profesional registra resultado                                    
 --=============================================================================================================
