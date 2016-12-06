@@ -54,6 +54,13 @@ namespace ClinicaFrba.AbmRol
 
             }
 
+           //validar si no hay roles a eliminar
+            if (checkedListBox2.Items.Count < 1)
+            {
+                MessageBox.Show("No existen roles a eliminar");
+            }
+
+
                 
         }
 
@@ -128,11 +135,8 @@ namespace ClinicaFrba.AbmRol
         private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (checkedListBox2.Items.Count < 1)
-            {
-                MessageBox.Show("No existen roles a eliminar");
-            }
-            
+           
+                 
         }   
 
         private void button2_Click(object sender, EventArgs e)
