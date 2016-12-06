@@ -776,7 +776,7 @@ BEGIN
 
 	UPDATE Select_Group.Afiliado
 		Set plan_idPlan = @idPlan
-		Where idAfiliado = @idAfiliado
+		Where nroAfiliado = @idAfiliado
 
 END
 GO

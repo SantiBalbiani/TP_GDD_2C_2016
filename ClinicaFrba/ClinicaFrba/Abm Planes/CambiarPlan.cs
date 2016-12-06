@@ -52,7 +52,7 @@ namespace ClinicaFrba.Abm_Planes
             // Fin de carga del plan
 
             // Comienzo carga Plan
-            string consultaPlan = "select plan_idPlan from SELECT_GROUP.Afiliado where idAfiliado = " + textBox1.Text.ToString();
+            string consultaPlan = "select plan_idPlan from SELECT_GROUP.Afiliado where nroAfiliado = " + textBox1.Text.ToString();
             string plan = " ";
             DataTable unUserName = new DataTable();
             Conexion.conectar();
