@@ -2,8 +2,9 @@ BEGIN TRANSACTION creacionTablas
 use GD2C2016
 
 GO
+
 --create schema SELECT_GROUP
-GO
+--GO
 
 
 create table SELECT_GROUP.Plan_Med(
@@ -849,6 +850,60 @@ BEGIN
 	
 END
 go
+
+--=============================================================================================================
+--TIPO		: Vista
+--NOMBRE	: ProfMasConsultados
+--OBJETIVO  : Vista que obtiene los 5 profesionales mas consultados por especialidad.                                     
+--=============================================================================================================
+CREATE VIEW [Select_Group].[ProfMasConsultados]
+AS
+
+SELECT        TOP (5) P.matricula, P.apellido, P.nombre, E.descripcion
+FROM            Select_Group.Profesional AS P INNER JOIN
+                         Select_Group.Profesional_Por_Especialidad AS PE ON PE.profesional_idProfesional = P.matricula INNER JOIN
+                         Select_Group.Especialidad AS E ON E.idEspecialidad = PE.especialidad_idEspecialidad INNER JOIN
+                         Select_Group.Agenda AS Ag ON Ag.profesional_IdProfesional = P.matricula INNER JOIN
+                         Select_Group.Turno AS T ON T.idAgenda = Ag.idAgenda INNER JOIN
+                         Select_Group.Afiliado AS Af ON Af.idAfiliado = T.afiliado_idAfiliado
+GROUP BY P.matricula, Af.plan_idPlan, E.descripcion, P.apellido, P.nombre
+ORDER BY COUNT(Af.plan_idPlan);
+
+GO
+
+--=============================================================================================================
+--TIPO		: Vista
+--NOMBRE	: V_Las5EspConMasCancelaciones
+--OBJETIVO  : Vista que obtiene las 5 especialidades con mas cancelaciones.                                     
+--=============================================================================================================
+CREATE VIEW [Select_Group].[V_Las5EspConMasCancelaciones]
+AS
+
+SELECT TOP 5 T.especialidad 
+FROM Select_Group.Turno T 
+WHERE T.cancelacion_idCancelacion is not null GROUP BY T.especialidad ORDER BY count(*) desc;
+
+GO
+
+--=============================================================================================================
+--TIPO		: Vista
+--NOMBRE	: V_Las5EspConMasBonos
+--OBJETIVO  : Vista que obtiene las 5 especialidades con mas bonos.                                     
+--=============================================================================================================
+
+CREATE VIEW [Select_Group].[V_Las5EspConMasBonos]
+AS
+
+SELECT TOP 5 PE.especialidad_idEspecialidad, Esp.descripcion 
+FROM Select_Group.Turno T 
+JOIN Select_Group.Agenda Ag ON Ag.idAgenda = T.idAgenda 
+JOIN Select_Group.Profesional_Por_Especialidad PE ON PE.profesional_idProfesional = Ag.profesional_IdProfesional 
+JOIN Select_Group.Bono Bo ON Bo.estado = 0 AND Bo.idAfiliado = T.afiliado_idAfiliado 
+JOIN Select_Group.Especialidad Esp ON Esp.idEspecialidad = T.especialidad 
+GROUP BY PE.especialidad_idEspecialidad, Esp.descripcion 
+ORDER BY count (*) desc;
+
+GO
 
 --=============================================================================================================
 --TIPO		: Trigger
