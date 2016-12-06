@@ -59,6 +59,13 @@ namespace ClinicaFrba.Compra_Bono
             {
                 Conexion.conexion.Close();
                 txtPlan.Text = plan;
+                if (plan == " ")
+                {
+                    MessageBox.Show("El número de Afiliado no existe, por favor intente nuevamente");
+                    Menu_Principal.HomeAdmin frmMenu = new Menu_Principal.HomeAdmin();
+                    frmMenu.Show();
+                    this.Close();
+                }
 
             }
         }
