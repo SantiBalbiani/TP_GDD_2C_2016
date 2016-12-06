@@ -63,6 +63,7 @@
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.button1.Location = new System.Drawing.Point(178, 111);
             this.button1.Name = "button1";
@@ -83,6 +84,7 @@
             this.cbmPlanMed.Size = new System.Drawing.Size(145, 21);
             this.cbmPlanMed.TabIndex = 3;
             this.cbmPlanMed.SelectedIndexChanged += new System.EventHandler(this.cbmPlanMed_SelectedIndexChanged);
+            this.cbmPlanMed.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbmPlanMed_KeyPress);
             // 
             // textBox3
             // 

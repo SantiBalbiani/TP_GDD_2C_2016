@@ -91,34 +91,39 @@ namespace ClinicaFrba.Abm_Planes
 
         private void button1_Click(object sender, EventArgs e)
         {
-          SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-            SqlCommand cmdUsuario = new SqlCommand("Select_Group.ActualizarPlan", cnx);
-            cmdUsuario.CommandType = CommandType.StoredProcedure;
-            cmdUsuario.Parameters.Add("@idAfiliado", SqlDbType.Int).Value = textBox1.Text.ToString();
 
-            Object itemGenerico = cbmPlanMed.SelectedItem;
-            ComboboxItem itemCasteado = (ComboboxItem)itemGenerico;
-            cmdUsuario.Parameters.Add("@idPlan", SqlDbType.Int).Value = itemCasteado.Value.ToString();
+            //if (cbmPlanMed.SelectedValue.ToString() != "")
+            //{
+                SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+                SqlCommand cmdUsuario = new SqlCommand("Select_Group.ActualizarPlan", cnx);
+                cmdUsuario.CommandType = CommandType.StoredProcedure;
+                cmdUsuario.Parameters.Add("@idAfiliado", SqlDbType.Int).Value = textBox1.Text.ToString();
+                Object itemGenerico = cbmPlanMed.SelectedItem;
+                ComboboxItem itemCasteado = (ComboboxItem)itemGenerico;
+                cmdUsuario.Parameters.Add("@idPlan", SqlDbType.Int).Value = itemCasteado.Value.ToString();
 
-            try
-            {
+                try
+                {
 
-                cnx.Open();
-                cmdUsuario.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                MessageBox.Show("El Plan fue cambiado exitosamente!");
-                cnx.Close();
-                Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();
-                home.Show();
-                this.Close();
-            }
-             
+                    cnx.Open();
+                    cmdUsuario.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    MessageBox.Show("El Plan fue cambiado exitosamente!");
+                    cnx.Close();
+                    Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();
+                    home.Show();
+                    this.Close();
+                }
+            //}
+           // else {
+           //     MessageBox.Show("Falta seleccionar Plan");
+           // }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -126,9 +131,15 @@ namespace ClinicaFrba.Abm_Planes
 
         }
 
+        private void cbmPlanMed_KeyPress(object sender, KeyPressEventArgs e)
+        {
+                      e.Handled = true;
+        }
+
         private void cbmPlanMed_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            button1.Enabled = true;
+            // Posible solucion, pero sigue dejando borrar -- cbmPlanMed.Enabled = false; 
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
