@@ -154,7 +154,7 @@ namespace ClinicaFrba.Registro_Llegada
                 Conexion.conectar();
 
                 bonosDisponibles = Conexion.LeerTabla(consultaBonosDisp);
-
+                unIdBono = "0";
                 foreach (DataRow unBonoDisp in bonosDisponibles.Rows)
                 {
                     unIdBono = unBonoDisp["idBono"].ToString();
