@@ -137,13 +137,14 @@ create table SELECT_GROUP.Cancelacion(
 )
 
 create table SELECT_GROUP.Plan_Historico(
-	idPlanNuevo numeric(6,0) identity(1,1) not null,
+	idPlanNuevo int identity(1,1) not null,
+	planNuevo numeric(6,0),
 	motivoCambio varchar(45),
 	fechaCambio datetime,
 	planAnterior numeric(6,0),
 	afiliado_idAfiliado numeric(7,0),
 	CONSTRAINT pk_idPlanHistorico primary key(idPlanNuevo),
-	CONSTRAINT fk_PlanHistorico_PlanHistorico foreign key (planAnterior) references SELECT_GROUP.Plan_Historico (idPlanNuevo),
+	
 	CONSTRAINT fk_PlanHistorico_Afiliado foreign key (afiliado_idAfiliado) references SELECT_GROUP.Afiliado (idAfiliado)
 )
 
@@ -807,16 +808,29 @@ GO
 --OBJETIVO  : Actualiza el plan de un afiliado.                                     
 --=============================================================================================================
 
-CREATE PROCEDURE SELECT_GROUP.ActualizarPlan(@idPlan int,@idAfiliado int)
+CREATE PROCEDURE [Select_Group].[ActualizarPlan](@idPlan int,@nroAfiliado int, @motivo varchar(45))
 		
 AS
 
 BEGIN
 	SET NOCOUNT ON;
+	
+	DECLARE @planAnterior int;
+	DECLARE @idAfiliado int;
 
-	UPDATE Select_Group.Afiliado
+
+	BEGIN TRAN
+	SET @planAnterior = (SELECT plan_idPlan FROM Select_Group.Afiliado WHERE nroAfiliado = @nroAfiliado);
+	SET @idAfiliado = (SELECT idAfiliado FROM Select_Group.Afiliado WHERE nroAfiliado = @nroAfiliado);
+
+		UPDATE Select_Group.Afiliado
 		Set plan_idPlan = @idPlan
-		Where nroAfiliado = @idAfiliado
+		Where nroAfiliado = @nroAfiliado
+
+		INSERT INTO Select_Group.Plan_Historico(planNuevo,motivoCambio,fechaCambio,planAnterior,afiliado_idAfiliado)
+		VALUES(@idPlan,@motivo, getdate(),@planAnterior,@idAfiliado)
+
+	COMMIT TRAN
 
 END
 GO

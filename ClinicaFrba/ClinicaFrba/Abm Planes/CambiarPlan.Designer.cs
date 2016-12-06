@@ -36,6 +36,8 @@
             this.txtPlan = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -44,7 +46,7 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.CausesValidation = false;
             this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(178, 32);
+            this.textBox1.Location = new System.Drawing.Point(217, 32);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(145, 13);
             this.textBox1.TabIndex = 0;
@@ -65,9 +67,9 @@
             // 
             this.button1.Enabled = false;
             this.button1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button1.Location = new System.Drawing.Point(178, 111);
+            this.button1.Location = new System.Drawing.Point(217, 180);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(145, 23);
+            this.button1.Size = new System.Drawing.Size(185, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Cambiar Plan";
             this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -79,9 +81,9 @@
             this.cbmPlanMed.BackColor = System.Drawing.Color.White;
             this.cbmPlanMed.ForeColor = System.Drawing.Color.MidnightBlue;
             this.cbmPlanMed.FormattingEnabled = true;
-            this.cbmPlanMed.Location = new System.Drawing.Point(178, 84);
+            this.cbmPlanMed.Location = new System.Drawing.Point(217, 79);
             this.cbmPlanMed.Name = "cbmPlanMed";
-            this.cbmPlanMed.Size = new System.Drawing.Size(145, 21);
+            this.cbmPlanMed.Size = new System.Drawing.Size(185, 21);
             this.cbmPlanMed.TabIndex = 3;
             this.cbmPlanMed.SelectedIndexChanged += new System.EventHandler(this.cbmPlanMed_SelectedIndexChanged);
             this.cbmPlanMed.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbmPlanMed_KeyPress);
@@ -102,7 +104,7 @@
             this.txtPlan.BackColor = System.Drawing.Color.MidnightBlue;
             this.txtPlan.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPlan.ForeColor = System.Drawing.Color.White;
-            this.txtPlan.Location = new System.Drawing.Point(178, 58);
+            this.txtPlan.Location = new System.Drawing.Point(217, 58);
             this.txtPlan.Name = "txtPlan";
             this.txtPlan.Size = new System.Drawing.Size(145, 13);
             this.txtPlan.TabIndex = 5;
@@ -122,7 +124,7 @@
             // btnVolver
             // 
             this.btnVolver.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnVolver.Location = new System.Drawing.Point(26, 152);
+            this.btnVolver.Location = new System.Drawing.Point(29, 180);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
             this.btnVolver.TabIndex = 7;
@@ -130,13 +132,34 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(69, 116);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Escriba un motivo:";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(217, 116);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(185, 58);
+            this.textBox4.TabIndex = 9;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged_1);
+            // 
             // CambiarPlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(345, 187);
+            this.ClientSize = new System.Drawing.Size(433, 215);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.txtPlan);
@@ -163,5 +186,7 @@
         private System.Windows.Forms.TextBox txtPlan;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }

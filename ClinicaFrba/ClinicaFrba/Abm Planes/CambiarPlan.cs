@@ -97,11 +97,11 @@ namespace ClinicaFrba.Abm_Planes
                 SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
                 SqlCommand cmdUsuario = new SqlCommand("Select_Group.ActualizarPlan", cnx);
                 cmdUsuario.CommandType = CommandType.StoredProcedure;
-                cmdUsuario.Parameters.Add("@idAfiliado", SqlDbType.Int).Value = textBox1.Text.ToString();
+                cmdUsuario.Parameters.Add("@nroAfiliado", SqlDbType.Int).Value = textBox1.Text.ToString();
                 Object itemGenerico = cbmPlanMed.SelectedItem;
                 ComboboxItem itemCasteado = (ComboboxItem)itemGenerico;
                 cmdUsuario.Parameters.Add("@idPlan", SqlDbType.Int).Value = itemCasteado.Value.ToString();
-
+                cmdUsuario.Parameters.Add("@motivo", SqlDbType.VarChar).Value = textBox4.Text.ToString().Trim();
                 try
                 {
 
@@ -147,6 +147,11 @@ namespace ClinicaFrba.Abm_Planes
             Menu_Principal.HomeAdmin frmMenu = new Menu_Principal.HomeAdmin();
             frmMenu.Show();
             this.Close();
+        }
+
+        private void textBox4_TextChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
