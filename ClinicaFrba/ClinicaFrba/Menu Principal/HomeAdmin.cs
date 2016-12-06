@@ -45,7 +45,7 @@ namespace ClinicaFrba.Menu_Principal
             }
             label3.Text = nombreAfil + ", " + apellidoAfil; 
             */ //Comentado Hasta que haya base de datos para administradores
-            label2.Text = "Administrador";
+            //label2.Text = "Administrador";  Se borro este funcionamiento
         }
 
         private void btnAltaAfiliado_Click(object sender, EventArgs e)
@@ -185,6 +185,11 @@ namespace ClinicaFrba.Menu_Principal
         private void label2_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
         }
 }
