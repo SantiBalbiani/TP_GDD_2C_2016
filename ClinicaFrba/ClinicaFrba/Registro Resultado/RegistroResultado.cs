@@ -17,11 +17,13 @@ namespace ClinicaFrba.Registro_Resultado
 {
     public partial class RegistroResultado : Form
     {
-        public RegistroResultado()
+        public RegistroResultado(string unTurno, string idProfesional)
         {
             InitializeComponent();
+            idTurno = unTurno;
+            idProf = idProfesional;
         }
-
+    public string idProf = "0";
     public string idTurno = "0";
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -49,7 +51,7 @@ namespace ClinicaFrba.Registro_Resultado
 
             //Agregarle al criterio idAgenda. No hace falta idAfiliado porque 
             // se presupone que un profesional no atiende mas de un Afiliado al mismo tiempo.
-            string consultaTurnoActual = "SELECT TOP 1 idTurno, afiliado_idAfiliado, estado FROM Select_Group.Turno WHERE fechaTurno BETWEEN '" + intervaloTurnoMin.ToString("MM/dd/yyyy hh:mm tt") + "' AND '" + intervaloTurnoMax.ToString("MM/dd/yyyy hh:mm tt") + "' ORDER BY fechaTurno ASC";
+            string consultaTurnoActual = "SELECT TOP 1 T.idTurno, T.afiliado_idAfiliado, T.estado FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda AND A.profesional_IdProfesional = "+ idProf +" WHERE fechaTurno BETWEEN '" + intervaloTurnoMin.ToString("MM/dd/yyyy hh:mm tt") + "' AND '" + intervaloTurnoMax.ToString("MM/dd/yyyy hh:mm tt") + "' ORDER BY fechaTurno ASC";
             string nombreAfiliado = " ";
             string apellidoAfiliado = " ";
             Conexion.conectar();
@@ -63,7 +65,7 @@ namespace ClinicaFrba.Registro_Resultado
 
                 foreach (DataRow unTurno in turnoActual.Rows)
                 {
-                    idTurno = unTurno["idTurno"].ToString();
+                    
                     idAfiliado = unTurno["afiliado_idAfiliado"].ToString();
                     estadoTurno = unTurno["estado"].ToString();
 
