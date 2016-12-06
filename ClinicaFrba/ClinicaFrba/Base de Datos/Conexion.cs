@@ -7,15 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClinicaFrba.Base_de_Datos;
 
 namespace ClinicaFrba.Base_de_Datos
 {
     class Conexion
     {
+        
         public static string parametros = ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString;
-        //declarar una conexion llamada conexion ojo esta no es la misma que la clase E!! la diferencia esta en la c mayuscula y minuscula
+        
         public static SqlConnection conexion;
-        //vamos a validar que se conecte correctamente
+        
 
         public static bool conectar()
         {
@@ -39,9 +41,7 @@ namespace ClinicaFrba.Base_de_Datos
         {
             SqlCommand cmd = new SqlCommand(consulta, conexion);
 
-            // cmd.CommandText = consulta;
-            //cmd.CommandType = CommandType.Text;
-
+            
             DataSet dataSet = new DataSet();
 
             using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
