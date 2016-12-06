@@ -28,7 +28,7 @@ using System.Configuration;
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+            /*SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
             SqlCommand cmdRol = new SqlCommand("Select_Group.asignarRol", cnx);
             cmdRol.CommandType = CommandType.StoredProcedure;
             cmdRol.Parameters.Add("@username", SqlDbType.VarChar).Value = username.Text;
@@ -52,7 +52,7 @@ using System.Configuration;
                 HomeAfiliado home = new HomeAfiliado();
                 home.Show();
                 this.Close();
-            }
+            }*/
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -92,7 +92,7 @@ using System.Configuration;
 
         private void btnRolAsignar_Click(object sender, EventArgs e)
         {
-            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+           /* SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
             SqlCommand cmdRol = new SqlCommand("Select_Group.asignarRol", cnx);
             cmdRol.CommandType = CommandType.StoredProcedure;
             cmdRol.Parameters.Add("@username", SqlDbType.VarChar).Value = username.Text;
@@ -115,7 +115,7 @@ using System.Configuration;
                 HomeAfiliado home = new HomeAfiliado();
                 home.Show();
                 this.Close();
-            }
+            }*/
         }
 
         private void button2_Click_1(object sender, EventArgs e)
