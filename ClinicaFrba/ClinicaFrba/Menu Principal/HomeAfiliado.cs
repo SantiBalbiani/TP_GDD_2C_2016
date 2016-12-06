@@ -47,7 +47,7 @@ namespace ClinicaFrba
 
         private void HomeAfiliado_Load(object sender, EventArgs e)
         {
-            string queryDatosProf = "SELECT nombre ,apellido FROM SELECT_GROUP.Afiliado where numeroDni = '" + Globals.userName + "'";
+            string queryDatosProf = "SELECT nombre ,apellido FROM SELECT_GROUP.Afiliado where numeroDoc = '" + Globals.userName + "'";
 
             DataTable datosProf = new DataTable();
 
