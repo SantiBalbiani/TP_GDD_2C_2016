@@ -26,7 +26,7 @@ namespace ClinicaFrba.Abm_Afiliado
             Conexion.conectar();
             DataTable afiliados = new DataTable();
 
-            string consultaStr = "select idAfiliado, nombre from SELECT_GROUP.Afiliado where afiliado.habilitado=1";
+            string consultaStr = "select idAfiliado, nombre, apellido from SELECT_GROUP.Afiliado where afiliado.habilitado=1";
 
             afiliados = Conexion.LeerTabla(consultaStr);
 
@@ -37,7 +37,7 @@ namespace ClinicaFrba.Abm_Afiliado
             {
                 ComboboxItem unAfiliado = new ComboboxItem();
 
-                unAfiliado.Text = idAfi["nombre"].ToString();
+                unAfiliado.Text = idAfi["nombre"+"apellido"].ToString();
                 unAfiliado.Value = idAfi["idAfiliado"].ToString();
 
                 checkedListBox1.Items.Add(unAfiliado);
@@ -85,11 +85,11 @@ namespace ClinicaFrba.Abm_Afiliado
 
                             unItem = (ComboboxItem)item;
 
-                            //le pone el valor 0 al rol eliminado 
+                            //le pone el valor 0 al afiliado eliminado 
                             SqlCommand cmdRol = new SqlCommand("update Select_group.Afiliado set habilitado=0 where nombre=@nombreAfiliado", conexion);
                             cmdRol.Parameters.AddWithValue("@nombreAfiliado", unItem.Text);
                             cmdRol.ExecuteNonQuery();
-                            MessageBox.Show("Afiliado ha sigo inhabilitado con exito ");
+                            MessageBox.Show("Afiliado ha sigo eliminado con exito ");
                             Conexion.conexion.Close();
                         }
 
