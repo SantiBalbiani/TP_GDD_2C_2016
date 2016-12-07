@@ -22,7 +22,7 @@ namespace ClinicaFrba.Menu_Principal
         private string nombreAfil;
         private string apellidoAfil;
         public string strAfiliado = "0";
-
+               
 
         public HomeCustom()
         {
@@ -166,6 +166,7 @@ namespace ClinicaFrba.Menu_Principal
         {
             this.Hide();
             ClinicaFrba.Pedir_Turno.FrmSolTurno frmSolTurno = new ClinicaFrba.Pedir_Turno.FrmSolTurno();
+            frmSolTurno.menuAnterior = "Custom";
             frmSolTurno.Show();
         }
 

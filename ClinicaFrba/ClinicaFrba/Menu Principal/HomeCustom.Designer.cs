@@ -1,5 +1,6 @@
 ﻿namespace ClinicaFrba.Menu_Principal
 {
+    
     partial class HomeCustom
     {
         /// <summary>

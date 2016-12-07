@@ -15,6 +15,8 @@ namespace ClinicaFrba.Listados
 {
     public partial class ListadoEstadistico : Form
     {
+        public string menuAnterior;
+
         public ListadoEstadistico()
         {
             InitializeComponent();

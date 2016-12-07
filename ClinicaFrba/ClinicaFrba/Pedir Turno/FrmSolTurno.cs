@@ -16,6 +16,7 @@ namespace ClinicaFrba.Pedir_Turno
     public partial class FrmSolTurno : Form
     {
         public static String idAgenda = "0";
+        public string menuAnterior;
 
         public FrmSolTurno()
         {
@@ -288,9 +289,26 @@ namespace ClinicaFrba.Pedir_Turno
 
         private void button2_Click(object sender, EventArgs e)
         {
-            HomeAfiliado frmHome = new HomeAfiliado();
-            frmHome.Show();
-            this.Close();
+            if (menuAnterior == "Admin")
+            {
+                Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();
+                home.Show();
+                this.Close();
+            }
+            if (menuAnterior == "Afiliado")
+            {
+                HomeAfiliado home = new HomeAfiliado();
+                home.Show();
+                this.Close();
+            }
+            if (menuAnterior == "Custom")
+            {
+                Menu_Principal.HomeCustom frmHome = new Menu_Principal.HomeCustom();
+                frmHome.Show();
+                this.Close();
+            }
+            
+            
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)

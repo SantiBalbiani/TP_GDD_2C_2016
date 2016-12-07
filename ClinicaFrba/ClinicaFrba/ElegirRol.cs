@@ -57,7 +57,10 @@ namespace ClinicaFrba
                         this.Close();
                         break;           
                     default:
-                        MessageBox.Show("Debe Seleccionar un Rol para poder continuar");
+                        Menu_Principal.HomeCustom frmCustom = new Menu_Principal.HomeCustom();
+                        frmCustom.Show();
+                        this.Close();
+                        //MessageBox.Show("Debe Seleccionar un Rol para poder continuar");
                         break;
                 }
          }
