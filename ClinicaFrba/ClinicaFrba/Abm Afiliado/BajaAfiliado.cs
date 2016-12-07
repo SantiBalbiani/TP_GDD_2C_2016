@@ -37,7 +37,12 @@ namespace ClinicaFrba.Abm_Afiliado
             {
                 ComboboxItem unAfiliado = new ComboboxItem();
 
-                unAfiliado.Text = idAfi["nombre"+"apellido"].ToString();
+                string nombre = idAfi["nombre"].ToString();
+                string apellido = idAfi["apellido"].ToString();
+
+
+                unAfiliado.Text = nombre + "," + apellido;
+
                 unAfiliado.Value = idAfi["idAfiliado"].ToString();
 
                 checkedListBox1.Items.Add(unAfiliado);
