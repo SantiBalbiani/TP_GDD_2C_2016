@@ -927,6 +927,21 @@ GO
 
 --=============================================================================================================
 --TIPO		: Vista
+--NOMBRE	: 5AfiliadosConMasCompraDeBonos
+--OBJETIVO  : Vista que obtiene los 5 afiliados que mas bonos compraron.                                     
+--=============================================================================================================
+CREATE VIEW [Select_Group].[5AfiliadosConMasCompraDeBonos]
+AS
+
+SELECT TOP 5 A.nroAfiliado, A.nombre, A.apellido, COUNT(*) AS 'Cantidad Comprada' 
+FROM Select_Group.Afiliado A 
+JOIN Select_Group.Bono B ON A.idAfiliado = B.idAfiliado AND B.estado = 1 
+GROUP BY A.nroAfiliado, A.nombre, A.apellido ORDER BY COUNT(*) DESC
+
+GO
+
+--=============================================================================================================
+--TIPO		: Vista
 --NOMBRE	: V_Las5EspConMasBonos
 --OBJETIVO  : Vista que obtiene las 5 especialidades con mas bonos.                                     
 --=============================================================================================================

@@ -227,7 +227,46 @@ namespace ClinicaFrba.Listados
 
         private void button4_Click(object sender, EventArgs e)
         {
-        
+            //Inicio Consulta
+            Conexion.conectar();
+
+            //string contador;
+
+            DataTable Lista = new DataTable();
+            string cadena = "SELECT [nroAfiliado],[nombre] ,[apellido] ,[Cantidad Comprada]  FROM [Select_Group].[5AfiliadosConMasCompraDeBonos]";
+            Lista = Conexion.LeerTabla(cadena);
+            listView1.Clear();
+
+            listView1.View = View.Details;
+            listView1.GridLines = true;
+            listView1.FullRowSelect = true;
+
+            listView1.Columns.Add("Nro de Afiliado", 100);
+            listView1.Columns.Add("Nombre", 200);
+            listView1.Columns.Add("Apellido", 200);
+            listView1.Columns.Add("Cantidad Comprada", 100);
+            // listView1.Columns.Add("Quantity", 70);
+
+            foreach (DataRow listado in Lista.Rows)
+            {
+
+                string matricula = listado["nroAfiliado"].ToString();
+                string apellido = listado["nombre"].ToString();
+                string nombre = listado["apellido"].ToString();
+                string descripcion = listado["Cantidad Comprada"].ToString();
+                //Add items in the listview
+                string[] arr = new string[4];
+                ListViewItem itm;
+
+                //Add first item
+                arr[0] = matricula;
+                arr[1] = apellido;
+                arr[2] = nombre;
+                arr[3] = descripcion;
+                itm = new ListViewItem(arr);
+                listView1.Items.Add(itm);
+            }
+            Conexion.conexion.Close();
             
         }
 
