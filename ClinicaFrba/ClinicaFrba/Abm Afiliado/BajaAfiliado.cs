@@ -98,7 +98,35 @@ namespace ClinicaFrba.Abm_Afiliado
                             Conexion.conexion.Close();
                         }
 
+                        //Hago refresh del reporte
 
+                        checkedListBox1.Items.Clear();
+                        Conexion.conectar();
+                        DataTable afiliados = new DataTable();
+
+                        string consultaStr = "select idAfiliado, nombre, apellido from SELECT_GROUP.Afiliado where afiliado.habilitado=1";
+
+                        afiliados = Conexion.LeerTabla(consultaStr);
+
+                        DataTable nombreRoles = new DataTable();
+
+
+                        foreach (DataRow idAfi in afiliados.Rows)
+                        {
+                            ComboboxItem unAfiliado = new ComboboxItem();
+
+                            string nombre = idAfi["nombre"].ToString();
+                            string apellido = idAfi["apellido"].ToString();
+
+
+                            unAfiliado.Text = nombre + "," + apellido;
+
+                            unAfiliado.Value = idAfi["idAfiliado"].ToString();
+
+                            checkedListBox1.Items.Add(unAfiliado);
+
+                        }
+                        
 
 
 
