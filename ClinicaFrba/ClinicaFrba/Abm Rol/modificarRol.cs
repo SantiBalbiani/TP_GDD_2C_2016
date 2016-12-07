@@ -32,7 +32,7 @@ namespace ClinicaFrba.AbmRol
             //comboBox1.ResetText();
 
 
-            //Cargo el plan
+            //Cargo el rol
             Conexion.conectar();
             comboBox1.Items.Clear();
             comboBox1.ResetText();

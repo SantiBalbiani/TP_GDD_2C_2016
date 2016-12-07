@@ -191,6 +191,13 @@ namespace ClinicaFrba.Menu_Principal
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            BajaAfiliado frmBajaAfiliado = new BajaAfiliado();
+            frmBajaAfiliado.Show();
+            this.Close();
+        }
         }
 }
 
