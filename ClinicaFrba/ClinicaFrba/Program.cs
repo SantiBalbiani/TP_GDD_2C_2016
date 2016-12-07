@@ -11,8 +11,44 @@ namespace ClinicaFrba
 {
     public static class Globals
     {
+        
         public static String userName = "0";
 
+        public static void irAtras(string menuAnterior, Form menuActual)
+        {
+            switch (menuAnterior)
+            {
+                case "Admin":
+                    Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();
+                    home.Show();
+
+                    break;
+
+                case "Afiliado":
+                    HomeAfiliado homeAf = new HomeAfiliado();
+                    homeAf.Show();
+
+                    break;
+
+                case "Profesional":
+                    Menu_Principal.HomeProfesional homeP = new Menu_Principal.HomeProfesional();
+                    homeP.Show();
+                    break;
+
+                case "Custom":
+                    Menu_Principal.HomeCustom homeC = new Menu_Principal.HomeCustom();
+                    homeC.Show();
+                    break;
+
+                default:
+
+                    break;
+
+            }
+
+            menuActual.Close();
+        }
+        
     }
 
     public class ComboboxItem
