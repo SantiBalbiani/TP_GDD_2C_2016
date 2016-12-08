@@ -17,6 +17,7 @@ namespace ClinicaFrba.Abm_Planes
     {
         public int idPlanMed = 0;
         public string menuAnterior;
+        public Menu_Principal.HomeCustom Home;
         public CambiarPlan(string strIdAfiliado)
         {
             InitializeComponent();
@@ -76,9 +77,7 @@ namespace ClinicaFrba.Abm_Planes
                 if (plan == " ")
                 {
                     MessageBox.Show("El número de Afiliado no existe, por favor intente nuevamente");
-                    Menu_Principal.HomeAdmin frmMenu = new Menu_Principal.HomeAdmin();
-                    frmMenu.Show();
-                    this.Close();
+                    Globals.irAtras(menuAnterior, this);
                 }
             }
             //Fin de Obtencion del plan
@@ -117,7 +116,8 @@ namespace ClinicaFrba.Abm_Planes
                 {
                     MessageBox.Show("El Plan fue cambiado exitosamente!");
                     cnx.Close();
-                    Globals.irAtras(menuAnterior, this);
+                    //Globals.irAtras(menuAnterior, this);
+                    this.Close();
 
                 }
             //}
@@ -144,7 +144,8 @@ namespace ClinicaFrba.Abm_Planes
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            Globals.irAtras(menuAnterior, this);
+            //Globals.irAtras(menuAnterior, this);
+            this.Close();
         }
 
         private void textBox4_TextChanged_1(object sender, EventArgs e)

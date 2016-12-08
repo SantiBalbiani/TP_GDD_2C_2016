@@ -238,6 +238,7 @@
             this.btnBajaAfil.TabIndex = 40;
             this.btnBajaAfil.Text = "Baja Afiliado";
             this.btnBajaAfil.UseVisualStyleBackColor = true;
+            this.btnBajaAfil.Click += new System.EventHandler(this.btnBajaAfil_Click);
             // 
             // btnCancelarDia
             // 

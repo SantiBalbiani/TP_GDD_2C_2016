@@ -14,6 +14,7 @@ namespace ClinicaFrba.AbmRol
     public partial class abmMenuRol : Form
     {
         public string menuAnterior;
+        public Menu_Principal.HomeCustom Home;
         public abmMenuRol()
         {
             InitializeComponent();
@@ -100,8 +101,8 @@ namespace ClinicaFrba.AbmRol
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            Globals.irAtras(menuAnterior, this);
-
+            //Globals.irAtras(menuAnterior, this);
+            this.Close();
         }
     }
 }

@@ -16,6 +16,7 @@ namespace ClinicaFrba.Listados
     public partial class ListadoEstadistico : Form
     {
         public string menuAnterior;
+        public Menu_Principal.HomeCustom Home;
 
         public ListadoEstadistico()
         {
@@ -25,7 +26,8 @@ namespace ClinicaFrba.Listados
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            Globals.irAtras(menuAnterior, this);
+            //Globals.irAtras(menuAnterior, this);
+            this.Close();
 
         }
 

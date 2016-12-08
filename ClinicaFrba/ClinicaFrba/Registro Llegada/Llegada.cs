@@ -18,6 +18,7 @@ namespace ClinicaFrba.Registro_Llegada
         public string unIdBono = "0";
         public string idTurno = "0";
         public string menuAnterior;
+        public Menu_Principal.HomeCustom Home;
 
         public Llegada()
         {
@@ -354,14 +355,15 @@ namespace ClinicaFrba.Registro_Llegada
                 cnx.Close();
                 HomeAfiliado home = new HomeAfiliado();
                 home.Show();
-                this.Close();
+                //this.Close();
             }
 
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            Globals.irAtras(menuAnterior, this);
+            //Globals.irAtras(menuAnterior, this);
+            this.Close();
             //Menu_Principal.HomeAdmin frmMenu = new Menu_Principal.HomeAdmin();
             //frmMenu.Show();
             //this.Close();
