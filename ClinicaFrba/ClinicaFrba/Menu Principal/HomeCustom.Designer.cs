@@ -49,6 +49,7 @@
             this.btnCancelarDia = new System.Windows.Forms.Button();
             this.btnRegAtencion = new System.Windows.Forms.Button();
             this.lblRolActual = new System.Windows.Forms.Label();
+            this.txtRolActual = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnEstadisticas
@@ -263,11 +264,21 @@
             // lblRolActual
             // 
             this.lblRolActual.AutoSize = true;
+            this.lblRolActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRolActual.Location = new System.Drawing.Point(15, 51);
             this.lblRolActual.Name = "lblRolActual";
-            this.lblRolActual.Size = new System.Drawing.Size(50, 13);
+            this.lblRolActual.Size = new System.Drawing.Size(59, 13);
             this.lblRolActual.TabIndex = 45;
             this.lblRolActual.Text = "ROL----->";
+            // 
+            // txtRolActual
+            // 
+            this.txtRolActual.BackColor = System.Drawing.Color.MidnightBlue;
+            this.txtRolActual.ForeColor = System.Drawing.Color.White;
+            this.txtRolActual.Location = new System.Drawing.Point(80, 48);
+            this.txtRolActual.Name = "txtRolActual";
+            this.txtRolActual.Size = new System.Drawing.Size(100, 20);
+            this.txtRolActual.TabIndex = 46;
             // 
             // HomeCustom
             // 
@@ -276,6 +287,7 @@
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(606, 328);
+            this.Controls.Add(this.txtRolActual);
             this.Controls.Add(this.lblRolActual);
             this.Controls.Add(this.btnCancelarDia);
             this.Controls.Add(this.btnRegAtencion);
@@ -329,5 +341,6 @@
         private System.Windows.Forms.Button btnCancelarDia;
         private System.Windows.Forms.Button btnRegAtencion;
         private System.Windows.Forms.Label lblRolActual;
+        private System.Windows.Forms.TextBox txtRolActual;
     }
 }

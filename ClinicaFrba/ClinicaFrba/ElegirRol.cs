@@ -58,8 +58,8 @@ namespace ClinicaFrba
                         break;  */         
                     default:
                         Menu_Principal.HomeCustom frmCustom = new Menu_Principal.HomeCustom();
-                        frmCustom.Show();
                         frmCustom.rolActual = rolElegido;
+                        frmCustom.Show();
                         this.Close();
                         //MessageBox.Show("Debe Seleccionar un Rol para poder continuar");
                         break;

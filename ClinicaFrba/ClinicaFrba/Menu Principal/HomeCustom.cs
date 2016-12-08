@@ -206,7 +206,7 @@ namespace ClinicaFrba.Menu_Principal
                 }
 
                 label3.Text = apellidoProf + ", " + nombreProf;
-                lblRolActual.Text = lblRolActual + "  " + rolActual;
+                txtRolActual.Text = rolActual;
 
 
             }
@@ -230,7 +230,7 @@ namespace ClinicaFrba.Menu_Principal
                 }
 
                 label3.Text = nombreAfil + ", " + apellidoAfil;
-                lblRolActual.Text = lblRolActual + "  " + rolActual;
+                txtRolActual.Text = rolActual;
 
                 // Andaba            
                 DataTable idAfiliado = new DataTable();
@@ -247,6 +247,15 @@ namespace ClinicaFrba.Menu_Principal
                 }
 
                 Conexion.conexion.Close();
+            }
+
+
+
+            //Hacer Aca la carga si es Administrativo
+
+            if (rolActual == "Administrativo")
+            {
+                txtRolActual.Text = rolActual; 
             }
         }
 
