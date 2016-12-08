@@ -39,7 +39,7 @@ namespace ClinicaFrba
 
                 switch (rolElegido)
                 {
-                    case "Afiliado":
+                    /*case "Afiliado":
                     //Ejemplo:
                         HomeAfiliado frmAfiliado = new HomeAfiliado();
                         frmAfiliado.Show();
@@ -55,10 +55,11 @@ namespace ClinicaFrba
                         Menu_Principal.HomeAdmin frmAdmin= new Menu_Principal.HomeAdmin();
                         frmAdmin.Show();
                         this.Close();
-                        break;           
+                        break;  */         
                     default:
                         Menu_Principal.HomeCustom frmCustom = new Menu_Principal.HomeCustom();
                         frmCustom.Show();
+                        frmCustom.rolActual = rolElegido;
                         this.Close();
                         //MessageBox.Show("Debe Seleccionar un Rol para poder continuar");
                         break;
@@ -83,6 +84,11 @@ namespace ClinicaFrba
         private void comboBoxRoles_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBoxRoles_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
 
         

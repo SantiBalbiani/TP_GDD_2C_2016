@@ -48,6 +48,7 @@
             this.btnBajaAfil = new System.Windows.Forms.Button();
             this.btnCancelarDia = new System.Windows.Forms.Button();
             this.btnRegAtencion = new System.Windows.Forms.Button();
+            this.lblRolActual = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnEstadisticas
@@ -259,6 +260,15 @@
             this.btnRegAtencion.UseVisualStyleBackColor = true;
             this.btnRegAtencion.Click += new System.EventHandler(this.btnRegAtencion_Click);
             // 
+            // lblRolActual
+            // 
+            this.lblRolActual.AutoSize = true;
+            this.lblRolActual.Location = new System.Drawing.Point(15, 51);
+            this.lblRolActual.Name = "lblRolActual";
+            this.lblRolActual.Size = new System.Drawing.Size(50, 13);
+            this.lblRolActual.TabIndex = 45;
+            this.lblRolActual.Text = "ROL----->";
+            // 
             // HomeCustom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,6 +276,7 @@
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(606, 328);
+            this.Controls.Add(this.lblRolActual);
             this.Controls.Add(this.btnCancelarDia);
             this.Controls.Add(this.btnRegAtencion);
             this.Controls.Add(this.btnModifAfil);
@@ -285,7 +296,7 @@
             this.Controls.Add(this.btnRegistrarLlegada);
             this.Controls.Add(this.btnAgregarFamiliar);
             this.Controls.Add(this.btnAltaAfiliado);
-            this.Cursor = System.Windows.Forms.Cursors.No;
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.White;
             this.Name = "HomeCustom";
@@ -317,5 +328,6 @@
         private System.Windows.Forms.Button btnBajaAfil;
         private System.Windows.Forms.Button btnCancelarDia;
         private System.Windows.Forms.Button btnRegAtencion;
+        private System.Windows.Forms.Label lblRolActual;
     }
 }

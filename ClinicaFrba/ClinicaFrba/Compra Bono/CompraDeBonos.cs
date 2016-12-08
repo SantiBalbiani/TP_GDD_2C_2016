@@ -62,9 +62,7 @@ namespace ClinicaFrba.Compra_Bono
                 if (plan == " ")
                 {
                     MessageBox.Show("El número de Afiliado no existe, por favor intente nuevamente");
-                    Menu_Principal.HomeAdmin frmMenu = new Menu_Principal.HomeAdmin();
-                    frmMenu.Show();
-                    this.Close();
+                    Globals.irAtras(menuAnterior, this);
                 }
 
             }
@@ -94,18 +92,7 @@ namespace ClinicaFrba.Compra_Bono
                 {
                     cnx.Close();
                     MessageBox.Show("Compra exitosa");
-                    if (menuAnterior == "Admin")
-                    {
-                        Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();
-                        home.Show();
-                        this.Close();
-                    }
-                    if (menuAnterior == "Afiliado")
-                    {
-                        HomeAfiliado home = new HomeAfiliado();
-                        home.Show();
-                        this.Close();
-                    }
+                    Globals.irAtras(menuAnterior, this);
                 }
             }
             else
