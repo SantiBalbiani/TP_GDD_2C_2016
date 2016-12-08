@@ -198,6 +198,13 @@ namespace ClinicaFrba.Menu_Principal
             frmBajaAfiliado.Show();
             this.Close();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ModificarAfiliado frmModAf = new ModificarAfiliado();
+            frmModAf.Show();
+            this.Close();
+        }
         }
 }
 
