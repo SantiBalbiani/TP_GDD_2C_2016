@@ -110,6 +110,12 @@
       <DependentUpon>BusquedaAfiliado.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Afiliado\estructuraBD.cs" />
+    <Compile Include="Abm Afiliado\restituirAfiliado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Afiliado\restituirAfiliado.Designer.cs">
+      <DependentUpon>restituirAfiliado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Afiliado\ModificarAfiliado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Afiliado\BusquedaAfiliado.resx">
       <DependentUpon>BusquedaAfiliado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Afiliado\restituirAfiliado.resx">
+      <DependentUpon>restituirAfiliado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Afiliado\ModificarAfiliado.resx">
       <DependentUpon>ModificarAfiliado.cs</DependentUpon>

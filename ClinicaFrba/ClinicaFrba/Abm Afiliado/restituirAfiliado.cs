@@ -13,20 +13,19 @@ using System.Data.SqlClient;
 
 namespace ClinicaFrba.Abm_Afiliado
 {
-    public partial class BajaAfiliado : Form
+    public partial class RestituirAfiliado : Form
     {
-        public BajaAfiliado()
+        public RestituirAfiliado()
         {
             InitializeComponent();
         }
 
-        private void BajaAfiliado_Load(object sender, EventArgs e)
+        private void RestituirAfiliado_Load(object sender, EventArgs e)
         {
-
             Conexion.conectar();
             DataTable afiliados = new DataTable();
 
-            string consultaStr = "select idAfiliado, nombre, apellido from SELECT_GROUP.Afiliado where afiliado.habilitado=1";
+            string consultaStr = "select idAfiliado, nombre, apellido from SELECT_GROUP.Afiliado where afiliado.habilitado=0";
 
             afiliados = Conexion.LeerTabla(consultaStr);
 
@@ -49,12 +48,22 @@ namespace ClinicaFrba.Abm_Afiliado
 
             }
 
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
 
-        private void btnActualizar_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
+            Menu_Principal.HomeAdmin frmadmin = new Menu_Principal.HomeAdmin();
+            frmadmin.Show();
+            this.Close();
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
             //Conexion.conectar();
             SqlConnection conexion;
             bool conectado = false;
@@ -94,7 +103,7 @@ namespace ClinicaFrba.Abm_Afiliado
                             SqlCommand cmdRol = new SqlCommand("update Select_group.Afiliado set habilitado=0 where idAfiliado=@nombreAfiliado", conexion);
                             cmdRol.Parameters.AddWithValue("@nombreAfiliado", unItem.Value);
                             cmdRol.ExecuteNonQuery();
-                            MessageBox.Show("Afiliado ha sigo eliminado con exito ");
+                            MessageBox.Show("Afiliado ha sigo restituido con exito ");
                             Conexion.conexion.Close();
                         }
 
@@ -104,7 +113,7 @@ namespace ClinicaFrba.Abm_Afiliado
                         Conexion.conectar();
                         DataTable afiliados = new DataTable();
 
-                        string consultaStr = "select idAfiliado, nombre, apellido from SELECT_GROUP.Afiliado where afiliado.habilitado=1";
+                        string consultaStr = "select idAfiliado, nombre, apellido from SELECT_GROUP.Afiliado where afiliado.habilitado=0";
 
                         afiliados = Conexion.LeerTabla(consultaStr);
 
@@ -126,7 +135,7 @@ namespace ClinicaFrba.Abm_Afiliado
                             checkedListBox1.Items.Add(unAfiliado);
 
                         }
-                        
+
 
 
 
@@ -150,18 +159,6 @@ namespace ClinicaFrba.Abm_Afiliado
 
 
             }
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //Menu_Principal.HomeAdmin frmadmin = new Menu_Principal.HomeAdmin();
-            //frmadmin.Show();
-            this.Close();
-        }
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
     }

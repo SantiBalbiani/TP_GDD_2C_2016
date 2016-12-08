@@ -37,12 +37,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(102, 29);
+            this.label1.Location = new System.Drawing.Point(82, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 13);
+            this.label1.Size = new System.Drawing.Size(259, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Seleccione el Afiliado a dar de baja";
+            this.label1.Text = "Seleccione el Afiliado a dar de baja:";
             // 
             // button2
             // 
@@ -72,6 +73,7 @@
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(372, 94);
             this.checkedListBox1.TabIndex = 20;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // BajaAfiliado
             // 
