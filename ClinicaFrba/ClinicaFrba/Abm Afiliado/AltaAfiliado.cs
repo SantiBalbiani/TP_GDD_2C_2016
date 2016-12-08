@@ -24,6 +24,7 @@ namespace ClinicaFrba.Abm_Afiliado
         public DataTable afiliadosTable = new DataTable();
         public Boolean tieneHijos = false;
         public Boolean nuevo = true;
+        public string menuAnterior;
         
         public frmAltaAfiliado()
         {
@@ -43,9 +44,7 @@ namespace ClinicaFrba.Abm_Afiliado
         private void btnCancelar_Click(object sender, EventArgs e)
         {
 
-            Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
-            frmAdmin.Show();
-            this.Close();
+            Globals.irAtras(menuAnterior, this);
         }
 
         public int generarNumeroAfiliado()

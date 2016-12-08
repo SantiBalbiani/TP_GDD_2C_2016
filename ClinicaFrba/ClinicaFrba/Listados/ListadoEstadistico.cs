@@ -25,9 +25,7 @@ namespace ClinicaFrba.Listados
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            Menu_Principal.HomeAdmin frmHome = new Menu_Principal.HomeAdmin();
-            frmHome.Show();
-            this.Close();
+            Globals.irAtras(menuAnterior, this);
 
         }
 

@@ -14,6 +14,8 @@ namespace ClinicaFrba.Abm_Afiliado
 {
     public partial class ModificarAfiliado : Form
     {
+        public string menuAnterior;
+
         public ModificarAfiliado()
         {
             InitializeComponent();
@@ -21,10 +23,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void ModificarAfiliado_Load(object sender, EventArgs e)
         {
-            
-        
-
-            
+                       
 
         }
 
@@ -133,9 +132,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ClinicaFrba.Menu_Principal.HomeAdmin frmHome = new ClinicaFrba.Menu_Principal.HomeAdmin();
-            frmHome.Show();
-            this.Close();
+            Globals.irAtras(menuAnterior, this);
         }
     }
 }

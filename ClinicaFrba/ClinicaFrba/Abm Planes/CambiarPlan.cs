@@ -117,9 +117,8 @@ namespace ClinicaFrba.Abm_Planes
                 {
                     MessageBox.Show("El Plan fue cambiado exitosamente!");
                     cnx.Close();
-                    Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();
-                    home.Show();
-                    this.Close();
+                    Globals.irAtras(menuAnterior, this);
+
                 }
             //}
            // else {
@@ -145,9 +144,7 @@ namespace ClinicaFrba.Abm_Planes
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            Menu_Principal.HomeAdmin frmMenu = new Menu_Principal.HomeAdmin();
-            frmMenu.Show();
-            this.Close();
+            Globals.irAtras(menuAnterior, this);
         }
 
         private void textBox4_TextChanged_1(object sender, EventArgs e)

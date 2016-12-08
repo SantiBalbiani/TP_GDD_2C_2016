@@ -18,6 +18,7 @@ namespace ClinicaFrba.Abm_Afiliado
         public Boolean altaHijo = false;
         public Boolean nuevo = false;
         public int cantHijos = 0;
+        public string menuAnterior;
 
         public AltaFamiliar()
         {
@@ -120,9 +121,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Menu_Principal.HomeAdmin frmadmin = new Menu_Principal.HomeAdmin();
-            frmadmin.Show();
-            this.Close();
+            Globals.irAtras(menuAnterior, this);
 
         }
     }

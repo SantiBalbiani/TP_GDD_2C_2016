@@ -26,6 +26,7 @@ namespace ClinicaFrba.Abm_Afiliado
         public int nroAfiliado = 0;
         public string planMedPareja;
         public int hijosCant;
+        public string menuAnterior;
         
 
         public AltaPareja(DataTable afiliadoPrincipal,DataRow afiliadoIngre,Boolean hijos,Boolean afiliadoPrincipalNuevo,int cantHijos)
@@ -150,9 +151,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void btnCancelar_Click(object sender, EventArgs e) 
         {
-            Menu_Principal.HomeAdmin frmadmin = new Menu_Principal.HomeAdmin();
-            frmadmin.Show();
-            this.Close();
+            Globals.irAtras(menuAnterior, this);
 
         }
 
