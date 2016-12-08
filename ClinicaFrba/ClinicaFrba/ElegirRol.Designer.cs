@@ -73,6 +73,8 @@
             this.comboBoxRoles.TabIndex = 14;
             this.comboBoxRoles.Text = "Seleccione un Rol";
             this.comboBoxRoles.SelectedIndexChanged += new System.EventHandler(this.comboBoxRoles_SelectedIndexChanged);
+            this.comboBoxRoles.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxRoles_KeyPress);
+
             // 
             // txtUsuario
             // 

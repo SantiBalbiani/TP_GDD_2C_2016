@@ -17,6 +17,7 @@ namespace ClinicaFrba.Registro_Llegada
     {
         public string unIdBono = "0";
         public string idTurno = "0";
+        public string menuAnterior;
 
         public Llegada()
         {
@@ -360,9 +361,10 @@ namespace ClinicaFrba.Registro_Llegada
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            Menu_Principal.HomeAdmin frmMenu = new Menu_Principal.HomeAdmin();
-            frmMenu.Show();
-            this.Close();
+            Globals.irAtras(menuAnterior, this);
+            //Menu_Principal.HomeAdmin frmMenu = new Menu_Principal.HomeAdmin();
+            //frmMenu.Show();
+            //this.Close();
         }
         
     }

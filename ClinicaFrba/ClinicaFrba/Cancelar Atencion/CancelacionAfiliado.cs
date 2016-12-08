@@ -19,6 +19,7 @@ namespace ClinicaFrba.Cancelar_Atencion
         private bool eligioTurno = false;
         private bool eligioTipo = false;
         private bool escibioMotivo = false;
+        public string menuAnterior;
 
         public CancelacionAfiliado(string strAfiliado)
         {
@@ -115,9 +116,10 @@ namespace ClinicaFrba.Cancelar_Atencion
                 finally
                 {
                     cnx.Close();
-                    HomeAfiliado home = new HomeAfiliado();
-                    home.Show();
-                    this.Close();
+                    Globals.irAtras(menuAnterior, this);
+                    //HomeAfiliado home = new HomeAfiliado();
+                    //home.Show();
+                    //this.Close();
                 }
             }
 
@@ -147,9 +149,10 @@ namespace ClinicaFrba.Cancelar_Atencion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            HomeAfiliado frmHome = new HomeAfiliado();
-            frmHome.Show();
-            this.Close();
+            Globals.irAtras(menuAnterior, this);
+            //HomeAfiliado frmHome = new HomeAfiliado();
+            //frmHome.Show();
+            //this.Close();
         }
     }
 }

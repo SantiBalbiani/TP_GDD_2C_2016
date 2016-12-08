@@ -14,15 +14,25 @@ using ClinicaFrba.Menu_Principal;
 using System.Configuration;
 using System.Data.SqlClient;
 using ClinicaFrba.Compra_Bono;
+using ClinicaFrba.Registro_Resultado;
+
 
 namespace ClinicaFrba.Menu_Principal
 {
     public partial class HomeCustom : Form
     {
+        //Para afiliado
         private string nombreAfil;
         private string apellidoAfil;
-        public string strAfiliado = "0";
-               
+        public string strAfiliado = "0";     
+        // En general
+        public string rolActual;
+        public string menuAnterior;
+        //Para Profesional
+        private string nombreProf;
+        private string apellidoProf;
+        private string idProf;
+        
 
         public HomeCustom()
         {
@@ -71,7 +81,7 @@ namespace ClinicaFrba.Menu_Principal
 
                     this.Hide();
                     FrmComprarBonos frmCompra = new FrmComprarBonos();
-                    frmCompra.menuAnterior = "Admin";
+                    frmCompra.menuAnterior = "Custom";
                     frmCompra.Show();
 
 
@@ -88,6 +98,7 @@ namespace ClinicaFrba.Menu_Principal
             else
             {
                 Abm_Planes.CambiarPlan frmCambiarPlan = new Abm_Planes.CambiarPlan(textBox1.Text);
+                frmCambiarPlan.menuAnterior = "Custom";
                 this.Hide();
                 frmCambiarPlan.Show();
             }
@@ -137,6 +148,7 @@ namespace ClinicaFrba.Menu_Principal
         private void btnRegistrarLlegada_Click(object sender, EventArgs e)
         {
             Registro_Llegada.Llegada frmRegistrar = new Registro_Llegada.Llegada();
+            frmRegistrar.menuAnterior = "Custom";
             frmRegistrar.Show();
             this.Close();
         }
@@ -158,6 +170,7 @@ namespace ClinicaFrba.Menu_Principal
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Cancelar_Atencion.CancelacionAfiliado frmCancel = new Cancelar_Atencion.CancelacionAfiliado(strAfiliado);
+            frmCancel.menuAnterior = "Custom";
             frmCancel.Show();
             this.Close();
         }
@@ -172,39 +185,69 @@ namespace ClinicaFrba.Menu_Principal
 
         private void HomeCustom_Load(object sender, EventArgs e)
         {
-            string queryDatosProf = "SELECT nombre ,apellido FROM SELECT_GROUP.Afiliado where numeroDoc = '" + Globals.userName + "'";
-
-            DataTable datosProf = new DataTable();
-
-            Conexion.conectar();
-
-            datosProf = Conexion.LeerTabla(queryDatosProf);
-
-            foreach (DataRow datosUnProf in datosProf.Rows)
+            //Chequear si es profesional y hacer cosas de profesional
+                       
+            if (rolActual == "Profesional")
             {
-                nombreAfil = datosUnProf["nombre"].ToString();
-                apellidoAfil = datosUnProf["apellido"].ToString();
+
+                string queryDatosProf = "SELECT matricula ,nombre ,apellido FROM Select_Group.Profesional P JOIN Select_Group.Usuario U ON U.idUsuario = P.idUsuario AND U.nombreUsuario = '" + Globals.userName + "'";
+
+                DataTable datosProf = new DataTable();
+
+                Conexion.conectar();
+
+                datosProf = Conexion.LeerTabla(queryDatosProf);
+
+                foreach (DataRow datosUnProf in datosProf.Rows)
+                {
+                    idProf = datosUnProf["matricula"].ToString();
+                    nombreProf = datosUnProf["nombre"].ToString();
+                    apellidoProf = datosUnProf["apellido"].ToString();
+                }
+
+                label3.Text = apellidoProf + ", " + nombreProf;
+                lblRolActual.Text = lblRolActual + "  " + rolActual;
+
 
             }
-
-            label3.Text = nombreAfil + ", " + apellidoAfil;
-
-
-            // Andaba            
-            DataTable idAfiliado = new DataTable();
-
-            string consultaAfiliado = "SELECT A.idAfiliado FROM Select_Group.Usuario U JOIN Select_Group.Afiliado A ON A.idUsuario = U.idUsuario WHERE U.nombreUsuario = '" + Globals.userName + "'";
-
-            Conexion.conectar();
-
-            idAfiliado = Conexion.LeerTabla(consultaAfiliado);
-
-            foreach (DataRow unAfi in idAfiliado.Rows)
+            
+            // Chequear Si es afiliado y hacer las cosas de abajo
+            if (rolActual == "Afiliado")
             {
-                strAfiliado = unAfi["idAfiliado"].ToString();
-            }
+                string queryDatosAfil = "SELECT nombre ,apellido FROM SELECT_GROUP.Afiliado where numeroDoc = '" + Globals.userName + "'";
 
-            Conexion.conexion.Close();
+                DataTable datosAfil = new DataTable();
+
+                Conexion.conectar();
+
+                datosAfil = Conexion.LeerTabla(queryDatosAfil);
+
+                foreach (DataRow datosUnProf in datosAfil.Rows)
+                {
+                    nombreAfil = datosUnProf["nombre"].ToString();
+                    apellidoAfil = datosUnProf["apellido"].ToString();
+
+                }
+
+                label3.Text = nombreAfil + ", " + apellidoAfil;
+                lblRolActual.Text = lblRolActual + "  " + rolActual;
+
+                // Andaba            
+                DataTable idAfiliado = new DataTable();
+
+                string consultaAfiliado = "SELECT A.idAfiliado FROM Select_Group.Usuario U JOIN Select_Group.Afiliado A ON A.idUsuario = U.idUsuario WHERE U.nombreUsuario = '" + Globals.userName + "'";
+
+                Conexion.conectar();
+
+                idAfiliado = Conexion.LeerTabla(consultaAfiliado);
+
+                foreach (DataRow unAfi in idAfiliado.Rows)
+                {
+                    strAfiliado = unAfi["idAfiliado"].ToString();
+                }
+
+                Conexion.conexion.Close();
+            }
         }
 
         private void btnRegAtencion_Click(object sender, EventArgs e)

@@ -16,6 +16,7 @@ namespace ClinicaFrba.Abm_Planes
     public partial class CambiarPlan : Form
     {
         public int idPlanMed = 0;
+        public string menuAnterior;
         public CambiarPlan(string strIdAfiliado)
         {
             InitializeComponent();
