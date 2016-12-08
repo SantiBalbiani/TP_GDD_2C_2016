@@ -17,6 +17,7 @@ namespace ClinicaFrba.Pedir_Turno
     {
         public static String idAgenda = "0";
         public string menuAnterior;
+        public Menu_Principal.HomeCustom Home;
 
         public FrmSolTurno()
         {
@@ -281,15 +282,15 @@ namespace ClinicaFrba.Pedir_Turno
                 cnx.Close();
                 string profesional = comboBox3.SelectedText;
                 MessageBox.Show("Turno Agendado con el Dr. "+ comboBox3.SelectedItem.ToString() +" para el "+turnoAReservar.ToString()+" con éxito!");
-                this.Hide();
-                HomeAfiliado frmHome = new HomeAfiliado();
-                frmHome.Show();
+                this.Close();
+                //HomeAfiliado frmHome = new HomeAfiliado();
+                //frmHome.Show();
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (menuAnterior == "Admin")
+            /*if (menuAnterior == "Admin")
             {
                 Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();
                 home.Show();
@@ -303,11 +304,10 @@ namespace ClinicaFrba.Pedir_Turno
             }
             if (menuAnterior == "Custom")
             {
-                Menu_Principal.HomeCustom frmHome = new Menu_Principal.HomeCustom();
-                frmHome.Show();
+                Home.Show();
                 this.Close();
-            }
-            
+            }*/
+            this.Close();
             
         }
 

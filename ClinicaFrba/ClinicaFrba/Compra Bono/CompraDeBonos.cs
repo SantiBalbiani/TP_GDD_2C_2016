@@ -17,6 +17,7 @@ namespace ClinicaFrba.Compra_Bono
     {
         public int precioBonoSegunPlan = 0;
         public string menuAnterior;
+        public Menu_Principal.HomeCustom Home;
        // public formulario(int strFlag);
        // int flag;
 
@@ -62,7 +63,8 @@ namespace ClinicaFrba.Compra_Bono
                 if (plan == " ")
                 {
                     MessageBox.Show("El número de Afiliado no existe, por favor intente nuevamente");
-                    Globals.irAtras(menuAnterior, this);
+                    //Globals.irAtras(menuAnterior, this);
+                    this.Close();
                 }
 
             }
@@ -92,7 +94,8 @@ namespace ClinicaFrba.Compra_Bono
                 {
                     cnx.Close();
                     MessageBox.Show("Compra exitosa");
-                    Globals.irAtras(menuAnterior, this);
+                    //Globals.irAtras(menuAnterior, this);
+                    this.Close();
                 }
             }
             else
@@ -165,7 +168,8 @@ namespace ClinicaFrba.Compra_Bono
         private void button2_Click(object sender, EventArgs e)
         {
 
-            Globals.irAtras(menuAnterior,this);
+            //Globals.irAtras(menuAnterior,this);
+            this.Close();
             /*if (menuAnterior == "Admin")
                  {
                      Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();

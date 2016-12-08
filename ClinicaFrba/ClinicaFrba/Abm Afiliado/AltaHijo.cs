@@ -25,6 +25,7 @@ namespace ClinicaFrba.Abm_Afiliado
         public int contador = 0;
         public int nroAfiliado;
         public Boolean nuevo = false;
+        public string menuAnterior;
         
 
         public AltaHijo(DataTable Afiliados,DataRow afiliado,int cantHijos, bool esNuevo )
@@ -38,9 +39,8 @@ namespace ClinicaFrba.Abm_Afiliado
       
         private void btnCancelar_Click_1(object sender, EventArgs e)
         {
-            Menu_Principal.HomeAdmin frmadmin = new Menu_Principal.HomeAdmin();
-            frmadmin.Show();
             this.Close();
+            //Globals.irAtras(menuAnterior, this);
         }
 
         private void label13_Click(object sender, EventArgs e)

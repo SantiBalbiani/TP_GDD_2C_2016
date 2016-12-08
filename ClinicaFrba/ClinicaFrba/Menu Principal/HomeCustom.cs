@@ -79,9 +79,10 @@ namespace ClinicaFrba.Menu_Principal
                 {
                     Conexion.conexion.Close();
 
-                    this.Hide();
+                   // this.Hide();
                     FrmComprarBonos frmCompra = new FrmComprarBonos();
                     frmCompra.menuAnterior = "Custom";
+                    frmCompra.Home = this; 
                     frmCompra.Show();
 
 
@@ -99,7 +100,7 @@ namespace ClinicaFrba.Menu_Principal
             {
                 Abm_Planes.CambiarPlan frmCambiarPlan = new Abm_Planes.CambiarPlan(textBox1.Text);
                 frmCambiarPlan.menuAnterior = "Custom";
-                this.Hide();
+                frmCambiarPlan.Home = this; 
                 frmCambiarPlan.Show();
             }
         }
@@ -134,62 +135,78 @@ namespace ClinicaFrba.Menu_Principal
         private void btnAbmRol_Click(object sender, EventArgs e)
         {
             abmMenuRol frmMenuRol = new abmMenuRol();
-            this.Hide();
+            frmMenuRol.menuAnterior = "Custom";
+            frmMenuRol.Home = this; 
+           // this.Hide();
             frmMenuRol.Show();
         }
 
         private void btnEstadisticas_Click(object sender, EventArgs e)
         {
             Listados.ListadoEstadistico frmListados = new Listados.ListadoEstadistico();
-            this.Close();
+            frmListados.menuAnterior = "Custom";
+            frmListados.Home = this; 
             frmListados.Show();
+           // this.Close();
+            
         }
 
         private void btnRegistrarLlegada_Click(object sender, EventArgs e)
         {
             Registro_Llegada.Llegada frmRegistrar = new Registro_Llegada.Llegada();
             frmRegistrar.menuAnterior = "Custom";
+            frmRegistrar.Home = this; 
             frmRegistrar.Show();
-            this.Close();
+            //this.Close();
         }
 
         private void btnAltaAfiliado_Click(object sender, EventArgs e)
         {
             Abm_Afiliado.frmAltaAfiliado frmAlta = new Abm_Afiliado.frmAltaAfiliado();
+            frmAlta.menuAnterior = "Custom";
+            frmAlta.Home = this; 
             frmAlta.Show();
-            this.Close();
+            //this.Close();
         }
 
         private void btnAgregarFamiliar_Click(object sender, EventArgs e)
         {
             AltaFamiliar frmAltaFamiliarAfiliado = new AltaFamiliar();
+            frmAltaFamiliarAfiliado.menuAnterior = "Custom";
+            frmAltaFamiliarAfiliado.Home = this; 
             frmAltaFamiliarAfiliado.Show();
-            this.Close();
+            //this.Close();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Cancelar_Atencion.CancelacionAfiliado frmCancel = new Cancelar_Atencion.CancelacionAfiliado(strAfiliado);
-            frmCancel.menuAnterior = "Custom";
+            //frmCancel.menuAnterior = "Custom";
+            //frmCancel.Home = this; 
             frmCancel.Show();
-            this.Close();
+           // this.Close();
         }
 
         private void btnSolicitar_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            //this.Hide();
             ClinicaFrba.Pedir_Turno.FrmSolTurno frmSolTurno = new ClinicaFrba.Pedir_Turno.FrmSolTurno();
             frmSolTurno.menuAnterior = "Custom";
+            frmSolTurno.Home = this; 
             frmSolTurno.Show();
         }
 
         private void HomeCustom_Load(object sender, EventArgs e)
         {
+            //Cargar Botones a usar// Para eso, ver que funciones tiene el forro. 
+
+           
+
+
             //Chequear si es profesional y hacer cosas de profesional
                        
             if (rolActual == "Profesional")
             {
-
                 string queryDatosProf = "SELECT matricula ,nombre ,apellido FROM Select_Group.Profesional P JOIN Select_Group.Usuario U ON U.idUsuario = P.idUsuario AND U.nombreUsuario = '" + Globals.userName + "'";
 
                 DataTable datosProf = new DataTable();
@@ -214,6 +231,7 @@ namespace ClinicaFrba.Menu_Principal
             // Chequear Si es afiliado y hacer las cosas de abajo
             if (rolActual == "Afiliado")
             {
+
                 string queryDatosAfil = "SELECT nombre ,apellido FROM SELECT_GROUP.Afiliado where numeroDoc = '" + Globals.userName + "'";
 
                 DataTable datosAfil = new DataTable();
@@ -255,7 +273,8 @@ namespace ClinicaFrba.Menu_Principal
 
             if (rolActual == "Administrativo")
             {
-                txtRolActual.Text = rolActual; 
+                txtRolActual.Text = rolActual;
+                
             }
         }
 
@@ -271,7 +290,14 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnModifAfil_Click(object sender, EventArgs e)
         {
+            Abm_Afiliado.ModificarAfiliado frmMod = new Abm_Afiliado.ModificarAfiliado();
+            frmMod.Show();
+        }
 
+        private void btnBajaAfil_Click(object sender, EventArgs e)
+        {
+            Abm_Afiliado.BajaAfiliado frmBaja = new Abm_Afiliado.BajaAfiliado();
+            frmBaja.Show();
         }
     }
 }

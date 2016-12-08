@@ -155,8 +155,8 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Menu_Principal.HomeAdmin frmadmin = new Menu_Principal.HomeAdmin();
-            frmadmin.Show();
+            //Menu_Principal.HomeAdmin frmadmin = new Menu_Principal.HomeAdmin();
+            //frmadmin.Show();
             this.Close();
         }
 
