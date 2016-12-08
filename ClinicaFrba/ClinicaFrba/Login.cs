@@ -22,8 +22,7 @@ namespace ClinicaFrba
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //bool bandera = Conexion.conectar();
-
+            
             if (Conexion.conectar())
             {
                 DataTable users = new DataTable();

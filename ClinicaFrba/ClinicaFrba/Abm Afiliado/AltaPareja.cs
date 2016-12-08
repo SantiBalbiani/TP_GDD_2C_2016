@@ -22,20 +22,20 @@ namespace ClinicaFrba.Abm_Afiliado
         public DataRow afiliadoIngresado;
         public int idUsuario;
         public Boolean tieneHijos;
-        public Boolean nuevo;
+        public Boolean nuevoAfiliado;
         public int nroAfiliado = 0;
         public string planMedPareja;
         public int hijosCant;
         public string menuAnterior;
-        
 
-        public AltaPareja(DataTable afiliadoPrincipal,DataRow afiliadoIngre,Boolean hijos,Boolean afiliadoPrincipalNuevo,int cantHijos)
+
+        public AltaPareja(DataTable afiliadoPrincipal, DataRow afiliadoIngre, Boolean hijos,Boolean afiliadoPrincipalNuevo, int cantHijos)
         {
             InitializeComponent();
             tieneHijos = hijos;
             afiliadoIngresado = afiliadoIngre;
             afiliados = afiliadoPrincipal;
-            nuevo = afiliadoPrincipalNuevo;
+            nuevoAfiliado = afiliadoPrincipalNuevo;
             hijosCant = cantHijos;
          }
         private void btnSiguiente_Click(object sender, EventArgs e)
@@ -54,51 +54,25 @@ namespace ClinicaFrba.Abm_Afiliado
                                                                                     dateTimePicker1.Value.Date, cmbSexoPareja.Text, estadoCivilPareja,
                                                                                     hijosCant, direccionPareja.Text, planMedPareja);
                 
-
-
-               /* DataRow afiliado = afiliados.NewRow();
-                afiliado["nroAfiliado"] = Convert.ToInt32(afiliadoIngresado["nroAfiliado"]) +1 ;
-                afiliado["nombre"] = nombrePareja.Text;
-                afiliado["apellido"] = apellidoPareja.Text;
-                afiliado["tipoDoc"] = tipoDocPareja.Text;
-                afiliado["numeroDoc"] = Convert.ToInt32(nroDocPareja.Text);
-                afiliado["telefono"] = Convert.ToInt32(telefonoPareja.Text);
-                afiliado["mail"] = mailPareja.Text;
-                //afiliado["fechaNac"] = Convert.ToDateTime(fechaNacPareja.Text);
-                afiliado["fechaNac"] = dateTimePicker1.Value.Date;
-                afiliado["sexo"] = cmbSexoPareja.Text;
-                afiliado["estadoCivil"] = afiliadoIngresado["estadoCivil"];
-                afiliado["cantidadHijos"] = Convert.ToInt32(textCantHijos.Text);
-                afiliado["direccion"] = direccionPareja.Text;
-                int usuarioIdAfiliado = registrarUsuario(Convert.ToInt32(nroDocPareja.Text));
-                afiliado["idUsuario"] = usuarioIdAfiliado;
-                
-                string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + PlanMedPareja.Text.Trim() + "')";
-                DataTable dt = Conexion.EjecutarComando(query);
-                foreach (DataRow fila in dt.Rows)
-                {
-                    int idPlanMed = Convert.ToInt32((fila["idPlan"]));
-                    afiliado["plan_idPlan"] = idPlanMed;
-                }
-                
-                //Para que ande
-                afiliado["plan_idPlan"] = afiliadoIngresado["plan_idPlan"];*/
-
                 DataRow afiliado = afiliados.Rows[1];
 
                 if (tieneHijos)
                 {
-                    AltaHijo frmHijo = new AltaHijo(afiliados,afiliado,hijosCant,nuevo);
+                    AltaHijo frmHijo = new AltaHijo(afiliados,afiliado,hijosCant,nuevoAfiliado);
                     frmHijo.Show();
                     this.Close();
                 }
                 else {
+                    
                     SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-                    SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
-                    cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
-                    cmdAltaAfiliado.Parameters.Add("@Afiliados", SqlDbType.Structured).Value = afiliados;
+                    
                     try
                     {
+                        SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
+                        cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+                        cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
+                        cmdAltaAfiliado.Parameters["@Afiliados"].Value = afiliados;
+                   
                         cnx.Open();
                         cmdAltaAfiliado.ExecuteNonQuery();
                         MessageBox.Show("Se han guardado correctamente los datos");
@@ -158,7 +132,7 @@ namespace ClinicaFrba.Abm_Afiliado
         private void AltaPareja_Load(object sender, EventArgs e)
         {
 
-            if (nuevo)
+            if (nuevoAfiliado)
             {
                 string idPlan = afiliadoIngresado[14].ToString();
 
@@ -180,18 +154,7 @@ namespace ClinicaFrba.Abm_Afiliado
             }
             
             afiliados = Abm_Afiliado.estructuraBD.crearEstructuraAfiliado(afiliados);
-            /*DataColumn nombre = afiliados.Columns.Add("nombre", typeof(String));
-            afiliados.Columns.Add("apellido", typeof(String));
-            afiliados.Columns.Add("tipoDni", typeof(String));
-            afiliados.Columns.Add("numeroDni", typeof(Int32));
-            afiliados.Columns.Add("telefono", typeof(Int32));
-            afiliados.Columns.Add("mail", typeof(String));
-            afiliados.Columns.Add("fechaNac", typeof(DateTime));
-            afiliados.Columns.Add("sexo", typeof(String));
-            afiliados.Columns.Add("estadoCivil", typeof(String));
-            afiliados.Columns.Add("direccion", typeof(String));
-            afiliados.Columns.Add("usuarioId", typeof(Int32));
-            afiliados.Columns.Add("planMed", typeof(Int32));*/
+           
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

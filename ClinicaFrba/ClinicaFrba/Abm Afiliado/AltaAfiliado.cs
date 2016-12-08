@@ -19,17 +19,21 @@ namespace ClinicaFrba.Abm_Afiliado
     {
         public int idUsuario;
         public int cantidadHijos;
-        public int nroAfiliado = 0;
-        public int idPlanMed = 0;
+        public int nroAfiliado;
+        public int idPlanMed;
         public DataTable afiliadosTable = new DataTable();
-        public Boolean tieneHijos = false;
-        public Boolean nuevo = true;
+        public Boolean tieneHijos;
+        public Boolean afiliadoNuevo;
         public string menuAnterior;
         public Menu_Principal.HomeCustom Home;
         
         public frmAltaAfiliado()
         {
             InitializeComponent();
+            afiliadoNuevo = true;
+            tieneHijos = false;
+            idPlanMed = 0;
+            nroAfiliado = 0;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -84,6 +88,7 @@ namespace ClinicaFrba.Abm_Afiliado
             if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
             {
                 cantidadHijos = Convert.ToInt32(textCantHijos.Text);
+
                 nroAfiliado = generarNumeroAfiliado();
                 
                 afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable, nroAfiliado, textNombre.Text, textApellido.Text,
@@ -98,7 +103,7 @@ namespace ClinicaFrba.Abm_Afiliado
                     {
                         tieneHijos = true;
                     }
-                AltaPareja frm = new AltaPareja(afiliadosTable,afiliado,tieneHijos,nuevo,cantidadHijos);
+                AltaPareja frm = new AltaPareja(afiliadosTable,afiliado,tieneHijos,afiliadoNuevo,cantidadHijos);
                 frm.Show();
                 this.Close();
               }
@@ -128,42 +133,16 @@ namespace ClinicaFrba.Abm_Afiliado
 
 
                 DataRow afiliado = afiliadosTable.Rows[0];
-
-                /*DataRow afiliado = afiliadosTable.NewRow();
-                afiliado["nroAfiliado"] = 01;
-                afiliado["nombre"] = textNombre.Text;
-                afiliado["apellido"] = textApellido.Text;
-                afiliado["tipoDoc"] = textTipoDoc.Text;
-                afiliado["numeroDoc"] = Convert.ToInt32(textDni.Text);
-                afiliado["telefono"] = Convert.ToInt32(textTelefono.Text);
-                afiliado["mail"] = textMail.Text;
-                afiliado["fechaNac"] = dateTimePicker1.Value.Date;
-                  //  Convert.ToDateTime(textFechaNac.Text);
-                afiliado["sexo"] = cmbSexo.Text;
-                afiliado["estadoCivil"] = cmbEstadoCivil.Text;
-                afiliado["direccion"] = textDireccion.Text;
-                int usuarioIdAfiliado = estructuraBD.registrarUsuario(Convert.ToInt32(textDni.Text));
-                afiliado["idUsuario"] = usuarioIdAfiliado;
-                string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + cbmPlanMed.Text.Trim() + "')";
-                DataTable dt = Conexion.EjecutarComando(query);
-                foreach (DataRow fila in dt.Rows)
-                {
-                    idPlanMed = Convert.ToInt32((fila["idPlan"]));
-                    afiliado["plan_idPlan"] = idPlanMed;
-                }*/
-                //afiliadosTable.Rows.Add(afiliado);
                 
                 SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-                SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
-                cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
-               // cmdAltaAfiliado.Parameters.Add("@Afiliados", SqlDbType.Structured).Value = afiliadosTable;
-
-                SqlParameter unParametro = cmdAltaAfiliado.Parameters.AddWithValue("@Afiliados", afiliadosTable);
-                unParametro.SqlDbType = SqlDbType.Structured;
-                unParametro.TypeName = "Select_Group.dt_Afiliados";
                 
                 try
                 {
+                SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
+                cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+                cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
+                cmdAltaAfiliado.Parameters["@Afiliados"].Value = afiliadosTable;
+
                  cnx.Open();
                  cmdAltaAfiliado.ExecuteNonQuery();
                  MessageBox.Show("Se han guardado correctamente los datos");
@@ -184,8 +163,7 @@ namespace ClinicaFrba.Abm_Afiliado
            
         }
 
-       
-
+      
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
 
@@ -217,18 +195,6 @@ namespace ClinicaFrba.Abm_Afiliado
 
             afiliadosTable = Abm_Afiliado.estructuraBD.crearEstructuraAfiliado(afiliadosTable);
 
-           /* DataColumn nombre = afiliadosTable.Columns.Add("nombre", typeof(String));
-            afiliadosTable.Columns.Add("apellido", typeof(String));
-            afiliadosTable.Columns.Add("tipoDni", typeof(String));
-            afiliadosTable.Columns.Add("numeroDni", typeof(Int32));
-            afiliadosTable.Columns.Add("telefono", typeof(Int32));
-            afiliadosTable.Columns.Add("mail", typeof(String));
-            afiliadosTable.Columns.Add("fechaNac", typeof(DateTime));
-            afiliadosTable.Columns.Add("sexo", typeof(String));
-            afiliadosTable.Columns.Add("estadoCivil", typeof(String));
-            afiliadosTable.Columns.Add("direccion", typeof(String));
-            afiliadosTable.Columns.Add("usuarioId", typeof(Int32));
-            afiliadosTable.Columns.Add("planMed", typeof(Int32));*/
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -259,7 +225,7 @@ namespace ClinicaFrba.Abm_Afiliado
                         DataRow afiliado = afiliadosTable.Rows[0];
 
                         
-                        AltaHijo frm = new AltaHijo(afiliadosTable, afiliado,cantidadHijos,nuevo);
+                        AltaHijo frm = new AltaHijo(afiliadosTable, afiliado,cantidadHijos,afiliadoNuevo);
                         frm.Show();
                         this.Close();
                     }
