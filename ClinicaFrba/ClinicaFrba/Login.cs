@@ -30,12 +30,13 @@ namespace ClinicaFrba
                 string cod = txtUsuario.Text;
                 string pass = txtContraseña.Text;
                 string cadena = "select nombreUsuario,contraseña,intentosFallidos from SELECT_GROUP.Usuario where contraseña=HASHBYTES('SHA2_256','" + pass.Trim() + "') and nombreUsuario=('" + cod.Trim() + "')";
-                //select user_name,contraseña,login_fallidos,id_rol from prueba.usuarios where user_name=upper('" + cod.Trim() + "') and contraseña=prueba.psencriptar('"+pass.Trim()+"')";
+              
                 users = Conexion.LeerTabla(cadena);
                 if (users.Rows.Count == 0)
                 {
                     MessageBox.Show("Error al ingresar usuario o contraseña");
                     cadena = "update SELECT_GROUP.Usuario set intentosFallidos=intentosFallidos+1 where nombreUsuario=upper('" + cod.Trim() + "')";
+                    Conexion.EjecutarComando(cadena);
                     this.txtContraseña.ResetText();
                     this.txtUsuario.ResetText();
                 }
@@ -43,18 +44,20 @@ namespace ClinicaFrba
                 {
                     foreach (DataRow fila in users.Rows)
                     {
-                        if (int.Parse((fila["intentosFallidos"].ToString())) < 3)
+                        if (int.Parse((fila["intentosFallidos"].ToString())) == 3)
+                        {
+                            MessageBox.Show("El usuario " + fila["nombreUsuario"].ToString() + " está bloqueado");
+                            
+                        }
+                        else
                         {
                             this.Hide();
                             MessageBox.Show("Bienvenido " + fila["nombreUsuario"].ToString());
                             Globals.userName = cod.Trim();
+                            cadena = "update SELECT_GROUP.Usuario set intentosFallidos= 0 where nombreUsuario=upper('" + cod.Trim() + "')";
+                            Conexion.EjecutarComando(cadena);
                             ElegirRol frmRol = new ElegirRol(txtUsuario.Text);
                             frmRol.Show();
-                        }
-                        else
-                        {
-                            MessageBox.Show("El usuario" + fila["nombreUsuario"].ToString() + " está bloqueado");
-
                         }
                     }
 

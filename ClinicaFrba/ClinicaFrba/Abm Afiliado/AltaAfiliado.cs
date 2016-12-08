@@ -51,17 +51,16 @@ namespace ClinicaFrba.Abm_Afiliado
         public int generarNumeroAfiliado()
         {
             
-            string query = "select max(AF.idAfiliado) as idAfiliado from SELECT_GROUP.Afiliado as AF";
+            string query = "select max(AF.nroAfiliado) as nroAfiliado from SELECT_GROUP.Afiliado as AF";
             DataTable dt = Conexion.EjecutarComando(query);
             foreach (DataRow fila in dt.Rows)
             {
-                nroAfiliado = (((Convert.ToInt32(fila["idAfiliado"]) + 1) * 100) + 1);
+                nroAfiliado = (((Convert.ToInt32(fila["nroAfiliado"]) /100) + 1));
+                nroAfiliado = (nroAfiliado * 100) + 1;
             }
             return nroAfiliado;
             
         }
-
-
 
         private void cmbEstadoCivil_SelectedIndexChanged(object sender, EventArgs e)
         {
