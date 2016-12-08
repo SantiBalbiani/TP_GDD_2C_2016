@@ -16,6 +16,8 @@ using System.Configuration;
 { 
     public partial class asignarRolUser : Form
     {
+        public string menuAnterior;
+        public Form menuAnterior;
         public asignarRolUser()
         {
             InitializeComponent();

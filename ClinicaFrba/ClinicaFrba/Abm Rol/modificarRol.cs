@@ -260,6 +260,7 @@ namespace ClinicaFrba.AbmRol
         private void button2_Click(object sender, EventArgs e)
         {
             abmMenuRol frmMenu = new abmMenuRol();
+            frmMenu.menuAnterior = "MenuRol";
             frmMenu.Show();
             this.Close();
         }

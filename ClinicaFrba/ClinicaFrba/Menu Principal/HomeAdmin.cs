@@ -162,6 +162,7 @@ namespace ClinicaFrba.Menu_Principal
             else
             {
                 Abm_Planes.CambiarPlan frmCambiarPlan = new Abm_Planes.CambiarPlan(textBox1.Text);
+                frmCambiarPlan.menuAnterior = "Admin";
                 this.Hide();
                 frmCambiarPlan.Show();
             }
@@ -170,7 +171,7 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnEstadisticas_Click(object sender, EventArgs e)
         {
-            Listados.ListadoEstadistico frmListados = new Listados.ListadoEstadistico();
+            Listados.ListadoEstadistico frmListados = new Listados.ListadoEstadistico("Admin");
             this.Close();
             frmListados.Show();
         }
@@ -202,6 +203,7 @@ namespace ClinicaFrba.Menu_Principal
         private void button4_Click(object sender, EventArgs e)
         {
             ModificarAfiliado frmModAf = new ModificarAfiliado();
+            frmModAf.menuAnterior = "Admin";
             frmModAf.Show();
             this.Close();
         }

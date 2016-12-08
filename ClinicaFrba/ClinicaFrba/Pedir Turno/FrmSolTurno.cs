@@ -290,23 +290,7 @@ namespace ClinicaFrba.Pedir_Turno
 
         private void button2_Click(object sender, EventArgs e)
         {
-            /*if (menuAnterior == "Admin")
-            {
-                Menu_Principal.HomeAdmin home = new Menu_Principal.HomeAdmin();
-                home.Show();
-                this.Close();
-            }
-            if (menuAnterior == "Afiliado")
-            {
-                HomeAfiliado home = new HomeAfiliado();
-                home.Show();
-                this.Close();
-            }
-            if (menuAnterior == "Custom")
-            {
-                Home.Show();
-                this.Close();
-            }*/
+            Globals.irAtras(menuAnterior, this);
             this.Close();
             
         }

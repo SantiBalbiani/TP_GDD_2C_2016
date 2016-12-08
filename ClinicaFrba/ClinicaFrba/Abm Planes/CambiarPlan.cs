@@ -144,7 +144,7 @@ namespace ClinicaFrba.Abm_Planes
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            //Globals.irAtras(menuAnterior, this);
+            Globals.irAtras(menuAnterior, this);
             this.Close();
         }
 

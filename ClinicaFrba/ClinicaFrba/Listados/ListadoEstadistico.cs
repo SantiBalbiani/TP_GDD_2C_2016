@@ -18,15 +18,16 @@ namespace ClinicaFrba.Listados
         public string menuAnterior;
         public Menu_Principal.HomeCustom Home;
 
-        public ListadoEstadistico()
+        public ListadoEstadistico(string unMenu)
         {
             InitializeComponent();
+            menuAnterior = unMenu;
         
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            //Globals.irAtras(menuAnterior, this);
+            Globals.irAtras(menuAnterior, this);
             this.Close();
 
         }

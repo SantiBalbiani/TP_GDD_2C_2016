@@ -24,6 +24,7 @@ DROP TABLE [Select_Group].[Tipo_Especialidad]
 DROP TABLE [Select_Group].[Turno]
 DROP TABLE [Select_Group].[Usuario]
 DROP TABLE [Select_Group].[Plan_Med]
+DROP PROCEDURE [Select_Group].[sp_InsertarRolAfiliado];
 DROP PROCEDURE [Select_Group].[BAJA_ROL];
 DROP PROCEDURE Select_Group.ComprarBono;
 DROP PROCEDURE Select_Group.CrearRol;
@@ -45,6 +46,7 @@ DROP VIEW [Select_Group].[V_Las5EspConMasBonos];
 DROP VIEW [Select_Group].[V_Las5EspConMasCancelaciones];
 DROP TYPE [Select_Group].[dt_Afiliados];
 DROP VIEW [Select_Group].[5AfiliadosConMasCompraDeBonos];
+DROP SCHEMA [Select_Group];
 
 GO
 

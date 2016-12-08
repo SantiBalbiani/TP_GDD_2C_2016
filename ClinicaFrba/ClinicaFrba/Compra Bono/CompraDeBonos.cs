@@ -168,7 +168,7 @@ namespace ClinicaFrba.Compra_Bono
         private void button2_Click(object sender, EventArgs e)
         {
 
-            //Globals.irAtras(menuAnterior,this);
+            Globals.irAtras(menuAnterior,this);
             this.Close();
             /*if (menuAnterior == "Admin")
                  {

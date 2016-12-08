@@ -143,7 +143,7 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnEstadisticas_Click(object sender, EventArgs e)
         {
-            Listados.ListadoEstadistico frmListados = new Listados.ListadoEstadistico();
+            Listados.ListadoEstadistico frmListados = new Listados.ListadoEstadistico("Custom");
             frmListados.menuAnterior = "Custom";
             frmListados.Home = this; 
             frmListados.Show();

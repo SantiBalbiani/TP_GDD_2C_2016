@@ -132,7 +132,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //Globals.irAtras(menuAnterior, this);
+            Globals.irAtras(menuAnterior, this);
             this.Close();
         }
     }

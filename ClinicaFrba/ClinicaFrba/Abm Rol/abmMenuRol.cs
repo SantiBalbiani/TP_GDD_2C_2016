@@ -78,8 +78,9 @@ namespace ClinicaFrba.AbmRol
         private void btnAsignarDesRol_Click(object sender, EventArgs e)
         {
             asignarRolUser frmAsignarRol = new asignarRolUser();
+
             frmAsignarRol.Show();
-            this.Close();
+            this.Hide();
             
         }
 
@@ -101,7 +102,7 @@ namespace ClinicaFrba.AbmRol
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            //Globals.irAtras(menuAnterior, this);
+            Globals.irAtras(menuAnterior, this);
             this.Close();
         }
     }

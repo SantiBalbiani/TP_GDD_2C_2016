@@ -130,6 +130,7 @@ namespace ClinicaFrba
         private void button2_Click(object sender, EventArgs e)
         {
             Cancelar_Atencion.CancelacionAfiliado frmCancel = new Cancelar_Atencion.CancelacionAfiliado(strAfiliado);
+            frmCancel.menuAnterior = "Afiliado";
             frmCancel.Show();
             this.Close();
 

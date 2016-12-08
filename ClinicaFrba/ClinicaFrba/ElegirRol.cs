@@ -39,7 +39,7 @@ namespace ClinicaFrba
 
                 switch (rolElegido)
                 {
-                    /*case "Afiliado":
+                    case "Afiliado":
                     //Ejemplo:
                         HomeAfiliado frmAfiliado = new HomeAfiliado();
                         frmAfiliado.Show();
@@ -55,7 +55,7 @@ namespace ClinicaFrba
                         Menu_Principal.HomeAdmin frmAdmin= new Menu_Principal.HomeAdmin();
                         frmAdmin.Show();
                         this.Close();
-                        break;  */         
+                        break;          
                     default:
                         Menu_Principal.HomeCustom frmCustom = new Menu_Principal.HomeCustom();
                         frmCustom.rolActual = rolElegido;
