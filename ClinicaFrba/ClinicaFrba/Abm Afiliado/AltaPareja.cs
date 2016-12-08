@@ -160,7 +160,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
             if (nuevo)
             {
-                string idPlan = afiliadoIngresado[13].ToString();
+                string idPlan = afiliadoIngresado[14].ToString();
 
                 string query = "select PM.descripcion from SELECT_GROUP.Plan_Med as PM where idPlan = ('" + idPlan + "')";
                 DataTable dt = Conexion.EjecutarComando(query);

@@ -50,7 +50,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void AltaHijo_Load(object sender, EventArgs e)
         {
-            string idPlan = afiliadoIngresado[13].ToString();
+            string idPlan = afiliadoIngresado[14].ToString();
 
             string query = "select PM.descripcion from SELECT_GROUP.Plan_Med as PM where idPlan = ('" + idPlan + "')";
             DataTable dt = Conexion.EjecutarComando(query);
@@ -60,6 +60,8 @@ namespace ClinicaFrba.Abm_Afiliado
                 PlanMedHijo.Text = planMedHijo;
             }
 
+            tablaAfiliados.Rows.Add(afiliadoIngresado);
+            
             tablaAfiliados = Abm_Afiliado.estructuraBD.crearEstructuraAfiliado(tablaAfiliados);
                         
         }
