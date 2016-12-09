@@ -26,45 +26,44 @@ namespace ClinicaFrba
 
         private void btnContinuar_Click(object sender, EventArgs e)
         {
-          //  if (this.comboRoles.SelectedIndex == -1)//Si no selecciono ROL
-          //  {
-                //No puedo seguir, mensaje avisando que debe seleccionar un rol
-               // MsgBox("An exception occurred:");
-          //      MessageBox.Show("Debe seleccionar un ROL para poder continuar");
-          //  }
-         //   else
-          //  {
+            if (this.comboBoxRoles.SelectedIndex == -1)//Si no selecciono ROL
+            {
+                MessageBox.Show("Debe seleccionar un Rol para poder continuar");
+            }
+            else
+            {
                 rolElegido = comboBoxRoles.Text;//el index guarda un 0,1,2 en la variable
-          //      MessageBox.Show("Rol Nro " + rolElegido);
+                
+                //ACÄ me tengo que traer las funcionalidades
 
                 switch (rolElegido)
                 {
                     case "Afiliado":
-                    //Ejemplo:
+                        //Ejemplo:
                         HomeAfiliado frmAfiliado = new HomeAfiliado();
                         frmAfiliado.Show();
                         this.Close();
                         break;
                     case "Profesional":
                         //hacer algo
-                        Menu_Principal.HomeProfesional frmProfesional= new Menu_Principal.HomeProfesional();
+                        Menu_Principal.HomeProfesional frmProfesional = new Menu_Principal.HomeProfesional();
                         frmProfesional.Show();
                         this.Close();
                         break;
                     case "Administrativo":
-                        Menu_Principal.HomeAdmin frmAdmin= new Menu_Principal.HomeAdmin();
+                        Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
                         frmAdmin.Show();
                         this.Close();
-                        break;          
+                        break;
                     default:
                         Menu_Principal.HomeCustom frmCustom = new Menu_Principal.HomeCustom();
                         frmCustom.rolActual = rolElegido;
                         frmCustom.Show();
                         this.Close();
-                        //MessageBox.Show("Debe Seleccionar un Rol para poder continuar");
                         break;
                 }
-         }
+            }
+        }
 
         private void comboRoles_SelectedIndexChanged(object sender, EventArgs e)
         {

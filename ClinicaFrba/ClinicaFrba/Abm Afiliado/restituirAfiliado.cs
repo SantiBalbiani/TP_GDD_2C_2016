@@ -48,6 +48,11 @@ namespace ClinicaFrba.Abm_Afiliado
 
             }
 
+            if (checkedListBox1.Items.Count < 1)
+            {
+                MessageBox.Show("No existen Afiliados a Rehabilitar");
+            }
+
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)

@@ -200,7 +200,14 @@ namespace ClinicaFrba.Menu_Principal
         {
             //Cargar Botones a usar// Para eso, ver que funciones tiene el forro. 
 
-           
+        /* Con esto carga
+            select idFuncionalidad
+            from SELECT_GROUP.Funcionalidad_Por_Rol 
+            inner join SELECT_GROUP.Funcionalidad
+            on SELECT_GROUP.Funcionalidad_Por_Rol.funcionalidad_idFuncionalidad =  SELECT_GROUP.Funcionalidad.idFuncionalidad
+            where rol_idRol = 1
+      */
+
 
 
             //Chequear si es profesional y hacer cosas de profesional

@@ -107,7 +107,28 @@ namespace ClinicaFrba.AbmRol
                             Conexion.conexion.Close();
                         }
 
+                        //hago refresh
+                        checkedListBox1.Items.Clear();
+                        Conexion.conectar();
+                        DataTable roles = new DataTable();
 
+                        string consultaStr = "select idRol, nombre from SELECT_GROUP.Rol where rol.habilitado=1";
+
+                        roles = Conexion.LeerTabla(consultaStr);
+
+                        DataTable nombreRoles = new DataTable();
+
+
+                        foreach (DataRow idFunc in roles.Rows)
+                        {
+                            ComboboxItem unRol = new ComboboxItem();
+
+                            unRol.Text = idFunc["nombre"].ToString();
+                            unRol.Value = idFunc["idRol"].ToString();
+
+                            checkedListBox1.Items.Add(unRol);
+
+                        }
                         
 
                         

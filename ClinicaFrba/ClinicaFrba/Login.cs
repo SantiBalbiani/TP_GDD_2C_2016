@@ -22,8 +22,7 @@ namespace ClinicaFrba
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //bool bandera = Conexion.conectar();
-
+            
             if (Conexion.conectar())
             {
                 DataTable users = new DataTable();
@@ -64,6 +63,14 @@ namespace ClinicaFrba
                 }
             }
 
+        }
+
+        private void btnFecha_Click(object sender, EventArgs e)
+        {
+            Fecha frmFecha = new Fecha();
+            frmFecha.MenuAnt = this;
+            frmFecha.Show();
+            this.Enabled = false; 
         }
     }
 }

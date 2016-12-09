@@ -95,7 +95,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label asignarRol;
+        /*private System.Windows.Forms.Label asignarRol;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ContextMenuStrip Rol;
         private System.Windows.Forms.ToolStripMenuItem altaToolStripMenuItem;
@@ -105,7 +105,7 @@
         private System.Windows.Forms.ToolStripMenuItem modificaciònDeRolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem agregarFuncionalidadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitarFuncionalidadToolStripMenuItem;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox checkedListBox1; */
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckedListBox checkedListBox2;

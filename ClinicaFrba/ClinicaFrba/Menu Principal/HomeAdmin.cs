@@ -207,6 +207,15 @@ namespace ClinicaFrba.Menu_Principal
             frmModAf.Show();
             this.Close();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            RestituirAfiliado frmRestAfiliado = new RestituirAfiliado();
+            frmRestAfiliado.Show();
+            this.Close();
+
+
+        }
         }
 }
 
