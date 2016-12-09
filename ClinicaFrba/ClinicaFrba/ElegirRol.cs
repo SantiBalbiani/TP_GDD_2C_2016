@@ -33,6 +33,9 @@ namespace ClinicaFrba
             else
             {
                 rolElegido = comboBoxRoles.Text;//el index guarda un 0,1,2 en la variable
+                
+                //ACÄ me tengo que traer las funcionalidades
+
                 switch (rolElegido)
                 {
                     case "Afiliado":
