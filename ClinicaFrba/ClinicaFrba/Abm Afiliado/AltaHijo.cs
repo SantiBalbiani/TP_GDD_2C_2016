@@ -71,7 +71,7 @@ namespace ClinicaFrba.Abm_Afiliado
         {
              if (Utilidades.ValidarFormulario(this, errorTextBoxHijo) == false)
             {
-                contador++; 
+                 
                 int numeroFilas = tablaAfiliados.Rows.Count;
                 int nroAfiliado = (Convert.ToInt32(afiliadoIngresado["nroAfiliado"]) + 1);
                 
@@ -80,6 +80,7 @@ namespace ClinicaFrba.Abm_Afiliado
                      if(numeroFilas == 1)
                
                     {
+                        contador++;
                         nroAfiliado++;
 
                         tablaAfiliados = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(tablaAfiliados, nroAfiliado, nombreHijo.Text, apellidoHijo.Text,
