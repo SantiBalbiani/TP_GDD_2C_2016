@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btnAltaAfiliado = new System.Windows.Forms.Button();
-            this.btnAgregarFamiliar = new System.Windows.Forms.Button();
             this.btnRegistrarLlegada = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnAbmRol = new System.Windows.Forms.Button();
@@ -56,17 +55,6 @@
             this.btnAltaAfiliado.Text = "Alta Nuevo Afiliado";
             this.btnAltaAfiliado.UseVisualStyleBackColor = true;
             this.btnAltaAfiliado.Click += new System.EventHandler(this.btnAltaAfiliado_Click);
-            // 
-            // btnAgregarFamiliar
-            // 
-            this.btnAgregarFamiliar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnAgregarFamiliar.Location = new System.Drawing.Point(446, 144);
-            this.btnAgregarFamiliar.Name = "btnAgregarFamiliar";
-            this.btnAgregarFamiliar.Size = new System.Drawing.Size(136, 23);
-            this.btnAgregarFamiliar.TabIndex = 13;
-            this.btnAgregarFamiliar.Text = "Alta Familiar de Afiliado ";
-            this.btnAgregarFamiliar.UseVisualStyleBackColor = true;
-            this.btnAgregarFamiliar.Click += new System.EventHandler(this.btnAgregarFamiliar_Click);
             // 
             // btnRegistrarLlegada
             // 
@@ -246,7 +234,6 @@
             this.Controls.Add(this.btnAbmRol);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRegistrarLlegada);
-            this.Controls.Add(this.btnAgregarFamiliar);
             this.Controls.Add(this.btnAltaAfiliado);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.White;
@@ -261,7 +248,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnAltaAfiliado;
-        private System.Windows.Forms.Button btnAgregarFamiliar;
         private System.Windows.Forms.Button btnRegistrarLlegada;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnAbmRol;

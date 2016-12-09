@@ -145,8 +145,8 @@ namespace ClinicaFrba.Abm_Afiliado
                  cnx.Open();
                  cmdAltaAfiliado.ExecuteNonQuery();
                  MessageBox.Show("Se han guardado correctamente los datos");
-                 //Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
-                 //frmAdmin.Show();
+                 Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
+                 frmAdmin.Show();
                  this.Close();
                 }
                 catch (ApplicationException error)

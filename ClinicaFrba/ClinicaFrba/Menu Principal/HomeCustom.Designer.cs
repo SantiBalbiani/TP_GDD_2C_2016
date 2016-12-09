@@ -129,17 +129,6 @@
             this.btnRegistrarLlegada.UseVisualStyleBackColor = true;
             this.btnRegistrarLlegada.Click += new System.EventHandler(this.btnRegistrarLlegada_Click);
             // 
-            // btnAgregarFamiliar
-            // 
-            this.btnAgregarFamiliar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnAgregarFamiliar.Location = new System.Drawing.Point(459, 160);
-            this.btnAgregarFamiliar.Name = "btnAgregarFamiliar";
-            this.btnAgregarFamiliar.Size = new System.Drawing.Size(136, 23);
-            this.btnAgregarFamiliar.TabIndex = 26;
-            this.btnAgregarFamiliar.Text = "Alta Familiar de Afiliado ";
-            this.btnAgregarFamiliar.UseVisualStyleBackColor = true;
-            this.btnAgregarFamiliar.Click += new System.EventHandler(this.btnAgregarFamiliar_Click);
-            // 
             // btnAltaAfiliado
             // 
             this.btnAltaAfiliado.ForeColor = System.Drawing.Color.MidnightBlue;

@@ -168,16 +168,7 @@ namespace ClinicaFrba.Menu_Principal
             frmAlta.Show();
             //this.Close();
         }
-
-        private void btnAgregarFamiliar_Click(object sender, EventArgs e)
-        {
-            AltaFamiliar frmAltaFamiliarAfiliado = new AltaFamiliar();
-            frmAltaFamiliarAfiliado.menuAnterior = "Custom";
-            frmAltaFamiliarAfiliado.Home = this; 
-            frmAltaFamiliarAfiliado.Show();
-            //this.Close();
-        }
-
+        
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Cancelar_Atencion.CancelacionAfiliado frmCancel = new Cancelar_Atencion.CancelacionAfiliado(strAfiliado);

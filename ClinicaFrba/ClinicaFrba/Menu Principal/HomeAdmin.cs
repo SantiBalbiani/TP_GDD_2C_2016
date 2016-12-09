@@ -55,15 +55,7 @@ namespace ClinicaFrba.Menu_Principal
             this.Close();
        
         }
-
-        private void btnAgregarFamiliar_Click(object sender, EventArgs e)
-        {
-            AltaFamiliar frmAltaFamiliarAfiliado = new AltaFamiliar();
-            frmAltaFamiliarAfiliado.Show();
-            this.Close();
-            
-        }
-
+        
         private void btnRegistrarLlegada_Click(object sender, EventArgs e)
         {
             Registro_Llegada.Llegada frmRegistrar = new Registro_Llegada.Llegada();
