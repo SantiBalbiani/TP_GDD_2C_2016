@@ -64,5 +64,13 @@ namespace ClinicaFrba
             }
 
         }
+
+        private void btnFecha_Click(object sender, EventArgs e)
+        {
+            Fecha frmFecha = new Fecha();
+            frmFecha.MenuAnt = this;
+            frmFecha.Show();
+            this.Enabled = false; 
+        }
     }
 }

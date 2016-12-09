@@ -201,6 +201,12 @@
     <Compile Include="ElegirRol.Designer.cs">
       <DependentUpon>ElegirRol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fecha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fecha.Designer.cs">
+      <DependentUpon>Fecha.cs</DependentUpon>
+    </Compile>
     <Compile Include="Listados\ListadoEstadistico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -324,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ElegirRol.resx">
       <DependentUpon>ElegirRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fecha.resx">
+      <DependentUpon>Fecha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoEstadistico.resx">
       <DependentUpon>ListadoEstadistico.cs</DependentUpon>

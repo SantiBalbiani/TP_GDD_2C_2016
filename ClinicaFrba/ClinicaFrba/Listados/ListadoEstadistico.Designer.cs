@@ -39,6 +39,10 @@
             this.cbmPlanMed = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rBtnAnual = new System.Windows.Forms.RadioButton();
+            this.rBtnSemestre = new System.Windows.Forms.RadioButton();
+            this.rBtnMes = new System.Windows.Forms.RadioButton();
+            this.lblPeriodo = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,7 +115,7 @@
             // listView1
             // 
             this.listView1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.listView1.Location = new System.Drawing.Point(345, 79);
+            this.listView1.Location = new System.Drawing.Point(345, 111);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(330, 142);
             this.listView1.TabIndex = 6;
@@ -161,12 +165,63 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
+            // rBtnAnual
+            // 
+            this.rBtnAnual.AutoSize = true;
+            this.rBtnAnual.ForeColor = System.Drawing.Color.White;
+            this.rBtnAnual.Location = new System.Drawing.Point(452, 79);
+            this.rBtnAnual.Name = "rBtnAnual";
+            this.rBtnAnual.Size = new System.Drawing.Size(62, 17);
+            this.rBtnAnual.TabIndex = 11;
+            this.rBtnAnual.TabStop = true;
+            this.rBtnAnual.Text = "Por año";
+            this.rBtnAnual.UseVisualStyleBackColor = true;
+            // 
+            // rBtnSemestre
+            // 
+            this.rBtnSemestre.AutoSize = true;
+            this.rBtnSemestre.ForeColor = System.Drawing.Color.White;
+            this.rBtnSemestre.Location = new System.Drawing.Point(520, 79);
+            this.rBtnSemestre.Name = "rBtnSemestre";
+            this.rBtnSemestre.Size = new System.Drawing.Size(88, 17);
+            this.rBtnSemestre.TabIndex = 12;
+            this.rBtnSemestre.TabStop = true;
+            this.rBtnSemestre.Text = "Por Semestre";
+            this.rBtnSemestre.UseVisualStyleBackColor = true;
+            // 
+            // rBtnMes
+            // 
+            this.rBtnMes.AutoSize = true;
+            this.rBtnMes.ForeColor = System.Drawing.Color.White;
+            this.rBtnMes.Location = new System.Drawing.Point(614, 79);
+            this.rBtnMes.Name = "rBtnMes";
+            this.rBtnMes.Size = new System.Drawing.Size(64, 17);
+            this.rBtnMes.TabIndex = 13;
+            this.rBtnMes.TabStop = true;
+            this.rBtnMes.Text = "Por Mes";
+            this.rBtnMes.UseVisualStyleBackColor = true;
+            // 
+            // lblPeriodo
+            // 
+            this.lblPeriodo.AutoSize = true;
+            this.lblPeriodo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPeriodo.ForeColor = System.Drawing.Color.White;
+            this.lblPeriodo.Location = new System.Drawing.Point(342, 79);
+            this.lblPeriodo.Name = "lblPeriodo";
+            this.lblPeriodo.Size = new System.Drawing.Size(104, 15);
+            this.lblPeriodo.TabIndex = 14;
+            this.lblPeriodo.Text = "Filtrar por período";
+            // 
             // ListadoEstadistico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(723, 306);
+            this.Controls.Add(this.lblPeriodo);
+            this.Controls.Add(this.rBtnMes);
+            this.Controls.Add(this.rBtnSemestre);
+            this.Controls.Add(this.rBtnAnual);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label1);
@@ -197,5 +252,9 @@
         private System.Windows.Forms.ComboBox cbmPlanMed;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rBtnAnual;
+        private System.Windows.Forms.RadioButton rBtnSemestre;
+        private System.Windows.Forms.RadioButton rBtnMes;
+        private System.Windows.Forms.Label lblPeriodo;
     }
 }
