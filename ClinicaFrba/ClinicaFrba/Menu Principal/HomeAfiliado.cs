@@ -118,6 +118,7 @@ namespace ClinicaFrba
         {
             this.Hide();
             FrmSolTurno frmSolTurno = new FrmSolTurno();
+            frmSolTurno.menuAnterior = "Afiliado";
             frmSolTurno.Show();
             
         }

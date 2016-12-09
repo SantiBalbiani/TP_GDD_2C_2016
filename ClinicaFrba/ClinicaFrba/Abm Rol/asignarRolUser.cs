@@ -122,8 +122,7 @@ using System.Configuration;
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            abmMenuRol frmMenu = new abmMenuRol();
-            frmMenu.Show();
+            formAnterior.Show();
             this.Close();
         }
 

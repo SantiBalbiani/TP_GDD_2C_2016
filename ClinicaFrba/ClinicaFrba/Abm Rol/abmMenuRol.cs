@@ -78,7 +78,7 @@ namespace ClinicaFrba.AbmRol
         private void btnAsignarDesRol_Click(object sender, EventArgs e)
         {
             asignarRolUser frmAsignarRol = new asignarRolUser();
-
+            frmAsignarRol.formAnterior = this;
             frmAsignarRol.Show();
             this.Hide();
             
