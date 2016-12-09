@@ -20,6 +20,7 @@ namespace ClinicaFrba.AbmRol
             InitializeComponent();
           
         }
+        public Form frmAnterior;
         public string unidRol = "0";
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -259,9 +260,7 @@ namespace ClinicaFrba.AbmRol
 
         private void button2_Click(object sender, EventArgs e)
         {
-            abmMenuRol frmMenu = new abmMenuRol();
-            frmMenu.menuAnterior = "MenuRol";
-            frmMenu.Show();
+            frmAnterior.Show();
             this.Close();
         }
 

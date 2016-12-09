@@ -17,6 +17,7 @@ namespace ClinicaFrba.Registro_Resultado
 {
     public partial class RegistroResultado : Form
     {
+        public string menuAnterior;
         public RegistroResultado(string unTurno, string idProfesional)
         {
             InitializeComponent();
@@ -168,6 +169,11 @@ namespace ClinicaFrba.Registro_Resultado
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Globals.irAtras(menuAnterior, this);
         }
     }
 }

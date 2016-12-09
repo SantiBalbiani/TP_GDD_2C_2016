@@ -15,6 +15,7 @@ namespace ClinicaFrba.Abm_Afiliado
 {
     public partial class BajaAfiliado : Form
     {
+        public string menuAnterior;
         public BajaAfiliado()
         {
             InitializeComponent();
@@ -155,9 +156,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //Menu_Principal.HomeAdmin frmadmin = new Menu_Principal.HomeAdmin();
-            //frmadmin.Show();
-            this.Close();
+            Globals.irAtras(menuAnterior,this);
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)

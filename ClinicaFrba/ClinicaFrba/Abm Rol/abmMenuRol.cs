@@ -49,8 +49,9 @@ namespace ClinicaFrba.AbmRol
         private void button2_Click(object sender, EventArgs e)
         {
             eliminarRol frmeliminarRol = new eliminarRol();
+            frmeliminarRol.frmAnterior = this;
             frmeliminarRol.Show();
-            this.Close();
+            this.Hide();
 
         }
 
@@ -62,16 +63,18 @@ namespace ClinicaFrba.AbmRol
         private void btnCrear_Click(object sender, EventArgs e)
         {
             crearRol frmCrearRol = new crearRol();
+            frmCrearRol.formAnterior = this;
             frmCrearRol.Show();
-            this.Close();
+            this.Hide();
 
         }
 
         private void btnModificarRol_Click(object sender, EventArgs e)
         {
             modificarRol frmModificarRol = new modificarRol();
+            frmModificarRol.frmAnterior = this;
             frmModificarRol.Show();
-            this.Close();
+            this.Hide();
             
         }
 
@@ -94,8 +97,9 @@ namespace ClinicaFrba.AbmRol
         private void button1_Click(object sender, EventArgs e)
         {
             habilitarRol frmHabilitarRol = new habilitarRol();
+            frmHabilitarRol.frmAnterior = this;
             frmHabilitarRol.Show();
-            this.Close();
+            this.Hide();
             
 
         }

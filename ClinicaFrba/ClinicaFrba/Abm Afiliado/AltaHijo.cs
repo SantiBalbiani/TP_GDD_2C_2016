@@ -41,7 +41,7 @@ namespace ClinicaFrba.Abm_Afiliado
         private void btnCancelar_Click_1(object sender, EventArgs e)
         {
             this.Close();
-            //Globals.irAtras(menuAnterior, this);
+            Globals.irAtras(menuAnterior, this);
         }
 
         private void label13_Click(object sender, EventArgs e)

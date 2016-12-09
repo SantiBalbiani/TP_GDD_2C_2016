@@ -15,6 +15,7 @@ namespace ClinicaFrba.Abm_Afiliado
 {
     public partial class RestituirAfiliado : Form
     {
+        public string menuAnterior;
         public RestituirAfiliado()
         {
             InitializeComponent();
@@ -62,9 +63,8 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Menu_Principal.HomeAdmin frmadmin = new Menu_Principal.HomeAdmin();
-            frmadmin.Show();
-            this.Close();
+            Globals.irAtras(menuAnterior, this);
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

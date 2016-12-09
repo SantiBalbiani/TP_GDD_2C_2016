@@ -150,10 +150,7 @@ namespace ClinicaFrba.Cancelar_Atencion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Globals.irAtras(menuAnterior, this);
-            //HomeAfiliado frmHome = new HomeAfiliado();
-            //frmHome.Show();
-            this.Close();
+           Globals.irAtras(menuAnterior, this);
         }
     }
 }

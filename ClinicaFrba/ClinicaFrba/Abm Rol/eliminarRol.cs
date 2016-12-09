@@ -16,7 +16,8 @@ using System.Data.SqlClient;
 namespace ClinicaFrba.AbmRol
 {
     public partial class eliminarRol : Form
-    {   
+    {
+        public Form frmAnterior;
         public eliminarRol()
         {
             InitializeComponent();
@@ -157,8 +158,7 @@ namespace ClinicaFrba.AbmRol
 
         private void button1_Click(object sender, EventArgs e)
         {
-            abmMenuRol frmMenu = new abmMenuRol();
-            frmMenu.Show();
+            frmAnterior.Show();
             this.Close();
         }
         }

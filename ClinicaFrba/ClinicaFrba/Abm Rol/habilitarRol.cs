@@ -15,6 +15,7 @@ namespace ClinicaFrba.AbmRol
 {
     public partial class habilitarRol : Form
     {
+        public Form frmAnterior;
         public habilitarRol()
         {
             InitializeComponent();
@@ -141,8 +142,7 @@ namespace ClinicaFrba.AbmRol
 
         private void button2_Click(object sender, EventArgs e)
         {
-            abmMenuRol frmMenu = new abmMenuRol();
-            frmMenu.Show();
+            frmAnterior.Show();
             this.Close();
         }
     }  

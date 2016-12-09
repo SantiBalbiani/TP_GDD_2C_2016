@@ -13,7 +13,7 @@ namespace ClinicaFrba
     {
         
         public static String userName = "0";
-
+        public static string rolId = "";
         public static void irAtras(string menuAnterior, Form menuActual)
         {
             switch (menuAnterior)

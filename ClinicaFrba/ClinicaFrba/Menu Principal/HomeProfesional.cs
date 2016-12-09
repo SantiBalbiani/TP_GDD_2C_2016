@@ -78,6 +78,7 @@ namespace ClinicaFrba.Menu_Principal
                 {
 
                     RegistroResultado frmRegRes = new RegistroResultado(idTurno, idProf);
+                    frmRegRes.menuAnterior = "Profesional";
                     this.Hide();
                     frmRegRes.Show();
 
@@ -130,6 +131,7 @@ namespace ClinicaFrba.Menu_Principal
         private void button2_Click(object sender, EventArgs e)
         {
             Cancelar_Atencion.CancelacionProfesional frmCancelarDia = new Cancelar_Atencion.CancelacionProfesional(idProf);
+            frmCancelarDia.menuAnterior = "Profesional";
             frmCancelarDia.Show();
             this.Close();
 

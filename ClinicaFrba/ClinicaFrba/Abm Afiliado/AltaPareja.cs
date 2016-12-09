@@ -125,8 +125,8 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void btnCancelar_Click(object sender, EventArgs e) 
         {
-            //Globals.irAtras(menuAnterior, this);
-            this.Close();
+            Globals.irAtras(menuAnterior, this);
+            
         }
 
         private void AltaPareja_Load(object sender, EventArgs e)

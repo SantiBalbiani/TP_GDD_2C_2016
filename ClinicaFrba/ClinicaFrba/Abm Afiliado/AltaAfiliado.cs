@@ -48,8 +48,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
-            //Globals.irAtras(menuAnterior, this);
+            Globals.irAtras(menuAnterior, this);
         }
 
         public int generarNumeroAfiliado()
