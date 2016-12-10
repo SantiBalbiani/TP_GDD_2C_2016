@@ -336,10 +336,51 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnRegAtencion_Click(object sender, EventArgs e)
         {
-            Registro_Resultado.RegistroResultado frmReg = new Registro_Resultado.RegistroResultado();
-            frmReg.Home = this;
-            this.Hide();
+            //Valido que tenga turno disponible:
+
+            TimeSpan intervaloDeTurno = new TimeSpan(0, 30, 0);
+            DateTime intervaloTurnoMax = Globals.getFechaActual() + intervaloDeTurno;
+            DateTime intervaloTurnoMin = Globals.getFechaActual() - intervaloDeTurno;
+            string estadoTurno = "0";
+            string idAfiliado = "0";
+
+            string consultaTurnoActual = "SELECT TOP 1 T.idTurno, T.afiliado_idAfiliado, T.estado FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda AND A.profesional_IdProfesional = " + idProf + " WHERE T.estado = 4 AND fechaTurno BETWEEN '" + intervaloTurnoMin.ToString("MM/dd/yyyy hh:mm tt") + "' AND '" + intervaloTurnoMax.ToString("MM/dd/yyyy hh:mm tt") + "' ORDER BY fechaTurno ASC";
+            
+            string idTurno = "0";
+            Conexion.conectar();
+            DataTable turnoActual = new DataTable();
+            DataTable unAfiliado = new DataTable();
+
+                turnoActual = Conexion.LeerTabla(consultaTurnoActual);
+
+                foreach (DataRow unTurno in turnoActual.Rows)
+                {
+                    idTurno = unTurno["idTurno"].ToString();
+                    idAfiliado = unTurno["afiliado_idAfiliado"].ToString();
+                    estadoTurno = unTurno["estado"].ToString();
+
+                }
+
+
+
+                if (idTurno != "0")
+                {
+
+
+                    RegistroResultado frmRegRes = new RegistroResultado(idTurno, idProf,idAfiliado);
+                    frmRegRes.Home = this;
+
+                    this.Hide();
+                    frmRegRes.Show();
+
+                }
+                else
+                {
+                    MessageBox.Show("No hay turnos disponibles en este horario");
+                }
         }
+           
+
 
         private void btnCancelarDia_Click(object sender, EventArgs e)
         {
