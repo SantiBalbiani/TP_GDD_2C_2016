@@ -148,6 +148,7 @@ namespace ClinicaFrba.Menu_Principal
         private void button3_Click(object sender, EventArgs e)
         {
             Registrar_Agenta_Medico.FrmRegistroAgenda frmAgendaNueva = new Registrar_Agenta_Medico.FrmRegistroAgenda();
+            frmAgendaNueva.Home = this;
             frmAgendaNueva.Show();
             this.Close();
         }

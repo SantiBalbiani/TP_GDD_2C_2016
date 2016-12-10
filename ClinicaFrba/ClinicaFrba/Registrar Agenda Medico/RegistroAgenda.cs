@@ -16,6 +16,8 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 {
     public partial class FrmRegistroAgenda : Form
     {
+        public Form Home;
+
         public FrmRegistroAgenda()
         {
             InitializeComponent();
@@ -124,8 +126,8 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            //formAnterior.Show();
-            //this.Close();
+            Home.Show();
+            this.Close();
         }
     }
 }
