@@ -137,7 +137,8 @@ namespace ClinicaFrba.Menu_Principal
         private void btnAbmRol_Click(object sender, EventArgs e)
         {
             abmMenuRol frmMenuRol = new abmMenuRol();
-            frmMenuRol.menuAnterior = "Custom";
+            //frmMenuRol.menuAnterior = "Custom";
+            frmMenuRol.Home = this; 
             frmMenuRol.Show();
             this.Hide();
         }
@@ -155,7 +156,7 @@ namespace ClinicaFrba.Menu_Principal
         private void btnRegistrarLlegada_Click(object sender, EventArgs e)
         {
             Registro_Llegada.Llegada frmRegistrar = new Registro_Llegada.Llegada();
-            frmRegistrar.menuAnterior = "Custom";
+           // frmRegistrar.menuAnterior = "Custom";
             frmRegistrar.Home = this; 
             frmRegistrar.Show();
             this.Hide();
@@ -182,7 +183,7 @@ namespace ClinicaFrba.Menu_Principal
         private void btnSolicitar_Click(object sender, EventArgs e)
         {
             ClinicaFrba.Pedir_Turno.FrmSolTurno frmSolTurno = new ClinicaFrba.Pedir_Turno.FrmSolTurno();
-            frmSolTurno.menuAnterior = "Custom";
+            //frmSolTurno.menuAnterior = "Custom";
             frmSolTurno.Home = this; 
             frmSolTurno.Show();
             this.Hide();

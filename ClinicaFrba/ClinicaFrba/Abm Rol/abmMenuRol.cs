@@ -106,7 +106,8 @@ namespace ClinicaFrba.AbmRol
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            Globals.irAtras(menuAnterior, this);
+            //Globals.irAtras(menuAnterior, this);
+            Home.Show();
             this.Close();
         }
     }

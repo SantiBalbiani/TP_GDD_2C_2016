@@ -285,13 +285,14 @@ namespace ClinicaFrba.Pedir_Turno
                 MessageBox.Show("Turno Agendado con el Dr. "+ comboBox3.SelectedItem.ToString() +" para el "+turnoAReservar.ToString()+" con éxito!");
                 this.Close();
                 //HomeAfiliado frmHome = new HomeAfiliado();
-                //frmHome.Show();
+                Home.Show();
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Globals.irAtras(menuAnterior, this);
+            //Globals.irAtras(menuAnterior, this);
+            Home.Show();
             this.Close();
             
         }
