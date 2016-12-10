@@ -51,17 +51,18 @@ namespace ClinicaFrba.Menu_Principal
         private void btnAltaAfiliado_Click(object sender, EventArgs e)
         {
             Abm_Afiliado.frmAltaAfiliado frmAlta = new Abm_Afiliado.frmAltaAfiliado();
+            frmAlta.Home = this; 
             frmAlta.Show();
-            this.Close();
+            this.Hide();
        
         }
         
         private void btnRegistrarLlegada_Click(object sender, EventArgs e)
         {
             Registro_Llegada.Llegada frmRegistrar = new Registro_Llegada.Llegada();
-            frmRegistrar.menuAnterior = "Admin";
+            frmRegistrar.Home = this; 
             frmRegistrar.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void btnAbmRol_Click(object sender, EventArgs e)
@@ -166,8 +167,8 @@ namespace ClinicaFrba.Menu_Principal
         private void btnEstadisticas_Click(object sender, EventArgs e)
         {
             Listados.ListadoEstadistico frmListados = new Listados.ListadoEstadistico("Admin");
-            frmListados.menuAnterior = "Admin";
-            this.Close();
+            frmListados.Home = this;
+            this.Hide();
             frmListados.Show();
         }
 

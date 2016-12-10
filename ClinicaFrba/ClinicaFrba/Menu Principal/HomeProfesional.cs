@@ -78,7 +78,7 @@ namespace ClinicaFrba.Menu_Principal
                 {
 
                     RegistroResultado frmRegRes = new RegistroResultado(idTurno, idProf);
-                    frmRegRes.menuAnterior = "Profesional";
+                    frmRegRes.Home = this;
                     this.Hide();
                     frmRegRes.Show();
 
