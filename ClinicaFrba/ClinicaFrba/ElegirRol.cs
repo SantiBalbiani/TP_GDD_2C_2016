@@ -16,6 +16,7 @@ namespace ClinicaFrba
 {
     public partial class ElegirRol : Form
     {
+        
         public string rolElegido;
         public string usuarioLogeado;
         public ElegirRol(string Usuario)
@@ -33,9 +34,11 @@ namespace ClinicaFrba
             else
             {
                 rolElegido = comboBoxRoles.Text;//el index guarda un 0,1,2 en la variable
-                
+                ComboboxItem rolSeleccionado = new ComboboxItem();
+                rolSeleccionado = (ComboboxItem)comboBoxRoles.SelectedItem;
                 //ACÄ me tengo que traer las funcionalidades
-
+                Globals.cargarFuncionalidades(Convert.ToInt32(rolSeleccionado.Value));
+                Globals.rolId = rolSeleccionado.Text.ToString();
                 switch (rolElegido)
                 {
                     case "Afiliado":
@@ -76,7 +79,12 @@ namespace ClinicaFrba
             string query = "select r.nombre,r.idRol from SELECT_GROUP.Usuario as u,SELECT_GROUP.Rol as r, SELECT_GROUP.Usuario_Por_Rol as UXR where u.nombreUsuario = '" + usuarioLogeado + "' and u.idUsuario = UXR.usuario_username and r.idRol = UXR.rol_idRol";
              DataTable dt = Conexion.EjecutarComando(query);
             foreach(DataRow fila in dt.Rows){
-                comboBoxRoles.Items.Add(Convert.ToString(fila["nombre"]));
+                ComboboxItem unRol = new ComboboxItem();
+                unRol.Value = Convert.ToString(fila["idRol"]);
+                unRol.Text = Convert.ToString(fila["nombre"]);
+
+                comboBoxRoles.Items.Add(unRol);
+                //comboBoxRoles.Items.Add(Convert.ToString(fila["nombre"]));
             }  
         }
 
