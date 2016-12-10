@@ -126,7 +126,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
                         else {
 
-                            MessageBox.Show("Ya existe una agenda en ese dia y horario. Por favor, elija otros valores");
+                            MessageBox.Show("Ya existe una agenda en ese dia y horario. Por favor, elija otro dia u otro horario");
                         }
                     }
 
