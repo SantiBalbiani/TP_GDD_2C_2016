@@ -147,6 +147,7 @@ namespace ClinicaFrba.Registro_Resultado
             }
             finally
             {
+                MessageBox.Show("Diagnostico procesado con éxito!");                
                 cnx.Close();
                 Home.Show();
                 this.Close();

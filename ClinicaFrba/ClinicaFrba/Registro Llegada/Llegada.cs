@@ -111,7 +111,7 @@ namespace ClinicaFrba.Registro_Llegada
             string nombreProf = nomYapSeparado[0];
             string apellidoProf = nomYapSeparado[1];
 
-            string consultarTurnosParaProfYAfiliado = "SELECT T.idTurno ,T.idAgenda ,T.fechaTurno ,T.afiliado_idAfiliado ,Afi.nombre ,Afi.apellido FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda JOIN Select_Group.Profesional P ON P.matricula = A.profesional_IdProfesional JOIN Select_Group.Afiliado Afi ON Afi.nroAfiliado = " + txtNumeroAfiliado.Text.ToString() + " WHERE P.nombre = '" + apellidoProf.ToString().Trim() + "' AND P.apellido = '" + nombreProf.ToString().Trim() + "' AND T.estado = 3";
+            string consultarTurnosParaProfYAfiliado = "SELECT T.idTurno ,T.idAgenda ,T.fechaTurno ,T.afiliado_idAfiliado ,Afi.nombre ,Afi.apellido FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda JOIN Select_Group.Profesional P ON P.matricula = A.profesional_IdProfesional JOIN Select_Group.Afiliado Afi ON Afi.nroAfiliado = " + txtNumeroAfiliado.Text.ToString() + " WHERE (P.nombre = '" + apellidoProf.ToString().Trim() + "' OR P.nombre = '" + nombreProf.ToString().Trim() + "' AND P.apellido = '" + nombreProf.ToString().Trim() + "' OR P.apellido = '" + apellidoProf.ToString().Trim() + "') AND T.estado = 3";
             
                 
              Conexion.conectar();
@@ -353,9 +353,9 @@ namespace ClinicaFrba.Registro_Llegada
             finally
             {
                 cnx.Close();
-                HomeAfiliado home = new HomeAfiliado();
+                
                 Home.Show();
-                //this.Close();
+                this.Close();
             }
 
         }
