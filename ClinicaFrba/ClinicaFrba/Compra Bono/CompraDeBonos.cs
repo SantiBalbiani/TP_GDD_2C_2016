@@ -94,7 +94,7 @@ namespace ClinicaFrba.Compra_Bono
                 {
                     cnx.Close();
                     MessageBox.Show("Compra exitosa");
-                    //Globals.irAtras(menuAnterior, this);
+                    Globals.irAtras(menuAnterior, this);
                     this.Close();
                 }
             }

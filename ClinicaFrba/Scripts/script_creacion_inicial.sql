@@ -1,10 +1,10 @@
-BEGIN TRANSACTION creacionTablas
-use GD2C2016
 
+USE [GD2C2016]
 GO
 
-create schema SELECT_GROUP
+create schema [SELECT_GROUP]
 GO
+
 
 
 create table SELECT_GROUP.Plan_Med(
@@ -49,6 +49,7 @@ create table SELECT_GROUP.Afiliado(
 	habilitado bit,
 	idUsuario numeric(6,0) unique,
 	plan_idPlan numeric(18,0),
+	fechaBaja datetime,
 	CONSTRAINT pk_IdAfiliado primary key(idAfiliado),
 	CONSTRAINT fk_Afiliado_Usuario foreign key (idUsuario) references SELECT_GROUP.Usuario (idUsuario),
 	CONSTRAINT fk_Afiliado_Plann foreign key (plan_idPlan) references SELECT_GROUP.Plan_Med (idPlan)
@@ -184,6 +185,8 @@ create table SELECT_GROUP.Agenda_Detalle(
 	fecha_Hora_Turno datetime,
 	estaCancelado bit,
 	idAgenda numeric(6,0),
+	cancelacion_idCancelacion numeric(6,0),
+	CONSTRAINT fk_Turno_Cancelacion foreign key (cancelacion_idCancelacion) references SELECT_GROUP.Cancelacion (idCancelacion),
 	constraint fk_AgendaDetalle_Agenda foreign key (idAgenda) references SELECT_GROUP.Agenda (idAgenda),
 	primary key (idAgendaDetalle)
 )
@@ -206,7 +209,7 @@ create table SELECT_GROUP.Turno(
 	CONSTRAINT pk_IdTurno primary key (idTurno),
 	CONSTRAINT fk_Turno_Agenda foreign key (idAgenda) references SELECT_GROUP.Agenda (idAgenda),
 	CONSTRAINT fk_Turno_Afiliado foreign key (afiliado_idAfiliado) references SELECT_GROUP.Afiliado (idAfiliado),
-	CONSTRAINT fk_Turno_Cancelacion foreign key (cancelacion_idCancelacion) references SELECT_GROUP.Cancelacion (idCancelacion),
+	CONSTRAINT fk_Turno_CancelacionProf foreign key (cancelacion_idCancelacion) references SELECT_GROUP.Cancelacion (idCancelacion),
 	CONSTRAINT fk_Turno_Estado foreign key (estado) references SELECT_GROUP.Estado_Turno (idEstadoTurno),
 	CONSTRAINT fk_Turno_Diagnostico foreign key (idDiagnostico) references SELECT_GROUP.Diagnostico (idDiagnostico),
 	CONSTRAINT fk_ProfesionalXEspecialidad foreign key (especialidad) references SELECT_GROUP.Especialidad (idEspecialidad)
@@ -221,15 +224,15 @@ INSERT INTO	SELECT_GROUP.Rol (nombre, habilitado) VALUES
 
 /*Cargo tabla Funcion*/		
 INSERT INTO SELECT_GROUP.Funcionalidad(descripcion) VALUES
-		('Anunciarse'),
 		('Comprar_Bono'),
 		('Cancelar_Turno'),
-		('Atender'),
+		('Registrar_Llegada'),
 		('ABM_Rol'),
 		('Listado_Estadistico'),
-		('ABM_Usuarios'),
-		('Reservar Turno'),
-		('Abandonar Consultorio');
+		('ABM_Afiliados'),
+		('Solicitar_Turno'),
+		('Registrar_Diagnostico'),
+		('Cancelar_Agenda');
 
 /*Cargo tabla ROL_funcion (tabla intermedia)*/
 INSERT INTO SELECT_GROUP.Funcionalidad_Por_Rol(rol_idRol,funcionalidad_idFuncionalidad) VALUES
@@ -377,7 +380,7 @@ SELECT distinct Bono_Consulta_Numero,C.idCompra,Afi.plan_idPlan,Afi.idAfiliado, 
   AND M.Bono_Consulta_Fecha_Impresion is not null
 
   ORDER BY M.Bono_Consulta_Numero
-GO
+
 
 insert into SELECT_GROUP.Usuario_Por_Rol (rol_idRol,usuario_username)
 select R.idRol,U.idUsuario
@@ -472,20 +475,17 @@ GO
 --NOMBRE	: ComprarBono
 --OBJETIVO  : Crear un registro en la tabla compras.                                     
 --=============================================================================================================
-CREATE PROCEDURE [Select_Group].[ComprarBono](@userName VARCHAR(45), @cantidad INT)
+CREATE PROCEDURE [Select_Group].[ComprarBono](@userName VARCHAR(45), @cantidad INT, @fechaActual datetime)
 AS
 BEGIN
 BEGIN TRAN
 	DECLARE @nroAfiliado int;
 	DECLARE @contador int;
-	DECLARE @fechaActual datetime;
 	DECLARE @idPlan int;
 	DECLARE @precio int;
 	DECLARE @idCompra int;
 	DECLARE @nroConsulta int;
 	DECLARE @idUser int;
-
-	set @fechaActual = sysdatetime();
 	
 	set @idUser = (SELECT idUsuario FROM Select_Group.Usuario WHERE Usuario.nombreUsuario = @userName);
 
@@ -709,9 +709,9 @@ GO
 --=============================================================================================================
 --TIPO		: Store Procedure
 --NOMBRE	: sp_guardarDiagnostico
---OBJETIVO  : Cuando un profesional registra resultado                                    
+--OBJETIVO  : Cuando un profesional registra resultado.                                 
 --=============================================================================================================
-CREATE PROCEDURE [Select_Group].[sp_guardarDiagnostico](@sintomas VARCHAR(255), @enfermedades VARCHAR(255), @idTurno int )
+CREATE PROCEDURE [Select_Group].[sp_guardarDiagnostico](@sintomas VARCHAR(255), @enfermedades VARCHAR(255), @idTurno int, @fechaActual datetime )
 
 AS
 BEGIN
@@ -726,7 +726,7 @@ BEGIN
 
 	BEGIN
     INSERT INTO Select_Group.Diagnostico (sintomas, enfermedades, fechaYHora)
-	VALUES ( @sintomas, @enfermedades, GETDATE());
+	VALUES ( @sintomas, @enfermedades, @fechaActual);
 
 	SET @idDiagnostico = ((SELECT max(idDiagnostico) FROM Select_Group.Diagnostico));
 
@@ -749,6 +749,7 @@ BEGIN
 	END
 	
 END
+
 GO
 
 --=============================================================================================================
@@ -808,7 +809,7 @@ GO
 --OBJETIVO  : Actualiza el plan de un afiliado.                                     
 --=============================================================================================================
 
-CREATE PROCEDURE [Select_Group].[ActualizarPlan](@idPlan int,@nroAfiliado int, @motivo varchar(45))
+CREATE PROCEDURE [Select_Group].[ActualizarPlan](@idPlan int,@nroAfiliado int, @motivo varchar(45),@fechaActual datetime)
 		
 AS
 
@@ -828,7 +829,7 @@ BEGIN
 		Where nroAfiliado = @nroAfiliado
 
 		INSERT INTO Select_Group.Plan_Historico(planNuevo,motivoCambio,fechaCambio,planAnterior,afiliado_idAfiliado)
-		VALUES(@idPlan,@motivo, getdate(),@planAnterior,@idAfiliado)
+		VALUES(@idPlan,@motivo, @fechaActual,@planAnterior,@idAfiliado)
 
 	COMMIT TRAN
 
@@ -970,7 +971,7 @@ CREATE TRIGGER [Select_Group].[RegistrarBonos] ON [Select_Group].[Compras]
 AFTER INSERT
 AS
 
-BEGIN TRAN
+BEGIN TRAN RegBonos
 DECLARE @contador int;
 DECLARE @nroConsulta int;
 DECLARE @idPlan int;
@@ -1008,12 +1009,12 @@ END;
 CLOSE CompraDeBonos;
 DEALLOCATE CompraDeBonos;
 
-COMMIT TRAN
+COMMIT TRAN RegBonos
 GO
 
 
 
-COMMIT TRANSACTION creacionTablas
+
 
 
 
