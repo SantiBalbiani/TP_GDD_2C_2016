@@ -68,7 +68,7 @@ namespace ClinicaFrba.Menu_Principal
         private void btnAbmRol_Click(object sender, EventArgs e)
         {
             abmMenuRol frmMenuRol = new abmMenuRol();
-            frmMenuRol.menuAnterior = "Admin";
+            frmMenuRol.Home = this;
             this.Hide();
             frmMenuRol.Show();
 
@@ -109,7 +109,7 @@ namespace ClinicaFrba.Menu_Principal
 
                     this.Hide();
                     FrmComprarBonos frmCompra = new FrmComprarBonos();
-                    frmCompra.menuAnterior = "Admin";
+                    frmCompra.Home = this; 
                     frmCompra.Show();
 
 
@@ -157,9 +157,9 @@ namespace ClinicaFrba.Menu_Principal
             else
             {
                 Abm_Planes.CambiarPlan frmCambiarPlan = new Abm_Planes.CambiarPlan(textBox1.Text);
-                frmCambiarPlan.menuAnterior = "Admin";
-                this.Hide();
+                frmCambiarPlan.Home = this;
                 frmCambiarPlan.Show();
+                this.Hide();
             }
 
             }
@@ -168,8 +168,8 @@ namespace ClinicaFrba.Menu_Principal
         {
             Listados.ListadoEstadistico frmListados = new Listados.ListadoEstadistico("Admin");
             frmListados.Home = this;
-            this.Hide();
             frmListados.Show();
+            this.Hide();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -192,25 +192,25 @@ namespace ClinicaFrba.Menu_Principal
         private void button2_Click(object sender, EventArgs e)
         {
             BajaAfiliado frmBajaAfiliado = new BajaAfiliado();
-            frmBajaAfiliado.menuAnterior = "Admin";
+            frmBajaAfiliado.Home = this;
             frmBajaAfiliado.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             ModificarAfiliado frmModAf = new ModificarAfiliado();
-            frmModAf.menuAnterior = "Admin";
+            frmModAf.Home = this;
             frmModAf.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             RestituirAfiliado frmRestAfiliado = new RestituirAfiliado();
-            frmRestAfiliado.menuAnterior = "Admin";
+            frmRestAfiliado.Home = this;
             frmRestAfiliado.Show();
-            this.Close();
+            this.Hide();
 
 
         }

@@ -39,7 +39,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(82, 25);
+            this.label1.Location = new System.Drawing.Point(66, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(259, 20);
             this.label1.TabIndex = 1;
@@ -48,7 +48,7 @@
             // button2
             // 
             this.button2.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button2.Location = new System.Drawing.Point(359, 213);
+            this.button2.Location = new System.Drawing.Point(309, 205);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 18;
@@ -58,7 +58,7 @@
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Location = new System.Drawing.Point(35, 200);
+            this.btnActualizar.Location = new System.Drawing.Point(12, 204);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(90, 24);
             this.btnActualizar.TabIndex = 19;
@@ -69,7 +69,7 @@
             // checkedListBox1
             // 
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(35, 77);
+            this.checkedListBox1.Location = new System.Drawing.Point(12, 81);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(372, 94);
             this.checkedListBox1.TabIndex = 20;
@@ -80,7 +80,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(462, 262);
+            this.ClientSize = new System.Drawing.Size(399, 242);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.button2);

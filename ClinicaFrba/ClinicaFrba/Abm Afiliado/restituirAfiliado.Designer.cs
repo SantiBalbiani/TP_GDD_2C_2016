@@ -37,7 +37,7 @@
             // checkedListBox1
             // 
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(35, 107);
+            this.checkedListBox1.Location = new System.Drawing.Point(22, 68);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(372, 94);
             this.checkedListBox1.TabIndex = 21;
@@ -46,7 +46,7 @@
             // button2
             // 
             this.button2.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button2.Location = new System.Drawing.Point(332, 254);
+            this.button2.Location = new System.Drawing.Point(319, 193);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 22;
@@ -57,9 +57,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(86, 37);
+            this.label1.Location = new System.Drawing.Point(97, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(232, 20);
             this.label1.TabIndex = 23;
@@ -67,9 +67,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(22, 240);
+            this.button1.Location = new System.Drawing.Point(22, 193);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(135, 23);
             this.button1.TabIndex = 24;
             this.button1.Text = "Restituir";
             this.button1.UseVisualStyleBackColor = true;
@@ -80,7 +80,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(451, 313);
+            this.ClientSize = new System.Drawing.Size(421, 253);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);

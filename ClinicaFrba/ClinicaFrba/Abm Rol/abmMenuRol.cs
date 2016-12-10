@@ -14,7 +14,7 @@ namespace ClinicaFrba.AbmRol
     public partial class abmMenuRol : Form
     {
         public string menuAnterior;
-        public Menu_Principal.HomeCustom Home;
+        public Form Home;
         public abmMenuRol()
         {
             InitializeComponent();

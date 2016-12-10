@@ -17,7 +17,7 @@ namespace ClinicaFrba.Abm_Planes
     {
         public int idPlanMed = 0;
         public string menuAnterior;
-        public Menu_Principal.HomeCustom Home;
+        public Form Home;
         public CambiarPlan(string strIdAfiliado)
         {
             InitializeComponent();
@@ -77,7 +77,8 @@ namespace ClinicaFrba.Abm_Planes
                 if (plan == " ")
                 {
                     MessageBox.Show("El número de Afiliado no existe, por favor intente nuevamente");
-                    Globals.irAtras(menuAnterior, this);
+                    Home.Show();
+                    this.Close();
                 }
             }
             //Fin de Obtencion del plan
