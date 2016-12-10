@@ -17,7 +17,7 @@ namespace ClinicaFrba.Pedir_Turno
     {
         public static String idAgenda = "0";
         public string menuAnterior;
-        public Menu_Principal.HomeCustom Home;
+        public Form Home;
 
         public FrmSolTurno()
         {

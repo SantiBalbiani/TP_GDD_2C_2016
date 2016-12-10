@@ -25,7 +25,7 @@ namespace ClinicaFrba.Cancelar_Atencion
         private bool eligioTipo = false;
         private bool escibioMotivo = false;
         private string idProf;
-        public string menuAnterior;
+        public Form Home;
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
@@ -133,7 +133,9 @@ namespace ClinicaFrba.Cancelar_Atencion
 
         private void btnAtras_Click(object sender, EventArgs e)
         {
-            Globals.irAtras(menuAnterior, this);
+           
+            Home.Show();
+            this.Close();
         }
 
    }

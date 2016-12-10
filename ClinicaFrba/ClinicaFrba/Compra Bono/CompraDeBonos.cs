@@ -17,10 +17,8 @@ namespace ClinicaFrba.Compra_Bono
     {
         public int precioBonoSegunPlan = 0;
         public string menuAnterior;
-        public Menu_Principal.HomeCustom Home;
-       // public formulario(int strFlag);
-       // int flag;
-
+        public Form Home;
+     
         public FrmComprarBonos()
         {
             InitializeComponent();

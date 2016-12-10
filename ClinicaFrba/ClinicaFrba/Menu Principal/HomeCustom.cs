@@ -79,9 +79,8 @@ namespace ClinicaFrba.Menu_Principal
                 {
                     Conexion.conexion.Close();
 
-                   // this.Hide();
                     FrmComprarBonos frmCompra = new FrmComprarBonos();
-                    frmCompra.menuAnterior = "Custom";
+                    //frmCompra.menuAnterior = "Custom";
                     frmCompra.Home = this; 
                     frmCompra.Show();
                     this.Hide();
@@ -100,7 +99,7 @@ namespace ClinicaFrba.Menu_Principal
             else
             {
                 Abm_Planes.CambiarPlan frmCambiarPlan = new Abm_Planes.CambiarPlan(textBox1.Text);
-                frmCambiarPlan.menuAnterior = "Custom";
+               // frmCambiarPlan.menuAnterior = "Custom";
                 frmCambiarPlan.Home = this; 
                 frmCambiarPlan.Show();
                 this.Hide();
@@ -174,9 +173,9 @@ namespace ClinicaFrba.Menu_Principal
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Cancelar_Atencion.CancelacionAfiliado frmCancel = new Cancelar_Atencion.CancelacionAfiliado(strAfiliado);
-            frmCancel.menuAnterior = "Custom";
+            //frmCancel.menuAnterior = "Custom";
             frmCancel.Home = this; 
-            //frmCancel.Show();
+            frmCancel.Show();
             this.Hide();
         }
 
@@ -337,7 +336,9 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnRegAtencion_Click(object sender, EventArgs e)
         {
-
+            Registro_Resultado.RegistroResultado frmReg = new Registro_Resultado.RegistroResultado();
+            frmReg.Home = this;
+            this.Hide();
         }
 
         private void btnCancelarDia_Click(object sender, EventArgs e)

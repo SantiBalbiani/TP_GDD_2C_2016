@@ -24,8 +24,14 @@ namespace ClinicaFrba.Registro_Resultado
             idTurno = unTurno;
             idProf = idProfesional;
         }
+
+        public RegistroResultado()
+        {
+            // TODO: Complete member initialization
+        }
     public string idProf = "0";
     public string idTurno = "0";
+    public HomeCustom Home;
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {

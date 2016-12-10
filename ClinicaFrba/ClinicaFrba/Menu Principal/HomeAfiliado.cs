@@ -103,10 +103,10 @@ namespace ClinicaFrba
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-            this.Hide();
             FrmComprarBonos frmComprarBonos = new FrmComprarBonos();
-            frmComprarBonos.menuAnterior = "Afiliado";
+            frmComprarBonos.Home = this;
             frmComprarBonos.Show();
+            this.Hide();
         }
 
         private void txtBonosDisponibles_TextChanged(object sender, EventArgs e)
@@ -116,10 +116,12 @@ namespace ClinicaFrba
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            
             FrmSolTurno frmSolTurno = new FrmSolTurno();
-            frmSolTurno.menuAnterior = "Afiliado";
+            //frmSolTurno.menuAnterior = "Afiliado";
+            frmSolTurno.Home = this;
             frmSolTurno.Show();
+            this.Hide();
             
         }
 
@@ -131,9 +133,9 @@ namespace ClinicaFrba
         private void button2_Click(object sender, EventArgs e)
         {
             Cancelar_Atencion.CancelacionAfiliado frmCancel = new Cancelar_Atencion.CancelacionAfiliado(strAfiliado);
-            frmCancel.menuAnterior = "Afiliado";
+            frmCancel.Home = this; 
             frmCancel.Show();
-            this.Close();
+            this.Hide();
 
         }
 

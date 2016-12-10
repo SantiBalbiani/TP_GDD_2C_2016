@@ -26,7 +26,8 @@ namespace ClinicaFrba.Abm_Afiliado
         public Boolean tieneHijos;
         public Boolean afiliadoNuevo;
         public string menuAnterior;
-        public Menu_Principal.HomeCustom Home;
+        public Form Home;
+
         
         public frmAltaAfiliado()
         {
@@ -49,7 +50,9 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            Globals.irAtras(menuAnterior, this);
+            //Globals.irAtras(menuAnterior, this);
+            Home.Show();
+            this.Hide();
         }
 
         public int generarNumeroAfiliado()
@@ -162,8 +165,8 @@ namespace ClinicaFrba.Abm_Afiliado
                         cnx.Open();
                         cmdAltaAfiliado.ExecuteNonQuery();
                         MessageBox.Show("Se han guardado correctamente los datos");
-                        Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
-                        frmAdmin.Show();
+                        //Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
+                        Home.Show();
                         this.Close();
                     }
                     catch (ApplicationException error)

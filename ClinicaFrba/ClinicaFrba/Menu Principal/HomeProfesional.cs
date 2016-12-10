@@ -131,7 +131,7 @@ namespace ClinicaFrba.Menu_Principal
         private void button2_Click(object sender, EventArgs e)
         {
             Cancelar_Atencion.CancelacionProfesional frmCancelarDia = new Cancelar_Atencion.CancelacionProfesional(idProf);
-            frmCancelarDia.menuAnterior = "Profesional";
+            frmCancelarDia.Home = this;
             frmCancelarDia.Show();
             this.Close();
 
