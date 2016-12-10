@@ -46,9 +46,9 @@ namespace ClinicaFrba.Cancelar_Atencion
         {
 
             DateTime UltFecha = Calendar.SelectionEnd;
-            
-       
-            double diasAnticipacion = (UltFecha - DateTime.Now).TotalDays;
+            DateTime primerFecha = Calendar.SelectionStart;
+            TimeSpan unDia = new TimeSpan(24,0,0);
+            double diasAnticipacion = (primerFecha - Globals.getFechaActual()).TotalDays;
             if (diasAnticipacion < 1)
             {
                 MessageBox.Show("Solo se pueden cancelar turnos con 1 día de anticipación");
@@ -81,6 +81,61 @@ namespace ClinicaFrba.Cancelar_Atencion
                 finally
                 {
                     cnx.Close();
+                    
+
+                    //Generar Lista de Días a cancelar
+                    List<DateTime> listaDiasACancelar = new List<DateTime>();
+
+                    while (primerFecha != UltFecha)
+                    {
+                        listaDiasACancelar.Add(primerFecha);
+                        primerFecha = primerFecha + unDia;
+                    }
+                    listaDiasACancelar.Add(UltFecha);
+
+
+                    //Cancelar Días
+                    foreach (DateTime unaFechaACancelar in listaDiasACancelar)
+                    {
+                            SqlConnection cnx2 = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+                            SqlCommand cmdUsuario2 = new SqlCommand("Select_Group.sp_getDiasDisponibles", cnx2);
+                            cmdUsuario2.CommandType = CommandType.StoredProcedure;
+                            cmdUsuario2.Parameters.Add("@Dia", SqlDbType.Int).Value = unaFechaACancelar.DayOfWeek;
+                            
+                            cmdUsuario2.Parameters.Add("@idProfesional", SqlDbType.Int).Value = idProf;
+
+                            try
+                            {
+                                cnx.Open();
+                                cmdUsuario.ExecuteNonQuery();
+                            }
+                            catch (SqlException ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                            finally
+                            {
+                                string desde = "0";
+                                string hasta = "0";
+                                string idAgenda = "0";
+                                DataTable diasDisponibles = new DataTable();
+                                SqlDataAdapter adaptador = new SqlDataAdapter(cmdUsuario);
+                                adaptador.Fill(diasDisponibles);
+                                cnx.Close();
+                                foreach (DataRow diaDisponible in diasDisponibles.Rows)
+                                {
+                                    desde = diaDisponible["horaDesde"].ToString();
+                                    hasta = diaDisponible["horaHasta"].ToString();
+                                    idAgenda = diaDisponible["idAgenda"].ToString();
+                                }
+                            }
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
                     MessageBox.Show("Se cancelaron todos los turnos pertenecientes a los días seleccionados");
                     Menu_Principal.HomeProfesional home = new Menu_Principal.HomeProfesional();
                     home.Show();

@@ -88,7 +88,7 @@ namespace ClinicaFrba.Pedir_Turno
 
                     TimeSpan primerTurno = new TimeSpan((horaDesd / 100), (horaDesd % 100), 0);
 
-                    TimeSpan intervaloDeTurno = new TimeSpan(0, 30, 0);
+                    TimeSpan intervaloDeTurno = Globals.intervaloTurno;
 
                     TimeSpan[] horarioTurnos = new TimeSpan[cantidadTurnos + 1];
 

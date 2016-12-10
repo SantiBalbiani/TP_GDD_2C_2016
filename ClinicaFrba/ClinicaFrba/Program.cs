@@ -11,6 +11,7 @@ namespace ClinicaFrba
 {
     public static class Globals
     {
+        public static TimeSpan intervaloTurno = new TimeSpan(0, 30, 0);
         public static List<int> listaDni = new List<int>();
         public static List<string> listaFuncionalidades = new List<string>();
         public static String userName = "0";
