@@ -100,7 +100,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
                 try
                 {
-                     //valido que no ingrese dos agendas en un mismo horarios
+                    //1//valido que no ingrese dos agendas en un mismo horarios
                     using (SqlCommand cmdRol2 = new SqlCommand("SELECT COUNT(*) from select_group.Agenda where Agenda.profesional_idProfesional = @matricula and Agenda.diaDisponible =@dia and Agenda.horaDesde =@desde and Agenda.horaHasta = @hasta", conexion))
                     {
                         cmdRol2.Parameters.AddWithValue("@matricula", matriculaText.Text);
@@ -108,8 +108,9 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                         cmdRol2.Parameters.AddWithValue("@desde", horaDesdeText.Text);
                         cmdRol2.Parameters.AddWithValue("@hasta", horaHastaText.Text);
 
-                        int userCount = (int) cmdRol2.ExecuteScalar();
+                        int userCount = (int)cmdRol2.ExecuteScalar();
 
+                        //si no lo encontro en la base esa agenda igual, que lo inserte
                         if (userCount == 0)
                         {
                             SqlCommand cmdRol = new SqlCommand("insert into Select_group.Agenda (profesional_idProfesional, diaDisponible, horaDesde, horaHasta) values (@matricula, @dia, @desde, @hasta) ", conexion);
@@ -124,24 +125,56 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                             Conexion.conexion.Close();
                         }
 
-                        else {
-
+                        else
+                        {
+                            //si lo encontro, que no lo deje y cambie los dias.
                             MessageBox.Show("Ya existe una agenda en ese dia y horario. Por favor, elija otro dia u otro horario");
                         }
-                    }
 
-                    
-                     
-                   }
-                  
+                        //2//Valido que su agenda no se encuentre dentro del horario de otra agenda
+                        using (SqlCommand cmdRol3 = new SqlCommand("SELECT COUNT(*) from select_group.Agenda where Agenda.profesional_idProfesional = @matricula and Agenda.diaDisponible =@dia and Agenda.horaDesde >@desde and Agenda.horaHasta < @hasta", conexion))
+                        {
+                            cmdRol3.Parameters.AddWithValue("@matricula", matriculaText.Text);
+                            cmdRol3.Parameters.AddWithValue("@dia", diaSemanaText.Text);
+                            cmdRol3.Parameters.AddWithValue("@desde", horaDesdeText.Text);
+                            cmdRol3.Parameters.AddWithValue("@hasta", horaHastaText.Text);
+
+                            int userCount2 = (int)cmdRol3.ExecuteScalar();
+                        }
+                        //si no lo encontro en la base esa agenda igual, que lo inserte
+                        if (userCount == 0)
+                        {
+                            SqlCommand cmdRol = new SqlCommand("insert into Select_group.Agenda (profesional_idProfesional, diaDisponible, horaDesde, horaHasta) values (@matricula, @dia, @desde, @hasta) ", conexion);
+                            cmdRol.Parameters.AddWithValue("@matricula", matriculaText.Text);
+                            cmdRol.Parameters.AddWithValue("@dia", diaSemanaText.Text);
+                            cmdRol.Parameters.AddWithValue("@desde", horaDesdeText.Text);
+                            cmdRol.Parameters.AddWithValue("@hasta", horaHastaText.Text);
+
+                            cmdRol.ExecuteNonQuery();
+
+                            MessageBox.Show("Nueva Agenda creada con exito");
+                            Conexion.conexion.Close();
+                        }
+
+                        else
+                        {
+                            //si lo encontro, que no lo deje y cambie los dias.
+                            MessageBox.Show("Ya existe una agenda en ese dia y horario. Por favor, elija otro dia u otro horario");
+                        }
+
+                    }
+                }
+
+
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
+
             }
-
         }
-
+           
+      
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Home.Show();
