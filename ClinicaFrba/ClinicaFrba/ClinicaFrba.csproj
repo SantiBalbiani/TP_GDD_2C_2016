@@ -370,6 +370,7 @@
       <DependentUpon>RegistroResultado.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Abm Rol\README.md" />
+    <None Include="app.config" />
     <None Include="Base de Datos\App.config">
       <SubType>Designer</SubType>
     </None>

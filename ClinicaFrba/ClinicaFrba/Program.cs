@@ -48,7 +48,10 @@ namespace ClinicaFrba
 
             menuActual.Close();
         }
-        
+        public static DateTime getFechaActual()
+        {
+            return Convert.ToDateTime(ClinicaFrba.Properties.Settings.Default.FechaDelSistema.ToString("yyyy-MM-dd HH:mm "));
+        }
     }
 
     public class ComboboxItem

@@ -41,16 +41,18 @@ namespace ClinicaFrba.Registro_Resultado
 
         private void RegistroResultado_Load(object sender, EventArgs e)
         {
-            //Llamar SP que levante el turno y cargar los datos
+            
 
             TimeSpan intervaloDeTurno = new TimeSpan(45, 30, 0);
-            DateTime intervaloTurnoMax = DateTime.Now + intervaloDeTurno;
-            DateTime intervaloTurnoMin = DateTime.Now - intervaloDeTurno;
+            //DateTime intervaloTurnoMax = DateTime.Now + intervaloDeTurno;
+            //DateTime intervaloTurnoMin = DateTime.Now - intervaloDeTurno;
+            DateTime intervaloTurnoMax = Globals.getFechaActual() + intervaloDeTurno;
+            DateTime intervaloTurnoMin = Globals.getFechaActual() - intervaloDeTurno;
             string estadoTurno = "0";
             string idAfiliado = "0";
-            // Agregar SP que obtenga idAgenda
+            
 
-            //Agregarle al criterio idAgenda. No hace falta idAfiliado porque 
+            
             // se presupone que un profesional no atiende mas de un Afiliado al mismo tiempo.
             string consultaTurnoActual = "SELECT TOP 1 T.idTurno, T.afiliado_idAfiliado, T.estado FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda AND A.profesional_IdProfesional = "+ idProf +" WHERE fechaTurno BETWEEN '" + intervaloTurnoMin.ToString("MM/dd/yyyy hh:mm tt") + "' AND '" + intervaloTurnoMax.ToString("MM/dd/yyyy hh:mm tt") + "' ORDER BY fechaTurno ASC";
             string nombreAfiliado = " ";
@@ -136,6 +138,7 @@ namespace ClinicaFrba.Registro_Resultado
             cmdUsuario.Parameters.Add("@sintomas", SqlDbType.VarChar).Value = textBox1.Text;
             cmdUsuario.Parameters.Add("@enfermedades", SqlDbType.VarChar).Value = textBox2.Text;
             cmdUsuario.Parameters.Add("@idTurno", SqlDbType.Int).Value = idTurno;
+            cmdUsuario.Parameters.Add("@fechaActual", SqlDbType.DateTime).Value =Globals.getFechaActual();
 
             try
             {

@@ -30,7 +30,8 @@ namespace ClinicaFrba.Pedir_Turno
             listView1.Clear();
             DateTime fechaElegida;
             fechaElegida = monthCalendar1.SelectionEnd;
-            DateTime fechaActual = DateTime.Now;
+            DateTime fechaActual = Globals.getFechaActual();
+            //DateTime fechaActual = DateTime.Now;
             if((DateTime.Compare(fechaElegida, fechaActual))>= 0)
             {
 

@@ -79,7 +79,7 @@ namespace ClinicaFrba.Compra_Bono
                 cmdUsuario.CommandType = CommandType.StoredProcedure;
                 cmdUsuario.Parameters.Add("@userName", SqlDbType.VarChar).Value = Globals.userName;
                 cmdUsuario.Parameters.Add("@cantidad", SqlDbType.Int).Value = txtCantidad.Text;
-
+                cmdUsuario.Parameters.Add("@fechaActual", SqlDbType.DateTime).Value = Globals.getFechaActual();
                 try
                 {
 
