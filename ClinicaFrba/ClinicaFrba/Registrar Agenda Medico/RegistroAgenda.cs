@@ -121,5 +121,11 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             }
 
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            //formAnterior.Show();
+            //this.Close();
+        }
     }
 }

@@ -167,6 +167,7 @@
             this.btnCancelar.TabIndex = 29;
             this.btnCancelar.Text = "ir Atrás";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // label9
             // 
