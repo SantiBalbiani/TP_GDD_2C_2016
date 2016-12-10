@@ -34,6 +34,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -105,6 +106,16 @@
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(268, 60);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(145, 23);
+            this.button3.TabIndex = 27;
+            this.button3.Text = "Crear Agenda";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // HomeProfesional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -112,6 +123,7 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.wiki_doctor;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -136,6 +148,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Button button3;
      
     }
 }

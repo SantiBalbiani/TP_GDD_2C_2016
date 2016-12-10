@@ -29,13 +29,11 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.tipoDniText = new System.Windows.Forms.TextBox();
-            this.numeroDniText = new System.Windows.Forms.TextBox();
+            this.matriculaText = new System.Windows.Forms.TextBox();
             this.diaSemanaText = new System.Windows.Forms.TextBox();
             this.horaDesdeText = new System.Windows.Forms.TextBox();
             this.horaHastaText = new System.Windows.Forms.TextBox();
@@ -61,28 +59,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Ingrese los datos para crear una nueva agenda:";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(40, 74);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Tipo Doc.";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(183, 77);
+            this.label5.Location = new System.Drawing.Point(39, 77);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.Size = new System.Drawing.Size(80, 13);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Nº Doc.";
+            this.label5.Text = "Nº de Matricula";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
@@ -121,23 +107,14 @@
             this.label8.Text = "Horario Hasta";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
-            // tipoDniText
+            // matriculaText
             // 
-            this.tipoDniText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.tipoDniText.Location = new System.Drawing.Point(101, 74);
-            this.tipoDniText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tipoDniText.Name = "tipoDniText";
-            this.tipoDniText.Size = new System.Drawing.Size(75, 20);
-            this.tipoDniText.TabIndex = 10;
-            // 
-            // numeroDniText
-            // 
-            this.numeroDniText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.numeroDniText.Location = new System.Drawing.Point(239, 74);
-            this.numeroDniText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.numeroDniText.Name = "numeroDniText";
-            this.numeroDniText.Size = new System.Drawing.Size(104, 20);
-            this.numeroDniText.TabIndex = 11;
+            this.matriculaText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.matriculaText.Location = new System.Drawing.Point(128, 74);
+            this.matriculaText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.matriculaText.Name = "matriculaText";
+            this.matriculaText.Size = new System.Drawing.Size(104, 20);
+            this.matriculaText.TabIndex = 11;
             // 
             // diaSemanaText
             // 
@@ -177,6 +154,7 @@
             this.button1.TabIndex = 15;
             this.button1.Text = "Crear Agenda";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnCancelar
             // 
@@ -272,13 +250,11 @@
             this.Controls.Add(this.horaHastaText);
             this.Controls.Add(this.horaDesdeText);
             this.Controls.Add(this.diaSemanaText);
-            this.Controls.Add(this.numeroDniText);
-            this.Controls.Add(this.tipoDniText);
+            this.Controls.Add(this.matriculaText);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -293,13 +269,11 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox tipoDniText;
-        private System.Windows.Forms.TextBox numeroDniText;
+        private System.Windows.Forms.TextBox matriculaText;
         private System.Windows.Forms.TextBox diaSemanaText;
         private System.Windows.Forms.TextBox horaDesdeText;
         private System.Windows.Forms.TextBox horaHastaText;

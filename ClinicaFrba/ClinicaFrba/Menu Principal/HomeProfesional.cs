@@ -144,5 +144,12 @@ namespace ClinicaFrba.Menu_Principal
             frmNewLog.Show();
             this.Close();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Registrar_Agenta_Medico.FrmRegistroAgenda frmAgendaNueva = new Registrar_Agenta_Medico.FrmRegistroAgenda();
+            frmAgendaNueva.Show();
+            this.Close();
+        }
     }
 }

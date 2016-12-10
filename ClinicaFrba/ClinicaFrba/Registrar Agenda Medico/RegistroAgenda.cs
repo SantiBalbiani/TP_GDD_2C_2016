@@ -70,5 +70,56 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            //Conexion.conectar();
+            SqlConnection conexion;
+            bool conectado = false;
+            //llenar la variable conexión con los parámetros de la variable parametros
+            string parametros = ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString;
+            conexion = new SqlConnection(parametros);
+            try
+            {
+                //abrir la conexion
+                conexion.Open();
+                conectado = true;
+            }
+            catch (InvalidCastException)
+            {
+                MessageBox.Show("Error al conectar la Base de datos");
+                conectado = false;
+            }
+
+
+            if (conectado == true)
+            {
+
+                try
+                {
+                  
+                        //inserta rol nuevo en la tabla rol 
+                        SqlCommand cmdRol = new SqlCommand("insert into Select_group.Agenda (profesional_idProfesional, diaDisponible, horaDesde, horaHasta) values(@matricula, @dia, @desde, @hasta)", conexion);
+                        cmdRol.Parameters.AddWithValue("@matricula", matriculaText.Text);
+                        cmdRol.Parameters.AddWithValue("@dia", diaSemanaText.Text);
+                        cmdRol.Parameters.AddWithValue("@desde", horaDesdeText.Text);
+                        cmdRol.Parameters.AddWithValue("@hasta", horaHastaText.Text);
+
+                        cmdRol.ExecuteNonQuery();
+
+                        MessageBox.Show("Nueva Agenda creada con exito");
+                        Conexion.conexion.Close();
+                   }
+                  
+
+                
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+        }
     }
 }
