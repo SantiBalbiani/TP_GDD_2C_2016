@@ -11,6 +11,7 @@ namespace ClinicaFrba
 {
     public static class Globals
     {
+        public static List<int> listaDni = new List<int>();
         public static List<string> listaFuncionalidades = new List<string>();
         public static String userName = "0";
         public static string rolId = "";
