@@ -15,6 +15,7 @@ namespace ClinicaFrba.Abm_Afiliado
     public partial class ModificarAfiliado : Form
     {
         public string menuAnterior;
+        public Menu_Principal.HomeCustom Home;
 
         public ModificarAfiliado()
         {

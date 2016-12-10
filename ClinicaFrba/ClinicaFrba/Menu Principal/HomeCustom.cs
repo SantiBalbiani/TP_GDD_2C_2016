@@ -84,6 +84,7 @@ namespace ClinicaFrba.Menu_Principal
                     frmCompra.menuAnterior = "Custom";
                     frmCompra.Home = this; 
                     frmCompra.Show();
+                    this.Hide();
 
 
                 }
@@ -102,6 +103,7 @@ namespace ClinicaFrba.Menu_Principal
                 frmCambiarPlan.menuAnterior = "Custom";
                 frmCambiarPlan.Home = this; 
                 frmCambiarPlan.Show();
+                this.Hide();
             }
         }
 
@@ -137,7 +139,7 @@ namespace ClinicaFrba.Menu_Principal
             abmMenuRol frmMenuRol = new abmMenuRol();
             frmMenuRol.menuAnterior = "Custom";
             frmMenuRol.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void btnEstadisticas_Click(object sender, EventArgs e)
@@ -146,7 +148,7 @@ namespace ClinicaFrba.Menu_Principal
             frmListados.menuAnterior = "Custom";
             frmListados.Home = this; 
             frmListados.Show();
-           // this.Close();
+            this.Hide();
             
         }
 
@@ -156,7 +158,7 @@ namespace ClinicaFrba.Menu_Principal
             frmRegistrar.menuAnterior = "Custom";
             frmRegistrar.Home = this; 
             frmRegistrar.Show();
-            //this.Close();
+            this.Hide();
         }
 
         private void btnAltaAfiliado_Click(object sender, EventArgs e)
@@ -165,25 +167,25 @@ namespace ClinicaFrba.Menu_Principal
             frmAlta.menuAnterior = "Custom";
             frmAlta.Home = this; 
             frmAlta.Show();
-            //this.Close();
+            this.Hide();
         }
         
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Cancelar_Atencion.CancelacionAfiliado frmCancel = new Cancelar_Atencion.CancelacionAfiliado(strAfiliado);
-            //frmCancel.menuAnterior = "Custom";
-            //frmCancel.Home = this; 
-            frmCancel.Show();
-           // this.Close();
+            frmCancel.menuAnterior = "Custom";
+            frmCancel.Home = this; 
+            //frmCancel.Show();
+            this.Hide();
         }
 
         private void btnSolicitar_Click(object sender, EventArgs e)
         {
-            //this.Hide();
             ClinicaFrba.Pedir_Turno.FrmSolTurno frmSolTurno = new ClinicaFrba.Pedir_Turno.FrmSolTurno();
             frmSolTurno.menuAnterior = "Custom";
             frmSolTurno.Home = this; 
             frmSolTurno.Show();
+            this.Hide();
         }
 
         private void HomeCustom_Load(object sender, EventArgs e)
@@ -203,13 +205,56 @@ namespace ClinicaFrba.Menu_Principal
             txtRolActual.Text = Globals.rolId;
 
             List<string> listaFunc = Globals.listaFuncionalidades;
-            string mensajeParaNoe = " ";
+            //string mensajeParaNoe = " ";
             foreach (string func in listaFunc)
             {
-                mensajeParaNoe = mensajeParaNoe + " " +func + " ";
+                //mensajeParaNoe = mensajeParaNoe + " " +func + " ";
+
+                if (func == "Comprar_Bono")
+                {
+                    btnComprar.Visible = true;
+                    label4.Visible = true;
+                    textBox1.Visible = true; 
+                }
+                if (func == "Cancelar_Turno" )
+                {
+                    btnCancelar.Visible = true;
+                }
+                if (func == "Registrar_Llegada")
+                {
+                    btnRegistrarLlegada.Visible = true;
+                }
+                if (func == "ABM_Rol")
+                {
+                    btnAbmRol.Visible = true; 
+                }
+                if (func == "Listado_Estadistico")
+                {
+                    btnEstadisticas.Visible = true;
+                }
+                if (func == "ABM_Afiliados")
+                {
+                    btnAltaAfiliado.Visible = true;
+                    label4.Visible = true;
+                    textBox1.Visible = true;
+                    btnCambiarPlan.Visible = true;
+                }
+                if (func == "Solicitar_Turno")
+                {
+                    btnSolicitar.Visible = true; 
+                }
+                if (func == "Registrar_Diagnostico")
+                {
+                    //Falta el boton de registrar diagnostico
+                }
+                if (func == "Cancelar_Agenda")
+                {
+                    btnCancelarDia.Visible = true; 
+                }
+
             }
 
-            MessageBox.Show("Noe, estas son las func de este rol" + mensajeParaNoe);
+           // MessageBox.Show("Noe, estas son las func de este rol" + mensajeParaNoe);
 
             //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             //Chequear si es profesional y hacer cosas de profesional
@@ -302,7 +347,10 @@ namespace ClinicaFrba.Menu_Principal
         private void btnModifAfil_Click(object sender, EventArgs e)
         {
             Abm_Afiliado.ModificarAfiliado frmMod = new Abm_Afiliado.ModificarAfiliado();
+            frmMod.Home = this;
             frmMod.Show();
+            this.Hide();
+
         }
 
         private void btnBajaAfil_Click(object sender, EventArgs e)
@@ -312,6 +360,11 @@ namespace ClinicaFrba.Menu_Principal
         }
 
         private void txtRolActual_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAgregarFamiliar_Click(object sender, EventArgs e)
         {
 
         }

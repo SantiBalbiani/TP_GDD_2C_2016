@@ -95,7 +95,7 @@ namespace ClinicaFrba
 
         private void comboBoxRoles_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = true;
+           // e.Handled = true;
         }
 
         
