@@ -100,22 +100,40 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
                 try
                 {
-                  
-                        //inserta rol nuevo en la tabla rol 
-                        SqlCommand cmdRol = new SqlCommand("insert into Select_group.Agenda (profesional_idProfesional, diaDisponible, horaDesde, horaHasta) values(@matricula, @dia, @desde, @hasta)", conexion);
-                        cmdRol.Parameters.AddWithValue("@matricula", matriculaText.Text);
-                        cmdRol.Parameters.AddWithValue("@dia", diaSemanaText.Text);
-                        cmdRol.Parameters.AddWithValue("@desde", horaDesdeText.Text);
-                        cmdRol.Parameters.AddWithValue("@hasta", horaHastaText.Text);
+                     //valido que no ingrese dos agendas en un mismo horarios
+                    using (SqlCommand cmdRol2 = new SqlCommand("SELECT COUNT(*) from select_group.Agenda where Agenda.profesional_idProfesional = @matricula and Agenda.diaDisponible =@dia and Agenda.horaDesde =@desde and Agenda.horaHasta = @hasta", conexion))
+                    {
+                        cmdRol2.Parameters.AddWithValue("@matricula", matriculaText.Text);
+                        cmdRol2.Parameters.AddWithValue("@dia", diaSemanaText.Text);
+                        cmdRol2.Parameters.AddWithValue("@desde", horaDesdeText.Text);
+                        cmdRol2.Parameters.AddWithValue("@hasta", horaHastaText.Text);
 
-                        cmdRol.ExecuteNonQuery();
+                        int userCount = (int) cmdRol2.ExecuteScalar();
 
-                        MessageBox.Show("Nueva Agenda creada con exito");
-                        Conexion.conexion.Close();
+                        if (userCount == 0)
+                        {
+                            SqlCommand cmdRol = new SqlCommand("insert into Select_group.Agenda (profesional_idProfesional, diaDisponible, horaDesde, horaHasta) values (@matricula, @dia, @desde, @hasta) ", conexion);
+                            cmdRol.Parameters.AddWithValue("@matricula", matriculaText.Text);
+                            cmdRol.Parameters.AddWithValue("@dia", diaSemanaText.Text);
+                            cmdRol.Parameters.AddWithValue("@desde", horaDesdeText.Text);
+                            cmdRol.Parameters.AddWithValue("@hasta", horaHastaText.Text);
+
+                            cmdRol.ExecuteNonQuery();
+
+                            MessageBox.Show("Nueva Agenda creada con exito");
+                            Conexion.conexion.Close();
+                        }
+
+                        else {
+
+                            MessageBox.Show("Ya existe una agenda en ese dia y horario. Por favor, elija otros valores");
+                        }
+                    }
+
+                    
+                     
                    }
                   
-
-                
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
