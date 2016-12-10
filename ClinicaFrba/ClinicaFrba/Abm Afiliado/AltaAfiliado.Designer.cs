@@ -258,6 +258,7 @@ namespace ClinicaFrba.Abm_Afiliado
             this.textNombre.Size = new System.Drawing.Size(130, 20);
             this.textNombre.TabIndex = 35;
             this.textNombre.Validar = true;
+            this.textNombre.TextChanged += new System.EventHandler(this.textNombre_TextChanged);
             // 
             // textApellido
             // 

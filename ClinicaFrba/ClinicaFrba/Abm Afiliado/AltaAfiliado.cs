@@ -239,5 +239,10 @@ namespace ClinicaFrba.Abm_Afiliado
             }
         }
 
+        private void textNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

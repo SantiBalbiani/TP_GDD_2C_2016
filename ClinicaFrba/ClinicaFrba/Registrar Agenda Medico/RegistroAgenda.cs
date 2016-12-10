@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Libreria;
+using System.Data.SqlClient;
+using ClinicaFrba.Base_de_Datos;
+using System.Configuration;
 
 namespace ClinicaFrba.Registrar_Agenta_Medico
 {
