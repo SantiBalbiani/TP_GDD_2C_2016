@@ -91,6 +91,7 @@
     <Compile Include="Abm Afiliado\AltaPareja.Designer.cs">
       <DependentUpon>AltaPareja.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Afiliado\Auxiliar.cs" />
     <Compile Include="Abm Afiliado\BajaAfiliado.cs">
       <SubType>Form</SubType>
     </Compile>
