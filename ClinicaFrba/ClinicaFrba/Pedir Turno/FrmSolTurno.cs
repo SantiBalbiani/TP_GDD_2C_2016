@@ -24,6 +24,12 @@ namespace ClinicaFrba.Pedir_Turno
             InitializeComponent();
         }
 
+        private static bool esMenor(TimeSpan horarioTurno) 
+        {
+            TimeSpan horaActual = Globals.getFechaActual().TimeOfDay;
+            return horarioTurno < horaActual;
+        }
+
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
             button1.Enabled = false;
@@ -119,6 +125,10 @@ namespace ClinicaFrba.Pedir_Turno
                         listaHorarios.Remove(horaTurnoOcupado);
 
                     }
+
+                    //Remuevo horarios que ya pasaron
+                    listaHorarios.RemoveAll(esMenor);
+
 
 
                     foreach (TimeSpan turno in listaHorarios)
