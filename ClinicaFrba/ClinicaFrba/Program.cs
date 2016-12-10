@@ -68,10 +68,8 @@ namespace ClinicaFrba
         
         public static DateTime getFechaActual()
         {
-            TimeSpan horaActual = new TimeSpan();
-            horaActual = DateTime.Now.TimeOfDay;
-
-            DateTime fechaActual = Convert.ToDateTime(ClinicaFrba.Properties.Settings.Default.FechaDelSistema.ToString("yyyy-MM-dd HH:mm ")) + horaActual;
+            
+            DateTime fechaActual = Convert.ToDateTime(ClinicaFrba.Properties.Settings.Default.FechaDelSistema.ToString("yyyy-MM-dd HH:mm "));
 
             return fechaActual;
         }

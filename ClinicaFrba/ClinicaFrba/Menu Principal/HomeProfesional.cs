@@ -42,9 +42,9 @@ namespace ClinicaFrba.Menu_Principal
 
             //Valido que tenga turno disponible:
 
-            TimeSpan intervaloDeTurno = new TimeSpan(45, 30, 0);
-            DateTime intervaloTurnoMax = DateTime.Now + intervaloDeTurno;
-            DateTime intervaloTurnoMin = DateTime.Now - intervaloDeTurno;
+            TimeSpan intervaloDeTurno = new TimeSpan(0, 30, 0);
+            DateTime intervaloTurnoMax = Globals.getFechaActual() + intervaloDeTurno;
+            DateTime intervaloTurnoMin = Globals.getFechaActual() - intervaloDeTurno;
             string estadoTurno = "0";
             string idAfiliado = "0";
             
@@ -52,7 +52,7 @@ namespace ClinicaFrba.Menu_Principal
 
             //Agregarle al criterio idAgenda. No hace falta idAfiliado porque 
             // se presupone que un profesional no atiende mas de un Afiliado al mismo tiempo.
-            string consultaTurnoActual = "SELECT TOP 1 T.idTurno, T.afiliado_idAfiliado, T.estado FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda AND A.profesional_IdProfesional = " + idProf + " WHERE fechaTurno BETWEEN '" + intervaloTurnoMin.ToString("MM/dd/yyyy hh:mm tt") + "' AND '" + intervaloTurnoMax.ToString("MM/dd/yyyy hh:mm tt") + "' ORDER BY fechaTurno ASC";
+            string consultaTurnoActual = "SELECT TOP 1 T.idTurno, T.afiliado_idAfiliado, T.estado FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda AND A.profesional_IdProfesional = " + idProf + " WHERE T.estado = 4 AND fechaTurno BETWEEN '" + intervaloTurnoMin.ToString("MM/dd/yyyy hh:mm tt") + "' AND '" + intervaloTurnoMax.ToString("MM/dd/yyyy hh:mm tt") + "' ORDER BY fechaTurno ASC";
             
             string idTurno = "0";
             Conexion.conectar();
@@ -77,7 +77,7 @@ namespace ClinicaFrba.Menu_Principal
                 if (idTurno != "0")
                 {
 
-                    RegistroResultado frmRegRes = new RegistroResultado(idTurno, idProf);
+                    RegistroResultado frmRegRes = new RegistroResultado(idTurno, idProf,idAfiliado);
                     frmRegRes.menuAnterior = "Profesional";
                     this.Hide();
                     frmRegRes.Show();

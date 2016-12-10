@@ -18,11 +18,12 @@ namespace ClinicaFrba.Registro_Resultado
     public partial class RegistroResultado : Form
     {
         public string menuAnterior;
-        public RegistroResultado(string unTurno, string idProfesional)
+        public RegistroResultado(string unTurno, string idProfesional, string afiliado)
         {
             InitializeComponent();
             idTurno = unTurno;
             idProf = idProfesional;
+            idAfiliado = afiliado;
         }
 
         public RegistroResultado()
@@ -31,6 +32,7 @@ namespace ClinicaFrba.Registro_Resultado
         }
     public string idProf = "0";
     public string idTurno = "0";
+    public string idAfiliado = "0";
     public HomeCustom Home;
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -49,37 +51,32 @@ namespace ClinicaFrba.Registro_Resultado
         {
             
 
-            TimeSpan intervaloDeTurno = new TimeSpan(45, 30, 0);
+            /*TimeSpan intervaloDeTurno = new TimeSpan(45, 30, 0);
             //DateTime intervaloTurnoMax = DateTime.Now + intervaloDeTurno;
             //DateTime intervaloTurnoMin = DateTime.Now - intervaloDeTurno;
             DateTime intervaloTurnoMax = Globals.getFechaActual() + intervaloDeTurno;
             DateTime intervaloTurnoMin = Globals.getFechaActual() - intervaloDeTurno;
             string estadoTurno = "0";
-            string idAfiliado = "0";
+            string idAfiliado = "0";*/
             
 
             
             // se presupone que un profesional no atiende mas de un Afiliado al mismo tiempo.
+            /*
             string consultaTurnoActual = "SELECT TOP 1 T.idTurno, T.afiliado_idAfiliado, T.estado FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda AND A.profesional_IdProfesional = "+ idProf +" WHERE fechaTurno BETWEEN '" + intervaloTurnoMin.ToString("MM/dd/yyyy hh:mm tt") + "' AND '" + intervaloTurnoMax.ToString("MM/dd/yyyy hh:mm tt") + "' ORDER BY fechaTurno ASC";
-            string nombreAfiliado = " ";
-            string apellidoAfiliado = " ";
+            
             Conexion.conectar();
             DataTable turnoActual = new DataTable();
-            DataTable unAfiliado = new DataTable();
+            */
 
             try
             {
 
-                turnoActual = Conexion.LeerTabla(consultaTurnoActual);
+                
 
-                foreach (DataRow unTurno in turnoActual.Rows)
-                {
-                    
-                    idAfiliado = unTurno["afiliado_idAfiliado"].ToString();
-                    estadoTurno = unTurno["estado"].ToString();
-
-                }
-
+                DataTable unAfiliado = new DataTable();
+                string nombreAfiliado = " ";
+                string apellidoAfiliado = " ";
 
                 if (idAfiliado != "0")
                 {
@@ -116,15 +113,7 @@ namespace ClinicaFrba.Registro_Resultado
             finally
             {
                 Conexion.conexion.Close();
-                if ((nombreAfiliado == " ") || (estadoTurno == "1") || (estadoTurno == "2"))
-                {
-                    MessageBox.Show("No hay turno agendado en este horario");
-
-                    
-                    HomeProfesional frmHome = new HomeProfesional();
-                    frmHome.Show();
-                    this.Close();
-                }
+                
                
             }
            
