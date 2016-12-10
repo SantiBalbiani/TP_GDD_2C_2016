@@ -129,6 +129,13 @@
             this.btnRegistrarLlegada.UseVisualStyleBackColor = true;
             this.btnRegistrarLlegada.Click += new System.EventHandler(this.btnRegistrarLlegada_Click);
             // 
+            // btnAgregarFamiliar
+            // 
+            this.btnAgregarFamiliar.Location = new System.Drawing.Point(0, 0);
+            this.btnAgregarFamiliar.Name = "btnAgregarFamiliar";
+            this.btnAgregarFamiliar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarFamiliar.TabIndex = 47;
+            // 
             // btnAltaAfiliado
             // 
             this.btnAltaAfiliado.ForeColor = System.Drawing.Color.MidnightBlue;
@@ -269,6 +276,7 @@
             this.txtRolActual.Name = "txtRolActual";
             this.txtRolActual.Size = new System.Drawing.Size(100, 20);
             this.txtRolActual.TabIndex = 46;
+            this.txtRolActual.TextChanged += new System.EventHandler(this.txtRolActual_TextChanged);
             // 
             // HomeCustom
             // 

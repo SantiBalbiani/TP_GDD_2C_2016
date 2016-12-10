@@ -198,8 +198,20 @@ namespace ClinicaFrba.Menu_Principal
             where rol_idRol = 1
       */
 
+            //+++++++++++++++MIRA ACA NOE++++++++++++++++++++
 
+            txtRolActual.Text = Globals.rolId;
 
+            List<string> listaFunc = Globals.listaFuncionalidades;
+            string mensajeParaNoe = " ";
+            foreach (string func in listaFunc)
+            {
+                mensajeParaNoe = mensajeParaNoe + " " +func + " ";
+            }
+
+            MessageBox.Show("Noe, estas son las func de este rol" + mensajeParaNoe);
+
+            //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             //Chequear si es profesional y hacer cosas de profesional
                        
             if (rolActual == "Profesional")
@@ -273,6 +285,8 @@ namespace ClinicaFrba.Menu_Principal
                 txtRolActual.Text = rolActual;
                 
             }
+
+
         }
 
         private void btnRegAtencion_Click(object sender, EventArgs e)
@@ -295,6 +309,11 @@ namespace ClinicaFrba.Menu_Principal
         {
             Abm_Afiliado.BajaAfiliado frmBaja = new Abm_Afiliado.BajaAfiliado();
             frmBaja.Show();
+        }
+
+        private void txtRolActual_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
