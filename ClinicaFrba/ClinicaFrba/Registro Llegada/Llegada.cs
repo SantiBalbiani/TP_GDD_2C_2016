@@ -18,7 +18,7 @@ namespace ClinicaFrba.Registro_Llegada
         public string unIdBono = "0";
         public string idTurno = "0";
         public string menuAnterior;
-        public Menu_Principal.HomeCustom Home;
+        public Form Home;
 
         public Llegada()
         {

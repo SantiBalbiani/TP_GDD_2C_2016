@@ -49,9 +49,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(274, 13);
+            this.button1.Location = new System.Drawing.Point(225, 11);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(84, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Buscar";
             this.button1.UseVisualStyleBackColor = true;
@@ -59,9 +59,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(168, 15);
+            this.textBox1.Location = new System.Drawing.Point(117, 13);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(102, 20);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -69,7 +69,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(51, 18);
+            this.label1.Location = new System.Drawing.Point(11, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 13);
             this.label1.TabIndex = 2;
@@ -77,31 +77,31 @@
             // 
             // tel
             // 
-            this.tel.Location = new System.Drawing.Point(249, 78);
+            this.tel.Location = new System.Drawing.Point(119, 71);
             this.tel.Name = "tel";
-            this.tel.Size = new System.Drawing.Size(100, 20);
+            this.tel.Size = new System.Drawing.Size(125, 20);
             this.tel.TabIndex = 3;
             this.tel.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // mail
             // 
-            this.mail.Location = new System.Drawing.Point(249, 104);
+            this.mail.Location = new System.Drawing.Point(119, 97);
             this.mail.Name = "mail";
-            this.mail.Size = new System.Drawing.Size(100, 20);
+            this.mail.Size = new System.Drawing.Size(157, 20);
             this.mail.TabIndex = 4;
             this.mail.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // dir
             // 
-            this.dir.Location = new System.Drawing.Point(249, 130);
+            this.dir.Location = new System.Drawing.Point(119, 123);
             this.dir.Name = "dir";
-            this.dir.Size = new System.Drawing.Size(100, 20);
+            this.dir.Size = new System.Drawing.Size(157, 20);
             this.dir.TabIndex = 5;
             this.dir.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 227);
+            this.button2.Location = new System.Drawing.Point(234, 227);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 7;
@@ -111,7 +111,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(260, 227);
+            this.button3.Location = new System.Drawing.Point(14, 227);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 8;
@@ -123,7 +123,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.Location = new System.Drawing.Point(191, 81);
+            this.label2.Location = new System.Drawing.Point(61, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 9;
@@ -133,7 +133,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label3.Location = new System.Drawing.Point(213, 107);
+            this.label3.Location = new System.Drawing.Point(83, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 10;
@@ -143,7 +143,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label4.Location = new System.Drawing.Point(207, 159);
+            this.label4.Location = new System.Drawing.Point(77, 152);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(34, 13);
             this.label4.TabIndex = 11;
@@ -153,7 +153,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label5.Location = new System.Drawing.Point(186, 133);
+            this.label5.Location = new System.Drawing.Point(56, 126);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 12;
@@ -162,9 +162,9 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(248, 157);
+            this.comboBox1.Location = new System.Drawing.Point(118, 150);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(101, 21);
+            this.comboBox1.Size = new System.Drawing.Size(126, 21);
             this.comboBox1.TabIndex = 13;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -172,16 +172,16 @@
             // 
             this.textBox5.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(248, 52);
+            this.textBox5.Location = new System.Drawing.Point(118, 45);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(136, 20);
+            this.textBox5.Size = new System.Drawing.Size(191, 20);
             this.textBox5.TabIndex = 14;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label6.Location = new System.Drawing.Point(147, 55);
+            this.label6.Location = new System.Drawing.Point(17, 48);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(95, 13);
             this.label6.TabIndex = 15;
@@ -190,16 +190,16 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(249, 184);
+            this.comboBox2.Location = new System.Drawing.Point(119, 177);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(101, 21);
+            this.comboBox2.Size = new System.Drawing.Size(125, 21);
             this.comboBox2.TabIndex = 16;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label7.Location = new System.Drawing.Point(176, 187);
+            this.label7.Location = new System.Drawing.Point(46, 180);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 13);
             this.label7.TabIndex = 17;
@@ -210,7 +210,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(418, 262);
+            this.ClientSize = new System.Drawing.Size(327, 262);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label6);

@@ -32,8 +32,12 @@ namespace ClinicaFrba.Registro_Resultado
         }
     public string idProf = "0";
     public string idTurno = "0";
+<<<<<<< HEAD
     public string idAfiliado = "0";
     public HomeCustom Home;
+=======
+    public Form Home;
+>>>>>>> db945c675a7e7efbcdce768aecbebd5c00269488
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -113,7 +117,19 @@ namespace ClinicaFrba.Registro_Resultado
             finally
             {
                 Conexion.conexion.Close();
+<<<<<<< HEAD
                 
+=======
+                if ((nombreAfiliado == " ") || (estadoTurno == "1") || (estadoTurno == "2"))
+                {
+                    MessageBox.Show("No hay turno agendado en este horario");
+
+                    
+                    //HomeProfesional frmHome = new HomeProfesional();
+                    Home.Show();
+                    this.Close();
+                }
+>>>>>>> db945c675a7e7efbcdce768aecbebd5c00269488
                
             }
            
@@ -148,6 +164,8 @@ namespace ClinicaFrba.Registro_Resultado
             finally
             {
                 cnx.Close();
+                Home.Show();
+                this.Close();
                 //Volver al cuadro anterior
             }
         }
@@ -171,7 +189,9 @@ namespace ClinicaFrba.Registro_Resultado
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Globals.irAtras(menuAnterior, this);
+            //Globals.irAtras(menuAnterior, this);
+            Home.Show();
+            this.Close();
         }
     }
 }
