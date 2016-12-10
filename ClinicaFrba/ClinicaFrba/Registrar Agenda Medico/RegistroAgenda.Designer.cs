@@ -36,13 +36,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.nombreText = new System.Windows.Forms.TextBox();
+            this.apellidoText = new System.Windows.Forms.TextBox();
+            this.tipoDniText = new System.Windows.Forms.TextBox();
+            this.numeroDniText = new System.Windows.Forms.TextBox();
+            this.diaSemanaText = new System.Windows.Forms.TextBox();
+            this.horaDesdeText = new System.Windows.Forms.TextBox();
+            this.horaHastaText = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -149,68 +149,68 @@
             this.label8.Text = "Horario Hasta";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
-            // textBox1
+            // nombreText
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.textBox1.Location = new System.Drawing.Point(75, 54);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(75, 20);
-            this.textBox1.TabIndex = 8;
+            this.nombreText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.nombreText.Location = new System.Drawing.Point(75, 54);
+            this.nombreText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nombreText.Name = "nombreText";
+            this.nombreText.Size = new System.Drawing.Size(75, 20);
+            this.nombreText.TabIndex = 8;
             // 
-            // textBox2
+            // apellidoText
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.textBox2.Location = new System.Drawing.Point(75, 80);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(75, 20);
-            this.textBox2.TabIndex = 9;
+            this.apellidoText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.apellidoText.Location = new System.Drawing.Point(75, 80);
+            this.apellidoText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.apellidoText.Name = "apellidoText";
+            this.apellidoText.Size = new System.Drawing.Size(75, 20);
+            this.apellidoText.TabIndex = 9;
             // 
-            // textBox3
+            // tipoDniText
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.textBox3.Location = new System.Drawing.Point(75, 108);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(75, 20);
-            this.textBox3.TabIndex = 10;
+            this.tipoDniText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.tipoDniText.Location = new System.Drawing.Point(75, 108);
+            this.tipoDniText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tipoDniText.Name = "tipoDniText";
+            this.tipoDniText.Size = new System.Drawing.Size(75, 20);
+            this.tipoDniText.TabIndex = 10;
             // 
-            // textBox4
+            // numeroDniText
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.textBox4.Location = new System.Drawing.Point(213, 108);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(75, 20);
-            this.textBox4.TabIndex = 11;
+            this.numeroDniText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.numeroDniText.Location = new System.Drawing.Point(213, 108);
+            this.numeroDniText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numeroDniText.Name = "numeroDniText";
+            this.numeroDniText.Size = new System.Drawing.Size(75, 20);
+            this.numeroDniText.TabIndex = 11;
             // 
-            // textBox5
+            // diaSemanaText
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.textBox5.Location = new System.Drawing.Point(242, 181);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(75, 20);
-            this.textBox5.TabIndex = 12;
+            this.diaSemanaText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.diaSemanaText.Location = new System.Drawing.Point(242, 181);
+            this.diaSemanaText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.diaSemanaText.Name = "diaSemanaText";
+            this.diaSemanaText.Size = new System.Drawing.Size(75, 20);
+            this.diaSemanaText.TabIndex = 12;
             // 
-            // textBox6
+            // horaDesdeText
             // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.textBox6.Location = new System.Drawing.Point(127, 247);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(75, 20);
-            this.textBox6.TabIndex = 13;
+            this.horaDesdeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.horaDesdeText.Location = new System.Drawing.Point(127, 247);
+            this.horaDesdeText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.horaDesdeText.Name = "horaDesdeText";
+            this.horaDesdeText.Size = new System.Drawing.Size(75, 20);
+            this.horaDesdeText.TabIndex = 13;
             // 
-            // textBox7
+            // horaHastaText
             // 
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.textBox7.Location = new System.Drawing.Point(127, 286);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(75, 20);
-            this.textBox7.TabIndex = 14;
+            this.horaHastaText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.horaHastaText.Location = new System.Drawing.Point(127, 286);
+            this.horaHastaText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.horaHastaText.Name = "horaHastaText";
+            this.horaHastaText.Size = new System.Drawing.Size(75, 20);
+            this.horaHastaText.TabIndex = 14;
             // 
             // button1
             // 
@@ -315,13 +315,13 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.horaHastaText);
+            this.Controls.Add(this.horaDesdeText);
+            this.Controls.Add(this.diaSemanaText);
+            this.Controls.Add(this.numeroDniText);
+            this.Controls.Add(this.tipoDniText);
+            this.Controls.Add(this.apellidoText);
+            this.Controls.Add(this.nombreText);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -350,13 +350,13 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox nombreText;
+        private System.Windows.Forms.TextBox apellidoText;
+        private System.Windows.Forms.TextBox tipoDniText;
+        private System.Windows.Forms.TextBox numeroDniText;
+        private System.Windows.Forms.TextBox diaSemanaText;
+        private System.Windows.Forms.TextBox horaDesdeText;
+        private System.Windows.Forms.TextBox horaHastaText;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label9;
