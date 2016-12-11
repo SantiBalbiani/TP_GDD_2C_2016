@@ -375,6 +375,7 @@ namespace ClinicaFrba.Abm_Afiliado
             this.textCantHijos.Size = new System.Drawing.Size(130, 20);
             this.textCantHijos.TabIndex = 47;
             this.textCantHijos.Validar = true;
+            this.textCantHijos.TextChanged += new System.EventHandler(this.textCantHijos_TextChanged);
             // 
             // frmAltaAfiliado
             // 

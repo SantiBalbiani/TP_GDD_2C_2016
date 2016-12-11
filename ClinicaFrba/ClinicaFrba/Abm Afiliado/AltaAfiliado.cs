@@ -36,6 +36,7 @@ namespace ClinicaFrba.Abm_Afiliado
             tieneHijos = false;
             idPlanMed = 0;
             nroAfiliado = 0;
+            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -223,6 +224,7 @@ namespace ClinicaFrba.Abm_Afiliado
         {
             
             this.btnCargaPareja.Enabled = false;
+            this.btnCargarHijos.Enabled = false;
             
 
             string query = "select PM.descripcion from SELECT_GROUP.Plan_Med as PM";
@@ -248,16 +250,15 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void btnCargarHijos_Click(object sender, EventArgs e)
         {
-            cantidadHijos = Convert.ToInt32(textCantHijos.Text);
-
-            numeroDocumento = Convert.ToInt32(textDni.Text);
-
-
-            if (cantidadHijos > 0)
+            if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
             {
-                if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
-                {
-                    if (Auxiliar.verificarDocumento(numeroDocumento))
+            
+                cantidadHijos = Convert.ToInt32(textCantHijos.Text);
+
+                numeroDocumento = Convert.ToInt32(textDni.Text);
+            
+
+                if (Auxiliar.verificarDocumento(numeroDocumento))
                     {
                         if (cbmPlanMed.Text != "")
                         {
@@ -292,18 +293,26 @@ namespace ClinicaFrba.Abm_Afiliado
                 }
                 else
                 {
-                    MessageBox.Show("Faltan Campos ingresar");
+                    MessageBox.Show("Faltan Campos ingresar");                
                 }
-            }
-            else
-            {
-                MessageBox.Show("No ingreso una cantidad de hijos valida");
-            }
+                        
         }
 
         private void textNombre_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textCantHijos_TextChanged(object sender, EventArgs e)
+        {
+            if ((Convert.ToInt32(textCantHijos.Text)) > 0)
+            {
+                this.btnCargarHijos.Enabled = true;
+            }
+            else {
+                this.btnCargarHijos.Enabled = false;
+                
+            }
         }
 
     }
