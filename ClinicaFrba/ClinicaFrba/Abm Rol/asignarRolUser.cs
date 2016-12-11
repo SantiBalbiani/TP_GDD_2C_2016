@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Libreria;
 using System.Data.SqlClient;
 using ClinicaFrba.Base_de_Datos;
 using System.Configuration;
-
 
  namespace ClinicaFrba.AbmRol
 { 
@@ -152,77 +152,65 @@ using System.Configuration;
         private void button1_Click_1(object sender, EventArgs e)
         {
             if (username.Text != "")
-                
             {//Cargo Roles
-            checkedListBox1.ResetText();
-            checkedListBox1.Items.Clear();
+                checkedListBox1.ResetText();
+                checkedListBox1.Items.Clear();
 
-            Conexion.conectar();
-            DataTable rolesDeUnuser = new DataTable();
+                Conexion.conectar();
+                DataTable rolesDeUnuser = new DataTable();
 
-
-
-
-
-            string consultaRoles = "SELECT R.idRol, R.nombre, U.idUsuario FROM Select_Group.Usuario  U JOIN Select_Group.Usuario_Por_Rol UxR ON UxR.usuario_username = U.idUsuario JOIN Select_Group.Rol R ON R.idRol = UxR.rol_idRol WHERE R.habilitado = 1 AND nombreUsuario = '" + username.Text.ToString().Trim() + "'";
-
-            rolesDeUnuser = Conexion.LeerTabla(consultaRoles);
-
-            List<ComboboxItem> ListaRolesUsuario = new List<ComboboxItem>();
-
-
-            foreach (DataRow unRolDeUser in rolesDeUnuser.Rows)
-            {
-                ComboboxItem unItemRol = new ComboboxItem();
-                unItemRol.Value = unRolDeUser["idRol"].ToString().Trim();
-                unItemRol.Text = unRolDeUser["nombre"].ToString().Trim();
-                idUsuario = unRolDeUser["idUsuario"].ToString().Trim();
-
-                ListaRolesUsuario.Add(unItemRol);
-
-
-
-            }
-
-            string queryTodosLosRoles = "SELECT idRol, nombre FROM Select_Group.Rol WHERE habilitado = 1";
-
-            DataTable todosLosRoles = new DataTable();
-
-            todosLosRoles = Conexion.LeerTabla(queryTodosLosRoles);
-
-            foreach (DataRow unRol in todosLosRoles.Rows)
-            {
-                ComboboxItem itemRol = new ComboboxItem();
-
-                itemRol.Value = unRol["idRol"].ToString();
-                itemRol.Text = unRol["nombre"].ToString();
-
-                checkedListBox1.Items.Add(itemRol);
-
-
-            }
-
-
-            for (int i = 0; i < checkedListBox1.Items.Count ; i++)
-            {
-
-
-                foreach (ComboboxItem unItemRol in ListaRolesUsuario)
+                //valido que exista el usuario
+                using (SqlCommand cmdUser = new SqlCommand("SELECT COUNT(*) from select_group.Usuario where Usuario.nombreUsuario = @username", Conexion.conexion))
                 {
-
-                    ComboboxItem itemCheckList = new ComboboxItem();
-
-                    itemCheckList = (ComboboxItem)checkedListBox1.Items[i];
-
-                    if (unItemRol.Value.Equals(itemCheckList.Value))
+                    cmdUser.Parameters.AddWithValue("@username", username.Text);
+                    int userCount = (int)cmdUser.ExecuteScalar();
+                    //si el usuario existe, que le asigne el rol
+                    if (userCount == 1)
                     {
-                        checkedListBox1.SetItemChecked(i, true);
-
+                        string consultaRoles = "SELECT R.idRol, R.nombre, U.idUsuario FROM Select_Group.Usuario  U JOIN Select_Group.Usuario_Por_Rol UxR ON UxR.usuario_username = U.idUsuario JOIN Select_Group.Rol R ON R.idRol = UxR.rol_idRol WHERE R.habilitado = 1 AND nombreUsuario = '" + username.Text.ToString().Trim() + "'";
+                        rolesDeUnuser = Conexion.LeerTabla(consultaRoles);
+                        List<ComboboxItem> ListaRolesUsuario = new List<ComboboxItem>();
+                        foreach (DataRow unRolDeUser in rolesDeUnuser.Rows)
+                        {
+                            ComboboxItem unItemRol = new ComboboxItem();
+                            unItemRol.Value = unRolDeUser["idRol"].ToString().Trim();
+                            unItemRol.Text = unRolDeUser["nombre"].ToString().Trim();
+                            idUsuario = unRolDeUser["idUsuario"].ToString().Trim();
+                            ListaRolesUsuario.Add(unItemRol);
+                        }
+                        string queryTodosLosRoles = "SELECT idRol, nombre FROM Select_Group.Rol WHERE habilitado = 1";
+                        DataTable todosLosRoles = new DataTable();
+                        todosLosRoles = Conexion.LeerTabla(queryTodosLosRoles);
+                        foreach (DataRow unRol in todosLosRoles.Rows)
+                        {
+                            ComboboxItem itemRol = new ComboboxItem();
+                            itemRol.Value = unRol["idRol"].ToString();
+                            itemRol.Text = unRol["nombre"].ToString();
+                            checkedListBox1.Items.Add(itemRol);
+                        }
+                        for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                        {
+                            foreach (ComboboxItem unItemRol in ListaRolesUsuario)
+                            {
+                                ComboboxItem itemCheckList = new ComboboxItem();
+                                itemCheckList = (ComboboxItem)checkedListBox1.Items[i];
+                                if (unItemRol.Value.Equals(itemCheckList.Value))
+                                {
+                                    checkedListBox1.SetItemChecked(i, true);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario ingresado no existente");
                     }
                 }
             }
+            else 
+            { 
+                MessageBox.Show("Debe ingresar un Usuario"); 
             }
-            else { MessageBox.Show("Debe ingresar un Usuario"); }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -255,9 +243,6 @@ using System.Configuration;
                     if (checkedListBox1.CheckedItems.Count > 0)
                     {
 
-
-
-
                         string buscaRol = "SELECT idRol FROM Select_Group.Rol WHERE nombre = '' ";
 
                         DataTable elRolAgregado = new DataTable();
@@ -269,16 +254,11 @@ using System.Configuration;
                             idRol = unRol["idRol"].ToString();
                         }
 
-
-
-                        
+    
                             SqlCommand cmdFuncionalidad = new SqlCommand("delete from Select_group.Usuario_Por_Rol  where usuario_username = @idUsuario ", conexion);
                             cmdFuncionalidad.Parameters.AddWithValue("@idUsuario", idUsuario);
 
                             cmdFuncionalidad.ExecuteNonQuery();
-
-
-                       
 
                         foreach (Object item in checkedListBox1.CheckedItems)
                         {
@@ -292,11 +272,10 @@ using System.Configuration;
                             cmdFuncionalidad.Parameters.AddWithValue("@idUsuario", idUsuario);
                             cmdFuncionalidad.ExecuteNonQuery();
 
-
                         }
 
 
-                        MessageBox.Show("Bien! Usuario actualizado ");
+                        MessageBox.Show("Usuario actualizado ");
                         Conexion.conexion.Close();
                     }
 
