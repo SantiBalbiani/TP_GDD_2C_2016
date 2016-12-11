@@ -55,8 +55,11 @@ namespace ClinicaFrba.Abm_Planes
 
             // Comienzo carga Plan
             string consultaPlan = "select plan_idPlan from SELECT_GROUP.Afiliado where nroAfiliado = " + textBox1.Text.ToString();
+            string consultaDescripcion = "select descripcion from Select_Group.Afiliado join select_group.Plan_Med on plan_idPlan=idPlan where nroAfiliado = " + textBox1.Text.ToString(); 
             string plan = " ";
+            string descripcion = " ";
             DataTable unUserName = new DataTable();
+            DataTable unUserName2 = new DataTable();
             Conexion.conectar();
             try
             {
@@ -64,7 +67,16 @@ namespace ClinicaFrba.Abm_Planes
                 foreach (DataRow unUserN in unUserName.Rows)
                 {
                   plan = unUserN["plan_idPlan"].ToString();
+                  
                 }
+
+                unUserName2 = Conexion.LeerTabla(consultaDescripcion);
+                foreach (DataRow unUserN2 in unUserName2.Rows)
+                {
+                    descripcion = unUserN2["descripcion"].ToString();
+
+                }
+
             }
             catch (SqlException ex)
             {
@@ -74,6 +86,8 @@ namespace ClinicaFrba.Abm_Planes
             {
                 Conexion.conexion.Close();
                 txtPlan.Text = plan;
+                txtPlanDescripcion.Text = descripcion;
+
                 if (plan == " ")
                 {
                     MessageBox.Show("El número de Afiliado no existe, por favor intente nuevamente");
@@ -101,7 +115,8 @@ namespace ClinicaFrba.Abm_Planes
                 cmdUsuario.Parameters.Add("@nroAfiliado", SqlDbType.Int).Value = textBox1.Text.ToString();
                 Object itemGenerico = cbmPlanMed.SelectedItem;
                 ComboboxItem itemCasteado = (ComboboxItem)itemGenerico;
-                cmdUsuario.Parameters.Add("@idPlan", SqlDbType.Int).Value = itemCasteado.Value.ToString();
+                cmdUsuario.Parameters.Add("@idPlan", SqlDbType.Int).Value = txtPlanDescripcion.ToString();
+                
                 cmdUsuario.Parameters.Add("@motivo", SqlDbType.VarChar).Value = textBox4.Text.ToString().Trim();
                 cmdUsuario.Parameters.Add("@fechaActual", SqlDbType.DateTime).Value = Globals.getFechaActual();
 
@@ -154,6 +169,11 @@ namespace ClinicaFrba.Abm_Planes
         }
 
         private void textBox4_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPlanDescripcion_TextChanged(object sender, EventArgs e)
         {
 
         }
