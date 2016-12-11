@@ -43,6 +43,8 @@
             this.rBtnSemestre = new System.Windows.Forms.RadioButton();
             this.rBtnMes = new System.Windows.Forms.RadioButton();
             this.lblPeriodo = new System.Windows.Forms.Label();
+            this.lblFiltroAnio = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,9 +117,9 @@
             // listView1
             // 
             this.listView1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.listView1.Location = new System.Drawing.Point(345, 111);
+            this.listView1.Location = new System.Drawing.Point(345, 126);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(330, 142);
+            this.listView1.Size = new System.Drawing.Size(333, 127);
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -169,7 +171,7 @@
             // 
             this.rBtnAnual.AutoSize = true;
             this.rBtnAnual.ForeColor = System.Drawing.Color.White;
-            this.rBtnAnual.Location = new System.Drawing.Point(452, 79);
+            this.rBtnAnual.Location = new System.Drawing.Point(457, 103);
             this.rBtnAnual.Name = "rBtnAnual";
             this.rBtnAnual.Size = new System.Drawing.Size(62, 17);
             this.rBtnAnual.TabIndex = 11;
@@ -181,7 +183,7 @@
             // 
             this.rBtnSemestre.AutoSize = true;
             this.rBtnSemestre.ForeColor = System.Drawing.Color.White;
-            this.rBtnSemestre.Location = new System.Drawing.Point(520, 79);
+            this.rBtnSemestre.Location = new System.Drawing.Point(525, 103);
             this.rBtnSemestre.Name = "rBtnSemestre";
             this.rBtnSemestre.Size = new System.Drawing.Size(88, 17);
             this.rBtnSemestre.TabIndex = 12;
@@ -193,7 +195,7 @@
             // 
             this.rBtnMes.AutoSize = true;
             this.rBtnMes.ForeColor = System.Drawing.Color.White;
-            this.rBtnMes.Location = new System.Drawing.Point(614, 79);
+            this.rBtnMes.Location = new System.Drawing.Point(619, 103);
             this.rBtnMes.Name = "rBtnMes";
             this.rBtnMes.Size = new System.Drawing.Size(64, 17);
             this.rBtnMes.TabIndex = 13;
@@ -206,11 +208,30 @@
             this.lblPeriodo.AutoSize = true;
             this.lblPeriodo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPeriodo.ForeColor = System.Drawing.Color.White;
-            this.lblPeriodo.Location = new System.Drawing.Point(342, 79);
+            this.lblPeriodo.Location = new System.Drawing.Point(341, 103);
             this.lblPeriodo.Name = "lblPeriodo";
-            this.lblPeriodo.Size = new System.Drawing.Size(104, 15);
+            this.lblPeriodo.Size = new System.Drawing.Size(117, 15);
             this.lblPeriodo.TabIndex = 14;
-            this.lblPeriodo.Text = "Filtrar por período";
+            this.lblPeriodo.Text = "Seleccione Período:";
+            // 
+            // lblFiltroAnio
+            // 
+            this.lblFiltroAnio.AutoSize = true;
+            this.lblFiltroAnio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFiltroAnio.ForeColor = System.Drawing.Color.White;
+            this.lblFiltroAnio.Location = new System.Drawing.Point(342, 77);
+            this.lblFiltroAnio.Name = "lblFiltroAnio";
+            this.lblFiltroAnio.Size = new System.Drawing.Size(109, 15);
+            this.lblFiltroAnio.TabIndex = 15;
+            this.lblFiltroAnio.Text = "Ingrese Año (yyyy) :\r\n";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(457, 76);
+            this.textBox1.MaxLength = 4;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(67, 20);
+            this.textBox1.TabIndex = 16;
             // 
             // ListadoEstadistico
             // 
@@ -218,6 +239,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(723, 306);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lblFiltroAnio);
             this.Controls.Add(this.lblPeriodo);
             this.Controls.Add(this.rBtnMes);
             this.Controls.Add(this.rBtnSemestre);
@@ -256,5 +279,7 @@
         private System.Windows.Forms.RadioButton rBtnSemestre;
         private System.Windows.Forms.RadioButton rBtnMes;
         private System.Windows.Forms.Label lblPeriodo;
+        private System.Windows.Forms.Label lblFiltroAnio;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

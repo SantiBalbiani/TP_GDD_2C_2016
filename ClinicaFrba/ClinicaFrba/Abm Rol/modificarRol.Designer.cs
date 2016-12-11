@@ -70,6 +70,7 @@
             // 
             // btnActualizar
             // 
+            this.btnActualizar.Enabled = false;
             this.btnActualizar.Location = new System.Drawing.Point(16, 235);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(90, 24);
@@ -80,6 +81,7 @@
             // 
             // btnBuscar
             // 
+            this.btnBuscar.Enabled = false;
             this.btnBuscar.Location = new System.Drawing.Point(339, 34);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(93, 23);
@@ -96,6 +98,8 @@
             this.comboBox1.Size = new System.Drawing.Size(155, 21);
             this.comboBox1.TabIndex = 14;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
+            this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox1_KeyPress);
+            
             // 
             // button2
             // 
