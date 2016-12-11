@@ -60,6 +60,7 @@
             this.btnEstadisticas.TabIndex = 33;
             this.btnEstadisticas.Text = "Ver Estadisticas";
             this.btnEstadisticas.UseVisualStyleBackColor = true;
+            this.btnEstadisticas.Visible = false;
             this.btnEstadisticas.Click += new System.EventHandler(this.btnEstadisticas_Click);
             // 
             // label4
@@ -72,6 +73,7 @@
             this.label4.Size = new System.Drawing.Size(137, 13);
             this.label4.TabIndex = 32;
             this.label4.Text = "Ingrese Numero de Afiliado:\r\n";
+            this.label4.Visible = false;
             // 
             // btnCambiarPlan
             // 
@@ -82,6 +84,7 @@
             this.btnCambiarPlan.TabIndex = 31;
             this.btnCambiarPlan.Text = "Cambiar Plan";
             this.btnCambiarPlan.UseVisualStyleBackColor = true;
+            this.btnCambiarPlan.Visible = false;
             this.btnCambiarPlan.Click += new System.EventHandler(this.btnCambiarPlan_Click);
             // 
             // textBox1
@@ -92,6 +95,7 @@
             this.textBox1.Size = new System.Drawing.Size(133, 20);
             this.textBox1.TabIndex = 30;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.Visible = false;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -104,6 +108,7 @@
             this.btnAbmRol.TabIndex = 29;
             this.btnAbmRol.Text = "Menu Rol";
             this.btnAbmRol.UseVisualStyleBackColor = true;
+            this.btnAbmRol.Visible = false;
             this.btnAbmRol.Click += new System.EventHandler(this.btnAbmRol_Click);
             // 
             // btnComprar
@@ -115,6 +120,7 @@
             this.btnComprar.TabIndex = 28;
             this.btnComprar.Text = "Comprar Bono";
             this.btnComprar.UseVisualStyleBackColor = true;
+            this.btnComprar.Visible = false;
             this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
             // 
             // btnRegistrarLlegada
@@ -126,6 +132,7 @@
             this.btnRegistrarLlegada.TabIndex = 27;
             this.btnRegistrarLlegada.Text = "Registrar Llegada";
             this.btnRegistrarLlegada.UseVisualStyleBackColor = true;
+            this.btnRegistrarLlegada.Visible = false;
             this.btnRegistrarLlegada.Click += new System.EventHandler(this.btnRegistrarLlegada_Click);
             // 
             // btnAltaAfiliado
@@ -137,6 +144,7 @@
             this.btnAltaAfiliado.TabIndex = 25;
             this.btnAltaAfiliado.Text = "Alta Nuevo Afiliado";
             this.btnAltaAfiliado.UseVisualStyleBackColor = true;
+            this.btnAltaAfiliado.Visible = false;
             this.btnAltaAfiliado.Click += new System.EventHandler(this.btnAltaAfiliado_Click);
             // 
             // label1
@@ -160,6 +168,7 @@
             this.btnCancelar.TabIndex = 36;
             this.btnCancelar.Text = "Cancelar Turno";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Visible = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnSolicitar
@@ -171,6 +180,7 @@
             this.btnSolicitar.TabIndex = 35;
             this.btnSolicitar.Text = "Solicitar Turno";
             this.btnSolicitar.UseVisualStyleBackColor = true;
+            this.btnSolicitar.Visible = false;
             this.btnSolicitar.Click += new System.EventHandler(this.btnSolicitar_Click);
             // 
             // label3
@@ -205,6 +215,7 @@
             this.btnModifAfil.TabIndex = 42;
             this.btnModifAfil.Text = "Modificar Afiliado";
             this.btnModifAfil.UseVisualStyleBackColor = true;
+            this.btnModifAfil.Visible = false;
             this.btnModifAfil.Click += new System.EventHandler(this.btnModifAfil_Click);
             // 
             // btnRestituir
@@ -216,6 +227,7 @@
             this.btnRestituir.TabIndex = 41;
             this.btnRestituir.Text = "Restituir Afiliado";
             this.btnRestituir.UseVisualStyleBackColor = true;
+            this.btnRestituir.Visible = false;
             // 
             // btnBajaAfil
             // 
@@ -226,6 +238,7 @@
             this.btnBajaAfil.TabIndex = 40;
             this.btnBajaAfil.Text = "Baja Afiliado";
             this.btnBajaAfil.UseVisualStyleBackColor = true;
+            this.btnBajaAfil.Visible = false;
             this.btnBajaAfil.Click += new System.EventHandler(this.btnBajaAfil_Click);
             // 
             // btnCancelarDia
@@ -237,6 +250,7 @@
             this.btnCancelarDia.TabIndex = 44;
             this.btnCancelarDia.Text = "Cancelar Día";
             this.btnCancelarDia.UseVisualStyleBackColor = true;
+            this.btnCancelarDia.Visible = false;
             this.btnCancelarDia.Click += new System.EventHandler(this.btnCancelarDia_Click);
             // 
             // btnRegAtencion
@@ -248,6 +262,7 @@
             this.btnRegAtencion.TabIndex = 43;
             this.btnRegAtencion.Text = "Registrar Atencion";
             this.btnRegAtencion.UseVisualStyleBackColor = true;
+            this.btnRegAtencion.Visible = false;
             this.btnRegAtencion.Click += new System.EventHandler(this.btnRegAtencion_Click);
             // 
             // lblRolActual

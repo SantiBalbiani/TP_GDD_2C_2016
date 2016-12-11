@@ -45,6 +45,7 @@ namespace ClinicaFrba.Cancelar_Atencion
         private void button1_Click(object sender, EventArgs e)
         {
 
+            int idCancelacion = 0;
             DateTime UltFecha = Calendar.SelectionEnd;
             DateTime primerFecha = Calendar.SelectionStart;
             TimeSpan unDia = new TimeSpan(24,0,0);
@@ -67,6 +68,7 @@ namespace ClinicaFrba.Cancelar_Atencion
                 cmdUsuario.Parameters.Add("@idProf", SqlDbType.Int).Value = idProf;
                 cmdUsuario.Parameters.Add("@fechaDesde", SqlDbType.DateTime).Value = Calendar.SelectionStart;
                 cmdUsuario.Parameters.Add("@fechaHasta", SqlDbType.DateTime).Value = UltFecha;
+                cmdUsuario.Parameters.Add("@idCanc", SqlDbType.Int).Direction = ParameterDirection.Output;
 
                 try
                 {
@@ -80,34 +82,38 @@ namespace ClinicaFrba.Cancelar_Atencion
                 }
                 finally
                 {
+
+                    idCancelacion = Convert.ToInt32(cmdUsuario.Parameters["@idCanc"].Value);
                     cnx.Close();
                     
 
                     //Generar Lista de Días a cancelar
                     List<DateTime> listaDiasACancelar = new List<DateTime>();
 
-                    while (primerFecha != UltFecha)
+                    while (primerFecha <= UltFecha)
                     {
                         listaDiasACancelar.Add(primerFecha);
                         primerFecha = primerFecha + unDia;
                     }
-                    listaDiasACancelar.Add(UltFecha);
+                    //listaDiasACancelar.Add(UltFecha);
 
 
                     //Cancelar Días
                     foreach (DateTime unaFechaACancelar in listaDiasACancelar)
                     {
+
+                            DateTime laFechaACancelar = new DateTime();
+                            laFechaACancelar = unaFechaACancelar;
                             SqlConnection cnx2 = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
                             SqlCommand cmdUsuario2 = new SqlCommand("Select_Group.sp_getDiasDisponibles", cnx2);
                             cmdUsuario2.CommandType = CommandType.StoredProcedure;
                             cmdUsuario2.Parameters.Add("@Dia", SqlDbType.Int).Value = unaFechaACancelar.DayOfWeek;
-                            
                             cmdUsuario2.Parameters.Add("@idProfesional", SqlDbType.Int).Value = idProf;
 
                             try
                             {
-                                cnx.Open();
-                                cmdUsuario.ExecuteNonQuery();
+                                cnx2.Open();
+                                cmdUsuario2.ExecuteNonQuery();
                             }
                             catch (SqlException ex)
                             {
@@ -119,14 +125,53 @@ namespace ClinicaFrba.Cancelar_Atencion
                                 string hasta = "0";
                                 string idAgenda = "0";
                                 DataTable diasDisponibles = new DataTable();
-                                SqlDataAdapter adaptador = new SqlDataAdapter(cmdUsuario);
+                                SqlDataAdapter adaptador = new SqlDataAdapter(cmdUsuario2);
                                 adaptador.Fill(diasDisponibles);
-                                cnx.Close();
+                                
                                 foreach (DataRow diaDisponible in diasDisponibles.Rows)
                                 {
                                     desde = diaDisponible["horaDesde"].ToString();
                                     hasta = diaDisponible["horaHasta"].ToString();
                                     idAgenda = diaDisponible["idAgenda"].ToString();
+                                }
+                                cnx2.Close();
+                                if (desde != "0") //Si es False, el Profesional no trabaja ese día
+                                {
+
+                                    int horaDesd = Int32.Parse(desde);
+                                    int horaHasta = Int32.Parse(hasta);
+                                    int cantidadTurnos = ((horaHasta - horaDesd) / 100 * 60) / 30;
+
+                                    TimeSpan primerTurno = new TimeSpan((horaDesd / 100), (horaDesd % 100), 0);
+
+                                    TimeSpan intervaloDeTurno = Globals.intervaloTurno;
+
+                                    TimeSpan[] horarioTurnos = new TimeSpan[cantidadTurnos + 1];
+
+                                    laFechaACancelar = laFechaACancelar + primerTurno;
+
+                                    for (int i = 0; i <= cantidadTurnos-1; i++)
+                                    {
+                                       //Aca insertar un reg en Agenda Detalle
+                                        //horarioTurnos[i] = new TimeSpan(0, 0, 0);
+                                        //horarioTurnos[i] = horarioTurnos[i].Add(primerTurno);
+
+                                        //primerTurno = primerTurno.Add(intervaloDeTurno);
+
+                                       
+                                        string parametros = ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString;
+                                        SqlConnection conexion = new SqlConnection(parametros);
+
+                                        SqlCommand cmdInsertarAgendaDetalle = new SqlCommand("insert into Select_group.Agenda_Detalle (fecha_Hora_Turno, estaCancelado, idAgenda, cancelacion_idCancelacion) values(@fecha_Hora_Turno, @estaCancelado, @idAgenda, @cancelacion_idCancelacion)", conexion);
+                                        cmdInsertarAgendaDetalle.Parameters.AddWithValue("@fecha_Hora_Turno",laFechaACancelar );
+                                        cmdInsertarAgendaDetalle.Parameters.AddWithValue("@estaCancelado", 1);
+                                        cmdInsertarAgendaDetalle.Parameters.AddWithValue("@idAgenda", idAgenda);
+                                        cmdInsertarAgendaDetalle.Parameters.AddWithValue("@cancelacion_idCancelacion", idCancelacion);
+                                        conexion.Open();
+                                        cmdInsertarAgendaDetalle.ExecuteNonQuery();
+                                        laFechaACancelar = laFechaACancelar + intervaloDeTurno;
+
+                                    }
                                 }
                             }
                     }
@@ -137,8 +182,8 @@ namespace ClinicaFrba.Cancelar_Atencion
                     
                     
                     MessageBox.Show("Se cancelaron todos los turnos pertenecientes a los días seleccionados");
-                    Menu_Principal.HomeProfesional home = new Menu_Principal.HomeProfesional();
-                    home.Show();
+                    
+                    Home.Show();
                     this.Close();
                 }
             }

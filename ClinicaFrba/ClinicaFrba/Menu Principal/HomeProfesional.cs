@@ -132,7 +132,7 @@ namespace ClinicaFrba.Menu_Principal
             Cancelar_Atencion.CancelacionProfesional frmCancelarDia = new Cancelar_Atencion.CancelacionProfesional(idProf);
             frmCancelarDia.Home = this;
             frmCancelarDia.Show();
-            this.Close();
+            this.Hide();
 
 
         }
