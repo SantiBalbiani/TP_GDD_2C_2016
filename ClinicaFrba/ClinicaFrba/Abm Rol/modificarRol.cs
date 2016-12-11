@@ -167,7 +167,13 @@ namespace ClinicaFrba.AbmRol
 
         public void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            btnBuscar.Enabled = true;
             Object rolABuscar = comboBox1.SelectedItem;
+        }
+
+        private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -266,7 +272,7 @@ namespace ClinicaFrba.AbmRol
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            btnActualizar.Enabled = true;
         }
 
      

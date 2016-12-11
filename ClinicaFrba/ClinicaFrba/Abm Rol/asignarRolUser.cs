@@ -72,9 +72,30 @@ using System.Configuration;
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void username_TextChanged(object sender, EventArgs e)
         {
-
+            username.Text = username.Text.Trim();
+            username.Text = username.Text.Replace(" ", "");
+            username.SelectionStart = username.Text.Length;
+        }
+        private void username_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -91,6 +112,8 @@ using System.Configuration;
         {
            
         }
+
+
 
         private void btnRolAsignar_Click(object sender, EventArgs e)
         {
@@ -128,7 +151,9 @@ using System.Configuration;
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            //Cargo Roles
+            if (username.Text != "")
+                
+            {//Cargo Roles
             checkedListBox1.ResetText();
             checkedListBox1.Items.Clear();
 
@@ -196,6 +221,8 @@ using System.Configuration;
                     }
                 }
             }
+            }
+            else { MessageBox.Show("Debe ingresar un Usuario"); }
         }
 
         private void button3_Click(object sender, EventArgs e)

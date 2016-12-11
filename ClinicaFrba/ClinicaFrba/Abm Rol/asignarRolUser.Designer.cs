@@ -69,7 +69,8 @@
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(100, 20);
             this.username.TabIndex = 21;
-            this.username.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.username.TextChanged += new System.EventHandler(this.username_TextChanged);
+            this.username.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.username_KeyPress);
             // 
             // button2
             // 
