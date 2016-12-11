@@ -236,9 +236,9 @@ INSERT INTO SELECT_GROUP.Funcionalidad(descripcion) VALUES
 
 /*Cargo tabla ROL_funcion (tabla intermedia)*/
 INSERT INTO SELECT_GROUP.Funcionalidad_Por_Rol(rol_idRol,funcionalidad_idFuncionalidad) VALUES
-		(1,5),(1,6),(1,7), /*Usuario Administrativo funciones*/
-		(2,3),(2,4),		/*Usuario Profesional funciones*/
-		(3,1),(3,2),(3,3),(3,8),(3,9); /*Usuario Afiliado funciones*/
+		(1,3),(1,1),(1,4),(1,5),(1,6),(1,7), /*Usuario Administrativo funciones*/
+		(2,8),(2,9),		/*Usuario Profesional funciones*/
+		(3,1),(3,2),(3,7); /*Usuario Afiliado funciones*/
 
 /*Cargo usuario Admin pedido por catedra */ 
 INSERT INTO SELECT_GROUP.Usuario(nombreUsuario,contraseña,intentosFallidos,habilitado) values
