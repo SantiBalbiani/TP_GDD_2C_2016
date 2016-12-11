@@ -80,7 +80,7 @@ using System.Configuration;
         }
         private void username_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (Char.IsDigit(e.KeyChar))
+            /*if (Char.IsDigit(e.KeyChar))
             {
                 e.Handled = false;
             }
@@ -95,7 +95,7 @@ using System.Configuration;
             else
             {
                 e.Handled = true;
-            }
+            }*/
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
