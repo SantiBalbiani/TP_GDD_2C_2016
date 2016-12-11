@@ -48,9 +48,7 @@ namespace ClinicaFrba.Abm_Afiliado
                 }
                 else
                 {
-                    if (afiliado.Rows.Count == 1)
-                    {
-                        foreach (DataRow fila in afiliado.Rows)
+                    foreach (DataRow fila in afiliado.Rows)
                         {
                             string nombre = fila["nombre"].ToString();
                             string apellido = fila["apellido"].ToString();
@@ -72,15 +70,9 @@ namespace ClinicaFrba.Abm_Afiliado
                             }
                             else
                             {
-
                                 this.Refresh();
                             }
                         }
-                    }
-                    else {
-                        MessageBox.Show("El número ingresado aparecio mas de una vez, verifique que ha ingresado correctamente");
-                        this.Refresh();
-                    }
                     }
                 }
                 else {
