@@ -28,22 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.btnActualizar = new System.Windows.Forms.Button();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.btnDarBaja = new System.Windows.Forms.Button();
+            this.nroAfiliadoTxtBox = new Libreria.errorTextBox();
+            this.errorTextBox = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorTextBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(66, 34);
+            this.label1.Location = new System.Drawing.Point(9, 80);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(259, 20);
+            this.label1.Size = new System.Drawing.Size(211, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Seleccione el Afiliado a dar de baja:";
+            this.label1.Text = "Ingrese el numero de Afiliado a dar de baja:";
             // 
             // button2
             // 
@@ -56,24 +59,27 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // btnActualizar
+            // btnDarBaja
             // 
-            this.btnActualizar.Location = new System.Drawing.Point(12, 204);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(90, 24);
-            this.btnActualizar.TabIndex = 19;
-            this.btnActualizar.Text = "Baja";
-            this.btnActualizar.UseVisualStyleBackColor = true;
-            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            this.btnDarBaja.Location = new System.Drawing.Point(12, 204);
+            this.btnDarBaja.Name = "btnDarBaja";
+            this.btnDarBaja.Size = new System.Drawing.Size(90, 24);
+            this.btnDarBaja.TabIndex = 19;
+            this.btnDarBaja.Text = "Baja";
+            this.btnDarBaja.UseVisualStyleBackColor = true;
+            this.btnDarBaja.Click += new System.EventHandler(this.btnDarBaja_Click);
             // 
-            // checkedListBox1
+            // nroAfiliadoTxtBox
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(12, 81);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(372, 94);
-            this.checkedListBox1.TabIndex = 20;
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            this.nroAfiliadoTxtBox.Location = new System.Drawing.Point(227, 80);
+            this.nroAfiliadoTxtBox.Name = "nroAfiliadoTxtBox";
+            this.nroAfiliadoTxtBox.Size = new System.Drawing.Size(100, 20);
+            this.nroAfiliadoTxtBox.TabIndex = 20;
+            this.nroAfiliadoTxtBox.Validar = true;
+            // 
+            // errorTextBox
+            // 
+            this.errorTextBox.ContainerControl = this;
             // 
             // BajaAfiliado
             // 
@@ -81,13 +87,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(399, 242);
-            this.Controls.Add(this.checkedListBox1);
-            this.Controls.Add(this.btnActualizar);
+            this.Controls.Add(this.nroAfiliadoTxtBox);
+            this.Controls.Add(this.btnDarBaja);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
             this.Name = "BajaAfiliado";
             this.Text = "BajaAfiliado";
             this.Load += new System.EventHandler(this.BajaAfiliado_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorTextBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,7 +104,8 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btnActualizar;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.Button btnDarBaja;
+        private Libreria.errorTextBox nroAfiliadoTxtBox;
+        private System.Windows.Forms.ErrorProvider errorTextBox;
     }
 }

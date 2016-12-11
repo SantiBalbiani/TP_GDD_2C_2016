@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ClinicaFrba.Base_de_Datos;
 using System.Configuration;
 using System.Data.SqlClient;
+using Libreria;
 
 namespace ClinicaFrba.Abm_Afiliado
 {
@@ -17,6 +18,7 @@ namespace ClinicaFrba.Abm_Afiliado
     {
         public string menuAnterior;
         public Form Home;
+        public int nroAfiliado;
 
         public BajaAfiliado()
         {
@@ -26,138 +28,61 @@ namespace ClinicaFrba.Abm_Afiliado
         private void BajaAfiliado_Load(object sender, EventArgs e)
         {
 
-            Conexion.conectar();
-            DataTable afiliados = new DataTable();
-
-            string consultaStr = "select idAfiliado, nombre, apellido from SELECT_GROUP.Afiliado where afiliado.habilitado=1";
-
-            afiliados = Conexion.LeerTabla(consultaStr);
-
-            DataTable nombreRoles = new DataTable();
-
-
-            foreach (DataRow idAfi in afiliados.Rows)
-            {
-                ComboboxItem unAfiliado = new ComboboxItem();
-
-                string nombre = idAfi["nombre"].ToString();
-                string apellido = idAfi["apellido"].ToString();
-
-
-                unAfiliado.Text = nombre + "," + apellido;
-
-                unAfiliado.Value = idAfi["idAfiliado"].ToString();
-
-                checkedListBox1.Items.Add(unAfiliado);
-
-            }
-
-
+            
         }
 
-        private void btnActualizar_Click(object sender, EventArgs e)
+        private void btnDarBaja_Click(object sender, EventArgs e)
         {
-
-            //Conexion.conectar();
-            SqlConnection conexion;
-            bool conectado = false;
-            //llenar la variable conexión con los parámetros de la variable parametros
-            string parametros = ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString;
-            conexion = new SqlConnection(parametros);
-            try
-            {
-                //abrir la conexion
-                conexion.Open();
-                conectado = true;
-            }
-            catch (InvalidCastException)
-            {
-                MessageBox.Show("Error al conectar la Base de datos");
-                conectado = false;
-            }
-
-
-            if (conectado == true)
+            
+            if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
             {
 
-                try
+                nroAfiliado = Convert.ToInt32(this.nroAfiliadoTxtBox.Text);
+
+                string query = "SELECT AF.nombre, AF.apellido from SELECT_GROUP.Afiliado as AF where nroAfiliado =('" + nroAfiliado + "')";
+
+                DataTable afiliado = Conexion.LeerTabla(query);
+                if (afiliado.Rows.Count == 0)
                 {
-
-                    if (checkedListBox1.CheckedItems.Count > 0)
-                    {
-
-                        foreach (Object item in checkedListBox1.CheckedItems)
-                        {
-
-                            ComboboxItem unItem = new ComboboxItem();
-                            
-                            DateTime fecha = Globals.getFechaActual();
-
-                            unItem = (ComboboxItem)item;
-
-                            //le pone el valor 0 al afiliado eliminado 
-                            SqlCommand cmdRol = new SqlCommand("update Select_group.Afiliado set habilitado=0,fechaBaja = @fechaBaja where idAfiliado=@nombreAfiliado", conexion);
-                            cmdRol.Parameters.AddWithValue("@nombreAfiliado", unItem.Value);
-                            cmdRol.Parameters.AddWithValue("@fechaBaja",fecha);
-                            cmdRol.ExecuteNonQuery();
-                            MessageBox.Show("Afiliado ha sigo dado de baja con exito ");
-                            Conexion.conexion.Close();
-                        }
-
-                        //Hago refresh del reporte
-
-                        checkedListBox1.Items.Clear();
-                        Conexion.conectar();
-                        DataTable afiliados = new DataTable();
-
-                        string consultaStr = "select idAfiliado, nombre, apellido from SELECT_GROUP.Afiliado where afiliado.habilitado=1";
-
-                        afiliados = Conexion.LeerTabla(consultaStr);
-
-                        DataTable nombreRoles = new DataTable();
-
-
-                        foreach (DataRow idAfi in afiliados.Rows)
-                        {
-                            ComboboxItem unAfiliado = new ComboboxItem();
-
-                            string nombre = idAfi["nombre"].ToString();
-                            string apellido = idAfi["apellido"].ToString();
-
-
-                            unAfiliado.Text = nombre + "," + apellido;
-
-                            unAfiliado.Value = idAfi["idAfiliado"].ToString();
-
-                            checkedListBox1.Items.Add(unAfiliado);
-
-                        }
-                        
-
-
-
-                    }
-
-                    else
-                    {
-                        MessageBox.Show("Porfavor seleccione al menos un Afiliado");
-                    }
-
-                    while (checkedListBox1.CheckedItems.Count > 0)
-                    {
-                        checkedListBox1.SetItemChecked(checkedListBox1.CheckedIndices[0], false);
-                    }
-
+                    MessageBox.Show("No se ha encontrado el número de Afiliado ingresado. Revisar e intentar nuevamente");
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    if (afiliado.Rows.Count == 1)
+                    {
+                        foreach (DataRow fila in afiliado.Rows)
+                        {
+                            string nombre = fila["nombre"].ToString();
+                            string apellido = fila["apellido"].ToString();
+
+                            DialogResult confirmacion = MessageBox.Show("¿Estas seguro que desea dar de baja a '" + apellido + "', '" + nombre + "'?", "aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk);
+
+                            if (confirmacion == DialogResult.Yes)
+                            {
+                                DateTime fecha = Globals.getFechaActual();
+
+                                string cadena = "update SELECT_GROUP.Afiliado set habilitado=0,fechaBaja = ('" + fecha + "') where nroAfiliado = ('" + nroAfiliado + "')";
+                                Base_de_Datos.Conexion.EjecutarComando(cadena);
+
+                                MessageBox.Show("El afiliado ha sido dado de baja con exito");
+
+                                Home.Show();
+                                this.Close();
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("El número ingresado aparecio mas de una vez, verifique que ha ingresado correctamente");
+                                this.Refresh();
+                            }
+                            }
+                        }
+                    }
                 }
-
-
+                else {
+                MessageBox.Show("Debe ingresar un número de afiliado");
+                }
             }
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
