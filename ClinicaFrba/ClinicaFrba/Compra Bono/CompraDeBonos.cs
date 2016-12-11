@@ -18,6 +18,8 @@ namespace ClinicaFrba.Compra_Bono
         public int precioBonoSegunPlan = 0;
         public string menuAnterior;
         public Form Home;
+        public int idAfiliado;
+        public Boolean estaHabilitado;
      
         public FrmComprarBonos()
         {
@@ -44,6 +46,7 @@ namespace ClinicaFrba.Compra_Bono
                 {
                    // Globals.userName = unUserN["idAfiliado"].ToString(); Me pa que va una global de afiliado... no se
                     plan = unUserN["descripcion"].ToString();
+                    idAfiliado = Convert.ToInt32(unUserN["idAfiliado"].ToString());
                     precioBonoSegunPlan = Int32.Parse(unUserN["precioDelBono_Consulta"].ToString());
                 }
 
@@ -71,37 +74,53 @@ namespace ClinicaFrba.Compra_Bono
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-            if (txtCantidad.Text != "")
-            {
-                SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-                SqlCommand cmdUsuario = new SqlCommand("Select_Group.ComprarBono", cnx);
-                cmdUsuario.CommandType = CommandType.StoredProcedure;
-                cmdUsuario.Parameters.Add("@userName", SqlDbType.VarChar).Value = Globals.userName;
-                cmdUsuario.Parameters.Add("@cantidad", SqlDbType.Int).Value = txtCantidad.Text;
-                cmdUsuario.Parameters.Add("@fechaActual", SqlDbType.DateTime).Value = Globals.getFechaActual();
-                try
-                {
+            string consultaHabilitado = "SELECT habilitado from SELECT_GROUP.Afiliado where idAfiliado = '" + idAfiliado + "' ";
+            DataTable afiliadoComprador = Conexion.LeerTabla(consultaHabilitado);
 
-                    cnx.Open();
-                    cmdUsuario.ExecuteNonQuery();
-                }
-                catch (SqlException ex)
+            foreach (DataRow fila in afiliadoComprador.Rows)
+            {
+                string habilitado = fila["habilitado"].ToString();
+                estaHabilitado = Convert.ToBoolean(habilitado);
+            }
+
+            if (estaHabilitado)
+            {
+
+                if (txtCantidad.Text != "")
                 {
-                    MessageBox.Show(ex.Message);
+                    SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+                    SqlCommand cmdUsuario = new SqlCommand("Select_Group.ComprarBono", cnx);
+                    cmdUsuario.CommandType = CommandType.StoredProcedure;
+                    cmdUsuario.Parameters.Add("@userName", SqlDbType.VarChar).Value = Globals.userName;
+                    cmdUsuario.Parameters.Add("@cantidad", SqlDbType.Int).Value = txtCantidad.Text;
+                    cmdUsuario.Parameters.Add("@fechaActual", SqlDbType.DateTime).Value = Globals.getFechaActual();
+                    try
+                    {
+
+                        cnx.Open();
+                        cmdUsuario.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        cnx.Close();
+                        MessageBox.Show("Compra exitosa");
+                        //Globals.irAtras(menuAnterior, this);
+                        Home.Show();
+                        this.Close();
+                    }
                 }
-                finally
+                else
                 {
-                    cnx.Close();
-                    MessageBox.Show("Compra exitosa");
-                    //Globals.irAtras(menuAnterior, this);
-                    Home.Show();
-                    this.Close();
+                    MessageBox.Show("Ingrese Cantidad de Bonos a comprar");
                 }
             }
-            else
-            {
-                MessageBox.Show("Ingrese Cantidad de Bonos a comprar");
-            } 
+            else {
+                MessageBox.Show("El afiliado ingresado No se encuentra habilitado");
+            }
             
         }
 
