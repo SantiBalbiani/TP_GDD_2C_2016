@@ -232,12 +232,13 @@ INSERT INTO SELECT_GROUP.Funcionalidad(descripcion) VALUES
 		('ABM_Afiliados'),
 		('Solicitar_Turno'),
 		('Registrar_Diagnostico'),
-		('Cancelar_Agenda');
+		('Cancelar_Agenda'),
+		('Crear_Agenda');
 
 /*Cargo tabla ROL_funcion (tabla intermedia)*/
 INSERT INTO SELECT_GROUP.Funcionalidad_Por_Rol(rol_idRol,funcionalidad_idFuncionalidad) VALUES
 		(1,3),(1,1),(1,4),(1,5),(1,6),(1,7), /*Usuario Administrativo funciones*/
-		(2,8),(2,9),		/*Usuario Profesional funciones*/
+		(2,8),(2,9),(2,10),		/*Usuario Profesional funciones*/
 		(3,1),(3,2),(3,7); /*Usuario Afiliado funciones*/
 
 /*Cargo usuario Admin pedido por catedra */ 
