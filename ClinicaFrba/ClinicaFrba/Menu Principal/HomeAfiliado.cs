@@ -20,6 +20,8 @@ namespace ClinicaFrba
 
         private string nombreAfil;
         private string apellidoAfil;
+        public string rolActual;
+
         public HomeAfiliado()
         {
             InitializeComponent();
@@ -47,6 +49,58 @@ namespace ClinicaFrba
 
         private void HomeAfiliado_Load(object sender, EventArgs e)
         {
+
+            //txtRolActual.Text = Globals.rolId;
+
+            List<string> listaFunc = Globals.listaFuncionalidades;
+            //string mensajeParaNoe = " ";
+            foreach (string func in listaFunc)
+            {
+                //mensajeParaNoe = mensajeParaNoe + " " +func + " ";
+
+                if (func == "Comprar_Bono")
+                {
+                    btnComprar.Visible = true;
+                    lblBonos.Visible = true;
+                    txtBonosDisponibles.Visible = true;
+                }
+                if (func == "Cancelar_Turno")
+                {
+                    button2.Visible = true;
+                }
+                if (func == "Registrar_Llegada")
+                {
+                    btnRegistrarLlegada.Visible = true;
+                }
+                if (func == "ABM_Rol")
+                {
+                    btnAbmRol.Visible = true;
+                }
+                if (func == "Listado_Estadistico")
+                {
+                    btnEstadisticas.Visible = true;
+                }
+                if (func == "ABM_Afiliados")
+                {
+                    btnAltaAfiliado.Visible = true;
+                    btnCambiarPlan.Visible = true;
+                }
+                if (func == "Solicitar_Turno")
+                {
+                    button1.Visible = true;
+                }
+                if (func == "Registrar_Diagnostico")
+                {
+                    //Falta el boton de registrar diagnostico
+                }
+                if (func == "Cancelar_Agenda")
+                {
+                    btnCancelarDia.Visible = true;
+                }
+
+            }
+            
+            
             string queryDatosProf = "SELECT nombre ,apellido FROM SELECT_GROUP.Afiliado where numeroDoc = '" + Globals.userName + "'";
 
             DataTable datosProf = new DataTable();
