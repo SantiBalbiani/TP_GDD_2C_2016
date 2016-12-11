@@ -41,8 +41,8 @@ namespace ClinicaFrba.Abm_Afiliado
          }
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            
-            if (Utilidades.ValidarFormulario(this, errorTextBoxPareja) == false)
+
+            if (Utilidades.ValidarFormulario(this, errorTextBoxPareja) == false & (cmbSexoPareja.Text != ""))
             {
                 hijosCant = Convert.ToInt32(textCantHijos.Text);
                 string estadoCivilPareja = Convert.ToString(afiliadoIngresado["estadoCivil"]);

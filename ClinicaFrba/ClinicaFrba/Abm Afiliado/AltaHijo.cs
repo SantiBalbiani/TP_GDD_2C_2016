@@ -68,7 +68,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (Utilidades.ValidarFormulario(this, errorTextBoxHijo) == false)
+            if (Utilidades.ValidarFormulario(this, errorTextBoxHijo) == false & (cmbSexoHijo.Text != "") & (cmbEstadoCivilHijo.Text != ""))
             {
 
                 int numeroFilas = tablaAfiliados.Rows.Count;
@@ -189,9 +189,7 @@ namespace ClinicaFrba.Abm_Afiliado
             {
                 MessageBox.Show("Faltan Campos ingresar");
             }
-             
-            this.Close();
-            
+          
         }
 
         private void otro_CheckedChanged(object sender, EventArgs e)
