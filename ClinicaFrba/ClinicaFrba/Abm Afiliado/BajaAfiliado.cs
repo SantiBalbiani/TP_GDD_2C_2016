@@ -72,11 +72,15 @@ namespace ClinicaFrba.Abm_Afiliado
                             }
                             else
                             {
-                                MessageBox.Show("El número ingresado aparecio mas de una vez, verifique que ha ingresado correctamente");
+
                                 this.Refresh();
                             }
-                            }
                         }
+                    }
+                    else {
+                        MessageBox.Show("El número ingresado aparecio mas de una vez, verifique que ha ingresado correctamente");
+                        this.Refresh();
+                    }
                     }
                 }
                 else {
