@@ -151,5 +151,19 @@ namespace ClinicaFrba.Menu_Principal
         {
 
         }
+
+        private void btnRegistrarLlegada_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            //Registro_Resultado.RegistroResultado frmDiagnos = new Registro_Resultado.RegistroResultado();
+            //frmDiagnos.Home = this;
+            // frmDiagnos.Show();
+            //this.Hide();
+
+        }
     }
 }

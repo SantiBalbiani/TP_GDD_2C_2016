@@ -420,5 +420,14 @@ namespace ClinicaFrba.Menu_Principal
             frmRes.Show();
             this.Hide();
         }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            //Registro_Resultado.RegistroResultado frmDiagnos = new Registro_Resultado.RegistroResultado();
+            //frmDiagnos.Home = this;
+           // frmDiagnos.Show();
+            //this.Hide();
+
+        }
     }
 }

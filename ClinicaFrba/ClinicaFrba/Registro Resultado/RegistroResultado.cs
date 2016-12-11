@@ -18,6 +18,7 @@ namespace ClinicaFrba.Registro_Resultado
     public partial class RegistroResultado : Form
     {
         public string menuAnterior;
+        public Form home;
         public RegistroResultado(string unTurno, string idProfesional, string afiliado)
         {
             InitializeComponent();

@@ -49,6 +49,7 @@
             this.btnRegAtencion = new System.Windows.Forms.Button();
             this.lblRolActual = new System.Windows.Forms.Label();
             this.txtRolActual = new System.Windows.Forms.TextBox();
+            this.btnRegistrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnEstadisticas
@@ -286,6 +287,18 @@
             this.txtRolActual.TabIndex = 46;
             this.txtRolActual.TextChanged += new System.EventHandler(this.txtRolActual_TextChanged);
             // 
+            // btnRegistrar
+            // 
+            this.btnRegistrar.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnRegistrar.Location = new System.Drawing.Point(157, 117);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Size = new System.Drawing.Size(131, 23);
+            this.btnRegistrar.TabIndex = 76;
+            this.btnRegistrar.Text = "Registrar Diagnostico";
+            this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Visible = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            // 
             // HomeCustom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -293,6 +306,7 @@
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(606, 328);
+            this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.txtRolActual);
             this.Controls.Add(this.lblRolActual);
             this.Controls.Add(this.btnCancelarDia);
@@ -346,5 +360,6 @@
         private System.Windows.Forms.Button btnRegAtencion;
         private System.Windows.Forms.Label lblRolActual;
         private System.Windows.Forms.TextBox txtRolActual;
+        private System.Windows.Forms.Button btnRegistrar;
     }
 }

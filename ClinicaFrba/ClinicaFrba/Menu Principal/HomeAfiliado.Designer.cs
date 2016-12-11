@@ -47,6 +47,7 @@
             this.btnAbmRol = new System.Windows.Forms.Button();
             this.btnRegistrarLlegada = new System.Windows.Forms.Button();
             this.btnAltaAfiliado = new System.Windows.Forms.Button();
+            this.btnRegistrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -267,6 +268,18 @@
             this.btnAltaAfiliado.Visible = false;
             this.btnAltaAfiliado.Click += new System.EventHandler(this.btnAltaAfiliado_Click);
             // 
+            // btnRegistrar
+            // 
+            this.btnRegistrar.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnRegistrar.Location = new System.Drawing.Point(446, 184);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Size = new System.Drawing.Size(136, 23);
+            this.btnRegistrar.TabIndex = 76;
+            this.btnRegistrar.Text = "Registrar Diagnostico";
+            this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Visible = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            // 
             // HomeAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,6 +287,7 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources._39929033_Sillas_de_colores_y_cinco_relojes_diferentes_en_la_sala_de_espera_Foto_de_archivo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.btnCancelarDia);
             this.Controls.Add(this.btnRegAtencion);
             this.Controls.Add(this.btnModifAfil);
@@ -322,5 +336,6 @@
         private System.Windows.Forms.Button btnAbmRol;
         private System.Windows.Forms.Button btnRegistrarLlegada;
         private System.Windows.Forms.Button btnAltaAfiliado;
+        private System.Windows.Forms.Button btnRegistrar;
     }
 }

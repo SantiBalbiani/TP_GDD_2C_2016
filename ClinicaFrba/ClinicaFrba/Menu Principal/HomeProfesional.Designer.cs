@@ -50,6 +50,7 @@
             this.lblBonos = new System.Windows.Forms.Label();
             this.txtBonosDisponibles = new System.Windows.Forms.TextBox();
             this.btnComprar = new System.Windows.Forms.Button();
+            this.btnRegistrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -70,10 +71,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.ForeColor = System.Drawing.Color.Yellow;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
             this.label2.Location = new System.Drawing.Point(4, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.Size = new System.Drawing.Size(78, 13);
             this.label2.TabIndex = 9;
             this.label2.Text = "Bienvenido: ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -94,6 +96,7 @@
             // 
             // button1
             // 
+            this.button1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.button1.Location = new System.Drawing.Point(7, 60);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(145, 23);
@@ -104,6 +107,7 @@
             // 
             // button2
             // 
+            this.button2.ForeColor = System.Drawing.Color.MidnightBlue;
             this.button2.Location = new System.Drawing.Point(158, 60);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(145, 23);
@@ -124,6 +128,7 @@
             // 
             // button3
             // 
+            this.button3.ForeColor = System.Drawing.Color.MidnightBlue;
             this.button3.Location = new System.Drawing.Point(309, 60);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(145, 23);
@@ -141,6 +146,7 @@
             this.btnCancelarDia.TabIndex = 74;
             this.btnCancelarDia.Text = "Cancelar Día";
             this.btnCancelarDia.UseVisualStyleBackColor = true;
+            this.btnCancelarDia.Visible = false;
             // 
             // btnRegAtencion
             // 
@@ -151,6 +157,7 @@
             this.btnRegAtencion.TabIndex = 73;
             this.btnRegAtencion.Text = "Registrar Atencion";
             this.btnRegAtencion.UseVisualStyleBackColor = true;
+            this.btnRegAtencion.Visible = false;
             // 
             // btnModifAfil
             // 
@@ -161,6 +168,7 @@
             this.btnModifAfil.TabIndex = 72;
             this.btnModifAfil.Text = "Modificar Afiliado";
             this.btnModifAfil.UseVisualStyleBackColor = true;
+            this.btnModifAfil.Visible = false;
             // 
             // btnRestituir
             // 
@@ -171,6 +179,7 @@
             this.btnRestituir.TabIndex = 71;
             this.btnRestituir.Text = "Restituir Afiliado";
             this.btnRestituir.UseVisualStyleBackColor = true;
+            this.btnRestituir.Visible = false;
             // 
             // btnBajaAfil
             // 
@@ -181,6 +190,7 @@
             this.btnBajaAfil.TabIndex = 70;
             this.btnBajaAfil.Text = "Baja Afiliado";
             this.btnBajaAfil.UseVisualStyleBackColor = true;
+            this.btnBajaAfil.Visible = false;
             // 
             // btnEstadisticas
             // 
@@ -191,26 +201,29 @@
             this.btnEstadisticas.TabIndex = 69;
             this.btnEstadisticas.Text = "Ver Estadisticas";
             this.btnEstadisticas.UseVisualStyleBackColor = true;
+            this.btnEstadisticas.Visible = false;
             // 
             // btnCambiarPlan
             // 
             this.btnCambiarPlan.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnCambiarPlan.Location = new System.Drawing.Point(152, 134);
+            this.btnCambiarPlan.Location = new System.Drawing.Point(157, 162);
             this.btnCambiarPlan.Name = "btnCambiarPlan";
-            this.btnCambiarPlan.Size = new System.Drawing.Size(135, 23);
+            this.btnCambiarPlan.Size = new System.Drawing.Size(136, 23);
             this.btnCambiarPlan.TabIndex = 68;
             this.btnCambiarPlan.Text = "Cambiar Plan";
             this.btnCambiarPlan.UseVisualStyleBackColor = true;
+            this.btnCambiarPlan.Visible = false;
             // 
             // btnAbmRol
             // 
             this.btnAbmRol.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnAbmRol.Location = new System.Drawing.Point(152, 163);
+            this.btnAbmRol.Location = new System.Drawing.Point(299, 105);
             this.btnAbmRol.Name = "btnAbmRol";
             this.btnAbmRol.Size = new System.Drawing.Size(136, 23);
             this.btnAbmRol.TabIndex = 67;
             this.btnAbmRol.Text = "Menu Rol";
             this.btnAbmRol.UseVisualStyleBackColor = true;
+            this.btnAbmRol.Visible = false;
             // 
             // btnRegistrarLlegada
             // 
@@ -221,6 +234,8 @@
             this.btnRegistrarLlegada.TabIndex = 66;
             this.btnRegistrarLlegada.Text = "Registrar Llegada";
             this.btnRegistrarLlegada.UseVisualStyleBackColor = true;
+            this.btnRegistrarLlegada.Visible = false;
+            this.btnRegistrarLlegada.Click += new System.EventHandler(this.btnRegistrarLlegada_Click);
             // 
             // btnAltaAfiliado
             // 
@@ -231,55 +246,74 @@
             this.btnAltaAfiliado.TabIndex = 65;
             this.btnAltaAfiliado.Text = "Alta Nuevo Afiliado";
             this.btnAltaAfiliado.UseVisualStyleBackColor = true;
+            this.btnAltaAfiliado.Visible = false;
             // 
             // button4
             // 
             this.button4.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button4.Location = new System.Drawing.Point(10, 163);
+            this.button4.Location = new System.Drawing.Point(157, 133);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(136, 23);
             this.button4.TabIndex = 64;
             this.button4.Text = "Cancelar Turno";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
             // 
             // button5
             // 
             this.button5.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button5.Location = new System.Drawing.Point(10, 134);
+            this.button5.Location = new System.Drawing.Point(12, 133);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(136, 23);
             this.button5.TabIndex = 63;
             this.button5.Text = "Solicitar Turno";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
             // 
             // lblBonos
             // 
             this.lblBonos.AutoSize = true;
-            this.lblBonos.BackColor = System.Drawing.Color.Transparent;
-            this.lblBonos.ForeColor = System.Drawing.Color.Yellow;
-            this.lblBonos.Location = new System.Drawing.Point(12, 98);
+            this.lblBonos.BackColor = System.Drawing.Color.MidnightBlue;
+            this.lblBonos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBonos.ForeColor = System.Drawing.Color.White;
+            this.lblBonos.Location = new System.Drawing.Point(9, 110);
             this.lblBonos.Name = "lblBonos";
-            this.lblBonos.Size = new System.Drawing.Size(94, 13);
+            this.lblBonos.Size = new System.Drawing.Size(111, 13);
             this.lblBonos.TabIndex = 62;
             this.lblBonos.Text = "Bonos Disponibles";
+            this.lblBonos.Visible = false;
             // 
             // txtBonosDisponibles
             // 
-            this.txtBonosDisponibles.Location = new System.Drawing.Point(112, 96);
+            this.txtBonosDisponibles.Location = new System.Drawing.Point(117, 107);
             this.txtBonosDisponibles.Name = "txtBonosDisponibles";
             this.txtBonosDisponibles.Size = new System.Drawing.Size(51, 20);
             this.txtBonosDisponibles.TabIndex = 61;
+            this.txtBonosDisponibles.Visible = false;
             // 
             // btnComprar
             // 
             this.btnComprar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnComprar.Location = new System.Drawing.Point(166, 93);
+            this.btnComprar.Location = new System.Drawing.Point(171, 105);
             this.btnComprar.Name = "btnComprar";
             this.btnComprar.Size = new System.Drawing.Size(122, 23);
             this.btnComprar.TabIndex = 60;
             this.btnComprar.Text = "Comprar Bono";
             this.btnComprar.UseVisualStyleBackColor = true;
+            this.btnComprar.Visible = false;
             this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
+            // 
+            // btnRegistrar
+            // 
+            this.btnRegistrar.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnRegistrar.Location = new System.Drawing.Point(441, 104);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Size = new System.Drawing.Size(136, 23);
+            this.btnRegistrar.TabIndex = 75;
+            this.btnRegistrar.Text = "Registrar Diagnostico";
+            this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Visible = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // HomeProfesional
             // 
@@ -288,6 +322,7 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.wiki_doctor;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.btnCancelarDia);
             this.Controls.Add(this.btnRegAtencion);
             this.Controls.Add(this.btnModifAfil);
@@ -300,7 +335,6 @@
             this.Controls.Add(this.btnAltaAfiliado);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.lblBonos);
             this.Controls.Add(this.txtBonosDisponibles);
             this.Controls.Add(this.btnComprar);
             this.Controls.Add(this.button3);
@@ -310,6 +344,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblBonos);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "HomeProfesional";
@@ -344,6 +379,7 @@
         private System.Windows.Forms.Label lblBonos;
         private System.Windows.Forms.TextBox txtBonosDisponibles;
         private System.Windows.Forms.Button btnComprar;
+        private System.Windows.Forms.Button btnRegistrar;
      
     }
 }
