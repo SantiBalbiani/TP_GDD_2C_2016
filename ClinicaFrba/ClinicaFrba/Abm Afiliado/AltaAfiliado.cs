@@ -89,7 +89,7 @@ namespace ClinicaFrba.Abm_Afiliado
         }
         private void btnCargaPareja_Click(object sender, EventArgs e)
         {
-            if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
+            if (Utilidades.ValidarFormulario(this, errorTextBox) == false  & (cmbSexo.Text != "")) 
             {
                 cantidadHijos = Convert.ToInt32(textCantHijos.Text);
 
@@ -143,7 +143,7 @@ namespace ClinicaFrba.Abm_Afiliado
             
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
+            if (Utilidades.ValidarFormulario(this, errorTextBox) == false & (cmbSexo.Text != ""))
             {
 
                 nroAfiliado = generarNumeroAfiliado();
@@ -152,43 +152,55 @@ namespace ClinicaFrba.Abm_Afiliado
 
                 if (Auxiliar.verificarDocumento(numeroDocumento))
                 {
-                    if(cbmPlanMed.Text != ""){
+                    if (cbmPlanMed.Text != "")
+                    {
+                        if (cmbEstadoCivil.Text != "")
+                        {
 
-                    afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable, nroAfiliado, textNombre.Text, textApellido.Text,
+                            afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable, nroAfiliado, textNombre.Text, textApellido.Text,
                                                                                    textTipoDoc.Text, numeroDocumento,
                                                                                    Convert.ToInt32(textTelefono.Text), textMail.Text,
                                                                                    dateTimePicker1.Value.Date, cmbSexo.Text, cmbEstadoCivil.Text,
                                                                                    Convert.ToInt32(textCantHijos.Text), textDireccion.Text, cbmPlanMed.Text);
 
 
-                    DataRow afiliado = afiliadosTable.Rows[0];
 
-                    SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+                            DataRow afiliado = afiliadosTable.Rows[0];
 
-                    try
-                    {
-                        Abm_Afiliado.estructuraBD.darAltaUsuarios(afiliadosTable);
-                        SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
-                        cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
-                        cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
-                        cmdAltaAfiliado.Parameters["@Afiliados"].Value = afiliadosTable;
 
-                        cnx.Open();
-                        cmdAltaAfiliado.ExecuteNonQuery();
-                        MessageBox.Show("Se han guardado correctamente los datos");
-                        
-                        Home.Show();
-                        this.Close();
+                            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+
+
+                            try
+                            {
+
+                                Abm_Afiliado.estructuraBD.darAltaUsuarios(afiliadosTable);
+                                SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
+                                cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+                                cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
+                                cmdAltaAfiliado.Parameters["@Afiliados"].Value = afiliadosTable;
+                                cnx.Open();
+                                cmdAltaAfiliado.ExecuteNonQuery();
+                                MessageBox.Show("Se han guardado correctamente los datos");
+
+                                Home.Show();
+                                this.Close();
+                            }
+                            catch (ApplicationException error)
+                            {
+                                string mensaje = "Se ha producido un error ";
+                                ApplicationException excep = new ApplicationException(mensaje, error);
+                                excep.Source = this.Text;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Debe seleccionar un Estado Civil de la lista");
+                        }
                     }
-                    catch (ApplicationException error)
+                    else
                     {
-                        string mensaje = "Se ha producido un error ";
-                        ApplicationException excep = new ApplicationException(mensaje, error);
-                        excep.Source = this.Text;
-                    }
-                } 
-                    else{
-                        MessageBox.Show("Debe seleccionar un plan Medico de la lista");                    
+                        MessageBox.Show("Debe seleccionar un plan Medico de la lista");
                     }
                 }
                 else
@@ -250,7 +262,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
         private void btnCargarHijos_Click(object sender, EventArgs e)
         {
-            if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
+            if (Utilidades.ValidarFormulario(this, errorTextBox) == false )
             {
             
                 cantidadHijos = Convert.ToInt32(textCantHijos.Text);
