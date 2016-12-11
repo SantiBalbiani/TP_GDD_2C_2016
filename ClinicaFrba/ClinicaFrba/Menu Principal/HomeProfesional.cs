@@ -30,11 +30,6 @@ namespace ClinicaFrba.Menu_Principal
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             //Ver que tenga un turno en este horario
@@ -150,6 +145,11 @@ namespace ClinicaFrba.Menu_Principal
             frmAgendaNueva.Home = this;
             frmAgendaNueva.Show();
             this.Close();
+        }
+
+        private void btnComprar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
