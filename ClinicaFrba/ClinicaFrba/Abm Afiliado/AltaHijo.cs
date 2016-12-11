@@ -20,6 +20,7 @@ namespace ClinicaFrba.Abm_Afiliado
         public DataTable tablaAfiliados = new DataTable();
         public Boolean otroHijo = false;
         public int idUsuario;
+        public int numeroDocumento;
         public int hijos;
         public string planMedHijo;
         public int contador = 0;
@@ -61,170 +62,133 @@ namespace ClinicaFrba.Abm_Afiliado
                 PlanMedHijo.Text = planMedHijo;
             }
 
-            //tablaAfiliados.Rows.Add(afiliadoIngresado);
-            
             tablaAfiliados = Abm_Afiliado.estructuraBD.crearEstructuraAfiliado(tablaAfiliados);
                         
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-             if (Utilidades.ValidarFormulario(this, errorTextBoxHijo) == false)
+            if (Utilidades.ValidarFormulario(this, errorTextBoxHijo) == false)
             {
-                 
+
                 int numeroFilas = tablaAfiliados.Rows.Count;
                 int nroAfiliado = (Convert.ToInt32(afiliadoIngresado["nroAfiliado"]) + 1);
-                
-                 if(nuevo)
-                 {
-                     if(numeroFilas == 1)
-               
+                numeroDocumento = Convert.ToInt32(nroDocHijo.Text);
+
+                if (!(Globals.listaDni.Any(x => x == numeroDocumento)) & Auxiliar.verificarDocumento(numeroDocumento))
+                {
+
+                    if (nuevo)
                     {
-                        contador++;
-                        nroAfiliado++;
 
-                        tablaAfiliados = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(tablaAfiliados, nroAfiliado, nombreHijo.Text, apellidoHijo.Text,
-                                                                                       tipoDocHijo.Text, Convert.ToInt32(nroDocHijo.Text),
-                                                                                       Convert.ToInt32(telefonoHijo.Text), mailHijo.Text,
-                                                                                       dateTimePicker1.Value.Date, cmbSexoHijo.Text, cmbEstadoCivilHijo.Text,
-                                                                                       0, direccionHijo.Text, planMedHijo);
-                        int count = tablaAfiliados.Rows.Count;
-                        afiliadoIngresado = tablaAfiliados.Rows[count - 1];
-
-                        if (hijos > contador && otroHijo)
+                        if (numeroFilas == 1)
                         {
+                            
+                            contador++;
+                            nroAfiliado++;
 
-                            AltaHijo frmHijo = new AltaHijo(tablaAfiliados, afiliadoIngresado, (hijos - 1),nuevo);
-                            frmHijo.Show();
-                            this.Close();
-                         }
-                        else
-                        {
-                            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-                            try
-                            {
-                                SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
-                                cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
-                                cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
-                                cmdAltaAfiliado.Parameters["@Afiliados"].Value = tablaAfiliados;
-                     
-                                cnx.Open();
-                                cmdAltaAfiliado.ExecuteNonQuery();
-                                MessageBox.Show("Se han guardado correctamente los datos");
-                                Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
-                                frmAdmin.Show();
-                                this.Close();
-                            }
-                                catch(ApplicationException error)
-                            {
-                                    string mensaje = "Se ha producido un error";
-                                    ApplicationException excep = new ApplicationException(mensaje, error);
-                                    excep.Source = this.Text;
-                            }
-
-                        }
-                    }else
-                     {
-
-                         contador++;
-                         tablaAfiliados = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(tablaAfiliados, nroAfiliado, nombreHijo.Text, apellidoHijo.Text,
+                            tablaAfiliados = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(tablaAfiliados, nroAfiliado, nombreHijo.Text, apellidoHijo.Text,
                                                                                            tipoDocHijo.Text, Convert.ToInt32(nroDocHijo.Text),
                                                                                            Convert.ToInt32(telefonoHijo.Text), mailHijo.Text,
                                                                                            dateTimePicker1.Value.Date, cmbSexoHijo.Text, cmbEstadoCivilHijo.Text,
                                                                                            0, direccionHijo.Text, planMedHijo);
+                            int count = tablaAfiliados.Rows.Count;
+                            afiliadoIngresado = tablaAfiliados.Rows[count - 1];
 
-                        int count = tablaAfiliados.Rows.Count;
-                        afiliadoIngresado = tablaAfiliados.Rows[count - 1];
-                         
-                         if(hijos > contador && otroHijo)
-                         {
-
-                             nroAfiliado++;
-                             AltaHijo frmHijo = new AltaHijo(tablaAfiliados, afiliadoIngresado, hijos,nuevo);
-                             frmHijo.Show();
-                             this.Close();
-                         }
-                         else
-                         {
-                             SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-                             
-                             try
-                             {
-                                 SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
-                                 cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
-                                 cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
-                                 cmdAltaAfiliado.Parameters["@Afiliados"].Value = tablaAfiliados;
-
-                                 cnx.Open();
-                                 cmdAltaAfiliado.ExecuteNonQuery();
-                                 MessageBox.Show("Se han guardado correctamente los datos");
-                                 Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
-                                 frmAdmin.Show();
-                                 this.Close();
+                            if (hijos > contador && otroHijo)
+                            {
+                                Globals.listaDni.Add(numeroDocumento);
+                                AltaHijo frmHijo = new AltaHijo(tablaAfiliados, afiliadoIngresado, (hijos - 1), nuevo);
+                                frmHijo.Show();
+                                this.Close();
                             }
-                                 catch(ApplicationException error)
-                             {
-                                     string mensaje = "Se ha producido un error";
-                                     ApplicationException excep = new ApplicationException(mensaje, error);
-                                     excep.Source = this.Text;
-                                 }
-                       
+                            else
+                            {
+                                SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+                                try
+                                {
+                                    Abm_Afiliado.estructuraBD.darAltaUsuarios(tablaAfiliados);
+                                    SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
+                                    cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+                                    cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
+                                    cmdAltaAfiliado.Parameters["@Afiliados"].Value = tablaAfiliados;
+
+                                    cnx.Open();
+                                    cmdAltaAfiliado.ExecuteNonQuery();
+                                    MessageBox.Show("Se han guardado correctamente los datos");
+                                    Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
+                                    frmAdmin.Show();
+                                    this.Close();
+                                }
+                                catch (ApplicationException error)
+                                {
+                                    string mensaje = "Se ha producido un error";
+                                    ApplicationException excep = new ApplicationException(mensaje, error);
+                                    excep.Source = this.Text;
+                                }
+
                             }
-                    }
-                 }
-                 else{
-
-                     nroAfiliado++;
-
-                     DataTable tablaAfiliados2 = new DataTable(); 
-
-                     tablaAfiliados2 = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(tablaAfiliados2, nroAfiliado, nombreHijo.Text, apellidoHijo.Text,
-                                                                                   tipoDocHijo.Text, Convert.ToInt32(nroDocHijo.Text),
-                                                                                   Convert.ToInt32(telefonoHijo.Text), mailHijo.Text,
-                                                                                   dateTimePicker1.Value.Date, cmbSexoHijo.Text, cmbEstadoCivilHijo.Text,
-                                                                                   0, direccionHijo.Text, planMedHijo);
-
-
-                     int count = tablaAfiliados.Rows.Count;
-                     afiliadoIngresado = tablaAfiliados.Rows[count - 1];
-                     
-                     if(hijos > contador && otroHijo)
-                     {
-                         nroAfiliado++;
-                         AltaHijo frmHijo = new AltaHijo(tablaAfiliados, afiliadoIngresado, hijos,nuevo);
-                         frmHijo.Show();
-                         this.Close();                        
-                    }
-                     else
-                     {
-                         SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-                         try{
-                             SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
-                             cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
-                             cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
-                             cmdAltaAfiliado.Parameters["@Afiliados"].Value = tablaAfiliados;
-                        
-                             cnx.Open();
-                             cmdAltaAfiliado.ExecuteNonQuery();
-                             MessageBox.Show("Se han guardado correctamente los datos");
-                             Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
-                             frmAdmin.Show();
-                             this.Close();
-                            }
-                             catch(ApplicationException error)
-                         {
-                                 string mensaje = "Se ha producido un error";
-                                 ApplicationException excep = new ApplicationException(mensaje, error);
-                                 excep.Source = this.Text;
                         }
+                        else
+                        {
 
+                            
+                            contador++;
+                            tablaAfiliados = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(tablaAfiliados, nroAfiliado, nombreHijo.Text, apellidoHijo.Text,
+                                                                                              tipoDocHijo.Text, Convert.ToInt32(nroDocHijo.Text),
+                                                                                              Convert.ToInt32(telefonoHijo.Text), mailHijo.Text,
+                                                                                              dateTimePicker1.Value.Date, cmbSexoHijo.Text, cmbEstadoCivilHijo.Text,
+                                                                                              0, direccionHijo.Text, planMedHijo);
+
+                            int count = tablaAfiliados.Rows.Count;
+                            afiliadoIngresado = tablaAfiliados.Rows[count - 1];
+
+                            if (hijos > contador && otroHijo)
+                            {
+                                Globals.listaDni.Add(numeroDocumento);
+                                nroAfiliado++;
+                                AltaHijo frmHijo = new AltaHijo(tablaAfiliados, afiliadoIngresado, hijos, nuevo);
+                                frmHijo.Show();
+                                this.Close();
+                            }
+                            else
+                            {
+                                SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+
+                                try
+                                {
+                                    Abm_Afiliado.estructuraBD.darAltaUsuarios(tablaAfiliados);
+                                    SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
+                                    cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+                                    cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
+                                    cmdAltaAfiliado.Parameters["@Afiliados"].Value = tablaAfiliados;
+
+                                    cnx.Open();
+                                    cmdAltaAfiliado.ExecuteNonQuery();
+                                    MessageBox.Show("Se han guardado correctamente los datos");
+                                    Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
+                                    frmAdmin.Show();
+                                    this.Close();
+                                }
+                                catch (ApplicationException error)
+                                {
+                                    string mensaje = "Se ha producido un error";
+                                    ApplicationException excep = new ApplicationException(mensaje, error);
+                                    excep.Source = this.Text;
+                                }
+
+                            }
+                        }
                     }
-                 }
+                }
+                else {
+                    MessageBox.Show("El documento ingresado ya existe. Por favor verificar numero");                
+                }
             }
-             else
-             {
-                 MessageBox.Show("Faltan Campos ingresar");
-             }
+            else
+            {
+                MessageBox.Show("Faltan Campos ingresar");
+            }
              
             this.Close();
             

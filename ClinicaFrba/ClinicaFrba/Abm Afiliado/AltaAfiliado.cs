@@ -98,22 +98,30 @@ namespace ClinicaFrba.Abm_Afiliado
 
                 if (Auxiliar.verificarDocumento(numeroDocumento))
                 {
+                    Globals.listaDni.Add(numeroDocumento);
 
-                    afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable, nroAfiliado, textNombre.Text, textApellido.Text,
-                                                                                    textTipoDoc.Text, numeroDocumento,
-                                                                                    Convert.ToInt32(textTelefono.Text), textMail.Text,
-                                                                                    dateTimePicker1.Value.Date, cmbSexo.Text, cmbEstadoCivil.Text,
-                                                                                    cantidadHijos, textDireccion.Text, cbmPlanMed.Text);
-
-                    DataRow afiliado = afiliadosTable.Rows[0];
-
-                    if (Convert.ToInt32(textCantHijos.Text) > 0)
+                    if (cbmPlanMed.Text != "")
                     {
-                        tieneHijos = true;
+
+                        afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable, nroAfiliado, textNombre.Text, textApellido.Text,
+                                                                                        textTipoDoc.Text, numeroDocumento,
+                                                                                        Convert.ToInt32(textTelefono.Text), textMail.Text,
+                                                                                        dateTimePicker1.Value.Date, cmbSexo.Text, cmbEstadoCivil.Text,
+                                                                                        cantidadHijos, textDireccion.Text, cbmPlanMed.Text);
+
+                        DataRow afiliado = afiliadosTable.Rows[0];
+
+                        if (Convert.ToInt32(textCantHijos.Text) > 0)
+                        {
+                            tieneHijos = true;
+                        }
+                        AltaPareja frm = new AltaPareja(afiliadosTable, afiliado, tieneHijos, afiliadoNuevo, cantidadHijos);
+                        frm.Show();
+                        this.Close();
                     }
-                    AltaPareja frm = new AltaPareja(afiliadosTable, afiliado, tieneHijos, afiliadoNuevo, cantidadHijos);
-                    frm.Show();
-                    this.Close();
+                    else {
+                        MessageBox.Show("Debe seleccionar un plan Medico de la lista");                    
+                    }
                 }
                 else
                 {
@@ -143,6 +151,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
                 if (Auxiliar.verificarDocumento(numeroDocumento))
                 {
+                    if(cbmPlanMed.Text != ""){
 
                     afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable, nroAfiliado, textNombre.Text, textApellido.Text,
                                                                                    textTipoDoc.Text, numeroDocumento,
@@ -157,6 +166,7 @@ namespace ClinicaFrba.Abm_Afiliado
 
                     try
                     {
+                        Abm_Afiliado.estructuraBD.darAltaUsuarios(afiliadosTable);
                         SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
                         cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
                         cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
@@ -165,7 +175,7 @@ namespace ClinicaFrba.Abm_Afiliado
                         cnx.Open();
                         cmdAltaAfiliado.ExecuteNonQuery();
                         MessageBox.Show("Se han guardado correctamente los datos");
-                        //Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
+                        
                         Home.Show();
                         this.Close();
                     }
@@ -174,6 +184,10 @@ namespace ClinicaFrba.Abm_Afiliado
                         string mensaje = "Se ha producido un error ";
                         ApplicationException excep = new ApplicationException(mensaje, error);
                         excep.Source = this.Text;
+                    }
+                } 
+                    else{
+                        MessageBox.Show("Debe seleccionar un plan Medico de la lista");                    
                     }
                 }
                 else
@@ -238,15 +252,19 @@ namespace ClinicaFrba.Abm_Afiliado
 
             numeroDocumento = Convert.ToInt32(textDni.Text);
 
-            if(cantidadHijos > 0)
+
+            if (cantidadHijos > 0)
+            {
+                if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
                 {
-                    if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
+                    if (Auxiliar.verificarDocumento(numeroDocumento))
                     {
-                        if (Auxiliar.verificarDocumento(numeroDocumento))
+                        if (cbmPlanMed.Text != "")
                         {
 
                             nroAfiliado = generarNumeroAfiliado();
 
+                            Globals.listaDni.Add(numeroDocumento);
 
                             afiliadosTable = Abm_Afiliado.estructuraBD.cargarEstructuraAfiliado(afiliadosTable, nroAfiliado, textNombre.Text, textApellido.Text,
                                                                                             textTipoDoc.Text, numeroDocumento,
@@ -261,20 +279,26 @@ namespace ClinicaFrba.Abm_Afiliado
                             frm.Show();
                             this.Close();
                         }
+
                         else
                         {
-                            MessageBox.Show("El documento ingresado ya existe. Por favor verificar numero");
+                            MessageBox.Show("Debe seleccionar un plan Medico de la lista");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Faltan Campos ingresar");
+                        MessageBox.Show("El documento ingresado ya existe. Por favor verificar numero");
                     }
-
                 }
-            else{
-                MessageBox.Show("No ingreso una cantidad de hijos valida");                
+                else
+                {
+                    MessageBox.Show("Faltan Campos ingresar");
                 }
+            }
+            else
+            {
+                MessageBox.Show("No ingreso una cantidad de hijos valida");
+            }
         }
 
         private void textNombre_TextChanged(object sender, EventArgs e)

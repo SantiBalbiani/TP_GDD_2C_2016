@@ -46,7 +46,7 @@ namespace ClinicaFrba.Abm_Afiliado
                                                         int numeroDoc, int telefono, string mail, DateTime fechaNac, string sexo,
                                                       string estadoCivil,int cantidadHijos ,string direccion,string planMed)
         {
-            int idUsuario, plan_idPlan;
+            int plan_idPlan;
 
             DataRow afiliado = afiliados.NewRow();
             afiliado["nombre"] = nombre;
@@ -63,9 +63,9 @@ namespace ClinicaFrba.Abm_Afiliado
             afiliado["cantidadHijos"] = cantidadHijos;
             afiliado["direccion"] = direccion;
             afiliado["habilitado"] = true;
-            idUsuario = registrarUsuario(numeroDoc);
-            insertarRolAUsuario(idUsuario);
-            afiliado["idUsuario"] = idUsuario;
+            //idUsuario = registrarUsuario(numeroDoc);
+            
+            //afiliado["idUsuario"] = idUsuario;
 
             string query = "select PM.idPlan from SELECT_GROUP.Plan_Med as PM where descripcion = ('" + planMed + "')";
             
@@ -81,6 +81,21 @@ namespace ClinicaFrba.Abm_Afiliado
             return afiliados;
 
         }
+
+        public static void darAltaUsuarios(DataTable afiliadosIngresados) {
+
+            int numeroDoc;
+            int idUsuario;
+
+            foreach (DataRow fila in afiliadosIngresados.Rows) {
+                numeroDoc = Convert.ToInt32(fila["numeroDoc"].ToString());
+                idUsuario = registrarUsuario(numeroDoc);
+                fila["idUsuario"] = idUsuario; 
+                insertarRolAUsuario(idUsuario);
+            }
+        
+        }
+
         public static int registrarUsuario(int numeroDocumento)
         {
 
