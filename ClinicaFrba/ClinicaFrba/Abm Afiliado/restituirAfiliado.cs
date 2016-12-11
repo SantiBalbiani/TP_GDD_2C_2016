@@ -109,7 +109,7 @@ namespace ClinicaFrba.Abm_Afiliado
                             unItem = (ComboboxItem)item;
 
                             //le pone el valor 0 al afiliado eliminado 
-                            SqlCommand cmdRol = new SqlCommand("update Select_group.Afiliado set habilitado=0 where idAfiliado=@nombreAfiliado", conexion);
+                            SqlCommand cmdRol = new SqlCommand("update Select_group.Afiliado set habilitado=1 where idAfiliado=@nombreAfiliado", conexion);
                             cmdRol.Parameters.AddWithValue("@nombreAfiliado", unItem.Value);
                             cmdRol.ExecuteNonQuery();
                             MessageBox.Show("Afiliado ha sigo restituido con exito ");

@@ -963,6 +963,36 @@ GO
 
 --=============================================================================================================
 --TIPO		: Trigger
+--NOMBRE	: TR_BorrarTurnos
+--OBJETIVO  : Al darse de baja un afiliado sus turnos quedan cancelados.                                     
+--=============================================================================================================
+
+CREATE TRIGGER [SELECT_GROUP].[TR_BorrarTurnos] 
+   ON [SELECT_GROUP].[Afiliado] 
+   FOR UPDATE
+AS 
+BEGIN
+	
+	SET NOCOUNT ON;
+
+DECLARE @idAfiliado numeric(7,0);
+
+    if(update(fechaBaja))
+	BEGIN
+	
+	SET @idAfiliado = (SELECT TOP 1 idAfiliado FROM inserted);
+
+	UPDATE Select_Group.Turno
+	SET estado = 2
+	WHERE afiliado_idAfiliado = @idAfiliado
+
+	END
+
+END
+GO
+
+--=============================================================================================================
+--TIPO		: Trigger
 --NOMBRE	: RegistrarBonos
 --OBJETIVO  : Crea una cantidad de registros(Bonos) igual al campo "unidades" de la tabla Compras.                                     
 --=============================================================================================================

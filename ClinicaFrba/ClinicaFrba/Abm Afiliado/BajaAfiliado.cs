@@ -59,7 +59,7 @@ namespace ClinicaFrba.Abm_Afiliado
                             {
                                 DateTime fecha = Globals.getFechaActual();
 
-                                string cadena = "update SELECT_GROUP.Afiliado set habilitado=0,fechaBaja = ('" + fecha + "') where nroAfiliado = ('" + nroAfiliado + "')";
+                                string cadena = "update SELECT_GROUP.Afiliado set habilitado=0, fechaBaja = '" + fecha.ToString("MM/dd/yyyy HH:mm") + "' where nroAfiliado = " + nroAfiliado;
                                 Base_de_Datos.Conexion.EjecutarComando(cadena);
 
                                 MessageBox.Show("El afiliado ha sido dado de baja con exito");
