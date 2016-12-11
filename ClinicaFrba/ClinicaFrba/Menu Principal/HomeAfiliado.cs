@@ -199,5 +199,123 @@ namespace ClinicaFrba
             frmNewLog.Show();
             this.Close();
         }
+
+        private void btnCambiarPlan_Click(object sender, EventArgs e)
+        {
+            
+                Abm_Planes.CambiarPlan frmCambiarPlan = new Abm_Planes.CambiarPlan(strAfiliado);
+                // frmCambiarPlan.menuAnterior = "Custom";
+                frmCambiarPlan.Home = this;
+                frmCambiarPlan.Show();
+                this.Hide();
+           
+        }
+
+        private void btnAbmRol_Click(object sender, EventArgs e)
+        {
+            AbmRol.abmMenuRol frmMenuRol = new AbmRol.abmMenuRol();
+            frmMenuRol.Home = this;
+            frmMenuRol.Show();
+            this.Hide();
+        }
+
+        private void btnEstadisticas_Click(object sender, EventArgs e)
+        {
+            Listados.ListadoEstadistico frmListados = new Listados.ListadoEstadistico("Custom");
+            frmListados.menuAnterior = "Custom";
+            frmListados.Home = this;
+            frmListados.Show();
+            this.Hide();
+        }
+
+        private void btnAltaAfiliado_Click(object sender, EventArgs e)
+        {
+            Abm_Afiliado.frmAltaAfiliado frmAlta = new Abm_Afiliado.frmAltaAfiliado();
+            frmAlta.menuAnterior = "Custom";
+            frmAlta.Home = this;
+            frmAlta.Show();
+            this.Hide();
+        }
+
+        private void btnModifAfil_Click(object sender, EventArgs e)
+        {
+            Abm_Afiliado.ModificarAfiliado frmMod = new Abm_Afiliado.ModificarAfiliado();
+            frmMod.Home = this;
+            frmMod.Show();
+            this.Hide();
+        }
+
+        private void btnBajaAfil_Click(object sender, EventArgs e)
+        {
+            Abm_Afiliado.BajaAfiliado frmBaja = new Abm_Afiliado.BajaAfiliado();
+            frmBaja.Home = this;
+            frmBaja.Show();
+            this.Hide();
+        }
+
+        private void btnRestituir_Click(object sender, EventArgs e)
+        {
+            Abm_Afiliado.RestituirAfiliado frmRes = new Abm_Afiliado.RestituirAfiliado();
+            frmRes.Home = this;
+            frmRes.Show();
+            this.Hide();
+        }
+
+        private void btnRegistrarLlegada_Click(object sender, EventArgs e)
+        {
+            Registro_Llegada.Llegada frmRegistrar = new Registro_Llegada.Llegada();
+            frmRegistrar.Home = this;
+            frmRegistrar.Show();
+            this.Hide();
+        }
+
+        private void btnRegAtencion_Click(object sender, EventArgs e)
+        {
+            /*  TimeSpan intervaloDeTurno = new TimeSpan(0, 30, 0);
+              DateTime intervaloTurnoMax = Globals.getFechaActual() + intervaloDeTurno;
+              DateTime intervaloTurnoMin = Globals.getFechaActual() - intervaloDeTurno;
+              string estadoTurno = "0";
+              string idAfiliado = "0";
+
+              string consultaTurnoActual = "SELECT TOP 1 T.idTurno, T.afiliado_idAfiliado, T.estado FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda AND A.profesional_IdProfesional = " + idProf + " WHERE T.estado = 4 AND fechaTurno BETWEEN '" + intervaloTurnoMin.ToString("MM/dd/yyyy hh:mm tt") + "' AND '" + intervaloTurnoMax.ToString("MM/dd/yyyy hh:mm tt") + "' ORDER BY fechaTurno ASC";
+
+              string idTurno = "0";
+              Conexion.conectar();
+              DataTable turnoActual = new DataTable();
+              DataTable unAfiliado = new DataTable();
+
+              turnoActual = Conexion.LeerTabla(consultaTurnoActual);
+
+              foreach (DataRow unTurno in turnoActual.Rows)
+              {
+                  idTurno = unTurno["idTurno"].ToString();
+                  idAfiliado = unTurno["afiliado_idAfiliado"].ToString();
+                  estadoTurno = unTurno["estado"].ToString();
+
+              }
+
+
+
+              if (idTurno != "0")
+              {
+
+
+                  Registro_Resultado.RegistroResultado frmRegRes = new Registro_Resultado.RegistroResultado(idTurno, idProf, idAfiliado);
+                  frmRegRes.Home = this;
+
+                  this.Hide();
+                  frmRegRes.Show();
+
+              }
+              else
+              {
+                  MessageBox.Show("No hay turnos disponibles en este horario");
+              }*/
+        }
+
+        private void btnCancelarDia_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

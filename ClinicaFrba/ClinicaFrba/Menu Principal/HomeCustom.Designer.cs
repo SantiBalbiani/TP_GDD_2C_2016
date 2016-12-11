@@ -228,6 +228,7 @@
             this.btnRestituir.Text = "Restituir Afiliado";
             this.btnRestituir.UseVisualStyleBackColor = true;
             this.btnRestituir.Visible = false;
+            this.btnRestituir.Click += new System.EventHandler(this.btnRestituir_Click);
             // 
             // btnBajaAfil
             // 

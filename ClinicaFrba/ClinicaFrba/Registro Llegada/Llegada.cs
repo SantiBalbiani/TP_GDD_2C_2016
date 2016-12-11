@@ -362,9 +362,8 @@ namespace ClinicaFrba.Registro_Llegada
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-//            Globals.irAtras(menuAnterior, this);
+//          Globals.irAtras(menuAnterior, this);
             Home.Show();
-
             this.Close();
             //Menu_Principal.HomeAdmin frmMenu = new Menu_Principal.HomeAdmin();
             //frmMenu.Show();

@@ -155,7 +155,6 @@ namespace ClinicaFrba.Menu_Principal
         private void btnRegistrarLlegada_Click(object sender, EventArgs e)
         {
             Registro_Llegada.Llegada frmRegistrar = new Registro_Llegada.Llegada();
-           // frmRegistrar.menuAnterior = "Custom";
             frmRegistrar.Home = this; 
             frmRegistrar.Show();
             this.Hide();
@@ -399,7 +398,9 @@ namespace ClinicaFrba.Menu_Principal
         private void btnBajaAfil_Click(object sender, EventArgs e)
         {
             Abm_Afiliado.BajaAfiliado frmBaja = new Abm_Afiliado.BajaAfiliado();
+            frmBaja.Home = this;
             frmBaja.Show();
+            this.Hide();
         }
 
         private void txtRolActual_TextChanged(object sender, EventArgs e)
@@ -410,6 +411,14 @@ namespace ClinicaFrba.Menu_Principal
         private void btnAgregarFamiliar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRestituir_Click(object sender, EventArgs e)
+        {
+            Abm_Afiliado.RestituirAfiliado frmRes = new Abm_Afiliado.RestituirAfiliado();
+            frmRes.Home = this;
+            frmRes.Show();
+            this.Hide();
         }
     }
 }
