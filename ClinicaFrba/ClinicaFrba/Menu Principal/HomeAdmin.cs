@@ -220,6 +220,11 @@ namespace ClinicaFrba.Menu_Principal
             //Hacer funcionalidad
 
         }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+
+        }
         }
 }
 

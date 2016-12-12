@@ -47,7 +47,6 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSolicitar = new System.Windows.Forms.Button();
             this.btnCancelarDia = new System.Windows.Forms.Button();
-            this.btnRegAtencion = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -221,13 +220,14 @@
             // btnRegistrar
             // 
             this.btnRegistrar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnRegistrar.Location = new System.Drawing.Point(446, 177);
+            this.btnRegistrar.Location = new System.Drawing.Point(304, 82);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(136, 23);
             this.btnRegistrar.TabIndex = 79;
             this.btnRegistrar.Text = "Registrar Diagnostico";
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Visible = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // btnCancelar
             // 
@@ -262,18 +262,6 @@
             this.btnCancelarDia.UseVisualStyleBackColor = true;
             this.btnCancelarDia.Visible = false;
             // 
-            // btnRegAtencion
-            // 
-            this.btnRegAtencion.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnRegAtencion.Location = new System.Drawing.Point(304, 82);
-            this.btnRegAtencion.Name = "btnRegAtencion";
-            this.btnRegAtencion.Size = new System.Drawing.Size(136, 23);
-            this.btnRegAtencion.TabIndex = 80;
-            this.btnRegAtencion.Text = "Registrar Atencion";
-            this.btnRegAtencion.UseVisualStyleBackColor = true;
-            this.btnRegAtencion.Visible = false;
-            this.btnRegAtencion.Click += new System.EventHandler(this.btnRegAtencion_Click);
-            // 
             // button5
             // 
             this.button5.ForeColor = System.Drawing.Color.MidnightBlue;
@@ -295,7 +283,6 @@
             this.ClientSize = new System.Drawing.Size(594, 328);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.btnCancelarDia);
-            this.Controls.Add(this.btnRegAtencion);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSolicitar);
@@ -345,7 +332,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSolicitar;
         private System.Windows.Forms.Button btnCancelarDia;
-        private System.Windows.Forms.Button btnRegAtencion;
         private System.Windows.Forms.Button button5;
     }
 }

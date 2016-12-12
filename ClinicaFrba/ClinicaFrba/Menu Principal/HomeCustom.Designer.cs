@@ -46,7 +46,6 @@
             this.btnRestituir = new System.Windows.Forms.Button();
             this.btnBajaAfil = new System.Windows.Forms.Button();
             this.btnCancelarDia = new System.Windows.Forms.Button();
-            this.btnRegAtencion = new System.Windows.Forms.Button();
             this.lblRolActual = new System.Windows.Forms.Label();
             this.txtRolActual = new System.Windows.Forms.TextBox();
             this.btnRegistrar = new System.Windows.Forms.Button();
@@ -256,18 +255,6 @@
             this.btnCancelarDia.Visible = false;
             this.btnCancelarDia.Click += new System.EventHandler(this.btnCancelarDia_Click);
             // 
-            // btnRegAtencion
-            // 
-            this.btnRegAtencion.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnRegAtencion.Location = new System.Drawing.Point(315, 117);
-            this.btnRegAtencion.Name = "btnRegAtencion";
-            this.btnRegAtencion.Size = new System.Drawing.Size(136, 23);
-            this.btnRegAtencion.TabIndex = 43;
-            this.btnRegAtencion.Text = "Registrar Atencion";
-            this.btnRegAtencion.UseVisualStyleBackColor = true;
-            this.btnRegAtencion.Visible = false;
-            this.btnRegAtencion.Click += new System.EventHandler(this.btnRegAtencion_Click);
-            // 
             // lblRolActual
             // 
             this.lblRolActual.AutoSize = true;
@@ -303,7 +290,7 @@
             // button3
             // 
             this.button3.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button3.Location = new System.Drawing.Point(315, 88);
+            this.button3.Location = new System.Drawing.Point(316, 117);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(136, 23);
             this.button3.TabIndex = 78;
@@ -323,7 +310,6 @@
             this.Controls.Add(this.txtRolActual);
             this.Controls.Add(this.lblRolActual);
             this.Controls.Add(this.btnCancelarDia);
-            this.Controls.Add(this.btnRegAtencion);
             this.Controls.Add(this.btnModifAfil);
             this.Controls.Add(this.btnRestituir);
             this.Controls.Add(this.btnBajaAfil);
@@ -370,7 +356,6 @@
         private System.Windows.Forms.Button btnRestituir;
         private System.Windows.Forms.Button btnBajaAfil;
         private System.Windows.Forms.Button btnCancelarDia;
-        private System.Windows.Forms.Button btnRegAtencion;
         private System.Windows.Forms.Label lblRolActual;
         private System.Windows.Forms.TextBox txtRolActual;
         private System.Windows.Forms.Button btnRegistrar;

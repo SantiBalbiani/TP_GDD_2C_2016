@@ -35,7 +35,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.btnRegAtencion = new System.Windows.Forms.Button();
             this.btnModifAfil = new System.Windows.Forms.Button();
             this.btnRestituir = new System.Windows.Forms.Button();
             this.btnBajaAfil = new System.Windows.Forms.Button();
@@ -135,18 +134,6 @@
             this.button3.Text = "Crear Agenda";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // btnRegAtencion
-            // 
-            this.btnRegAtencion.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnRegAtencion.Location = new System.Drawing.Point(442, 163);
-            this.btnRegAtencion.Name = "btnRegAtencion";
-            this.btnRegAtencion.Size = new System.Drawing.Size(136, 23);
-            this.btnRegAtencion.TabIndex = 73;
-            this.btnRegAtencion.Text = "Registrar Atencion";
-            this.btnRegAtencion.UseVisualStyleBackColor = true;
-            this.btnRegAtencion.Visible = false;
-            this.btnRegAtencion.Click += new System.EventHandler(this.btnRegAtencion_Click);
             // 
             // btnModifAfil
             // 
@@ -299,7 +286,6 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.wiki_doctor;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(594, 328);
-            this.Controls.Add(this.btnRegAtencion);
             this.Controls.Add(this.btnModifAfil);
             this.Controls.Add(this.btnRestituir);
             this.Controls.Add(this.btnBajaAfil);
@@ -339,7 +325,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button btnRegAtencion;
         private System.Windows.Forms.Button btnModifAfil;
         private System.Windows.Forms.Button btnRestituir;
         private System.Windows.Forms.Button btnBajaAfil;
