@@ -39,12 +39,12 @@
             this.cbmPlanMed = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rBtnAnual = new System.Windows.Forms.RadioButton();
-            this.rBtnSemestre = new System.Windows.Forms.RadioButton();
-            this.rBtnMes = new System.Windows.Forms.RadioButton();
-            this.lblPeriodo = new System.Windows.Forms.Label();
-            this.lblFiltroAnio = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cmbsemestre = new System.Windows.Forms.ComboBox();
+            this.cmbmes = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txboxanio = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -167,71 +167,59 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
-            // rBtnAnual
+            // cmbsemestre
             // 
-            this.rBtnAnual.AutoSize = true;
-            this.rBtnAnual.ForeColor = System.Drawing.Color.White;
-            this.rBtnAnual.Location = new System.Drawing.Point(457, 103);
-            this.rBtnAnual.Name = "rBtnAnual";
-            this.rBtnAnual.Size = new System.Drawing.Size(62, 17);
-            this.rBtnAnual.TabIndex = 11;
-            this.rBtnAnual.TabStop = true;
-            this.rBtnAnual.Text = "Por año";
-            this.rBtnAnual.UseVisualStyleBackColor = true;
+            this.cmbsemestre.FormattingEnabled = true;
+            this.cmbsemestre.Location = new System.Drawing.Point(460, 93);
+            this.cmbsemestre.Name = "cmbsemestre";
+            this.cmbsemestre.Size = new System.Drawing.Size(103, 21);
+            this.cmbsemestre.TabIndex = 12;
+            this.cmbsemestre.SelectedIndexChanged += new System.EventHandler(this.cmbsemestre_SelectedIndexChanged);
             // 
-            // rBtnSemestre
+            // cmbmes
             // 
-            this.rBtnSemestre.AutoSize = true;
-            this.rBtnSemestre.ForeColor = System.Drawing.Color.White;
-            this.rBtnSemestre.Location = new System.Drawing.Point(525, 103);
-            this.rBtnSemestre.Name = "rBtnSemestre";
-            this.rBtnSemestre.Size = new System.Drawing.Size(88, 17);
-            this.rBtnSemestre.TabIndex = 12;
-            this.rBtnSemestre.TabStop = true;
-            this.rBtnSemestre.Text = "Por Semestre";
-            this.rBtnSemestre.UseVisualStyleBackColor = true;
+            this.cmbmes.FormattingEnabled = true;
+            this.cmbmes.Location = new System.Drawing.Point(576, 93);
+            this.cmbmes.Name = "cmbmes";
+            this.cmbmes.Size = new System.Drawing.Size(102, 21);
+            this.cmbmes.TabIndex = 13;
             // 
-            // rBtnMes
+            // label2
             // 
-            this.rBtnMes.AutoSize = true;
-            this.rBtnMes.ForeColor = System.Drawing.Color.White;
-            this.rBtnMes.Location = new System.Drawing.Point(619, 103);
-            this.rBtnMes.Name = "rBtnMes";
-            this.rBtnMes.Size = new System.Drawing.Size(64, 17);
-            this.rBtnMes.TabIndex = 13;
-            this.rBtnMes.TabStop = true;
-            this.rBtnMes.Text = "Por Mes";
-            this.rBtnMes.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(345, 74);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Año:";
             // 
-            // lblPeriodo
+            // label3
             // 
-            this.lblPeriodo.AutoSize = true;
-            this.lblPeriodo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPeriodo.ForeColor = System.Drawing.Color.White;
-            this.lblPeriodo.Location = new System.Drawing.Point(341, 103);
-            this.lblPeriodo.Name = "lblPeriodo";
-            this.lblPeriodo.Size = new System.Drawing.Size(117, 15);
-            this.lblPeriodo.TabIndex = 14;
-            this.lblPeriodo.Text = "Seleccione Período:";
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Location = new System.Drawing.Point(460, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Semestre:";
             // 
-            // lblFiltroAnio
+            // label4
             // 
-            this.lblFiltroAnio.AutoSize = true;
-            this.lblFiltroAnio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFiltroAnio.ForeColor = System.Drawing.Color.White;
-            this.lblFiltroAnio.Location = new System.Drawing.Point(342, 77);
-            this.lblFiltroAnio.Name = "lblFiltroAnio";
-            this.lblFiltroAnio.Size = new System.Drawing.Size(109, 15);
-            this.lblFiltroAnio.TabIndex = 15;
-            this.lblFiltroAnio.Text = "Ingrese Año (yyyy) :\r\n";
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label4.Location = new System.Drawing.Point(574, 74);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(30, 13);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Mes:";
             // 
-            // textBox1
+            // txboxanio
             // 
-            this.textBox1.Location = new System.Drawing.Point(457, 76);
-            this.textBox1.MaxLength = 4;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(67, 20);
-            this.textBox1.TabIndex = 16;
+            this.txboxanio.Location = new System.Drawing.Point(345, 93);
+            this.txboxanio.Name = "txboxanio";
+            this.txboxanio.Size = new System.Drawing.Size(100, 20);
+            this.txboxanio.TabIndex = 17;
             // 
             // ListadoEstadistico
             // 
@@ -239,12 +227,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(723, 306);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.lblFiltroAnio);
-            this.Controls.Add(this.lblPeriodo);
-            this.Controls.Add(this.rBtnMes);
-            this.Controls.Add(this.rBtnSemestre);
-            this.Controls.Add(this.rBtnAnual);
+            this.Controls.Add(this.txboxanio);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cmbmes);
+            this.Controls.Add(this.cmbsemestre);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label1);
@@ -275,11 +263,11 @@
         private System.Windows.Forms.ComboBox cbmPlanMed;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton rBtnAnual;
-        private System.Windows.Forms.RadioButton rBtnSemestre;
-        private System.Windows.Forms.RadioButton rBtnMes;
-        private System.Windows.Forms.Label lblPeriodo;
-        private System.Windows.Forms.Label lblFiltroAnio;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cmbsemestre;
+        private System.Windows.Forms.ComboBox cmbmes;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txboxanio;
     }
 }

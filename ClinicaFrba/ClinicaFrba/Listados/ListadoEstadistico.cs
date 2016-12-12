@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ClinicaFrba.Base_de_Datos;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace ClinicaFrba.Listados
 {
@@ -32,6 +33,70 @@ namespace ClinicaFrba.Listados
             this.Close();
 
         }
+
+            public static DateTime[] obtenerFechas(string anio, string semestre, bool mensual, string nroMes)
+    {
+        DateTime[] fechas = new DateTime[2];
+        DateTime fechaDesde = new DateTime();
+        DateTime fechaHasta = new DateTime();
+        string strDesde;
+        string strHasta;
+        if (mensual)
+        {
+            strDesde = "01/"+nroMes+"/"+anio;
+            fechaDesde = Convert.ToDateTime(strDesde);
+            int ultimoDiaDelMes = DateTime.DaysInMonth((Convert.ToInt32(anio)),(Convert.ToInt32(nroMes)));
+            strHasta = ultimoDiaDelMes.ToString() + "/"+nroMes+"/"+anio;
+            fechaHasta = Convert.ToDateTime(strHasta);
+            
+            fechas[0] = fechaDesde;
+            fechas[1] = fechaHasta;
+            
+            return fechas;
+            
+        }else{
+                switch (semestre)
+                {
+                    
+                    case "0"://Eligió anual
+                    strDesde = "01/01/" + anio;
+                    strHasta = "12/12/" + anio;
+                    
+                    fechaDesde = Convert.ToDateTime(strDesde);    
+                    fechaHasta = Convert.ToDateTime(strHasta);
+                    
+                    fechas[0] = fechaDesde;
+                    fechas[1] = fechaHasta;
+                    
+                    
+                    return fechas;
+                    break;
+                    
+                    case "1"://Eligió el primer semestre
+                    strDesde = "01/01/" + anio;
+                    fechaDesde = Convert.ToDateTime(strDesde);    
+                    fechaHasta = fechaDesde.AddMonths(6);
+                    fechas[0] = fechaDesde;
+                    fechas[1] = fechaHasta;
+                    break;
+                    
+                    case "2"://Eligió el segundo semestre
+                    strDesde = "01/01/" + anio;
+                    fechaDesde = Convert.ToDateTime(strDesde);    
+                    fechaDesde = fechaDesde.AddMonths(6);
+                    fechaHasta = fechaDesde.AddMonths(6);
+                    fechas[0] = fechaDesde;
+                    fechas[1] = fechaHasta;
+                    return fechas;
+                    break;
+                
+                    default:
+                    return fechas;
+                }
+            }
+        return fechas;
+    }
+
 
         private void btnCancelaciones_Click(object sender, EventArgs e)
         {
@@ -178,7 +243,29 @@ namespace ClinicaFrba.Listados
 
         private void ListadoEstadistico_Load(object sender, EventArgs e)
         {
-           //Cargo Planes Medicos
+
+            string primerSemestre = "1";
+            string segundoSemestre = "2";
+            string todos = "todos";
+
+            cmbsemestre.Items.Add(primerSemestre);
+            cmbsemestre.Items.Add(segundoSemestre);
+            cmbsemestre.Items.Add(todos);
+
+            cmbmes.Items.Add(todos);
+
+            for (int i = 1; i != 12; i++)
+            {
+                string mes = DateTimeFormatInfo.CurrentInfo.GetMonthName(i);
+                
+                cmbmes.Items.Add(mes);
+            }
+
+
+
+
+            
+            //Cargo Planes Medicos
             cbmPlanMed.Visible = true;
             comboBox1.Visible = true;
             Conexion.conectar();
@@ -312,6 +399,11 @@ namespace ClinicaFrba.Listados
             }
             Conexion.conexion.Close();
             //Finalizo consulta
+        }
+
+        private void cmbsemestre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
 
