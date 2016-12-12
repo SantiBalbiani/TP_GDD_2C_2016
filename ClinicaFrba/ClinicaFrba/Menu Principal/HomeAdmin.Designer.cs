@@ -49,12 +49,13 @@
             this.btnCancelarDia = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.txtAfiliado = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnAltaAfiliado
             // 
             this.btnAltaAfiliado.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnAltaAfiliado.Location = new System.Drawing.Point(304, 217);
+            this.btnAltaAfiliado.Location = new System.Drawing.Point(304, 224);
             this.btnAltaAfiliado.Name = "btnAltaAfiliado";
             this.btnAltaAfiliado.Size = new System.Drawing.Size(136, 23);
             this.btnAltaAfiliado.TabIndex = 11;
@@ -65,7 +66,7 @@
             // btnRegistrarLlegada
             // 
             this.btnRegistrarLlegada.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnRegistrarLlegada.Location = new System.Drawing.Point(304, 148);
+            this.btnRegistrarLlegada.Location = new System.Drawing.Point(446, 161);
             this.btnRegistrarLlegada.Name = "btnRegistrarLlegada";
             this.btnRegistrarLlegada.Size = new System.Drawing.Size(136, 23);
             this.btnRegistrarLlegada.TabIndex = 14;
@@ -188,7 +189,7 @@
             // button2
             // 
             this.button2.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button2.Location = new System.Drawing.Point(446, 217);
+            this.button2.Location = new System.Drawing.Point(446, 224);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(136, 23);
             this.button2.TabIndex = 26;
@@ -199,7 +200,7 @@
             // button3
             // 
             this.button3.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button3.Location = new System.Drawing.Point(446, 246);
+            this.button3.Location = new System.Drawing.Point(446, 253);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(136, 23);
             this.button3.TabIndex = 27;
@@ -210,7 +211,7 @@
             // button4
             // 
             this.button4.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button4.Location = new System.Drawing.Point(304, 246);
+            this.button4.Location = new System.Drawing.Point(304, 253);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(136, 23);
             this.button4.TabIndex = 28;
@@ -233,7 +234,7 @@
             // btnCancelar
             // 
             this.btnCancelar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnCancelar.Location = new System.Drawing.Point(304, 177);
+            this.btnCancelar.Location = new System.Drawing.Point(304, 190);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(136, 23);
             this.btnCancelar.TabIndex = 78;
@@ -245,7 +246,7 @@
             // btnSolicitar
             // 
             this.btnSolicitar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnSolicitar.Location = new System.Drawing.Point(446, 148);
+            this.btnSolicitar.Location = new System.Drawing.Point(446, 190);
             this.btnSolicitar.Name = "btnSolicitar";
             this.btnSolicitar.Size = new System.Drawing.Size(136, 23);
             this.btnSolicitar.TabIndex = 77;
@@ -280,10 +281,22 @@
             // 
             // txtAfiliado
             // 
-            this.txtAfiliado.Location = new System.Drawing.Point(446, 177);
+            this.txtAfiliado.Location = new System.Drawing.Point(446, 139);
             this.txtAfiliado.Name = "txtAfiliado";
-            this.txtAfiliado.Size = new System.Drawing.Size(134, 20);
+            this.txtAfiliado.Size = new System.Drawing.Size(136, 20);
             this.txtAfiliado.TabIndex = 83;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(305, 142);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(137, 13);
+            this.label2.TabIndex = 84;
+            this.label2.Text = "Ingrese Numero de Afiliado:\r\n";
+            this.label2.Visible = false;
             // 
             // HomeAdmin
             // 
@@ -293,6 +306,7 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.clinica_la_arruzafa_doctores;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtAfiliado);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.btnCancelarDia);
@@ -347,5 +361,6 @@
         private System.Windows.Forms.Button btnCancelarDia;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox txtAfiliado;
+        private System.Windows.Forms.Label label2;
     }
 }
