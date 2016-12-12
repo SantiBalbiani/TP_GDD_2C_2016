@@ -113,6 +113,7 @@
             this.button2.TabIndex = 12;
             this.button2.Text = "Cancelar Día";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnCerrar
@@ -206,7 +207,7 @@
             // btnCambiarPlan
             // 
             this.btnCambiarPlan.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnCambiarPlan.Location = new System.Drawing.Point(157, 162);
+            this.btnCambiarPlan.Location = new System.Drawing.Point(442, 105);
             this.btnCambiarPlan.Name = "btnCambiarPlan";
             this.btnCambiarPlan.Size = new System.Drawing.Size(136, 23);
             this.btnCambiarPlan.TabIndex = 68;
@@ -251,7 +252,7 @@
             // button4
             // 
             this.button4.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button4.Location = new System.Drawing.Point(157, 133);
+            this.button4.Location = new System.Drawing.Point(158, 163);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(136, 23);
             this.button4.TabIndex = 64;
@@ -262,7 +263,7 @@
             // button5
             // 
             this.button5.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button5.Location = new System.Drawing.Point(12, 133);
+            this.button5.Location = new System.Drawing.Point(16, 163);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(136, 23);
             this.button5.TabIndex = 63;
@@ -276,7 +277,7 @@
             this.lblBonos.BackColor = System.Drawing.Color.MidnightBlue;
             this.lblBonos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBonos.ForeColor = System.Drawing.Color.White;
-            this.lblBonos.Location = new System.Drawing.Point(9, 110);
+            this.lblBonos.Location = new System.Drawing.Point(13, 110);
             this.lblBonos.Name = "lblBonos";
             this.lblBonos.Size = new System.Drawing.Size(111, 13);
             this.lblBonos.TabIndex = 62;
@@ -285,18 +286,18 @@
             // 
             // txtBonosDisponibles
             // 
-            this.txtBonosDisponibles.Location = new System.Drawing.Point(117, 107);
+            this.txtBonosDisponibles.Location = new System.Drawing.Point(130, 105);
             this.txtBonosDisponibles.Name = "txtBonosDisponibles";
-            this.txtBonosDisponibles.Size = new System.Drawing.Size(51, 20);
+            this.txtBonosDisponibles.Size = new System.Drawing.Size(75, 20);
             this.txtBonosDisponibles.TabIndex = 61;
             this.txtBonosDisponibles.Visible = false;
             // 
             // btnComprar
             // 
             this.btnComprar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnComprar.Location = new System.Drawing.Point(171, 105);
+            this.btnComprar.Location = new System.Drawing.Point(16, 134);
             this.btnComprar.Name = "btnComprar";
-            this.btnComprar.Size = new System.Drawing.Size(122, 23);
+            this.btnComprar.Size = new System.Drawing.Size(136, 23);
             this.btnComprar.TabIndex = 60;
             this.btnComprar.Text = "Comprar Bono";
             this.btnComprar.UseVisualStyleBackColor = true;

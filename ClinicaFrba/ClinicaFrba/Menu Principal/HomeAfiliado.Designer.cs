@@ -69,7 +69,7 @@
             this.btnComprar.ForeColor = System.Drawing.Color.MidnightBlue;
             this.btnComprar.Location = new System.Drawing.Point(169, 56);
             this.btnComprar.Name = "btnComprar";
-            this.btnComprar.Size = new System.Drawing.Size(122, 23);
+            this.btnComprar.Size = new System.Drawing.Size(121, 23);
             this.btnComprar.TabIndex = 2;
             this.btnComprar.Text = "Comprar Bono";
             this.btnComprar.UseVisualStyleBackColor = true;
@@ -290,6 +290,7 @@
             this.button3.TabIndex = 77;
             this.button3.Text = "Crear Agenda";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             // 
             // HomeAfiliado
             // 
