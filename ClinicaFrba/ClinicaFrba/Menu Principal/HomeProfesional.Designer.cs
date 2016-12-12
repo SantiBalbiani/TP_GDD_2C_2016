@@ -49,6 +49,7 @@
             this.txtBonosDisponibles = new System.Windows.Forms.TextBox();
             this.btnComprar = new System.Windows.Forms.Button();
             this.txtAfiliado = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label3
@@ -146,6 +147,7 @@
             this.btnModifAfil.Text = "Modificar Afiliado";
             this.btnModifAfil.UseVisualStyleBackColor = true;
             this.btnModifAfil.Visible = false;
+            this.btnModifAfil.Click += new System.EventHandler(this.btnModifAfil_Click);
             // 
             // btnRestituir
             // 
@@ -157,6 +159,7 @@
             this.btnRestituir.Text = "Restituir Afiliado";
             this.btnRestituir.UseVisualStyleBackColor = true;
             this.btnRestituir.Visible = false;
+            this.btnRestituir.Click += new System.EventHandler(this.btnRestituir_Click);
             // 
             // btnBajaAfil
             // 
@@ -168,6 +171,7 @@
             this.btnBajaAfil.Text = "Baja Afiliado";
             this.btnBajaAfil.UseVisualStyleBackColor = true;
             this.btnBajaAfil.Visible = false;
+            this.btnBajaAfil.Click += new System.EventHandler(this.btnBajaAfil_Click);
             // 
             // btnEstadisticas
             // 
@@ -179,6 +183,7 @@
             this.btnEstadisticas.Text = "Ver Estadisticas";
             this.btnEstadisticas.UseVisualStyleBackColor = true;
             this.btnEstadisticas.Visible = false;
+            this.btnEstadisticas.Click += new System.EventHandler(this.btnEstadisticas_Click);
             // 
             // btnCambiarPlan
             // 
@@ -226,11 +231,12 @@
             this.btnAltaAfiliado.Text = "Alta Nuevo Afiliado";
             this.btnAltaAfiliado.UseVisualStyleBackColor = true;
             this.btnAltaAfiliado.Visible = false;
+            this.btnAltaAfiliado.Click += new System.EventHandler(this.btnAltaAfiliado_Click);
             // 
             // button4
             // 
             this.button4.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button4.Location = new System.Drawing.Point(158, 163);
+            this.button4.Location = new System.Drawing.Point(157, 192);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(136, 23);
             this.button4.TabIndex = 64;
@@ -242,7 +248,7 @@
             // button5
             // 
             this.button5.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button5.Location = new System.Drawing.Point(16, 163);
+            this.button5.Location = new System.Drawing.Point(15, 192);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(136, 23);
             this.button5.TabIndex = 63;
@@ -275,7 +281,7 @@
             // btnComprar
             // 
             this.btnComprar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnComprar.Location = new System.Drawing.Point(16, 134);
+            this.btnComprar.Location = new System.Drawing.Point(15, 163);
             this.btnComprar.Name = "btnComprar";
             this.btnComprar.Size = new System.Drawing.Size(136, 23);
             this.btnComprar.TabIndex = 60;
@@ -291,6 +297,18 @@
             this.txtAfiliado.Size = new System.Drawing.Size(134, 20);
             this.txtAfiliado.TabIndex = 73;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(12, 139);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(137, 13);
+            this.label4.TabIndex = 74;
+            this.label4.Text = "Ingrese Numero de Afiliado:\r\n";
+            this.label4.Visible = false;
+            // 
             // HomeProfesional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,6 +316,7 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.wiki_doctor;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.txtAfiliado);
             this.Controls.Add(this.btnModifAfil);
             this.Controls.Add(this.btnRestituir);
@@ -352,6 +371,7 @@
         private System.Windows.Forms.TextBox txtBonosDisponibles;
         private System.Windows.Forms.Button btnComprar;
         private System.Windows.Forms.TextBox txtAfiliado;
+        private System.Windows.Forms.Label label4;
      
     }
 }

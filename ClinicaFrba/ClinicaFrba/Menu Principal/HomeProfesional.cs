@@ -11,6 +11,7 @@ using ClinicaFrba.Registro_Resultado;
 using ClinicaFrba.Base_de_Datos;
 using System.Configuration;
 using System.Data.SqlClient;
+using ClinicaFrba.Compra_Bono;
 
 namespace ClinicaFrba.Menu_Principal
 {
@@ -206,12 +207,54 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-           
+            if (String.IsNullOrEmpty(txtAfiliado.Text.ToString()))
+            {
+                MessageBox.Show("Por favor complete el nro de Afiliado");
+            }
+            else
+            {
+                string consultaUsername = "SELECT U.nombreUsuario FROM Select_Group.Usuario U JOIN Select_Group.Afiliado A ON A.idUsuario = U.idUsuario WHERE A.nroAfiliado = " + txtAfiliado.Text.ToString().Trim();
+                DataTable unUserName = new DataTable();
+                Conexion.conectar();
+                try
+                {
+
+                    unUserName = Conexion.LeerTabla(consultaUsername);
+
+                    foreach (DataRow unUserN in unUserName.Rows)
+                    {
+                        Globals.userName = unUserN["nombreUsuario"].ToString();
+
+                    }
+
+
+                }
+
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    Conexion.conexion.Close();
+
+                    FrmComprarBonos frmCompra = new FrmComprarBonos();
+                    //frmCompra.menuAnterior = "Custom";
+                    frmCompra.Home = this;
+                    frmCompra.Show();
+                    this.Hide();
+
+
+                }
+            }
         }
 
         private void btnRegistrarLlegada_Click(object sender, EventArgs e)
         {
-
+            Registro_Llegada.Llegada frmRegistrar = new Registro_Llegada.Llegada();
+            frmRegistrar.Home = this;
+            frmRegistrar.Show();
+            this.Hide();
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
@@ -273,6 +316,48 @@ namespace ClinicaFrba.Menu_Principal
                 frmCambiarPlan.Show();
                 this.Hide();
             }
+        }
+
+        private void btnEstadisticas_Click(object sender, EventArgs e)
+        {
+            Listados.ListadoEstadistico frmListados = new Listados.ListadoEstadistico("Custom");
+            //frmListados.menuAnterior = "Custom";
+            frmListados.Home = this;
+            frmListados.Show();
+            this.Hide();
+        }
+
+        private void btnAltaAfiliado_Click(object sender, EventArgs e)
+        {
+            Abm_Afiliado.frmAltaAfiliado frmAlta = new Abm_Afiliado.frmAltaAfiliado();
+            frmAlta.menuAnterior = "Custom";
+            frmAlta.Home = this;
+            frmAlta.Show();
+            this.Hide();
+        }
+
+        private void btnModifAfil_Click(object sender, EventArgs e)
+        {
+            Abm_Afiliado.ModificarAfiliado frmMod = new Abm_Afiliado.ModificarAfiliado();
+            frmMod.Home = this;
+            frmMod.Show();
+            this.Hide();
+        }
+
+        private void btnBajaAfil_Click(object sender, EventArgs e)
+        {
+            Abm_Afiliado.BajaAfiliado frmBaja = new Abm_Afiliado.BajaAfiliado();
+            frmBaja.Home = this;
+            frmBaja.Show();
+            this.Hide();
+        }
+
+        private void btnRestituir_Click(object sender, EventArgs e)
+        {
+            Abm_Afiliado.RestituirAfiliado frmRes = new Abm_Afiliado.RestituirAfiliado();
+            frmRes.Home = this;
+            frmRes.Show();
+            this.Hide();
         }
     }
 }
