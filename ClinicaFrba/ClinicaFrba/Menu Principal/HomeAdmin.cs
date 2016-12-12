@@ -218,15 +218,13 @@ namespace ClinicaFrba.Menu_Principal
         
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            //Hacer Funcionalidad
+            MessageBox.Show("Se define fuera del alcance del Rol ya que el Custom no tiene matricula de profesional y turnos Asociados");
         }
 
         private void btnCancelarDia_Click(object sender, EventArgs e)
         {
-           // Cancelar_Atencion.CancelacionProfesional frmCancelarDia = new Cancelar_Atencion.CancelacionProfesional(idProf);
-           // frmCancelarDia.Home = this;
-           // frmCancelarDia.Show();
-           // this.Hide();
+            MessageBox.Show("Se define fuera del alcance del Rol ya que el Administrativo no tiene matricula de profesional");
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
