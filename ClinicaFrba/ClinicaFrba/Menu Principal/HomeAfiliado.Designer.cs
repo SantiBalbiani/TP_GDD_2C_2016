@@ -48,6 +48,7 @@
             this.btnRegistrarLlegada = new System.Windows.Forms.Button();
             this.btnAltaAfiliado = new System.Windows.Forms.Button();
             this.btnRegistrar = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -280,6 +281,16 @@
             this.btnRegistrar.Visible = false;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
+            // button3
+            // 
+            this.button3.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button3.Location = new System.Drawing.Point(445, 68);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(136, 23);
+            this.button3.TabIndex = 77;
+            this.button3.Text = "Crear Agenda";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // HomeAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,6 +298,7 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources._39929033_Sillas_de_colores_y_cinco_relojes_diferentes_en_la_sala_de_espera_Foto_de_archivo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.btnCancelarDia);
             this.Controls.Add(this.btnRegAtencion);
@@ -337,5 +349,6 @@
         private System.Windows.Forms.Button btnRegistrarLlegada;
         private System.Windows.Forms.Button btnAltaAfiliado;
         private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.Button button3;
     }
 }

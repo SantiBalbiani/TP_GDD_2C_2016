@@ -89,6 +89,10 @@ namespace ClinicaFrba
                 {
                     button1.Visible = true;
                 }
+                if (func == "Crear_Agenda")
+                {
+                    button3.Visible = true;
+                }
                 if (func == "Registrar_Diagnostico")
                 {
                     //Falta el boton de registrar diagnostico

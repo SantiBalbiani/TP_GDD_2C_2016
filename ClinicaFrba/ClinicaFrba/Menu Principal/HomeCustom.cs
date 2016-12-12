@@ -237,6 +237,9 @@ namespace ClinicaFrba.Menu_Principal
                     label4.Visible = true;
                     textBox1.Visible = true;
                     btnCambiarPlan.Visible = true;
+                    btnBajaAfil.Visible = true;
+                    btnModifAfil.Visible = true;
+                    btnRestituir.Visible = true;
                 }
                 if (func == "Solicitar_Turno")
                 {

@@ -85,6 +85,62 @@ namespace ClinicaFrba.Menu_Principal
 
         private void HomeProfesional_Load(object sender, EventArgs e)
         {
+            List<string> listaFunc = Globals.listaFuncionalidades;
+            //string mensajeParaNoe = " ";
+            foreach (string func in listaFunc)
+            {
+                //mensajeParaNoe = mensajeParaNoe + " " +func + " ";
+
+                if (func == "Comprar_Bono")
+                {
+                    btnComprar.Visible = true;
+                    lblBonos.Visible = true;
+                    txtBonosDisponibles.Visible = true;
+                }
+                if (func == "Cancelar_Turno")
+                {
+                    button2.Visible = true;
+                }
+                if (func == "Registrar_Llegada")
+                {
+                    btnRegistrarLlegada.Visible = true;
+                }
+                if (func == "ABM_Rol")
+                {
+                    btnAbmRol.Visible = true;
+                }
+                if (func == "Listado_Estadistico")
+                {
+                    btnEstadisticas.Visible = true;
+                }
+                if (func == "Crear_Agenda")
+                {
+                    button3.Visible = true;
+                }
+             
+                if (func == "ABM_Afiliados")
+                {
+                    btnAltaAfiliado.Visible = true;
+                    btnCambiarPlan.Visible = true;
+                }
+                if (func == "Solicitar_Turno")
+                {
+                    button5.Visible = true;
+                }
+                if (func == "Registrar_Diagnostico")
+                {
+                    button1.Visible = true;
+                }
+                if (func == "Cancelar_Agenda")
+                {
+                    btnCancelarDia.Visible = true;
+                }
+
+            }
+            
+            
+            
+            
             string queryDatosProf = "SELECT matricula ,nombre ,apellido FROM Select_Group.Profesional P JOIN Select_Group.Usuario U ON U.idUsuario = P.idUsuario AND U.nombreUsuario = '" + Globals.userName + "'";
 
             DataTable datosProf = new DataTable();
@@ -163,6 +219,11 @@ namespace ClinicaFrba.Menu_Principal
             //frmDiagnos.Home = this;
             // frmDiagnos.Show();
             //this.Hide();
+
+        }
+
+        private void btnCancelarDia_Click(object sender, EventArgs e)
+        {
 
         }
     }

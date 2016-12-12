@@ -50,7 +50,6 @@
             this.lblBonos = new System.Windows.Forms.Label();
             this.txtBonosDisponibles = new System.Windows.Forms.TextBox();
             this.btnComprar = new System.Windows.Forms.Button();
-            this.btnRegistrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -101,7 +100,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(145, 23);
             this.button1.TabIndex = 11;
-            this.button1.Text = "Registrar Atencion";
+            this.button1.Text = "Registrar Diagnostico";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -147,6 +146,7 @@
             this.btnCancelarDia.Text = "Cancelar Día";
             this.btnCancelarDia.UseVisualStyleBackColor = true;
             this.btnCancelarDia.Visible = false;
+            this.btnCancelarDia.Click += new System.EventHandler(this.btnCancelarDia_Click);
             // 
             // btnRegAtencion
             // 
@@ -303,18 +303,6 @@
             this.btnComprar.Visible = false;
             this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
             // 
-            // btnRegistrar
-            // 
-            this.btnRegistrar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnRegistrar.Location = new System.Drawing.Point(441, 104);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(136, 23);
-            this.btnRegistrar.TabIndex = 75;
-            this.btnRegistrar.Text = "Registrar Diagnostico";
-            this.btnRegistrar.UseVisualStyleBackColor = true;
-            this.btnRegistrar.Visible = false;
-            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
-            // 
             // HomeProfesional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -322,7 +310,6 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.wiki_doctor;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(594, 328);
-            this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.btnCancelarDia);
             this.Controls.Add(this.btnRegAtencion);
             this.Controls.Add(this.btnModifAfil);
@@ -379,7 +366,6 @@
         private System.Windows.Forms.Label lblBonos;
         private System.Windows.Forms.TextBox txtBonosDisponibles;
         private System.Windows.Forms.Button btnComprar;
-        private System.Windows.Forms.Button btnRegistrar;
      
     }
 }
