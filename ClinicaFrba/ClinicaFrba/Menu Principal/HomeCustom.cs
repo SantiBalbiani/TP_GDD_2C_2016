@@ -386,10 +386,8 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnCancelarDia_Click(object sender, EventArgs e)
         {
-            //Cancelar_Atencion.CancelacionProfesional frmCancelarDia = new Cancelar_Atencion.CancelacionProfesional(idProf);
-            //frmCancelarDia.Home = this;
-            //frmCancelarDia.Show();
-            //this.Hide();
+            MessageBox.Show("Se define fuera del alcance del Rol ya que el Custom no tiene matricula de profesional");
+            
         }
 
         private void btnModifAfil_Click(object sender, EventArgs e)
@@ -429,11 +427,8 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            //Registro_Resultado.RegistroResultado frmDiagnos = new Registro_Resultado.RegistroResultado();
-            //frmDiagnos.Home = this;
-           // frmDiagnos.Show();
-            //this.Hide();
-
+            MessageBox.Show("Se define fuera del alcance del Rol ya que el Custom no tiene matricula de profesional y turnos Asociados");
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
