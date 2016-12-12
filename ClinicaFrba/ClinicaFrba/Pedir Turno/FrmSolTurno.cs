@@ -24,6 +24,31 @@ namespace ClinicaFrba.Pedir_Turno
             InitializeComponent();
         }
 
+        public static double horasTrabajadas(int matricula, DateTime fechaElegida)
+        {
+            
+            
+            int diaSem = (int)fechaElegida.DayOfWeek;
+            DateTime comienzoSemana = fechaElegida.AddDays(-diaSem);
+            DateTime finSemana = comienzoSemana.AddDays(6);
+            double cantHoras = 0;
+            DataTable horasT = new DataTable();
+            Globals.getFechaActual().ToString("MM/dd/yyyy HH:mm");
+            Conexion.conectar();
+            string consHorasT = "SELECT ((count(*)*30)/60) AS 'cantidadHoras' FROM [SELECT_GROUP].[Agenda] A JOIN Select_Group.Agenda_Detalle D ON D.idAgenda = A.idAgenda WHERE A.profesional_idProfesional = 1000 AND D.estaCancelado = 0 AND D.fecha_Hora_Turno BETWEEN '" + comienzoSemana.ToString("MM/dd/yyyy HH:mm") + "' AND '" + finSemana.ToString("MM/dd/yyyy HH:mm") + "'";
+            horasT = Conexion.LeerTabla(consHorasT);
+
+            foreach (DataRow unaCantHora in horasT.Rows) 
+            {
+                cantHoras = Convert.ToDouble(unaCantHora["cantidadHoras"].ToString());
+            }
+
+            
+
+            return cantHoras;
+
+        }
+
         private static bool esMenor(TimeSpan horarioTurno) 
         {
             TimeSpan horaActual = Globals.getFechaActual().TimeOfDay;
@@ -103,7 +128,7 @@ namespace ClinicaFrba.Pedir_Turno
                     DataTable turnosTomados = new DataTable();
                     string fechaTurnoSinHoraElegida = fechaElegida.Date.ToString("yyyyMMdd");
 
-                    string queryTurnosTomados = "SELECT fecha_Hora_Turno FROM Select_Group.Agenda_Detalle WHERE CAST(fecha_Hora_Turno AS date) = " + "'" + fechaTurnoSinHoraElegida + "'" + " AND idAgenda = " + idAgenda + " AND estaCancelado = 0";
+                    string queryTurnosTomados = "SELECT fecha_Hora_Turno FROM Select_Group.Agenda_Detalle WHERE CAST(fecha_Hora_Turno AS date) = " + "'" + fechaTurnoSinHoraElegida + "'" + " AND idAgenda = " + idAgenda ;
 
                     turnosTomados = Conexion.LeerTabla(queryTurnosTomados);
 
@@ -261,41 +286,58 @@ namespace ClinicaFrba.Pedir_Turno
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-            SqlCommand cmdUsuario = new SqlCommand("Select_Group.sp_Reservar_Turno", cnx);
-            cmdUsuario.CommandType = CommandType.StoredProcedure;
 
-            DateTime turnoAReservar = monthCalendar1.SelectionEnd;
-            string strHoraElegida = listView1.SelectedItems[0].Text.ToString();
-            TimeSpan horaElegida = TimeSpan.Parse(strHoraElegida);
+            ComboboxItem profElected = new ComboboxItem();
+            profElected = (ComboboxItem)comboBox3.SelectedItem;
+            DateTime fechaSelected = monthCalendar1.SelectionEnd;
+            double cantHoras = horasTrabajadas(Convert.ToInt32(profElected.Value), fechaSelected);
 
-            turnoAReservar = turnoAReservar.Date + horaElegida;
-
-            cmdUsuario.Parameters.Add("@fechaHoraTurno", SqlDbType.DateTime).Value = turnoAReservar;
-            cmdUsuario.Parameters.Add("@idAgenda", SqlDbType.Int).Value = idAgenda;
-            cmdUsuario.Parameters.Add("@userName", SqlDbType.VarChar).Value = Globals.userName;
-
-            Object unItemEspecialidad = comboBox1.SelectedItem;
-            ComboboxItem itemEspecialidad = (ComboboxItem)unItemEspecialidad;
-            cmdUsuario.Parameters.Add("@especialidad", SqlDbType.Int).Value = itemEspecialidad.Value;
-            try
+            if (cantHoras < 48)
             {
 
-                cnx.Open();
-                cmdUsuario.ExecuteNonQuery();
+
+
+
+                SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+                SqlCommand cmdUsuario = new SqlCommand("Select_Group.sp_Reservar_Turno", cnx);
+                cmdUsuario.CommandType = CommandType.StoredProcedure;
+
+                DateTime turnoAReservar = monthCalendar1.SelectionEnd;
+                string strHoraElegida = listView1.SelectedItems[0].Text.ToString();
+                TimeSpan horaElegida = TimeSpan.Parse(strHoraElegida);
+
+                turnoAReservar = turnoAReservar.Date + horaElegida;
+
+                cmdUsuario.Parameters.Add("@fechaHoraTurno", SqlDbType.DateTime).Value = turnoAReservar;
+                cmdUsuario.Parameters.Add("@idAgenda", SqlDbType.Int).Value = idAgenda;
+                cmdUsuario.Parameters.Add("@userName", SqlDbType.VarChar).Value = Globals.userName;
+
+                Object unItemEspecialidad = comboBox1.SelectedItem;
+                ComboboxItem itemEspecialidad = (ComboboxItem)unItemEspecialidad;
+                cmdUsuario.Parameters.Add("@especialidad", SqlDbType.Int).Value = itemEspecialidad.Value;
+                try
+                {
+
+                    cnx.Open();
+                    cmdUsuario.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    cnx.Close();
+                    string profesional = comboBox3.SelectedText;
+                    MessageBox.Show("Turno Agendado con el Dr. " + comboBox3.SelectedItem.ToString() + " para el " + turnoAReservar.ToString() + " con éxito!");
+                    this.Close();
+                    //HomeAfiliado frmHome = new HomeAfiliado();
+                    Home.Show();
+                }
             }
-            catch (SqlException ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                cnx.Close();
-                string profesional = comboBox3.SelectedText;
-                MessageBox.Show("Turno Agendado con el Dr. "+ comboBox3.SelectedItem.ToString() +" para el "+turnoAReservar.ToString()+" con éxito!");
-                this.Close();
-                //HomeAfiliado frmHome = new HomeAfiliado();
-                Home.Show();
+                MessageBox.Show("El Profesional ya ha alcanzado su disponibilidad de 48 hs. Por favor elija otro profesional y otra semana");
             }
         }
 
