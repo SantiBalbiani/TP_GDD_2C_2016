@@ -286,6 +286,8 @@ namespace ClinicaFrba.Abm_Afiliado
             this.textDni.Size = new System.Drawing.Size(130, 20);
             this.textDni.TabIndex = 38;
             this.textDni.Validar = true;
+            this.textDni.TextChanged += new System.EventHandler(this.textDni_TextChanged);
+            this.textDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textDni_KeyPress);
             // 
             // textTelefono
             // 
@@ -295,6 +297,8 @@ namespace ClinicaFrba.Abm_Afiliado
             this.textTelefono.Size = new System.Drawing.Size(130, 20);
             this.textTelefono.TabIndex = 39;
             this.textTelefono.Validar = true;
+            this.textTelefono.TextChanged += new System.EventHandler(this.textTelefono_TextChanged);
+            this.textTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textTelefono_KeyPress);
             // 
             // textMail
             // 
