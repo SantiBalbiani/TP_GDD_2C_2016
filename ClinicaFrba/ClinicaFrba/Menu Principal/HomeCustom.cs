@@ -245,7 +245,7 @@ namespace ClinicaFrba.Menu_Principal
                 }
                 if (func == "Registrar_Diagnostico")
                 {
-                    //Falta el boton de registrar diagnostico
+                    btnRegistrar.Visible = true;
                 }
                 if (func == "Cancelar_Agenda")
                 {

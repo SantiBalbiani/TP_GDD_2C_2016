@@ -83,7 +83,10 @@ namespace ClinicaFrba
                 if (func == "ABM_Afiliados")
                 {
                     btnAltaAfiliado.Visible = true;
-                    btnCambiarPlan.Visible = true;
+                   btnCambiarPlan.Visible = true;
+                    btnBajaAfil.Visible = true;
+                    btnModifAfil.Visible = true;
+                    btnRestituir.Visible = true;
                 }
                 if (func == "Solicitar_Turno")
                 {

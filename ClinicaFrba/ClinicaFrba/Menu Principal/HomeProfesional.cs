@@ -123,7 +123,12 @@ namespace ClinicaFrba.Menu_Principal
                 if (func == "ABM_Afiliados")
                 {
                     btnAltaAfiliado.Visible = true;
+                    label4.Visible = true;
+                    txtAfiliado.Visible = true;
                     btnCambiarPlan.Visible = true;
+                    btnBajaAfil.Visible = true;
+                    btnModifAfil.Visible = true;
+                    btnRestituir.Visible = true;
                 }
                 if (func == "Solicitar_Turno")
                 {
