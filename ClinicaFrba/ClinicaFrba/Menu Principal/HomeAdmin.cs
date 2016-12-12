@@ -214,6 +214,12 @@ namespace ClinicaFrba.Menu_Principal
 
 
         }
+
+        private void btnRegAtencion_Click(object sender, EventArgs e)
+        {
+            //Hacer funcionalidad
+
+        }
         }
 }
 

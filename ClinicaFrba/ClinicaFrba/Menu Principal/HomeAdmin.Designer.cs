@@ -43,12 +43,18 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.btnRegistrar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnSolicitar = new System.Windows.Forms.Button();
+            this.btnCancelarDia = new System.Windows.Forms.Button();
+            this.btnRegAtencion = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAltaAfiliado
             // 
             this.btnAltaAfiliado.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnAltaAfiliado.Location = new System.Drawing.Point(446, 115);
+            this.btnAltaAfiliado.Location = new System.Drawing.Point(304, 217);
             this.btnAltaAfiliado.Name = "btnAltaAfiliado";
             this.btnAltaAfiliado.Size = new System.Drawing.Size(136, 23);
             this.btnAltaAfiliado.TabIndex = 11;
@@ -59,7 +65,7 @@
             // btnRegistrarLlegada
             // 
             this.btnRegistrarLlegada.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnRegistrarLlegada.Location = new System.Drawing.Point(304, 115);
+            this.btnRegistrarLlegada.Location = new System.Drawing.Point(304, 148);
             this.btnRegistrarLlegada.Name = "btnRegistrarLlegada";
             this.btnRegistrarLlegada.Size = new System.Drawing.Size(136, 23);
             this.btnRegistrarLlegada.TabIndex = 14;
@@ -81,7 +87,7 @@
             // btnAbmRol
             // 
             this.btnAbmRol.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnAbmRol.Location = new System.Drawing.Point(446, 64);
+            this.btnAbmRol.Location = new System.Drawing.Point(304, 53);
             this.btnAbmRol.Name = "btnAbmRol";
             this.btnAbmRol.Size = new System.Drawing.Size(136, 23);
             this.btnAbmRol.TabIndex = 16;
@@ -160,7 +166,7 @@
             // btnEstadisticas
             // 
             this.btnEstadisticas.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnEstadisticas.Location = new System.Drawing.Point(304, 64);
+            this.btnEstadisticas.Location = new System.Drawing.Point(446, 53);
             this.btnEstadisticas.Name = "btnEstadisticas";
             this.btnEstadisticas.Size = new System.Drawing.Size(136, 23);
             this.btnEstadisticas.TabIndex = 24;
@@ -182,7 +188,7 @@
             // button2
             // 
             this.button2.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button2.Location = new System.Drawing.Point(446, 188);
+            this.button2.Location = new System.Drawing.Point(446, 217);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(136, 23);
             this.button2.TabIndex = 26;
@@ -193,7 +199,7 @@
             // button3
             // 
             this.button3.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button3.Location = new System.Drawing.Point(446, 217);
+            this.button3.Location = new System.Drawing.Point(446, 246);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(136, 23);
             this.button3.TabIndex = 27;
@@ -204,13 +210,80 @@
             // button4
             // 
             this.button4.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button4.Location = new System.Drawing.Point(304, 188);
+            this.button4.Location = new System.Drawing.Point(304, 246);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(136, 23);
             this.button4.TabIndex = 28;
             this.button4.Text = "Modificar Afiliado";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // btnRegistrar
+            // 
+            this.btnRegistrar.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnRegistrar.Location = new System.Drawing.Point(446, 177);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Size = new System.Drawing.Size(136, 23);
+            this.btnRegistrar.TabIndex = 79;
+            this.btnRegistrar.Text = "Registrar Diagnostico";
+            this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Visible = false;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnCancelar.Location = new System.Drawing.Point(304, 177);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(136, 23);
+            this.btnCancelar.TabIndex = 78;
+            this.btnCancelar.Text = "Cancelar Turno";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Visible = false;
+            // 
+            // btnSolicitar
+            // 
+            this.btnSolicitar.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnSolicitar.Location = new System.Drawing.Point(446, 148);
+            this.btnSolicitar.Name = "btnSolicitar";
+            this.btnSolicitar.Size = new System.Drawing.Size(136, 23);
+            this.btnSolicitar.TabIndex = 77;
+            this.btnSolicitar.Text = "Solicitar Turno";
+            this.btnSolicitar.UseVisualStyleBackColor = true;
+            this.btnSolicitar.Visible = false;
+            // 
+            // btnCancelarDia
+            // 
+            this.btnCancelarDia.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnCancelarDia.Location = new System.Drawing.Point(304, 111);
+            this.btnCancelarDia.Name = "btnCancelarDia";
+            this.btnCancelarDia.Size = new System.Drawing.Size(136, 23);
+            this.btnCancelarDia.TabIndex = 81;
+            this.btnCancelarDia.Text = "Cancelar Día";
+            this.btnCancelarDia.UseVisualStyleBackColor = true;
+            this.btnCancelarDia.Visible = false;
+            // 
+            // btnRegAtencion
+            // 
+            this.btnRegAtencion.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnRegAtencion.Location = new System.Drawing.Point(304, 82);
+            this.btnRegAtencion.Name = "btnRegAtencion";
+            this.btnRegAtencion.Size = new System.Drawing.Size(136, 23);
+            this.btnRegAtencion.TabIndex = 80;
+            this.btnRegAtencion.Text = "Registrar Atencion";
+            this.btnRegAtencion.UseVisualStyleBackColor = true;
+            this.btnRegAtencion.Visible = false;
+            this.btnRegAtencion.Click += new System.EventHandler(this.btnRegAtencion_Click);
+            // 
+            // button5
+            // 
+            this.button5.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button5.Location = new System.Drawing.Point(446, 82);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(136, 23);
+            this.button5.TabIndex = 82;
+            this.button5.Text = "Crear Agenda";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
             // 
             // HomeAdmin
             // 
@@ -220,6 +293,12 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.clinica_la_arruzafa_doctores;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.btnCancelarDia);
+            this.Controls.Add(this.btnRegAtencion);
+            this.Controls.Add(this.btnRegistrar);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnSolicitar);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -262,5 +341,11 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnSolicitar;
+        private System.Windows.Forms.Button btnCancelarDia;
+        private System.Windows.Forms.Button btnRegAtencion;
+        private System.Windows.Forms.Button button5;
     }
 }

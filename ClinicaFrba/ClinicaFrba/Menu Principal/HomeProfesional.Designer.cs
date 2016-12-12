@@ -146,6 +146,7 @@
             this.btnRegAtencion.Text = "Registrar Atencion";
             this.btnRegAtencion.UseVisualStyleBackColor = true;
             this.btnRegAtencion.Visible = false;
+            this.btnRegAtencion.Click += new System.EventHandler(this.btnRegAtencion_Click);
             // 
             // btnModifAfil
             // 
