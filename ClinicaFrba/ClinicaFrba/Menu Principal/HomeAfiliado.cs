@@ -301,7 +301,7 @@ namespace ClinicaFrba
             Registrar_Agenta_Medico.FrmRegistroAgenda frmAgendaNueva = new Registrar_Agenta_Medico.FrmRegistroAgenda();
             frmAgendaNueva.Home = this;
             frmAgendaNueva.Show();
-            this.Close();
+            this.Hide();
         }
     }
 }
