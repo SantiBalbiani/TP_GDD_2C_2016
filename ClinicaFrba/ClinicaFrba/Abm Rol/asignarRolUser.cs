@@ -151,7 +151,7 @@ using System.Configuration;
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            if (username.Text != "")
+            if (!String.IsNullOrWhiteSpace(username.Text))
             {//Cargo Roles
                 checkedListBox1.ResetText();
                 checkedListBox1.Items.Clear();
