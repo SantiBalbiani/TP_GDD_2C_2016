@@ -199,9 +199,7 @@ namespace ClinicaFrba
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            Login frmNewLog = new Login();
-            frmNewLog.Show();
-            this.Close();
+            Application.Restart();
         }
 
         private void btnCambiarPlan_Click(object sender, EventArgs e)
