@@ -48,6 +48,7 @@
             this.btnSolicitar = new System.Windows.Forms.Button();
             this.btnCancelarDia = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.txtAfiliado = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnAltaAfiliado
@@ -239,6 +240,7 @@
             this.btnCancelar.Text = "Cancelar Turno";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Visible = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnSolicitar
             // 
@@ -250,6 +252,7 @@
             this.btnSolicitar.Text = "Solicitar Turno";
             this.btnSolicitar.UseVisualStyleBackColor = true;
             this.btnSolicitar.Visible = false;
+            this.btnSolicitar.Click += new System.EventHandler(this.btnSolicitar_Click);
             // 
             // btnCancelarDia
             // 
@@ -261,6 +264,7 @@
             this.btnCancelarDia.Text = "Cancelar Día";
             this.btnCancelarDia.UseVisualStyleBackColor = true;
             this.btnCancelarDia.Visible = false;
+            this.btnCancelarDia.Click += new System.EventHandler(this.btnCancelarDia_Click);
             // 
             // button5
             // 
@@ -272,6 +276,14 @@
             this.button5.Text = "Crear Agenda";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Visible = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // txtAfiliado
+            // 
+            this.txtAfiliado.Location = new System.Drawing.Point(446, 177);
+            this.txtAfiliado.Name = "txtAfiliado";
+            this.txtAfiliado.Size = new System.Drawing.Size(134, 20);
+            this.txtAfiliado.TabIndex = 83;
             // 
             // HomeAdmin
             // 
@@ -281,6 +293,7 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.clinica_la_arruzafa_doctores;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.txtAfiliado);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.btnCancelarDia);
             this.Controls.Add(this.btnRegistrar);
@@ -333,5 +346,6 @@
         private System.Windows.Forms.Button btnSolicitar;
         private System.Windows.Forms.Button btnCancelarDia;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox txtAfiliado;
     }
 }

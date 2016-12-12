@@ -225,6 +225,34 @@ namespace ClinicaFrba.Menu_Principal
         {
 
         }
+
+        private void btnCancelarDia_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSolicitar_Click(object sender, EventArgs e)
+        {
+            Pedir_Turno.FrmSolTurno frmSolTurno = new Pedir_Turno.FrmSolTurno();
+            //frmSolTurno.menuAnterior = "Afiliado";
+            frmSolTurno.Home = this;
+            frmSolTurno.Show();
+            this.Hide();
+            
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Cancelar_Atencion.CancelacionAfiliado frmCancel = new Cancelar_Atencion.CancelacionAfiliado(txtAfiliado.Text);
+            frmCancel.Home = this;
+            frmCancel.Show();
+            this.Hide();
+        }
         }
 }
 

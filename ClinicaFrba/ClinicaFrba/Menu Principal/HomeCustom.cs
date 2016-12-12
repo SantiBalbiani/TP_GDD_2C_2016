@@ -134,12 +134,12 @@ namespace ClinicaFrba.Menu_Principal
         }
 
         private void btnAbmRol_Click(object sender, EventArgs e)
-        {
-            abmMenuRol frmMenuRol = new abmMenuRol();
+        {   abmMenuRol frmMenuRol = new abmMenuRol();
             //frmMenuRol.menuAnterior = "Custom";
             frmMenuRol.Home = this; 
             frmMenuRol.Show();
             this.Hide();
+           
         }
 
         private void btnEstadisticas_Click(object sender, EventArgs e)

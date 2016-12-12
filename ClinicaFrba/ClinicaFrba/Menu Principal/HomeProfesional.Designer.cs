@@ -48,6 +48,7 @@
             this.lblBonos = new System.Windows.Forms.Label();
             this.txtBonosDisponibles = new System.Windows.Forms.TextBox();
             this.btnComprar = new System.Windows.Forms.Button();
+            this.txtAfiliado = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label3
@@ -189,6 +190,7 @@
             this.btnCambiarPlan.Text = "Cambiar Plan";
             this.btnCambiarPlan.UseVisualStyleBackColor = true;
             this.btnCambiarPlan.Visible = false;
+            this.btnCambiarPlan.Click += new System.EventHandler(this.btnCambiarPlan_Click);
             // 
             // btnAbmRol
             // 
@@ -200,6 +202,7 @@
             this.btnAbmRol.Text = "Menu Rol";
             this.btnAbmRol.UseVisualStyleBackColor = true;
             this.btnAbmRol.Visible = false;
+            this.btnAbmRol.Click += new System.EventHandler(this.btnAbmRol_Click);
             // 
             // btnRegistrarLlegada
             // 
@@ -234,6 +237,7 @@
             this.button4.Text = "Cancelar Turno";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Visible = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -245,6 +249,7 @@
             this.button5.Text = "Solicitar Turno";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Visible = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // lblBonos
             // 
@@ -279,6 +284,13 @@
             this.btnComprar.Visible = false;
             this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
             // 
+            // txtAfiliado
+            // 
+            this.txtAfiliado.Location = new System.Drawing.Point(159, 134);
+            this.txtAfiliado.Name = "txtAfiliado";
+            this.txtAfiliado.Size = new System.Drawing.Size(134, 20);
+            this.txtAfiliado.TabIndex = 73;
+            // 
             // HomeProfesional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,6 +298,7 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.wiki_doctor;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(594, 328);
+            this.Controls.Add(this.txtAfiliado);
             this.Controls.Add(this.btnModifAfil);
             this.Controls.Add(this.btnRestituir);
             this.Controls.Add(this.btnBajaAfil);
@@ -338,6 +351,7 @@
         private System.Windows.Forms.Label lblBonos;
         private System.Windows.Forms.TextBox txtBonosDisponibles;
         private System.Windows.Forms.Button btnComprar;
+        private System.Windows.Forms.TextBox txtAfiliado;
      
     }
 }

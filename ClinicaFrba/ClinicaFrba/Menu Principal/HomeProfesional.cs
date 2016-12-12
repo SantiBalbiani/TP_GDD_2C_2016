@@ -206,7 +206,7 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-
+           
         }
 
         private void btnRegistrarLlegada_Click(object sender, EventArgs e)
@@ -231,6 +231,48 @@ namespace ClinicaFrba.Menu_Principal
         private void btnRegAtencion_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Cancelar_Atencion.CancelacionAfiliado frmCancel = new Cancelar_Atencion.CancelacionAfiliado(txtAfiliado.Text);
+            frmCancel.Home = this;
+            frmCancel.Show();
+            this.Hide();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Pedir_Turno.FrmSolTurno frmSolTurno = new Pedir_Turno.FrmSolTurno();
+            //frmSolTurno.menuAnterior = "Afiliado";
+            frmSolTurno.Home = this;
+            frmSolTurno.Show();
+            this.Hide();
+        }
+
+        private void btnAbmRol_Click(object sender, EventArgs e)
+        {
+            Pedir_Turno.FrmSolTurno frmSolTurno = new Pedir_Turno.FrmSolTurno();
+            //frmSolTurno.menuAnterior = "Afiliado";
+            frmSolTurno.Home = this;
+            frmSolTurno.Show();
+            this.Hide();
+        }
+
+        private void btnCambiarPlan_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtBonosDisponibles.Text.ToString()))
+            {
+                MessageBox.Show("Por favor complete el nro de Afiliado");
+            }
+            else
+            {
+                Abm_Planes.CambiarPlan frmCambiarPlan = new Abm_Planes.CambiarPlan(txtBonosDisponibles.Text);
+                // frmCambiarPlan.menuAnterior = "Custom";
+                frmCambiarPlan.Home = this;
+                frmCambiarPlan.Show();
+                this.Hide();
+            }
         }
     }
 }
