@@ -386,7 +386,10 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnCancelarDia_Click(object sender, EventArgs e)
         {
-
+            //Cancelar_Atencion.CancelacionProfesional frmCancelarDia = new Cancelar_Atencion.CancelacionProfesional(idProf);
+            //frmCancelarDia.Home = this;
+            //frmCancelarDia.Show();
+            //this.Hide();
         }
 
         private void btnModifAfil_Click(object sender, EventArgs e)
@@ -431,6 +434,14 @@ namespace ClinicaFrba.Menu_Principal
            // frmDiagnos.Show();
             //this.Hide();
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Registrar_Agenta_Medico.FrmRegistroAgenda frmAgendaNueva = new Registrar_Agenta_Medico.FrmRegistroAgenda();
+            frmAgendaNueva.Home = this;
+            frmAgendaNueva.Show();
+            this.Close();
         }
     }
 }

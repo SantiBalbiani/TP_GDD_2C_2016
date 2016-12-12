@@ -273,62 +273,30 @@ namespace ClinicaFrba
             this.Hide();
         }
 
-        private void btnRegAtencion_Click(object sender, EventArgs e)
-        {
-            /*  TimeSpan intervaloDeTurno = new TimeSpan(0, 30, 0);
-              DateTime intervaloTurnoMax = Globals.getFechaActual() + intervaloDeTurno;
-              DateTime intervaloTurnoMin = Globals.getFechaActual() - intervaloDeTurno;
-              string estadoTurno = "0";
-              string idAfiliado = "0";
-
-              string consultaTurnoActual = "SELECT TOP 1 T.idTurno, T.afiliado_idAfiliado, T.estado FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda AND A.profesional_IdProfesional = " + idProf + " WHERE T.estado = 4 AND fechaTurno BETWEEN '" + intervaloTurnoMin.ToString("MM/dd/yyyy hh:mm tt") + "' AND '" + intervaloTurnoMax.ToString("MM/dd/yyyy hh:mm tt") + "' ORDER BY fechaTurno ASC";
-
-              string idTurno = "0";
-              Conexion.conectar();
-              DataTable turnoActual = new DataTable();
-              DataTable unAfiliado = new DataTable();
-
-              turnoActual = Conexion.LeerTabla(consultaTurnoActual);
-
-              foreach (DataRow unTurno in turnoActual.Rows)
-              {
-                  idTurno = unTurno["idTurno"].ToString();
-                  idAfiliado = unTurno["afiliado_idAfiliado"].ToString();
-                  estadoTurno = unTurno["estado"].ToString();
-
-              }
-
-
-
-              if (idTurno != "0")
-              {
-
-
-                  Registro_Resultado.RegistroResultado frmRegRes = new Registro_Resultado.RegistroResultado(idTurno, idProf, idAfiliado);
-                  frmRegRes.Home = this;
-
-                  this.Hide();
-                  frmRegRes.Show();
-
-              }
-              else
-              {
-                  MessageBox.Show("No hay turnos disponibles en este horario");
-              }*/
-        }
-
+        
         private void btnCancelarDia_Click(object sender, EventArgs e)
         {
-
+            //Cancelar_Atencion.CancelacionProfesional frmCancelarDia = new Cancelar_Atencion.CancelacionProfesional(idProf);
+            //frmCancelarDia.Home = this;
+            //frmCancelarDia.Show();
+            //this.Hide();
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             //Registro_Resultado.RegistroResultado frmDiagnos = new Registro_Resultado.RegistroResultado();
             //frmDiagnos.Home = this;
-            // frmDiagnos.Show();
+            //frmDiagnos.Show();
             //this.Hide();
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Registrar_Agenta_Medico.FrmRegistroAgenda frmAgendaNueva = new Registrar_Agenta_Medico.FrmRegistroAgenda();
+            frmAgendaNueva.Home = this;
+            frmAgendaNueva.Show();
+            this.Close();
         }
     }
 }
