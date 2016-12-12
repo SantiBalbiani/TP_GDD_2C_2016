@@ -95,8 +95,8 @@ namespace ClinicaFrba.Menu_Principal
                 if (func == "Comprar_Bono")
                 {
                     btnComprar.Visible = true;
-                    lblBonos.Visible = true;
-                    txtBonosDisponibles.Visible = true;
+                    label4.Visible = true;
+                    txtAfiliado.Visible = true; 
                 }
                 if (func == "Cancelar_Turno")
                 {
@@ -105,6 +105,7 @@ namespace ClinicaFrba.Menu_Principal
                 if (func == "Registrar_Llegada")
                 {
                     btnRegistrarLlegada.Visible = true;
+              
                 }
                 if (func == "ABM_Rol")
                 {
@@ -127,6 +128,8 @@ namespace ClinicaFrba.Menu_Principal
                 if (func == "Solicitar_Turno")
                 {
                     button5.Visible = true;
+                    label4.Visible = true;
+                    txtAfiliado.Visible = true; 
                 }
                 if (func == "Registrar_Diagnostico")
                 {
@@ -304,13 +307,13 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnCambiarPlan_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtBonosDisponibles.Text.ToString()))
+            if (String.IsNullOrEmpty(txtAfiliado.Text.ToString()))
             {
                 MessageBox.Show("Por favor complete el nro de Afiliado");
             }
             else
             {
-                Abm_Planes.CambiarPlan frmCambiarPlan = new Abm_Planes.CambiarPlan(txtBonosDisponibles.Text);
+                Abm_Planes.CambiarPlan frmCambiarPlan = new Abm_Planes.CambiarPlan(txtAfiliado.Text);
                 // frmCambiarPlan.menuAnterior = "Custom";
                 frmCambiarPlan.Home = this;
                 frmCambiarPlan.Show();

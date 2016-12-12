@@ -29,7 +29,58 @@ namespace ClinicaFrba.Menu_Principal
 
         private void HomeAdmin_Load(object sender, EventArgs e)
         {
-            /*string queryDatosProf = "SELECT nombre ,apellido FROM SELECT_GROUP.Afiliado where numeroDni = '" + Globals.userName + "'";
+             //txtRolActual.Text = Globals.rolId;
+
+            List<string> listaFunc = Globals.listaFuncionalidades;
+            //string mensajeParaNoe = " ";
+            foreach (string func in listaFunc)
+            {
+                //mensajeParaNoe = mensajeParaNoe + " " +func + " ";
+
+                if (func == "Comprar_Bono")
+                {
+                    button1.Visible = true;
+                    label4.Visible = true;
+                    textBox1.Visible = true; 
+                }
+                if (func == "Cancelar_Turno" )
+                {
+                    btnCancelar.Visible = true;
+                }
+                if (func == "Registrar_Llegada")
+                {
+                    btnRegistrarLlegada.Visible = true;
+                }
+                if (func == "ABM_Rol")
+                {
+                    btnAbmRol.Visible = true; 
+                }
+                if (func == "Listado_Estadistico")
+                {
+                    btnEstadisticas.Visible = true;
+                }
+                if (func == "ABM_Afiliados")
+                {
+                    btnAltaAfiliado.Visible = true;
+                    label4.Visible = true;
+                    textBox1.Visible = true;
+                    btnCambiarPlan.Visible = true;
+                    button2.Visible = true;
+                    button4.Visible = true;
+                    button3.Visible = true;
+                }
+                if (func == "Solicitar_Turno")
+                {
+                    btnSolicitar.Visible = true; 
+                }
+                if (func == "Registrar_Diagnostico")
+                {
+                    //Falta el boton de registrar diagnostico
+                }
+                if (func == "Cancelar_Agenda")
+                {
+                    btnCancelarDia.Visible = true; 
+                }/*string queryDatosProf = "SELECT nombre ,apellido FROM SELECT_GROUP.Afiliado where numeroDni = '" + Globals.userName + "'";
 
             DataTable datosProf = new DataTable();
 
@@ -46,6 +97,7 @@ namespace ClinicaFrba.Menu_Principal
             label3.Text = nombreAfil + ", " + apellidoAfil; 
             */ //Comentado Hasta que haya base de datos para administradores
             //label2.Text = "Administrador";  Se borro este funcionamiento
+            }
         }
 
         private void btnAltaAfiliado_Click(object sender, EventArgs e)

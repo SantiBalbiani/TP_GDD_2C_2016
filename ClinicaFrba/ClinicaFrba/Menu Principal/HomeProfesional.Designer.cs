@@ -45,8 +45,6 @@
             this.btnAltaAfiliado = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.lblBonos = new System.Windows.Forms.Label();
-            this.txtBonosDisponibles = new System.Windows.Forms.TextBox();
             this.btnComprar = new System.Windows.Forms.Button();
             this.txtAfiliado = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -257,27 +255,6 @@
             this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // lblBonos
-            // 
-            this.lblBonos.AutoSize = true;
-            this.lblBonos.BackColor = System.Drawing.Color.MidnightBlue;
-            this.lblBonos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBonos.ForeColor = System.Drawing.Color.White;
-            this.lblBonos.Location = new System.Drawing.Point(13, 110);
-            this.lblBonos.Name = "lblBonos";
-            this.lblBonos.Size = new System.Drawing.Size(111, 13);
-            this.lblBonos.TabIndex = 62;
-            this.lblBonos.Text = "Bonos Disponibles";
-            this.lblBonos.Visible = false;
-            // 
-            // txtBonosDisponibles
-            // 
-            this.txtBonosDisponibles.Location = new System.Drawing.Point(130, 105);
-            this.txtBonosDisponibles.Name = "txtBonosDisponibles";
-            this.txtBonosDisponibles.Size = new System.Drawing.Size(75, 20);
-            this.txtBonosDisponibles.TabIndex = 61;
-            this.txtBonosDisponibles.Visible = false;
-            // 
             // btnComprar
             // 
             this.btnComprar.ForeColor = System.Drawing.Color.MidnightBlue;
@@ -296,6 +273,7 @@
             this.txtAfiliado.Name = "txtAfiliado";
             this.txtAfiliado.Size = new System.Drawing.Size(134, 20);
             this.txtAfiliado.TabIndex = 73;
+            this.txtAfiliado.Visible = false;
             // 
             // label4
             // 
@@ -328,7 +306,6 @@
             this.Controls.Add(this.btnAltaAfiliado);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.txtBonosDisponibles);
             this.Controls.Add(this.btnComprar);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnCerrar);
@@ -337,7 +314,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblBonos);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "HomeProfesional";
@@ -367,8 +343,6 @@
         private System.Windows.Forms.Button btnAltaAfiliado;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Label lblBonos;
-        private System.Windows.Forms.TextBox txtBonosDisponibles;
         private System.Windows.Forms.Button btnComprar;
         private System.Windows.Forms.TextBox txtAfiliado;
         private System.Windows.Forms.Label label4;

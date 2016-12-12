@@ -72,6 +72,7 @@
             this.btnRegistrarLlegada.TabIndex = 14;
             this.btnRegistrarLlegada.Text = "Registrar Llegada";
             this.btnRegistrarLlegada.UseVisualStyleBackColor = true;
+            this.btnRegistrarLlegada.Visible = false;
             this.btnRegistrarLlegada.Click += new System.EventHandler(this.btnRegistrarLlegada_Click);
             // 
             // button1
@@ -285,6 +286,7 @@
             this.txtAfiliado.Name = "txtAfiliado";
             this.txtAfiliado.Size = new System.Drawing.Size(136, 20);
             this.txtAfiliado.TabIndex = 83;
+            this.txtAfiliado.Visible = false;
             // 
             // label2
             // 
