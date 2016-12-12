@@ -376,6 +376,7 @@ namespace ClinicaFrba.Abm_Afiliado
             this.textCantHijos.TabIndex = 47;
             this.textCantHijos.Validar = true;
             this.textCantHijos.TextChanged += new System.EventHandler(this.textCantHijos_TextChanged);
+            this.textCantHijos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textCantHijos_KeyPress);
             // 
             // frmAltaAfiliado
             // 

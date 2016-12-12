@@ -315,17 +315,48 @@ namespace ClinicaFrba.Abm_Afiliado
 
         }
 
-        private void textCantHijos_TextChanged(object sender, EventArgs e)
+        private void textCantHijos_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((Convert.ToInt32(textCantHijos.Text)) > 0)
+            if (Char.IsDigit(e.KeyChar))
             {
-                this.btnCargarHijos.Enabled = true;
+                e.Handled = false;
             }
-            else {
-                this.btnCargarHijos.Enabled = false;
-                
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
+
+        private void textCantHijos_TextChanged(object sender, EventArgs e)
+        {
+            textCantHijos.Text = textCantHijos.Text.Trim();
+            textCantHijos.Text = textCantHijos.Text.Replace(" ", "");
+            textCantHijos.SelectionStart = textCantHijos.Text.Length;
+
+            if (Utilidades.ValidarFormulario(this, errorTextBox) == false)
+            {
+                
+
+                if ((Convert.ToInt32(textCantHijos.Text)) > 0)
+                {
+                    this.btnCargarHijos.Enabled = true;
+                }
+                else
+                {
+                    this.btnCargarHijos.Enabled = false;
+
+                }
+            }
+        }
+        
 
     }
 }
