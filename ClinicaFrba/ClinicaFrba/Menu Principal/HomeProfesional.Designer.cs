@@ -35,7 +35,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.btnCancelarDia = new System.Windows.Forms.Button();
             this.btnRegAtencion = new System.Windows.Forms.Button();
             this.btnModifAfil = new System.Windows.Forms.Button();
             this.btnRestituir = new System.Windows.Forms.Button();
@@ -136,18 +135,6 @@
             this.button3.Text = "Crear Agenda";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // btnCancelarDia
-            // 
-            this.btnCancelarDia.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnCancelarDia.Location = new System.Drawing.Point(443, 190);
-            this.btnCancelarDia.Name = "btnCancelarDia";
-            this.btnCancelarDia.Size = new System.Drawing.Size(136, 23);
-            this.btnCancelarDia.TabIndex = 74;
-            this.btnCancelarDia.Text = "Cancelar Día";
-            this.btnCancelarDia.UseVisualStyleBackColor = true;
-            this.btnCancelarDia.Visible = false;
-            this.btnCancelarDia.Click += new System.EventHandler(this.btnCancelarDia_Click);
             // 
             // btnRegAtencion
             // 
@@ -311,7 +298,6 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.wiki_doctor;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(594, 328);
-            this.Controls.Add(this.btnCancelarDia);
             this.Controls.Add(this.btnRegAtencion);
             this.Controls.Add(this.btnModifAfil);
             this.Controls.Add(this.btnRestituir);
@@ -352,7 +338,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button btnCancelarDia;
         private System.Windows.Forms.Button btnRegAtencion;
         private System.Windows.Forms.Button btnModifAfil;
         private System.Windows.Forms.Button btnRestituir;

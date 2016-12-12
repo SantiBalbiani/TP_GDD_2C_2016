@@ -133,7 +133,8 @@ namespace ClinicaFrba.Menu_Principal
                 }
                 if (func == "Cancelar_Agenda")
                 {
-                    btnCancelarDia.Visible = true;
+                    button2.Visible = true;
+                    
                 }
 
             }
