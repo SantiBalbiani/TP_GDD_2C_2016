@@ -115,7 +115,7 @@ namespace ClinicaFrba.Abm_Planes
                 cmdUsuario.Parameters.Add("@nroAfiliado", SqlDbType.Int).Value = textBox1.Text.ToString();
                 Object itemGenerico = cbmPlanMed.SelectedItem;
                 ComboboxItem itemCasteado = (ComboboxItem)itemGenerico;
-                cmdUsuario.Parameters.Add("@idPlan", SqlDbType.Int).Value = txtPlanDescripcion.ToString();
+                cmdUsuario.Parameters.Add("@idPlan", SqlDbType.Int).Value = itemCasteado.Value.ToString();
                 
                 cmdUsuario.Parameters.Add("@motivo", SqlDbType.VarChar).Value = textBox4.Text.ToString().Trim();
                 cmdUsuario.Parameters.Add("@fechaActual", SqlDbType.DateTime).Value = Globals.getFechaActual();
