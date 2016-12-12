@@ -32,14 +32,13 @@ namespace ClinicaFrba.AbmRol
             //comboBox1.Items.Clear();
             //comboBox1.ResetText();
 
-
             //Cargo el rol
             Conexion.conectar();
             comboBox1.Items.Clear();
             comboBox1.ResetText();
             comboBox1.SelectedText = "Seleccione Rol";
             DataTable Roles = new DataTable();
-            string cadena = "select idRol, nombre from SELECT_GROUP.Rol";
+            string cadena = "select idRol, nombre from SELECT_GROUP.Rol where Rol.habilitado = 1";
 
             Roles = Conexion.LeerTabla(cadena);
 
@@ -183,8 +182,6 @@ namespace ClinicaFrba.AbmRol
 
             Conexion.conectar();
             DataTable roles = new DataTable();
-
-
 
             ComboboxItem rolelejido = (ComboboxItem)comboBox1.SelectedItem;
 
