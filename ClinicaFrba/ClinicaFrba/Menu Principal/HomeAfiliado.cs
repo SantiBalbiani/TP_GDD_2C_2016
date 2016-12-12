@@ -106,60 +106,65 @@ namespace ClinicaFrba
                 }
 
             }
-            
-            
-            string queryDatosProf = "SELECT nombre ,apellido FROM SELECT_GROUP.Afiliado where numeroDoc = '" + Globals.userName + "'";
 
-            DataTable datosProf = new DataTable();
-
-            Conexion.conectar();
-
-            datosProf = Conexion.LeerTabla(queryDatosProf);
-
-            foreach (DataRow datosUnProf in datosProf.Rows)
+            if (Globals.userName == "admin")
             {
-                nombreAfil = datosUnProf["nombre"].ToString();
-                apellidoAfil = datosUnProf["apellido"].ToString();
-
+                MessageBox.Show("El usuario no posee nro de Afiliado");
             }
-
-            label3.Text = nombreAfil + ", " + apellidoAfil;
-
-
-            // Andaba            
-            DataTable idAfiliado = new DataTable();
-            
-            string consultaAfiliado = "SELECT A.idAfiliado FROM Select_Group.Usuario U JOIN Select_Group.Afiliado A ON A.idUsuario = U.idUsuario WHERE U.nombreUsuario = '"+ Globals.userName + "'";
-            
-             Conexion.conectar();
-
-             idAfiliado = Conexion.LeerTabla(consultaAfiliado);
-
-             foreach (DataRow unAfi in idAfiliado.Rows)
+            else
             {
-                strAfiliado = unAfi["idAfiliado"].ToString();
+                string queryDatosProf = "SELECT nombre ,apellido FROM SELECT_GROUP.Afiliado where numeroDoc = " + Globals.userName;
+
+                DataTable datosProf = new DataTable();
+
+                Conexion.conectar();
+
+                datosProf = Conexion.LeerTabla(queryDatosProf);
+
+                foreach (DataRow datosUnProf in datosProf.Rows)
+                {
+                    nombreAfil = datosUnProf["nombre"].ToString();
+                    apellidoAfil = datosUnProf["apellido"].ToString();
+
+                }
+
+                label3.Text = nombreAfil + ", " + apellidoAfil;
+
+
+                // Andaba            
+                DataTable idAfiliado = new DataTable();
+
+                string consultaAfiliado = "SELECT A.idAfiliado FROM Select_Group.Usuario U JOIN Select_Group.Afiliado A ON A.idUsuario = U.idUsuario WHERE U.nombreUsuario = '" + Globals.userName + "'";
+
+                Conexion.conectar();
+
+                idAfiliado = Conexion.LeerTabla(consultaAfiliado);
+
+                foreach (DataRow unAfi in idAfiliado.Rows)
+                {
+                    strAfiliado = unAfi["idAfiliado"].ToString();
+                }
+
+                Conexion.conexion.Close();
+
+
+                string consultaBonosDisp = "SELECT idBono  FROM Select_Group.Bono  WHERE idAfiliado = " + strAfiliado + "  AND estado = 1";
+
+
+                DataTable bonosDisponibles = new DataTable();
+
+                Conexion.conectar();
+
+                bonosDisponibles = Conexion.LeerTabla(consultaBonosDisp);
+                int cantBonos = 0;
+                foreach (DataRow unBonoDisp in bonosDisponibles.Rows)
+                {
+                    cantBonos++;
+                }
+
+                Conexion.conexion.Close();
+                txtBonosDisponibles.Text = Convert.ToString(cantBonos);
             }
-
-            Conexion.conexion.Close();
-            
-
-            string consultaBonosDisp = "SELECT idBono  FROM Select_Group.Bono  WHERE idAfiliado = " + strAfiliado + "  AND estado = 1";
-
-       
-            DataTable bonosDisponibles = new DataTable();
-
-            Conexion.conectar();
-
-            bonosDisponibles = Conexion.LeerTabla(consultaBonosDisp);
-            int cantBonos = 0;
-            foreach (DataRow unBonoDisp in bonosDisponibles.Rows)
-            {
-                cantBonos++;
-            }
-
-            Conexion.conexion.Close();
-            txtBonosDisponibles.Text = Convert.ToString(cantBonos);
-
         }
 
         private void btnComprar_Click(object sender, EventArgs e)
@@ -202,6 +207,10 @@ namespace ClinicaFrba
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
+         //   this.Close();
+            
+            //Login nuevo = new Login();
+            //nuevo.Show();
             Application.Restart();
         }
 
