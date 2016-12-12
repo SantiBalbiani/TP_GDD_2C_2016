@@ -75,7 +75,13 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int horaDesd = Convert.ToInt32(horaDesdeText.Text.ToString().Trim());
+            int horaHasta = Convert.ToInt32(horaHastaText.Text.ToString().Trim());
 
+            if ((diaSemanaText.Text == "0") || (horaDesd < 700) || (horaHasta > 2000) || ((horaDesd < 1000) && (diaSemanaText.Text == "6")) || ((horaHasta > 1500) && (diaSemanaText.Text == "6")))
+            {
+                MessageBox.Show("Agenda fuera del horario de atención. Horario de atención: 7 a 20 hs lunes a viernes y 10 a 15 hs sabados.");
+            }else{
             //Conexion.conectar();
             SqlConnection conexion;
             bool conectado = false;
@@ -163,6 +169,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                         }
 
                     }
+
                 }
 
 
@@ -172,6 +179,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 }
 
             }
+        }
         }
            
       
