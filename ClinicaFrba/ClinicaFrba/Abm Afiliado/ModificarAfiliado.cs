@@ -112,7 +112,7 @@ namespace ClinicaFrba.Abm_Afiliado
             ComboboxItem estCivil = new ComboboxItem();
             estCivil = (ComboboxItem)comboBox2.SelectedItem;
             
-            string updateDatos = "UPDATE Select_Group.Afiliado SET telefono = " + tel.Text.ToString().Trim() + " ,mail = '" + mail.Text.ToString().Trim() + "',sexo = '" + sexo.Text.ToString().Trim() + "' ,estadoCivil = '" + estCivil.Text.ToString().Trim() + "' ,direccion = '" + dir.Text.ToString().Trim() + "' WHERE nroAfiliado = " + textBox1.Text.ToString().Trim();
+            string updateDatos = "UPDATE Select_Group.Afiliado SET telefono = " + tel.Text.ToString().Trim() + " ,mail = '" + mail.Text.ToString().Trim() + "',sexo = '" + comboBox1.Text.ToString().Trim() + "' ,estadoCivil = '" + comboBox2.Text.ToString().Trim() + "' ,direccion = '" + dir.Text.ToString().Trim() + "' WHERE nroAfiliado = " + textBox1.Text.ToString().Trim();
             SqlCommand cmdUpdAfi = new SqlCommand(updateDatos,Conexion.conexion);
             
             try
@@ -136,6 +136,11 @@ namespace ClinicaFrba.Abm_Afiliado
             //Globals.irAtras(menuAnterior, this);
             Home.Show();
             this.Close();
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
