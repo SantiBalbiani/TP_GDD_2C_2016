@@ -78,7 +78,10 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             int horaDesd = Convert.ToInt32(horaDesdeText.Text.ToString().Trim());
             int horaHasta = Convert.ToInt32(horaHastaText.Text.ToString().Trim());
             
-            if (((diaSemanaText.Text == "0") || (horaDesd < 700) || (horaHasta > 2000) || ((horaDesd < 1000)))&& (( (diaSemanaText.Text == "6")) || ((horaHasta > 1500) && (diaSemanaText.Text == "6"))))
+            Menu_Principal.HomeProfesional homeProf = new Menu_Principal.HomeProfesional();
+            homeProf = (Menu_Principal.HomeProfesional)Home;
+
+            if (((diaSemanaText.Text == "0") || (horaDesd < 700) || (horaHasta > 2000) || ((horaDesd < 1000)))|| (( (diaSemanaText.Text == "6")) || ((horaHasta > 1500) && (diaSemanaText.Text == "6"))))
             {
                 MessageBox.Show("Agenda fuera del horario de atención. Horario de atención: 7 a 20 hs lunes a viernes y 10 a 15 hs sabados.");
             }else{
@@ -109,7 +112,13 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                     //1//valido que no ingrese dos agendas en un mismo horarios
                     using (SqlCommand cmdRol2 = new SqlCommand("SELECT COUNT(*) from select_group.Agenda where Agenda.profesional_idProfesional = @matricula and Agenda.diaDisponible =@dia and Agenda.horaDesde =@desde and Agenda.horaHasta = @hasta", conexion))
                     {
-                        cmdRol2.Parameters.AddWithValue("@matricula", matriculaText.Text);
+
+                        
+
+
+
+
+                        cmdRol2.Parameters.AddWithValue("@matricula", homeProf.idProf);
                         cmdRol2.Parameters.AddWithValue("@dia", diaSemanaText.Text);
                         cmdRol2.Parameters.AddWithValue("@desde", horaDesdeText.Text);
                         cmdRol2.Parameters.AddWithValue("@hasta", horaHastaText.Text);
@@ -120,7 +129,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                         if (userCount == 0)
                         {
                             SqlCommand cmdRol = new SqlCommand("insert into Select_group.Agenda (profesional_idProfesional, diaDisponible, horaDesde, horaHasta) values (@matricula, @dia, @desde, @hasta) ", conexion);
-                            cmdRol.Parameters.AddWithValue("@matricula", matriculaText.Text);
+                            cmdRol.Parameters.AddWithValue("@matricula", homeProf.idProf);
                             cmdRol.Parameters.AddWithValue("@dia", diaSemanaText.Text);
                             cmdRol.Parameters.AddWithValue("@desde", horaDesdeText.Text);
                             cmdRol.Parameters.AddWithValue("@hasta", horaHastaText.Text);
@@ -140,7 +149,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                         //2//Valido que su agenda no se encuentre dentro del horario de otra agenda
                         using (SqlCommand cmdRol3 = new SqlCommand("SELECT COUNT(*) from select_group.Agenda where Agenda.profesional_idProfesional = @matricula and Agenda.diaDisponible =@dia and Agenda.horaDesde >@desde and Agenda.horaHasta < @hasta", conexion))
                         {
-                            cmdRol3.Parameters.AddWithValue("@matricula", matriculaText.Text);
+                            cmdRol3.Parameters.AddWithValue("@matricula", homeProf.idProf);
                             cmdRol3.Parameters.AddWithValue("@dia", diaSemanaText.Text);
                             cmdRol3.Parameters.AddWithValue("@desde", horaDesdeText.Text);
                             cmdRol3.Parameters.AddWithValue("@hasta", horaHastaText.Text);
@@ -151,7 +160,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                         if (userCount == 0)
                         {
                             SqlCommand cmdRol = new SqlCommand("insert into Select_group.Agenda (profesional_idProfesional, diaDisponible, horaDesde, horaHasta) values (@matricula, @dia, @desde, @hasta) ", conexion);
-                            cmdRol.Parameters.AddWithValue("@matricula", matriculaText.Text);
+                            cmdRol.Parameters.AddWithValue("@matricula", homeProf.idProf);
                             cmdRol.Parameters.AddWithValue("@dia", diaSemanaText.Text);
                             cmdRol.Parameters.AddWithValue("@desde", horaDesdeText.Text);
                             cmdRol.Parameters.AddWithValue("@hasta", horaHastaText.Text);
@@ -187,6 +196,58 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
         {
             Home.Show();
             this.Close();
+        }
+
+        private void horaDesdeText_TextChanged(object sender, EventArgs e)
+        {
+            horaDesdeText.Text = horaDesdeText.Text.Trim();
+            horaDesdeText.Text = horaDesdeText.Text.Replace(" ", "");
+            horaDesdeText.SelectionStart = horaDesdeText.Text.Length;
+        }
+        private void horaDesdeText_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+        private void horaHastaText_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void horaHastaText_TextChanged(object sender, EventArgs e)
+        {
+            horaHastaText.Text = horaHastaText.Text.Trim();
+            horaHastaText.Text = horaHastaText.Text.Replace(" ", "");
+            horaHastaText.SelectionStart = horaHastaText.Text.Length;
         }
     }
 }

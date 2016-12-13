@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.matriculaText = new System.Windows.Forms.TextBox();
             this.diaSemanaText = new System.Windows.Forms.TextBox();
             this.horaDesdeText = new System.Windows.Forms.TextBox();
             this.horaHastaText = new System.Windows.Forms.TextBox();
@@ -58,18 +56,6 @@
             this.label1.Size = new System.Drawing.Size(294, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Ingrese los datos para crear una nueva agenda:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(39, 77);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Nº de Matricula";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
@@ -107,15 +93,6 @@
             this.label8.Text = "Horario Hasta";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
-            // matriculaText
-            // 
-            this.matriculaText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.matriculaText.Location = new System.Drawing.Point(128, 74);
-            this.matriculaText.Margin = new System.Windows.Forms.Padding(2);
-            this.matriculaText.Name = "matriculaText";
-            this.matriculaText.Size = new System.Drawing.Size(146, 20);
-            this.matriculaText.TabIndex = 11;
-            // 
             // diaSemanaText
             // 
             this.diaSemanaText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -130,18 +107,24 @@
             this.horaDesdeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.horaDesdeText.Location = new System.Drawing.Point(128, 213);
             this.horaDesdeText.Margin = new System.Windows.Forms.Padding(2);
+            this.horaDesdeText.MaxLength = 4;
             this.horaDesdeText.Name = "horaDesdeText";
             this.horaDesdeText.Size = new System.Drawing.Size(146, 20);
             this.horaDesdeText.TabIndex = 13;
+            this.horaDesdeText.TextChanged += new System.EventHandler(this.horaDesdeText_TextChanged);
+            this.horaDesdeText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.horaDesdeText_KeyPress);
             // 
             // horaHastaText
             // 
             this.horaHastaText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.horaHastaText.Location = new System.Drawing.Point(128, 245);
             this.horaHastaText.Margin = new System.Windows.Forms.Padding(2);
+            this.horaHastaText.MaxLength = 4;
             this.horaHastaText.Name = "horaHastaText";
             this.horaHastaText.Size = new System.Drawing.Size(146, 20);
             this.horaHastaText.TabIndex = 14;
+            this.horaHastaText.TextChanged += new System.EventHandler(this.horaHastaText_TextChanged);
+            this.horaHastaText.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.horaHastaText_KeyPress);
             // 
             // button1
             // 
@@ -251,11 +234,9 @@
             this.Controls.Add(this.horaHastaText);
             this.Controls.Add(this.horaDesdeText);
             this.Controls.Add(this.diaSemanaText);
-            this.Controls.Add(this.matriculaText);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -270,11 +251,9 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox matriculaText;
         private System.Windows.Forms.TextBox diaSemanaText;
         private System.Windows.Forms.TextBox horaDesdeText;
         private System.Windows.Forms.TextBox horaHastaText;

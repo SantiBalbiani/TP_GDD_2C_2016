@@ -34,7 +34,6 @@
             this.lblUser = new System.Windows.Forms.Label();
             this.lblpass = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.btnFecha = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -96,16 +95,6 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // btnFecha
-            // 
-            this.btnFecha.Location = new System.Drawing.Point(0, 160);
-            this.btnFecha.Name = "btnFecha";
-            this.btnFecha.Size = new System.Drawing.Size(50, 23);
-            this.btnFecha.TabIndex = 6;
-            this.btnFecha.Text = "Fecha";
-            this.btnFecha.UseVisualStyleBackColor = true;
-            this.btnFecha.Click += new System.EventHandler(this.btnFecha_Click);
-            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -114,7 +103,6 @@
             this.BackgroundImage = global::ClinicaFrba.Properties.Resources.login;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(309, 183);
-            this.Controls.Add(this.btnFecha);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.lblpass);
             this.Controls.Add(this.lblUser);
@@ -138,6 +126,5 @@
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Label lblpass;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Button btnFecha;
     }
 }

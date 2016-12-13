@@ -19,7 +19,7 @@ namespace ClinicaFrba.Menu_Principal
     {
         private string nombreProf;
         private string apellidoProf;
-        private string idProf;
+        public string idProf;
         
         public HomeProfesional()
         {
