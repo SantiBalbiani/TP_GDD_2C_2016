@@ -242,8 +242,6 @@ namespace ClinicaFrba.Pedir_Turno
                 item.Text = fila["descripcion"].ToString();
                 item.Value = fila["idTipo"];
                 comboBox2.Items.Add(item);
-               
-
 
             }
             Conexion.conexion.Close();
