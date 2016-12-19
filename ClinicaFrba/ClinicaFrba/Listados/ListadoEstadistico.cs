@@ -18,7 +18,7 @@ namespace ClinicaFrba.Listados
     {
         public string menuAnterior;
         public Form Home;
-
+        public bool usaMes = false;
         public ListadoEstadistico(string unMenu)
         {
             InitializeComponent();
@@ -43,17 +43,34 @@ namespace ClinicaFrba.Listados
         string strHasta;
         if (mensual)
         {
-            strDesde = "01/"+nroMes+"/"+anio;
-            fechaDesde = Convert.ToDateTime(strDesde);
-            int ultimoDiaDelMes = DateTime.DaysInMonth((Convert.ToInt32(anio)),(Convert.ToInt32(nroMes)));
-            strHasta = ultimoDiaDelMes.ToString() + "/"+nroMes+"/"+anio;
-            fechaHasta = Convert.ToDateTime(strHasta);
-            
-            fechas[0] = fechaDesde;
-            fechas[1] = fechaHasta;
-            
-            return fechas;
-            
+            if (nroMes == "todos")
+            {
+                //Eligió anual
+                    strDesde = "01/01/" + anio;
+                    strHasta = "12/12/" + anio;
+                    
+                    fechaDesde = Convert.ToDateTime(strDesde);    
+                    fechaHasta = Convert.ToDateTime(strHasta);
+                    
+                    fechas[0] = fechaDesde;
+                    fechas[1] = fechaHasta;
+                    
+                    
+                    return fechas;
+            }
+            else
+            {
+                strDesde = "01/" + nroMes + "/" + anio;
+                fechaDesde = Convert.ToDateTime(strDesde);
+                int ultimoDiaDelMes = DateTime.DaysInMonth((Convert.ToInt32(anio)), (Convert.ToInt32(nroMes)));
+                strHasta = ultimoDiaDelMes.ToString() + "/" + nroMes + "/" + anio;
+                fechaHasta = Convert.ToDateTime(strHasta);
+
+                fechas[0] = fechaDesde;
+                fechas[1] = fechaHasta;
+
+                return fechas;
+            }
         }else{
                 switch (semestre)
                 {
@@ -100,6 +117,21 @@ namespace ClinicaFrba.Listados
 
         private void btnCancelaciones_Click(object sender, EventArgs e)
         {
+            string anio = txboxanio.Text.ToString();
+            string semestre = cmbsemestre.SelectedItem.ToString();
+            string elMes = "00";
+            ComboboxItem Mes = new ComboboxItem(); 
+            Mes = (ComboboxItem)cmbmes.SelectedItem;
+
+            if(Mes != null){
+              elMes = Mes.Value.ToString();
+            }
+            
+
+            DateTime[] fechas = obtenerFechas(anio, semestre, usaMes, elMes);
+
+            string consultaMayCanc = "SELECT TOP 5 T.especialidad FROM Select_Group.Turno T WHERE T.cancelacion_idCancelacion is not null AND T.fechaTurno BETWEEN '"+fechas[0]+"' AND '"+fechas[1]+"' GROUP BY T.especialidad ORDER BY count(*) desc";
+            
             Conexion.conectar();
 
             //string contador;
@@ -252,13 +284,19 @@ namespace ClinicaFrba.Listados
             cmbsemestre.Items.Add(segundoSemestre);
             cmbsemestre.Items.Add(todos);
 
-            cmbmes.Items.Add(todos);
+
+            ComboboxItem todosMes = new ComboboxItem();
+            todosMes.Text = "todos";
+            todosMes.Value = 0;
+            cmbmes.Items.Add(todosMes);
 
             for (int i = 1; i != 12; i++)
             {
+                ComboboxItem unMes = new ComboboxItem();
                 string mes = DateTimeFormatInfo.CurrentInfo.GetMonthName(i);
-                
-                cmbmes.Items.Add(mes);
+                unMes.Text = mes;
+                unMes.Value = i;
+                cmbmes.Items.Add(unMes);
             }
 
 
@@ -403,7 +441,23 @@ namespace ClinicaFrba.Listados
 
         private void cmbsemestre_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string semest = cmbsemestre.SelectedItem.ToString();
+            if (semest != "todos")
+            {
+                cmbmes.Enabled = false;
+            }else{
+                cmbmes.Enabled = true;
+            }
+        }
 
+        private void txboxanio_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbmes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            usaMes = true;
         }
 
 

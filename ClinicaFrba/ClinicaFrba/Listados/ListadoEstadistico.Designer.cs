@@ -45,6 +45,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txboxanio = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -183,6 +184,7 @@
             this.cmbmes.Name = "cmbmes";
             this.cmbmes.Size = new System.Drawing.Size(102, 21);
             this.cmbmes.TabIndex = 13;
+            this.cmbmes.SelectedIndexChanged += new System.EventHandler(this.cmbmes_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -220,6 +222,16 @@
             this.txboxanio.Name = "txboxanio";
             this.txboxanio.Size = new System.Drawing.Size(100, 20);
             this.txboxanio.TabIndex = 17;
+            this.txboxanio.TextChanged += new System.EventHandler(this.txboxanio_TextChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(121, 270);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Consultar";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // ListadoEstadistico
             // 
@@ -227,6 +239,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(723, 306);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txboxanio);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -269,5 +282,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txboxanio;
+        private System.Windows.Forms.Button button1;
     }
 }
