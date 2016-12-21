@@ -48,7 +48,7 @@ namespace ClinicaFrba.Listados
             {
                 //Eligió anual
                     strDesde = "01/01/" + anio;
-                    strHasta = "12/12/" + anio;
+                    strHasta = "31/12/" + anio;
                     
                     fechaDesde = Convert.ToDateTime(strDesde);    
                     fechaHasta = Convert.ToDateTime(strHasta);
@@ -78,7 +78,7 @@ namespace ClinicaFrba.Listados
                     
                     case "0"://Eligió anual
                     strDesde = "01/01/" + anio;
-                    strHasta = "12/12/" + anio;
+                    strHasta = "31/12/" + anio;
                     
                     fechaDesde = Convert.ToDateTime(strDesde);    
                     fechaHasta = Convert.ToDateTime(strHasta);
@@ -111,7 +111,7 @@ namespace ClinicaFrba.Listados
                     default:
                     //Eligió anual
                     strDesde = "01/01/" + anio;
-                    strHasta = "12/12/" + anio;
+                    strHasta = "31/12/" + anio;
 
                     fechaDesde = Convert.ToDateTime(strDesde);
                     fechaHasta = Convert.ToDateTime(strHasta);
@@ -183,7 +183,7 @@ namespace ClinicaFrba.Listados
             todosMes.Value = 0;
             cmbmes.Items.Add(todosMes);
 
-            for (int i = 1; i != 12; i++)
+            for (int i = 1; i != 13; i++)
             {
                 ComboboxItem unMes = new ComboboxItem();
                 string mes = DateTimeFormatInfo.CurrentInfo.GetMonthName(i);
@@ -195,11 +195,35 @@ namespace ClinicaFrba.Listados
 
 
 
-            
-            //Cargo Planes Medicos
-            
+
+            cmbEspQuery2.Visible = false;
+            cmbPlanQuery2.Visible = false;
             comboBox1.Visible = false;
-          
+
+
+            //Cargo el plan
+            Conexion.conectar();
+           
+            DataTable Planes = new DataTable();
+            string cadena = "select  idPlan, descripcion from SELECT_GROUP.Plan_Med";
+
+            Planes = Conexion.LeerTabla(cadena);
+
+            foreach (DataRow planes in Planes.Rows)
+            {
+
+                string desc = planes["descripcion"].ToString();
+                ComboboxItem itemPlan = new ComboboxItem();
+
+                itemPlan.Text = planes["descripcion"].ToString();
+                itemPlan.Value = planes["idPlan"].ToString();
+
+                cmbPlanQuery2.Items.Add(itemPlan);
+
+            }
+            Conexion.conexion.Close();
+            // Fin de carga del plan
+
             
 
 
@@ -217,7 +241,7 @@ namespace ClinicaFrba.Listados
 
                 itemEsp.Text = desc;
                 itemEsp.Value = especialidad["idEspecialidad"].ToString();
-
+                cmbEspQuery2.Items.Add(itemEsp);
                 comboBox1.Items.Add(itemEsp);
 
             }
@@ -258,18 +282,24 @@ namespace ClinicaFrba.Listados
         {
             nroQueryElegido = 1;
             comboBox1.Visible = false;
+            cmbEspQuery2.Visible = false;
+            cmbPlanQuery2.Visible = false;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             nroQueryElegido = 2;
             comboBox1.Visible = false;
+            cmbEspQuery2.Visible = true;
+            cmbPlanQuery2.Visible = true;
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
             nroQueryElegido = 3;
             comboBox1.Visible = false;
+            cmbEspQuery2.Visible = false;
+            cmbPlanQuery2.Visible = false;
         }
 
         private void txboxanio_TextChanged(object sender, EventArgs e)
@@ -279,244 +309,178 @@ namespace ClinicaFrba.Listados
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string anio = txboxanio.Text.ToString();
-            string semestre = cmbsemestre.SelectedItem.ToString();
-            string elMes = "todos";
-            ComboboxItem Mes = new ComboboxItem();
-            Mes = (ComboboxItem)cmbmes.SelectedItem;
 
-            if (Mes != null)
+            if (txboxanio.Text.ToString() == "")
             {
-                elMes = Mes.Value.ToString();
+                MessageBox.Show("Por favor completar el año");
             }
-
-
-            DateTime[] fechas = obtenerFechas(anio, semestre, usaMes, elMes);
-
-            DateTime fechaDesde = fechas[0];
-            DateTime fechaHasta = fechas[1];
-
-            DataTable Lista = new DataTable();
-            switch (nroQueryElegido)
+            else
             {
 
-                case 0:
+                string anio = txboxanio.Text.ToString();
 
-                    MessageBox.Show("Por favor seleccione un reporte");
-                    break;
-                case 1:
+                string semestre = "todos";
 
-                    string consultaMayCanc = "SELECT TOP 5 T.especialidad FROM Select_Group.Turno T WHERE T.cancelacion_idCancelacion is not null AND T.fechaTurno BETWEEN '" + fechaDesde.ToString("MM/dd/yyyy") + "' AND '" + fechaHasta.ToString("MM/dd/yyyy") + "' GROUP BY T.especialidad ORDER BY count(*) desc";
-            
-                    Conexion.conectar();
+                if (cmbsemestre.SelectedItem != null)
+                {
 
-                    
+                    semestre = cmbsemestre.SelectedItem.ToString();
+                }
+                string elMes = "todos";
+                ComboboxItem Mes = new ComboboxItem();
+                Mes = (ComboboxItem)cmbmes.SelectedItem;
 
-                    
-                    string cadena = "SELECT [especialidad] FROM [Select_Group].[V_Las5EspConMasCancelaciones]";
-                    Lista = Conexion.LeerTabla(consultaMayCanc);
-                    listView1.Clear();
-
-                    listView1.View = View.Details;
-                    listView1.GridLines = true;
-                    listView1.FullRowSelect = true;
-
-                    listView1.Columns.Add("Especialidades", 200);
-                    //listView1.Columns.Add("Cantidad Veces", 100);
-                    // listView1.Columns.Add("Quantity", 70);
-
-                    foreach (DataRow listado in Lista.Rows)
-                    {
-
-                        string especialidad = listado["especialidad"].ToString();
-                        //string veces = listado["veces"].ToString();
-
-                        //Add items in the listview
-                        string[] arr = new string[1];
-                        ListViewItem itm;
-
-                        //Add first item
-                        arr[0] = especialidad;
-                        //arr[1] = veces;
-                        //arr[2] = "10";
-                        itm = new ListViewItem(arr);
-                        listView1.Items.Add(itm);
-                    }
-                    Conexion.conexion.Close();
-
-            break;
-                case 2:
-            Conexion.conectar();
-
-            //string contador;
-
-            
-            string cadenaquery2 = "SELECT  matricula  ,apellido ,nombre ,descripcion FROM Select_Group.ProfMasConsultados";
-            Lista = Conexion.LeerTabla(cadenaquery2);
-            listView1.Clear();
-
-            listView1.View = View.Details;
-            listView1.GridLines = true;
-            listView1.FullRowSelect = true;
-
-            listView1.Columns.Add("Matricula", 100);
-            listView1.Columns.Add("Apellido", 100);
-            listView1.Columns.Add("Nombre", 100);
-            listView1.Columns.Add("Descripcion", 200);
-            // listView1.Columns.Add("Quantity", 70);
-
-            foreach (DataRow listado in Lista.Rows)
-            {
-
-                string matricula = listado["matricula"].ToString();
-                string apellido = listado["Apellido"].ToString();
-                string nombre = listado["Nombre"].ToString();
-                string descripcion = listado["Descripcion"].ToString();
-                //Add items in the listview
-                string[] arr = new string[4];
-                ListViewItem itm;
-
-                //Add first item
-                arr[0] = matricula;
-                arr[1] = apellido;
-                arr[2] = nombre;
-                arr[3] = descripcion;
-                itm = new ListViewItem(arr);
-                listView1.Items.Add(itm);
-            }
-            Conexion.conexion.Close();
-                //Finalizo consulta
-
-            break;
-
-                case 3:
-            //Inicio Consulta
-            Conexion.conectar();
-
-            //string contador;
-
-            
-            string cadenaquery3 = "SELECT [nroAfiliado],[nombre] ,[apellido] ,[Cantidad Comprada]  FROM [Select_Group].[5AfiliadosConMasCompraDeBonos]";
-            Lista = Conexion.LeerTabla(cadenaquery3);
-            listView1.Clear();
-
-            listView1.View = View.Details;
-            listView1.GridLines = true;
-            listView1.FullRowSelect = true;
-
-            listView1.Columns.Add("Nro de Afiliado", 100);
-            listView1.Columns.Add("Nombre", 200);
-            listView1.Columns.Add("Apellido", 200);
-            listView1.Columns.Add("Cantidad Comprada", 100);
-            // listView1.Columns.Add("Quantity", 70);
-
-            foreach (DataRow listado in Lista.Rows)
-            {
-
-                string matricula = listado["nroAfiliado"].ToString();
-                string apellido = listado["nombre"].ToString();
-                string nombre = listado["apellido"].ToString();
-                string descripcion = listado["Cantidad Comprada"].ToString();
-                //Add items in the listview
-                string[] arr = new string[4];
-                ListViewItem itm;
-
-                //Add first item
-                arr[0] = matricula;
-                arr[1] = apellido;
-                arr[2] = nombre;
-                arr[3] = descripcion;
-                itm = new ListViewItem(arr);
-                listView1.Items.Add(itm);
-            }
-            Conexion.conexion.Close();
-            break;
-
-                case 4:
-
-            //Inicio Consulta
-            Conexion.conectar();
-
-            //string contador;
-
-            
-            string query4 = "SELECT [especialidad_idEspecialidad] ,[descripcion] FROM [Select_Group].[V_Las5EspConMasBonos]";
-            Lista = Conexion.LeerTabla(query4);
-            listView1.Clear();
-
-            listView1.View = View.Details;
-            listView1.GridLines = true;
-            listView1.FullRowSelect = true;
-
-            listView1.Columns.Add("especialidad_idEspecialidad", 100);
-            listView1.Columns.Add("descripcion", 100);
-            // listView1.Columns.Add("Quantity", 70);
-
-            foreach (DataRow listado in Lista.Rows)
-            {
-
-                string idEspecialidad = listado["especialidad_idEspecialidad"].ToString();
-                string descripcion = listado["descripcion"].ToString();
-
-                //Add items in the listview
-                string[] arr = new string[4];
-                ListViewItem itm;
-
-                //Add first item
-                arr[0] = idEspecialidad;
-                arr[1] = descripcion;
-                itm = new ListViewItem(arr);
-                listView1.Items.Add(itm);
-            }
-            Conexion.conexion.Close();
-                //Finalizo consulta
-
-            break;
-
-                case 5:
-
-                    ComboboxItem unaEsp = new ComboboxItem();
-                    unaEsp = (ComboboxItem)comboBox1.SelectedItem;
-
-                    if (unaEsp == null)
-                    {
-
-                        MessageBox.Show("Para poder ejecutar este reporte necesita seleccionar una especialidad");
-                    }
-                    else
-                    {
-                        ComboboxItem especialidadElegida = new ComboboxItem();
+                if (Mes != null)
+                {
+                    elMes = Mes.Value.ToString();
+                }
 
 
-                        especialidadElegida = (ComboboxItem)comboBox1.SelectedItem;
-                        string query3 = "SELECT TOP 5 Ag.profesional_IdProfesional, Pr.apellido, Pr.nombre   FROM Select_Group.Agenda_Detalle Ad  JOIN Select_Group.Agenda Ag ON Ag.idAgenda = Ad.idAgenda JOIN Select_Group.Profesional Pr ON Pr.matricula = Ag.profesional_IdProfesional  JOIN Select_Group.Profesional_Por_Especialidad Esp ON Esp.profesional_idProfesional = Ag.profesional_IdProfesional  JOIN Select_Group.Turno T ON T.fechaTurno = Ad.fecha_Hora_Turno AND T.idAgenda = Ad.idAgenda  JOIN Select_Group.Afiliado Af ON Af.idAfiliado = T.afiliado_idAfiliado  GROUP BY Ag.profesional_IdProfesional, Esp.especialidad_idEspecialidad, Af.plan_idPlan, Pr.apellido, Pr.nombre  HAVING Esp.especialidad_idEspecialidad = " + especialidadElegida.Value.ToString() + " ORDER BY count(Ad.fecha_Hora_Turno) asc ";
+                DateTime[] fechas = obtenerFechas(anio, semestre, usaMes, elMes);
+
+                DateTime fechaDesde = fechas[0];
+                DateTime fechaHasta = fechas[1];
+
+                DataTable Lista = new DataTable();
+                switch (nroQueryElegido)
+                {
+
+                    case 0:
+
+                        MessageBox.Show("Por favor seleccione un reporte");
+                        break;
+                    case 1:
+
+                        string consultaMayCanc = "SELECT TOP 5 T.especialidad FROM Select_Group.Turno T WHERE T.cancelacion_idCancelacion is not null AND T.fechaTurno BETWEEN '" + fechaDesde.ToString("MM/dd/yyyy") + "' AND '" + fechaHasta.ToString("MM/dd/yyyy") + "' GROUP BY T.especialidad ORDER BY count(*) desc";
 
                         Conexion.conectar();
 
-                        //string contador;
 
 
 
-                        Lista = Conexion.LeerTabla(query3);
+                        string cadena = "SELECT [especialidad] FROM [Select_Group].[V_Las5EspConMasCancelaciones]";
+                        Lista = Conexion.LeerTabla(consultaMayCanc);
                         listView1.Clear();
 
                         listView1.View = View.Details;
                         listView1.GridLines = true;
                         listView1.FullRowSelect = true;
 
-                        listView1.Columns.Add("Matricula", 100);
-                        listView1.Columns.Add("Apellido", 100);
-                        listView1.Columns.Add("Nombre", 100);
-
+                        listView1.Columns.Add("Especialidades", 200);
+                        //listView1.Columns.Add("Cantidad Veces", 100);
                         // listView1.Columns.Add("Quantity", 70);
 
                         foreach (DataRow listado in Lista.Rows)
                         {
 
-                            string matricula = listado["profesional_IdProfesional"].ToString();
-                            string apellido = listado["Apellido"].ToString();
-                            string nombre = listado["Nombre"].ToString();
+                            string especialidad = listado["especialidad"].ToString();
+                            //string veces = listado["veces"].ToString();
 
+                            //Add items in the listview
+                            string[] arr = new string[1];
+                            ListViewItem itm;
+
+                            //Add first item
+                            arr[0] = especialidad;
+                            //arr[1] = veces;
+                            //arr[2] = "10";
+                            itm = new ListViewItem(arr);
+                            listView1.Items.Add(itm);
+                        }
+                        Conexion.conexion.Close();
+
+                        break;
+                    case 2:
+
+                        if ((cmbPlanQuery2.SelectedItem == null) || (cmbEspQuery2.SelectedItem == null))
+                        {
+                            MessageBox.Show("Seleccionar Plan y Especialidad");
+
+                        }
+                        else
+                        {
+                            ComboboxItem unaEspecialidad = new ComboboxItem();
+                            unaEspecialidad = (ComboboxItem)cmbEspQuery2.SelectedItem;
+
+                            ComboboxItem unPlan = new ComboboxItem();
+                            unPlan = (ComboboxItem)cmbPlanQuery2.SelectedItem;
+
+                            Conexion.conectar();
+
+
+
+                            string select = "SELECT  TOP (5) P.matricula, P.apellido, P.nombre, E.descripcion,E.idEspecialidad, Af.plan_idPlan, COUNT(Af.plan_idPlan) AS 'CantConsultas'";
+                            string from = "FROM   Select_Group.Profesional AS P INNER JOIN Select_Group.Profesional_Por_Especialidad AS PE ON PE.profesional_idProfesional = P.matricula INNER JOIN Select_Group.Especialidad AS E ON E.idEspecialidad = PE.especialidad_idEspecialidad INNER JOIN Select_Group.Agenda AS Ag ON Ag.profesional_IdProfesional = P.matricula INNER JOIN Select_Group.Turno AS T ON T.idAgenda = Ag.idAgenda INNER JOIN Select_Group.Afiliado AS Af ON Af.idAfiliado = T.afiliado_idAfiliado ";
+
+
+                            string where = "WHERE Af.plan_idPlan = " + unPlan.Value.ToString().Trim() + " AND E.idEspecialidad = " + unaEspecialidad.Value.ToString().Trim() + " AND T.fechaTurno BETWEEN '" + fechaDesde.ToString("MM/dd/yyyy") + "' AND '" + fechaHasta.ToString("MM/dd/yyyy") + "'";
+                            string orderBy = "GROUP BY P.matricula, Af.plan_idPlan, E.descripcion, P.apellido, P.nombre, E.idEspecialidad ORDER BY COUNT(Af.plan_idPlan) desc";
+                            string cadenaquery2 = select + from + where + orderBy;
+                            Lista = Conexion.LeerTabla(cadenaquery2);
+                            listView1.Clear();
+
+                            listView1.View = View.Details;
+                            listView1.GridLines = true;
+                            listView1.FullRowSelect = true;
+
+                            listView1.Columns.Add("Matricula", 100);
+                            listView1.Columns.Add("Apellido", 100);
+                            listView1.Columns.Add("Nombre", 100);
+                            listView1.Columns.Add("Descripcion", 200);
+                            // listView1.Columns.Add("Quantity", 70);
+
+                            foreach (DataRow listado in Lista.Rows)
+                            {
+
+                                string matricula = listado["matricula"].ToString();
+                                string apellido = listado["apellido"].ToString();
+                                string nombre = listado["nombre"].ToString();
+                                string descripcion = listado["descripcion"].ToString();
+                                //Add items in the listview
+                                string[] arr = new string[4];
+                                ListViewItem itm;
+
+                                //Add first item
+                                arr[0] = matricula;
+                                arr[1] = apellido;
+                                arr[2] = nombre;
+                                arr[3] = descripcion;
+                                itm = new ListViewItem(arr);
+                                listView1.Items.Add(itm);
+                            }
+                            Conexion.conexion.Close();
+                            //Finalizo consulta
+                        }
+                        break;
+
+                    case 3:
+                        //Inicio Consulta
+                        Conexion.conectar();
+
+                        //string contador;
+
+
+                        string cadenaquery3 = "SELECT [nroAfiliado],[nombre] ,[apellido] ,[Cantidad Comprada]  FROM [Select_Group].[5AfiliadosConMasCompraDeBonos]";
+                        Lista = Conexion.LeerTabla(cadenaquery3);
+                        listView1.Clear();
+
+                        listView1.View = View.Details;
+                        listView1.GridLines = true;
+                        listView1.FullRowSelect = true;
+
+                        listView1.Columns.Add("Nro de Afiliado", 100);
+                        listView1.Columns.Add("Nombre", 200);
+                        listView1.Columns.Add("Apellido", 200);
+                        listView1.Columns.Add("Cantidad Comprada", 100);
+                        // listView1.Columns.Add("Quantity", 70);
+
+                        foreach (DataRow listado in Lista.Rows)
+                        {
+
+                            string matricula = listado["nroAfiliado"].ToString();
+                            string apellido = listado["nombre"].ToString();
+                            string nombre = listado["apellido"].ToString();
+                            string descripcion = listado["Cantidad Comprada"].ToString();
                             //Add items in the listview
                             string[] arr = new string[4];
                             ListViewItem itm;
@@ -525,30 +489,136 @@ namespace ClinicaFrba.Listados
                             arr[0] = matricula;
                             arr[1] = apellido;
                             arr[2] = nombre;
-
+                            arr[3] = descripcion;
                             itm = new ListViewItem(arr);
                             listView1.Items.Add(itm);
                         }
-                    }
-            break;
+                        Conexion.conexion.Close();
+                        break;
 
-                default:
-            break;
+                    case 4:
 
+                        //Inicio Consulta
+                        Conexion.conectar();
+
+                        //string contador;
+
+
+                        string query4 = "SELECT [especialidad_idEspecialidad] ,[descripcion] FROM [Select_Group].[V_Las5EspConMasBonos]";
+                        Lista = Conexion.LeerTabla(query4);
+                        listView1.Clear();
+
+                        listView1.View = View.Details;
+                        listView1.GridLines = true;
+                        listView1.FullRowSelect = true;
+
+                        listView1.Columns.Add("especialidad_idEspecialidad", 100);
+                        listView1.Columns.Add("descripcion", 100);
+                        // listView1.Columns.Add("Quantity", 70);
+
+                        foreach (DataRow listado in Lista.Rows)
+                        {
+
+                            string idEspecialidad = listado["especialidad_idEspecialidad"].ToString();
+                            string descripcion = listado["descripcion"].ToString();
+
+                            //Add items in the listview
+                            string[] arr = new string[4];
+                            ListViewItem itm;
+
+                            //Add first item
+                            arr[0] = idEspecialidad;
+                            arr[1] = descripcion;
+                            itm = new ListViewItem(arr);
+                            listView1.Items.Add(itm);
+                        }
+                        Conexion.conexion.Close();
+                        //Finalizo consulta
+
+                        break;
+
+                    case 5:
+
+                        ComboboxItem unaEsp = new ComboboxItem();
+                        unaEsp = (ComboboxItem)comboBox1.SelectedItem;
+
+                        if (unaEsp == null)
+                        {
+
+                            MessageBox.Show("Para poder ejecutar este reporte necesita seleccionar una especialidad");
+                        }
+                        else
+                        {
+                            ComboboxItem especialidadElegida = new ComboboxItem();
+
+
+                            especialidadElegida = (ComboboxItem)comboBox1.SelectedItem;
+                            string query3 = "SELECT TOP 5 Ag.profesional_IdProfesional, Pr.apellido, Pr.nombre   FROM Select_Group.Agenda_Detalle Ad  JOIN Select_Group.Agenda Ag ON Ag.idAgenda = Ad.idAgenda JOIN Select_Group.Profesional Pr ON Pr.matricula = Ag.profesional_IdProfesional  JOIN Select_Group.Profesional_Por_Especialidad Esp ON Esp.profesional_idProfesional = Ag.profesional_IdProfesional  JOIN Select_Group.Turno T ON T.fechaTurno = Ad.fecha_Hora_Turno AND T.idAgenda = Ad.idAgenda  JOIN Select_Group.Afiliado Af ON Af.idAfiliado = T.afiliado_idAfiliado  GROUP BY Ag.profesional_IdProfesional, Esp.especialidad_idEspecialidad, Af.plan_idPlan, Pr.apellido, Pr.nombre  HAVING Esp.especialidad_idEspecialidad = " + especialidadElegida.Value.ToString() + " ORDER BY count(Ad.fecha_Hora_Turno) asc ";
+
+                            Conexion.conectar();
+
+                            //string contador;
+
+
+
+                            Lista = Conexion.LeerTabla(query3);
+                            listView1.Clear();
+
+                            listView1.View = View.Details;
+                            listView1.GridLines = true;
+                            listView1.FullRowSelect = true;
+
+                            listView1.Columns.Add("Matricula", 100);
+                            listView1.Columns.Add("Apellido", 100);
+                            listView1.Columns.Add("Nombre", 100);
+
+                            // listView1.Columns.Add("Quantity", 70);
+
+                            foreach (DataRow listado in Lista.Rows)
+                            {
+
+                                string matricula = listado["profesional_IdProfesional"].ToString();
+                                string apellido = listado["Apellido"].ToString();
+                                string nombre = listado["Nombre"].ToString();
+
+                                //Add items in the listview
+                                string[] arr = new string[4];
+                                ListViewItem itm;
+
+                                //Add first item
+                                arr[0] = matricula;
+                                arr[1] = apellido;
+                                arr[2] = nombre;
+
+                                itm = new ListViewItem(arr);
+                                listView1.Items.Add(itm);
+                            }
+                        }
+                        break;
+
+                    default:
+                        break;
+
+
+                }
 
             }
-
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
             nroQueryElegido = 4;
+            comboBox1.Visible = false;
+            cmbEspQuery2.Visible = false;
+            cmbPlanQuery2.Visible = false;
         }
 
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {
             nroQueryElegido = 5;
             comboBox1.Visible = true;
+            cmbEspQuery2.Visible = false;
+            cmbPlanQuery2.Visible = false;
 
         }
 
@@ -556,6 +626,8 @@ namespace ClinicaFrba.Listados
         {
             nroQueryElegido = 5;
             comboBox1.Visible = true;
+            cmbEspQuery2.Visible = false;
+            cmbPlanQuery2.Visible = false;
         }
 
 
