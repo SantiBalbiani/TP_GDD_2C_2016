@@ -62,9 +62,9 @@
             // listView1
             // 
             this.listView1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.listView1.Location = new System.Drawing.Point(429, 126);
+            this.listView1.Location = new System.Drawing.Point(395, 90);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(333, 127);
+            this.listView1.Size = new System.Drawing.Size(419, 219);
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -72,7 +72,7 @@
             // btnVolver
             // 
             this.btnVolver.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnVolver.Location = new System.Drawing.Point(664, 268);
+            this.btnVolver.Location = new System.Drawing.Point(723, 327);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(98, 23);
             this.btnVolver.TabIndex = 7;
@@ -83,7 +83,7 @@
             // cmbsemestre
             // 
             this.cmbsemestre.FormattingEnabled = true;
-            this.cmbsemestre.Location = new System.Drawing.Point(544, 93);
+            this.cmbsemestre.Location = new System.Drawing.Point(95, 258);
             this.cmbsemestre.Name = "cmbsemestre";
             this.cmbsemestre.Size = new System.Drawing.Size(103, 21);
             this.cmbsemestre.TabIndex = 12;
@@ -92,7 +92,7 @@
             // cmbmes
             // 
             this.cmbmes.FormattingEnabled = true;
-            this.cmbmes.Location = new System.Drawing.Point(660, 93);
+            this.cmbmes.Location = new System.Drawing.Point(96, 288);
             this.cmbmes.Name = "cmbmes";
             this.cmbmes.Size = new System.Drawing.Size(102, 21);
             this.cmbmes.TabIndex = 13;
@@ -102,7 +102,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(429, 74);
+            this.label2.Location = new System.Drawing.Point(37, 229);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 14;
@@ -112,7 +112,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(544, 74);
+            this.label3.Location = new System.Drawing.Point(37, 261);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 13);
             this.label3.TabIndex = 15;
@@ -122,7 +122,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label4.Location = new System.Drawing.Point(658, 74);
+            this.label4.Location = new System.Drawing.Point(37, 288);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 16;
@@ -130,16 +130,16 @@
             // 
             // txboxanio
             // 
-            this.txboxanio.Location = new System.Drawing.Point(429, 93);
+            this.txboxanio.Location = new System.Drawing.Point(95, 226);
             this.txboxanio.MaxLength = 4;
             this.txboxanio.Name = "txboxanio";
-            this.txboxanio.Size = new System.Drawing.Size(100, 20);
+            this.txboxanio.Size = new System.Drawing.Size(103, 20);
             this.txboxanio.TabIndex = 17;
             this.txboxanio.TextChanged += new System.EventHandler(this.txboxanio_TextChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(123, 254);
+            this.button1.Location = new System.Drawing.Point(123, 327);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -174,7 +174,7 @@
             // radioButton3
             // 
             this.radioButton3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioButton3.Location = new System.Drawing.Point(40, 157);
+            this.radioButton3.Location = new System.Drawing.Point(40, 136);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(291, 17);
             this.radioButton3.TabIndex = 0;
@@ -186,7 +186,7 @@
             // radioButton4
             // 
             this.radioButton4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioButton4.Location = new System.Drawing.Point(40, 180);
+            this.radioButton4.Location = new System.Drawing.Point(40, 159);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(289, 17);
             this.radioButton4.TabIndex = 0;
@@ -198,7 +198,7 @@
             // radioButton5
             // 
             this.radioButton5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioButton5.Location = new System.Drawing.Point(40, 203);
+            this.radioButton5.Location = new System.Drawing.Point(40, 182);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(253, 17);
             this.radioButton5.TabIndex = 18;
@@ -211,7 +211,7 @@
             // 
             this.comboBox1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(93, 226);
+            this.comboBox1.Location = new System.Drawing.Point(204, 288);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(146, 21);
             this.comboBox1.TabIndex = 19;
@@ -221,7 +221,7 @@
             // cmbEspQuery2
             // 
             this.cmbEspQuery2.FormattingEnabled = true;
-            this.cmbEspQuery2.Location = new System.Drawing.Point(204, 137);
+            this.cmbEspQuery2.Location = new System.Drawing.Point(204, 226);
             this.cmbEspQuery2.Name = "cmbEspQuery2";
             this.cmbEspQuery2.Size = new System.Drawing.Size(146, 21);
             this.cmbEspQuery2.TabIndex = 20;
@@ -230,9 +230,9 @@
             // cmbPlanQuery2
             // 
             this.cmbPlanQuery2.FormattingEnabled = true;
-            this.cmbPlanQuery2.Location = new System.Drawing.Point(59, 137);
+            this.cmbPlanQuery2.Location = new System.Drawing.Point(204, 258);
             this.cmbPlanQuery2.Name = "cmbPlanQuery2";
-            this.cmbPlanQuery2.Size = new System.Drawing.Size(139, 21);
+            this.cmbPlanQuery2.Size = new System.Drawing.Size(146, 21);
             this.cmbPlanQuery2.TabIndex = 21;
             this.cmbPlanQuery2.Text = "Seleccione Plan";
             // 
@@ -241,7 +241,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(780, 340);
+            this.ClientSize = new System.Drawing.Size(833, 360);
             this.Controls.Add(this.cmbPlanQuery2);
             this.Controls.Add(this.cmbEspQuery2);
             this.Controls.Add(this.comboBox1);

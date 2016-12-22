@@ -460,7 +460,10 @@ namespace ClinicaFrba.Listados
                         //string contador;
 
 
-                        string cadenaquery3 = "SELECT [nroAfiliado],[nombre] ,[apellido] ,[Cantidad Comprada]  FROM [Select_Group].[5AfiliadosConMasCompraDeBonos]";
+                        string campos = "SELECT TOP 5 A.nroAfiliado, A.nombre, A.apellido, COUNT(*) AS 'Cantidad Comprada', (SELECT count(*) FROM SELECT_GROUP.Afiliado A2 WHERE A2.nroAfiliado LIKE (left(A.nroAfiliado, LEN(A.nroAfiliado)-2)+'%') AND (LEN(A.nroAfiliado) = LEN(A2.nroAfiliado))) AS 'CantFamiliares' ";
+                        string desdeTabla = "FROM Select_Group.Afiliado A JOIN Select_Group.Bono B ON A.idAfiliado = B.idAfiliado ";
+                        string condicion = "WHERE B.bonoConsulta_FechaImpresion BETWEEN '"+fechaDesde.ToString("MM/dd/yyyy")+"' AND '"+fechaHasta.ToString("MM/dd/yyyy")+"' GROUP BY A.nroAfiliado, A.nombre, A.apellido ORDER BY COUNT(*) DESC";
+                        string cadenaquery3 = campos + desdeTabla + condicion;
                         Lista = Conexion.LeerTabla(cadenaquery3);
                         listView1.Clear();
 
@@ -472,6 +475,8 @@ namespace ClinicaFrba.Listados
                         listView1.Columns.Add("Nombre", 200);
                         listView1.Columns.Add("Apellido", 200);
                         listView1.Columns.Add("Cantidad Comprada", 100);
+                        listView1.Columns.Add("Pertenece Grupo Familiar", 100);
+                        listView1.Columns.Add("CantFamiliares", 100);
                         // listView1.Columns.Add("Quantity", 70);
 
                         foreach (DataRow listado in Lista.Rows)
@@ -481,15 +486,32 @@ namespace ClinicaFrba.Listados
                             string apellido = listado["nombre"].ToString();
                             string nombre = listado["apellido"].ToString();
                             string descripcion = listado["Cantidad Comprada"].ToString();
+                            string CantFamiliar = listado["CantFamiliares"].ToString();
                             //Add items in the listview
-                            string[] arr = new string[4];
+                            string[] arr = new string[6];
                             ListViewItem itm;
+                            int cantFam = 0;
+                            if (CantFamiliar == "1")
+                            {
+                                arr[4] = "No";
+                                arr[5] = "0";
+                            }
+                            else
+                            {
+                                arr[4] = "Si";
+                                cantFam = Convert.ToInt32(CantFamiliar);
+                                cantFam--;
+                                arr[5] = cantFam.ToString();
+                            }
 
                             //Add first item
                             arr[0] = matricula;
                             arr[1] = apellido;
                             arr[2] = nombre;
                             arr[3] = descripcion;
+                            
+                            
+
                             itm = new ListViewItem(arr);
                             listView1.Items.Add(itm);
                         }
@@ -553,7 +575,7 @@ namespace ClinicaFrba.Listados
 
 
                             especialidadElegida = (ComboboxItem)comboBox1.SelectedItem;
-                            string query3 = "SELECT TOP 5 Ag.profesional_IdProfesional, Pr.apellido, Pr.nombre   FROM Select_Group.Agenda_Detalle Ad  JOIN Select_Group.Agenda Ag ON Ag.idAgenda = Ad.idAgenda JOIN Select_Group.Profesional Pr ON Pr.matricula = Ag.profesional_IdProfesional  JOIN Select_Group.Profesional_Por_Especialidad Esp ON Esp.profesional_idProfesional = Ag.profesional_IdProfesional  JOIN Select_Group.Turno T ON T.fechaTurno = Ad.fecha_Hora_Turno AND T.idAgenda = Ad.idAgenda  JOIN Select_Group.Afiliado Af ON Af.idAfiliado = T.afiliado_idAfiliado  GROUP BY Ag.profesional_IdProfesional, Esp.especialidad_idEspecialidad, Af.plan_idPlan, Pr.apellido, Pr.nombre  HAVING Esp.especialidad_idEspecialidad = " + especialidadElegida.Value.ToString() + " ORDER BY count(Ad.fecha_Hora_Turno) asc ";
+                            string query3 = "SELECT TOP 5 Ag.profesional_IdProfesional, Pr.apellido, Pr.nombre   FROM Select_Group.Agenda_Detalle Ad  JOIN Select_Group.Agenda Ag ON Ag.idAgenda = Ad.idAgenda JOIN Select_Group.Profesional Pr ON Pr.matricula = Ag.profesional_IdProfesional  JOIN Select_Group.Profesional_Por_Especialidad Esp ON Esp.profesional_idProfesional = Ag.profesional_IdProfesional  JOIN Select_Group.Turno T ON T.fechaTurno = Ad.fecha_Hora_Turno AND T.idAgenda = Ad.idAgenda  JOIN Select_Group.Afiliado Af ON Af.idAfiliado = T.afiliado_idAfiliado WHERE T.fechaTurno BETWEEN '"+fechaDesde.ToString("MM/dd/yyyy")+"' AND '"+fechaHasta.ToString("MM/dd/yyyy")+"'  GROUP BY Ag.profesional_IdProfesional, Esp.especialidad_idEspecialidad, Af.plan_idPlan, Pr.apellido, Pr.nombre  HAVING Esp.especialidad_idEspecialidad = " + especialidadElegida.Value.ToString() + " ORDER BY count(Ad.fecha_Hora_Turno) asc ";
 
                             Conexion.conectar();
 
