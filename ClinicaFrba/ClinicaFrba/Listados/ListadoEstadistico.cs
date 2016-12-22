@@ -525,8 +525,11 @@ namespace ClinicaFrba.Listados
 
                         //string contador;
 
-
-                        string query4 = "SELECT [especialidad_idEspecialidad] ,[descripcion] FROM [Select_Group].[V_Las5EspConMasBonos]";
+                        string seleccion = "SELECT TOP 5 E.descripcion, T.especialidad, count(*) AS 'CantBonosUsados' ";
+                        string desde = "FROM SELECT_GROUP.Bono B JOIN SELECT_GROUP.Turno T ON B.idAfiliado = T.afiliado_idAfiliado JOIN SELECT_GROUP.Especialidad E ON E.idEspecialidad = T.especialidad ";
+                        string filtro = "WHERE B.estado = 0 AND T.fechaTurno BETWEEN '"+fechaDesde.ToString("MM/dd/yyyy")+"' AND '"+fechaHasta.ToString("MM/dd/yyyy")+"' ";
+                        string agrupa = "GROUP BY T.especialidad, E.descripcion  ORDER BY count(*) DESC";
+                        string query4 = seleccion + desde + filtro + agrupa;
                         Lista = Conexion.LeerTabla(query4);
                         listView1.Clear();
 
@@ -534,18 +537,18 @@ namespace ClinicaFrba.Listados
                         listView1.GridLines = true;
                         listView1.FullRowSelect = true;
 
-                        listView1.Columns.Add("especialidad_idEspecialidad", 100);
-                        listView1.Columns.Add("descripcion", 100);
+                        listView1.Columns.Add("Especialidad", 250);
+                        listView1.Columns.Add("Cantidad de Bonos Usados", 150);
                         // listView1.Columns.Add("Quantity", 70);
 
                         foreach (DataRow listado in Lista.Rows)
                         {
 
-                            string idEspecialidad = listado["especialidad_idEspecialidad"].ToString();
-                            string descripcion = listado["descripcion"].ToString();
+                            string idEspecialidad = listado["descripcion"].ToString();
+                            string descripcion = listado["CantBonosUsados"].ToString();
 
                             //Add items in the listview
-                            string[] arr = new string[4];
+                            string[] arr = new string[2];
                             ListViewItem itm;
 
                             //Add first item
