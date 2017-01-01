@@ -17,6 +17,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
     public partial class FrmRegistroAgenda : Form
     {
         public Form Home;
+        
 
         public FrmRegistroAgenda()
         {
@@ -25,39 +26,23 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            cmbLunesDesde.Enabled = false;
+            cmbLunesHasta.Enabled = false;
+            cmbMartesDesde.Enabled = false;
+            cmbMartesHasta.Enabled = false;
+            cmbMiercolesDesde.Enabled = false;
+            cmbMiercolesHasta.Enabled = false;
+            cmbJuevesDesde.Enabled = false;
+            cmbJuevesHasta.Enabled = false;
+            cmbViernesDesde.Enabled = false;
+            cmbViernesHasta.Enabled = false;
+            cmbSabadoDesde.Enabled = false;
+            cmbSabadoHasta.Enabled = false;
 
+
+            
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private void label8_Click(object sender, EventArgs e)
         {
 
@@ -68,13 +53,8 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
         }
 
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
-        {
+        {/*
             int horaDesd = Convert.ToInt32(horaDesdeText.Text.ToString().Trim());
             int horaHasta = Convert.ToInt32(horaHastaText.Text.ToString().Trim());
             
@@ -188,7 +168,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 }
 
             }
-        }
+        }*/
         }
            
       
@@ -198,12 +178,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             this.Close();
         }
 
-        private void horaDesdeText_TextChanged(object sender, EventArgs e)
-        {
-            horaDesdeText.Text = horaDesdeText.Text.Trim();
-            horaDesdeText.Text = horaDesdeText.Text.Replace(" ", "");
-            horaDesdeText.SelectionStart = horaDesdeText.Text.Length;
-        }
+        
         private void horaDesdeText_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Char.IsDigit(e.KeyChar))
@@ -223,31 +198,94 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 e.Handled = true;
             }
         }
-        private void horaHastaText_KeyPress(object sender, KeyPressEventArgs e)
+        
+        private void label2_Click(object sender, EventArgs e)
         {
-            if (Char.IsDigit(e.KeyChar))
+
+        }
+
+        private void checkBoxLunes_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxLunes.Checked == true)
             {
-                e.Handled = false;
+                cmbLunesHasta.Enabled = true;
+                cmbLunesDesde.Enabled = true;
             }
-            else if (Char.IsControl(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (Char.IsSeparator(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else
-            {
-                e.Handled = true;
+            else {
+                cmbLunesDesde.Enabled = false;
+                cmbLunesHasta.Enabled = false;            
             }
         }
 
-        private void horaHastaText_TextChanged(object sender, EventArgs e)
+        private void checkBoxMartes_CheckedChanged(object sender, EventArgs e)
         {
-            horaHastaText.Text = horaHastaText.Text.Trim();
-            horaHastaText.Text = horaHastaText.Text.Replace(" ", "");
-            horaHastaText.SelectionStart = horaHastaText.Text.Length;
+            if (checkBoxMartes.Checked == true)
+            {
+                cmbMartesHasta.Enabled = true;
+                cmbMartesDesde.Enabled = true;
+            }
+            else
+            {
+                cmbMartesDesde.Enabled = false;
+                cmbMartesHasta.Enabled = false;
+            }
         }
+
+        private void checkBoxMiercoles_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxMiercoles.Checked == true)
+            {
+                cmbMiercolesHasta.Enabled = true;
+                cmbMiercolesDesde.Enabled = true;
+            }
+            else
+            {
+                cmbMiercolesDesde.Enabled = false;
+                cmbMiercolesHasta.Enabled = false;
+            }
+        }
+
+        private void checkBoxJueves_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxJueves.Checked == true)
+            {
+                cmbJuevesHasta.Enabled = true;
+                cmbJuevesDesde.Enabled = true;
+            }
+            else
+            {
+                cmbJuevesDesde.Enabled = false;
+                cmbJuevesHasta.Enabled = false;
+            }
+        }
+
+        private void checkBoxViernes_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxViernes.Checked == true)
+            {
+                cmbViernesHasta.Enabled = true;
+                cmbViernesDesde.Enabled = true;
+            }
+            else
+            {
+                cmbViernesDesde.Enabled = false;
+                cmbViernesHasta.Enabled = false;
+            }
+        }
+
+        private void checkBoxSabado_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSabado.Checked == true)
+            {
+                cmbSabadoHasta.Enabled = true;
+                cmbSabadoDesde.Enabled = true;
+            }
+            else
+            {
+                cmbSabadoDesde.Enabled = false;
+                cmbSabadoHasta.Enabled = false;
+            }
+        }
+        
     }
 }
