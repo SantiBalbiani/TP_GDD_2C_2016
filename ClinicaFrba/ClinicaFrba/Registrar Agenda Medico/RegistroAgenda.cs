@@ -22,6 +22,23 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
         public FrmRegistroAgenda()
         {
             InitializeComponent();
+            cargarHorariosDesdeDiaSemana(cmbLunesDesde);
+            cargarHorariosDesdeDiaSemana(cmbMartesDesde);
+            cargarHorariosDesdeDiaSemana(cmbMiercolesDesde);
+            cargarHorariosDesdeDiaSemana(cmbJuevesDesde);
+            cargarHorariosDesdeDiaSemana(cmbViernesDesde);
+
+            cargarHorariosSabadoDesde(cmbSabadoDesde);
+            
+            cargarHorariosHastaDiaSemana(cmbLunesHasta);
+            cargarHorariosHastaDiaSemana(cmbMartesHasta);
+            cargarHorariosHastaDiaSemana(cmbMiercolesHasta);
+            cargarHorariosHastaDiaSemana(cmbJuevesHasta);
+            cargarHorariosHastaDiaSemana(cmbViernesHasta);
+
+            cargarHorariosSabadoHasta(cmbSabadoHasta);
+
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -39,6 +56,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             cmbSabadoDesde.Enabled = false;
             cmbSabadoHasta.Enabled = false;
 
+            
 
             
         }
@@ -286,6 +304,71 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 cmbSabadoHasta.Enabled = false;
             }
         }
+
+        public void cargarHorariosDesdeDiaSemana(ComboBox combo) {
+
+            combo.Items.Add("7:00");                
+            combo.Items.Add("7:30");
+            combo.Items.Add("8:00");
+            combo.Items.Add("8:30");
+            combo.Items.Add("9:00");
+            combo.Items.Add("9:30");
+            combo.Items.Add("10:00");
+            combo.Items.Add("10:30");
+            combo.Items.Add("11:00");
+            combo.Items.Add("11:30");
+            combo.Items.Add("12:00");
+            combo.Items.Add("12:30");
+            combo.Items.Add("13:00");
+            combo.Items.Add("13:30");
+            combo.Items.Add("14:00");
+            combo.Items.Add("14:30");
+            combo.Items.Add("15:00");
+            combo.Items.Add("15:30");
+            combo.Items.Add("16:00");
+            combo.Items.Add("16:30");
+            combo.Items.Add("17:00");
+            combo.Items.Add("17:30");
+            combo.Items.Add("18:00");
+            combo.Items.Add("18:30");
+            combo.Items.Add("19:00");
+            combo.Items.Add("19:30");
+            
+            
+            }
+        public void cargarHorariosHastaDiaSemana(ComboBox combo) {
+            
+            cargarHorariosDesdeDiaSemana(combo);
+            combo.Items.RemoveAt(0);
+            combo.Items.Add("20:00");
+        
+        }
+
+        public void cargarHorariosSabadoDesde(ComboBox combo){
+            
+            combo.Items.Add("10:00");
+            combo.Items.Add("10:30");
+            combo.Items.Add("11:00");
+            combo.Items.Add("11:30");
+            combo.Items.Add("12:00");
+            combo.Items.Add("12:30");
+            combo.Items.Add("13:00");
+            combo.Items.Add("13:30");
+            combo.Items.Add("14:00");
+            combo.Items.Add("14:30");                   
+        }
+
+        public void cargarHorariosSabadoHasta(ComboBox combo) {
+
+            cargarHorariosSabadoDesde(combo);
+            combo.Items.RemoveAt(0);
+            combo.Items.Add("15:00");
+        
+        
+        
+        }
+        
+        }
         
     }
-}
+
