@@ -17,6 +17,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
     public partial class FrmRegistroAgenda : Form
     {
         public Form Home;
+        public DataTable horariosSemana = new DataTable();
         
 
         public FrmRegistroAgenda()
@@ -37,8 +38,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             cargarHorariosHastaDiaSemana(cmbViernesHasta);
 
             cargarHorariosSabadoHasta(cmbSabadoHasta);
-
-            
+                        
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -55,10 +55,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             cmbViernesHasta.Enabled = false;
             cmbSabadoDesde.Enabled = false;
             cmbSabadoHasta.Enabled = false;
-
-            
-
-            
+          
         }
        
         private void label8_Click(object sender, EventArgs e)
@@ -72,18 +69,52 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {/*
-            int horaDesd = Convert.ToInt32(horaDesdeText.Text.ToString().Trim());
-            int horaHasta = Convert.ToInt32(horaHastaText.Text.ToString().Trim());
+        {
+            //int horaDesd = Convert.ToInt32(horaDesdeText.Text.ToString().Trim());
+            //int horaHasta = Convert.ToInt32(horaHastaText.Text.ToString().Trim());
             
             Menu_Principal.HomeProfesional homeProf = new Menu_Principal.HomeProfesional();
             homeProf = (Menu_Principal.HomeProfesional)Home;
 
-            if (((diaSemanaText.Text == "0") || (horaDesd < 700) || (horaHasta > 2000) || ((horaDesd < 1000)))|| (( (diaSemanaText.Text == "6")) || ((horaHasta > 1500) && (diaSemanaText.Text == "6"))))
+            if (seleccionVacia())
             {
-                MessageBox.Show("Agenda fuera del horario de atención. Horario de atención: 7 a 20 hs lunes a viernes y 10 a 15 hs sabados.");
+                MessageBox.Show("Debe seleccionar algun día con su respectivo horario para armar la Agenda del Medico");
             }else{
-            //Conexion.conectar();
+                DataColumn registroSemana =
+                    horariosSemana.Columns.Add("profesional_IdProfesional", typeof(int));
+                    horariosSemana.Columns.Add("diaDisponible", typeof(int));
+                    horariosSemana.Columns.Add("horaDesde", typeof(int));
+                    horariosSemana.Columns.Add("horaHasta", typeof(int));
+    
+                horariosSemana = cargarEstructura(horariosSemana);
+
+
+                SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+
+
+                try
+                {                    
+                    SqlCommand cmdAltaAgenda = new SqlCommand("Select_Group.AltaAgenda", cnx);
+                    cmdAltaAgenda.CommandType = CommandType.StoredProcedure;
+                    cmdAltaAgenda.Parameters.Add(new SqlParameter("@Agenda", SqlDbType.Structured));
+                    cmdAltaAgenda.Parameters["@Agenda"].Value = horariosSemana;
+                    cnx.Open();
+                    cmdAltaAgenda.ExecuteNonQuery();
+                    MessageBox.Show("Se han guardado correctamente los datos");
+
+                    Home.Show();
+                    this.Close();
+                }
+                catch (ApplicationException error)
+                {
+                    string mensaje = "Se ha producido un error ";
+                    ApplicationException excep = new ApplicationException(mensaje, error);
+                    excep.Source = this.Text;
+                }
+                
+                /*
+                
+                //Conexion.conectar();
             SqlConnection conexion;
             bool conectado = false;
             //llenar la variable conexión con los parámetros de la variable parametros
@@ -185,8 +216,8 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                     MessageBox.Show(ex.Message);
                 }
 
-            }
-        }*/
+            }*/
+        }
         }
            
       
@@ -307,12 +338,12 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
         public void cargarHorariosDesdeDiaSemana(ComboBox combo) {
 
-            combo.Items.Add("7:00");                
-            combo.Items.Add("7:30");
-            combo.Items.Add("8:00");
-            combo.Items.Add("8:30");
-            combo.Items.Add("9:00");
-            combo.Items.Add("9:30");
+            combo.Items.Add("07:00");                
+            combo.Items.Add("07:30");
+            combo.Items.Add("08:00");
+            combo.Items.Add("08:30");
+            combo.Items.Add("09:00");
+            combo.Items.Add("09:30");
             combo.Items.Add("10:00");
             combo.Items.Add("10:30");
             combo.Items.Add("11:00");
@@ -366,6 +397,98 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
         
         
         
+        }
+
+        public bool seleccionVacia() { 
+            Boolean bandera;
+
+            if(checkBoxJueves.Checked || checkBoxLunes.Checked || checkBoxMartes.Checked || checkBoxMiercoles.Checked || checkBoxSabado.Checked || checkBoxViernes.Checked){
+                bandera = false;            
+            }else{
+                bandera = true;
+            }
+
+            return bandera;
+        
+        }
+
+        public DataTable cargarEstructura(DataTable tablaAgenda) {
+
+            Menu_Principal.HomeProfesional homeProf = new Menu_Principal.HomeProfesional();
+            homeProf = (Menu_Principal.HomeProfesional)Home;
+
+            if (checkBoxLunes.Checked) {
+                DataRow unRegistro = tablaAgenda.NewRow();
+                unRegistro["profesional_IdProfesional"] = homeProf.idProf;
+                unRegistro["diaDisponible"] = 1;
+                unRegistro["horaDesde"] = Convert.ToInt32(formatoHorario(cmbLunesDesde.Text));
+                unRegistro["horaHasta"] = Convert.ToInt32(formatoHorario(cmbLunesHasta.Text));
+
+                tablaAgenda.Rows.Add(unRegistro);
+                }
+            if (checkBoxMartes.Checked) {
+                DataRow unRegistro = tablaAgenda.NewRow();
+                unRegistro["profesional_IdProfesional"] = homeProf.idProf;
+                unRegistro["diaDisponible"] = 2;
+                unRegistro["horaDesde"] = Convert.ToInt32(formatoHorario(cmbMartesDesde.Text));
+                unRegistro["horaHasta"] = Convert.ToInt32(formatoHorario(cmbMartesHasta.Text));
+                
+                tablaAgenda.Rows.Add(unRegistro);
+            
+            }
+            if (checkBoxMiercoles.Checked)
+            {
+                DataRow unRegistro = tablaAgenda.NewRow();
+                unRegistro["profesional_IdProfesional"] = homeProf.idProf;
+                unRegistro["diaDisponible"] = 3;
+                unRegistro["horaDesde"] = Convert.ToInt32(formatoHorario(cmbMiercolesDesde.Text));
+                unRegistro["horaHasta"] = Convert.ToInt32(formatoHorario(cmbMiercolesHasta.Text));
+
+                tablaAgenda.Rows.Add(unRegistro);
+            }
+            if (checkBoxJueves.Checked)
+            {
+                DataRow unRegistro = tablaAgenda.NewRow();
+                unRegistro["profesional_IdProfesional"] = homeProf.idProf;
+                unRegistro["diaDisponible"] = 4;
+                unRegistro["horaDesde"] = Convert.ToInt32(formatoHorario(cmbJuevesDesde.Text));
+                unRegistro["horaHasta"] = Convert.ToInt32(formatoHorario(cmbJuevesHasta.Text));
+
+                tablaAgenda.Rows.Add(unRegistro);
+
+            }
+            if (checkBoxViernes.Checked)
+            {
+                DataRow unRegistro = tablaAgenda.NewRow();
+                unRegistro["profesional_IdProfesional"] = homeProf.idProf;
+                unRegistro["diaDisponible"] = 5;
+                unRegistro["horaDesde"] = Convert.ToInt32(formatoHorario(cmbViernesDesde.Text));
+                unRegistro["horaHasta"] = Convert.ToInt32(formatoHorario(cmbViernesHasta.Text));
+
+                tablaAgenda.Rows.Add(unRegistro);
+
+            }
+            if (checkBoxSabado.Checked)
+            {
+                DataRow unRegistro = tablaAgenda.NewRow();
+                unRegistro["profesional_IdProfesional"] = homeProf.idProf;
+                unRegistro["diaDisponible"] = 6;
+                unRegistro["horaDesde"] = Convert.ToInt32(formatoHorario(cmbSabadoDesde.Text));
+                unRegistro["horaHasta"] = Convert.ToInt32(formatoHorario(cmbSabadoHasta.Text));
+
+                tablaAgenda.Rows.Add(unRegistro);
+
+            }
+
+            return tablaAgenda;
+        
+        
+        }
+
+        public string formatoHorario(string cadenaCombo) {
+
+            return cadenaCombo = cadenaCombo.Replace(":", "");        
+            
         }
         
         }
