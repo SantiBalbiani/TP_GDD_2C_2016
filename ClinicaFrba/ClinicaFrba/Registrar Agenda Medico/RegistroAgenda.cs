@@ -79,38 +79,40 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             if (seleccionVacia())
             {
                 MessageBox.Show("Debe seleccionar algun día con su respectivo horario para armar la Agenda del Medico");
-            }else{
-                DataColumn registroSemana =
-                    horariosSemana.Columns.Add("profesional_IdProfesional", typeof(int));
-                    horariosSemana.Columns.Add("diaDisponible", typeof(int));
-                    horariosSemana.Columns.Add("horaDesde", typeof(int));
-                    horariosSemana.Columns.Add("horaHasta", typeof(int));
+            }
+            else{
+                if(verificarHorariosIngresados()){
+                    
+                        DataColumn registroSemana =
+                        horariosSemana.Columns.Add("profesional_IdProfesional", typeof(int));
+                        horariosSemana.Columns.Add("diaDisponible", typeof(int));
+                        horariosSemana.Columns.Add("horaDesde", typeof(int));
+                        horariosSemana.Columns.Add("horaHasta", typeof(int));
     
-                horariosSemana = cargarEstructura(horariosSemana);
+                        horariosSemana = cargarEstructura(horariosSemana);
 
+                
+                        SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
 
-                SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+                        try
+                            {
+                                SqlCommand cmdAltaAgenda = new SqlCommand("Select_Group.AltaAgenda", cnx);
+                                cmdAltaAgenda.CommandType = CommandType.StoredProcedure;
+                                cmdAltaAgenda.Parameters.Add(new SqlParameter("@Agenda", SqlDbType.Structured));
+                                cmdAltaAgenda.Parameters["@Agenda"].Value = horariosSemana;
+                                cnx.Open();
+                                cmdAltaAgenda.ExecuteNonQuery();
+                                MessageBox.Show("Se han guardado correctamente los datos");
 
-
-                try
-                {                    
-                    SqlCommand cmdAltaAgenda = new SqlCommand("Select_Group.AltaAgenda", cnx);
-                    cmdAltaAgenda.CommandType = CommandType.StoredProcedure;
-                    cmdAltaAgenda.Parameters.Add(new SqlParameter("@Agenda", SqlDbType.Structured));
-                    cmdAltaAgenda.Parameters["@Agenda"].Value = horariosSemana;
-                    cnx.Open();
-                    cmdAltaAgenda.ExecuteNonQuery();
-                    MessageBox.Show("Se han guardado correctamente los datos");
-
-                    Home.Show();
-                    this.Close();
-                }
-                catch (ApplicationException error)
-                {
-                    string mensaje = "Se ha producido un error ";
-                    ApplicationException excep = new ApplicationException(mensaje, error);
-                    excep.Source = this.Text;
-                }
+                                Home.Show();
+                                this.Close();
+                            }
+                            catch (ApplicationException error)
+                            {
+                                string mensaje = "Se ha producido un error ";
+                                ApplicationException excep = new ApplicationException(mensaje, error);
+                                excep.Source = this.Text;
+                            }
                 
                 /*
                 
@@ -218,6 +220,8 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
             }*/
         }
+                MessageBox.Show("Verifique por favor los horarios ingresados");
+                }
         }
            
       
@@ -393,10 +397,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
             cargarHorariosSabadoDesde(combo);
             combo.Items.RemoveAt(0);
-            combo.Items.Add("15:00");
-        
-        
-        
+            combo.Items.Add("15:00");        
         }
 
         public bool seleccionVacia() { 
@@ -489,6 +490,53 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
             return cadenaCombo = cadenaCombo.Replace(":", "");        
             
+        }
+        public Boolean verificarHorariosIngresados() {
+            Boolean bandera = false;
+
+            if (checkBoxLunes.Checked) {
+                if (Convert.ToInt32(formatoHorario(cmbLunesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbLunesDesde.Text))) {
+                    bandera = true;
+                }            
+            }
+            if (checkBoxMartes.Checked)
+            {
+                if (Convert.ToInt32(formatoHorario(cmbMartesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbMartesDesde.Text)))
+                {
+                    bandera = true;
+                }
+            }
+            if (checkBoxMiercoles.Checked)
+            {
+                if (Convert.ToInt32(formatoHorario(cmbMiercolesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbMiercolesDesde.Text)))
+                {
+                    bandera = true;
+                }
+            }
+            if (checkBoxJueves.Checked)
+            {
+                if (Convert.ToInt32(formatoHorario(cmbJuevesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbJuevesDesde.Text)))
+                {
+                    bandera = true;
+                }
+            }
+            if (checkBoxViernes.Checked)
+            {
+                if (Convert.ToInt32(formatoHorario(cmbViernesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbViernesDesde.Text)))
+                {
+                    bandera = true;
+                }
+            }
+            if (checkBoxSabado.Checked)
+            {
+                if (Convert.ToInt32(formatoHorario(cmbSabadoHasta.Text)) > Convert.ToInt32(formatoHorario(cmbSabadoDesde.Text)))
+                {
+                    bandera = true;
+                }
+            }
+
+            return bandera;
+        
         }
         
         }
