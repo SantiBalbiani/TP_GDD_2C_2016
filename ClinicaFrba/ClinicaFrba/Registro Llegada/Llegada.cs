@@ -148,9 +148,9 @@ namespace ClinicaFrba.Registro_Llegada
             }
             else
             {
-                string consultaBonosDisp = "SELECT idBono  FROM Select_Group.Bono B JOIN Select_Group.Afiliado A ON A.idAfiliado = B.idAfiliado AND A.plan_idPlan = B.idPlan  WHERE A.nroAfiliado = " + txtNumeroAfiliado.Text.ToString() + "  AND estado = 1";
                 
 
+                string consultaBonosDisp = "SELECT B.idBono FROM SELECT_GROUP.Bono B JOIN SELECT_GROUP.Afiliado A ON B.idAfiliado = A.idAfiliado WHERE (A.nroAfiliado LIKE (left(" + txtNumeroAfiliado.Text.ToString() + ", LEN(" + txtNumeroAfiliado.Text.ToString() + ")-2)+'%') AND (LEN(" + txtNumeroAfiliado.Text.ToString() + ") = LEN(A.nroAfiliado))) AND (B.idPlan = (SELECT A2.plan_idPlan FROM SELECT_GROUP.Afiliado A2 WHERE nroAfiliado = " + txtNumeroAfiliado.Text.ToString() + ")) AND B.estado = 1";
                 DataTable bonosDisponibles = new DataTable();
 
                 Conexion.conectar();
