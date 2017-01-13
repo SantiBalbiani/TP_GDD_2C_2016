@@ -23,7 +23,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
         public FrmRegistroAgenda()
         {
             InitializeComponent();
-            cargarHorariosDesdeDiaSemana(cmbLunesDesde);
+           /* cargarHorariosDesdeDiaSemana(cmbLunesDesde);
             cargarHorariosDesdeDiaSemana(cmbMartesDesde);
             cargarHorariosDesdeDiaSemana(cmbMiercolesDesde);
             cargarHorariosDesdeDiaSemana(cmbJuevesDesde);
@@ -37,12 +37,49 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             cargarHorariosHastaDiaSemana(cmbJuevesHasta);
             cargarHorariosHastaDiaSemana(cmbViernesHasta);
 
-            cargarHorariosSabadoHasta(cmbSabadoHasta);
+            cargarHorariosSabadoHasta(cmbSabadoHasta);*/
                         
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+            //Cargo especialidades:
+            DataTable especialidades = new DataTable();
+            Object unItem = comboBox2.SelectedItem;
+            ComboboxItem unItemCasteado = (ComboboxItem)unItem;
+
+            ClinicaFrba.Menu_Principal.HomeProfesional homeProf = new Menu_Principal.HomeProfesional();
+            homeProf = (ClinicaFrba.Menu_Principal.HomeProfesional)Home;
+
+            string cadena = "SELECT E.descripcion ,[especialidad_idEspecialidad] FROM [SELECT_GROUP].[Profesional_Por_Especialidad] PE JOIN [SELECT_GROUP].[Especialidad] E ON E.idEspecialidad = PE.especialidad_idEspecialidad WHERE profesional_idProfesional = '"+homeProf.idProf.ToString().Trim()+"'";
+
+            especialidades = Conexion.LeerTabla(cadena);
+
+
+            foreach (DataRow especialidad in especialidades.Rows)
+            {
+
+                string desc = especialidad["descripcion"].ToString();
+                ComboboxItem itemEsp = new ComboboxItem();
+
+                itemEsp.Text = desc;
+                itemEsp.Value = especialidad["especialidad_idEspecialidad"].ToString();
+
+                comboBox1.Items.Add(itemEsp);
+                comboBox2.Items.Add(itemEsp);
+                comboBox3.Items.Add(itemEsp);
+                comboBox4.Items.Add(itemEsp);
+                comboBox5.Items.Add(itemEsp);
+                comboBox6.Items.Add(itemEsp);
+
+            }
+
+
+            Conexion.conexion.Close();
+
+            //Fin carga especialidades
+            
             cmbLunesDesde.Enabled = false;
             cmbLunesHasta.Enabled = false;
             cmbMartesDesde.Enabled = false;
@@ -263,10 +300,12 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             {
                 cmbLunesHasta.Enabled = true;
                 cmbLunesDesde.Enabled = true;
+                comboBox1.Enabled = true;
             }
             else {
                 cmbLunesDesde.Enabled = false;
-                cmbLunesHasta.Enabled = false;            
+                cmbLunesHasta.Enabled = false;
+                comboBox1.Enabled = false;
             }
         }
 
@@ -276,11 +315,13 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             {
                 cmbMartesHasta.Enabled = true;
                 cmbMartesDesde.Enabled = true;
+                comboBox2.Enabled = true;
             }
             else
             {
                 cmbMartesDesde.Enabled = false;
                 cmbMartesHasta.Enabled = false;
+                comboBox2.Enabled = false;
             }
         }
 
@@ -290,11 +331,13 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             {
                 cmbMiercolesHasta.Enabled = true;
                 cmbMiercolesDesde.Enabled = true;
+                comboBox3.Enabled = true;
             }
             else
             {
                 cmbMiercolesDesde.Enabled = false;
                 cmbMiercolesHasta.Enabled = false;
+                comboBox3.Enabled = false;
             }
         }
 
@@ -304,11 +347,13 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             {
                 cmbJuevesHasta.Enabled = true;
                 cmbJuevesDesde.Enabled = true;
+                comboBox4.Enabled = true;
             }
             else
             {
                 cmbJuevesDesde.Enabled = false;
                 cmbJuevesHasta.Enabled = false;
+                comboBox4.Enabled = false;
             }
         }
 
@@ -318,11 +363,13 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             {
                 cmbViernesHasta.Enabled = true;
                 cmbViernesDesde.Enabled = true;
+                comboBox5.Enabled = true;
             }
             else
             {
                 cmbViernesDesde.Enabled = false;
                 cmbViernesHasta.Enabled = false;
+                comboBox5.Enabled = false;
             }
         }
 
@@ -332,11 +379,13 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             {
                 cmbSabadoHasta.Enabled = true;
                 cmbSabadoDesde.Enabled = true;
+                comboBox6.Enabled = true;
             }
             else
             {
                 cmbSabadoDesde.Enabled = false;
                 cmbSabadoHasta.Enabled = false;
+                comboBox6.Enabled = false;
             }
         }
 
@@ -537,6 +586,11 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
             return bandera;
         
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
         
         }
