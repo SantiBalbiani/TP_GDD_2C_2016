@@ -92,7 +92,13 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             cmbViernesHasta.Enabled = false;
             cmbSabadoDesde.Enabled = false;
             cmbSabadoHasta.Enabled = false;
-          
+            comboBox1.Enabled = false;
+            comboBox2.Enabled = false;
+            comboBox3.Enabled = false;
+            comboBox4.Enabled = false;
+            comboBox5.Enabled = false;
+            comboBox6.Enabled = false;
+
         }
        
         private void label8_Click(object sender, EventArgs e)
