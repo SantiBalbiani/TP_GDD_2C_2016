@@ -109,7 +109,23 @@ namespace ClinicaFrba.Compra_Bono
                         cnx.Close();
                         MessageBox.Show("Compra exitosa");
                         //Globals.irAtras(menuAnterior, this);
-                        Home.Show();
+
+                        string tipoForm = Home.GetType().ToString();
+
+                        if (tipoForm == "ClinicaFrba.HomeAfiliado")
+                        {
+                            HomeAfiliado frmAfi = new HomeAfiliado();
+                            Home.Close();
+                            frmAfi.Show();
+
+                        }
+                        else
+                        {
+                            Home.Show();
+                        }
+
+                        
+                                       
                         this.Close();
                     }
                 }
