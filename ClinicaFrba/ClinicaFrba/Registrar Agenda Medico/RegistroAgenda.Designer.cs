@@ -60,7 +60,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.button1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button1.Location = new System.Drawing.Point(200, 325);
+            this.button1.Location = new System.Drawing.Point(163, 359);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(90, 23);
@@ -73,7 +73,7 @@
             // 
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnCancelar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnCancelar.Location = new System.Drawing.Point(294, 325);
+            this.btnCancelar.Location = new System.Drawing.Point(307, 359);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(83, 23);
@@ -85,7 +85,7 @@
             // checkBoxLunes
             // 
             this.checkBoxLunes.AutoSize = true;
-            this.checkBoxLunes.Location = new System.Drawing.Point(144, 51);
+            this.checkBoxLunes.Location = new System.Drawing.Point(158, 61);
             this.checkBoxLunes.Name = "checkBoxLunes";
             this.checkBoxLunes.Size = new System.Drawing.Size(15, 14);
             this.checkBoxLunes.TabIndex = 38;
@@ -95,7 +95,7 @@
             // checkBoxMartes
             // 
             this.checkBoxMartes.AutoSize = true;
-            this.checkBoxMartes.Location = new System.Drawing.Point(144, 99);
+            this.checkBoxMartes.Location = new System.Drawing.Point(158, 113);
             this.checkBoxMartes.Name = "checkBoxMartes";
             this.checkBoxMartes.Size = new System.Drawing.Size(15, 14);
             this.checkBoxMartes.TabIndex = 41;
@@ -105,7 +105,7 @@
             // checkBoxMiercoles
             // 
             this.checkBoxMiercoles.AutoSize = true;
-            this.checkBoxMiercoles.Location = new System.Drawing.Point(144, 146);
+            this.checkBoxMiercoles.Location = new System.Drawing.Point(158, 160);
             this.checkBoxMiercoles.Name = "checkBoxMiercoles";
             this.checkBoxMiercoles.Size = new System.Drawing.Size(15, 14);
             this.checkBoxMiercoles.TabIndex = 46;
@@ -115,7 +115,7 @@
             // checkBoxJueves
             // 
             this.checkBoxJueves.AutoSize = true;
-            this.checkBoxJueves.Location = new System.Drawing.Point(144, 194);
+            this.checkBoxJueves.Location = new System.Drawing.Point(158, 208);
             this.checkBoxJueves.Name = "checkBoxJueves";
             this.checkBoxJueves.Size = new System.Drawing.Size(15, 14);
             this.checkBoxJueves.TabIndex = 47;
@@ -125,7 +125,7 @@
             // checkBoxViernes
             // 
             this.checkBoxViernes.AutoSize = true;
-            this.checkBoxViernes.Location = new System.Drawing.Point(144, 239);
+            this.checkBoxViernes.Location = new System.Drawing.Point(158, 265);
             this.checkBoxViernes.Name = "checkBoxViernes";
             this.checkBoxViernes.Size = new System.Drawing.Size(15, 14);
             this.checkBoxViernes.TabIndex = 48;
@@ -135,7 +135,7 @@
             // checkBoxSabado
             // 
             this.checkBoxSabado.AutoSize = true;
-            this.checkBoxSabado.Location = new System.Drawing.Point(144, 286);
+            this.checkBoxSabado.Location = new System.Drawing.Point(158, 314);
             this.checkBoxSabado.Name = "checkBoxSabado";
             this.checkBoxSabado.Size = new System.Drawing.Size(15, 14);
             this.checkBoxSabado.TabIndex = 49;
@@ -148,7 +148,7 @@
             this.cmbLunesDesde.CustomFormat = "HH:mm";
             this.cmbLunesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.cmbLunesDesde.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cmbLunesDesde.Location = new System.Drawing.Point(215, 51);
+            this.cmbLunesDesde.Location = new System.Drawing.Point(229, 59);
             this.cmbLunesDesde.Name = "cmbLunesDesde";
             this.cmbLunesDesde.ShowUpDown = true;
             this.cmbLunesDesde.Size = new System.Drawing.Size(59, 20);
@@ -160,7 +160,7 @@
             this.cmbLunesHasta.CustomFormat = "HH:mm";
             this.cmbLunesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.cmbLunesHasta.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cmbLunesHasta.Location = new System.Drawing.Point(307, 51);
+            this.cmbLunesHasta.Location = new System.Drawing.Point(321, 59);
             this.cmbLunesHasta.Name = "cmbLunesHasta";
             this.cmbLunesHasta.ShowUpDown = true;
             this.cmbLunesHasta.Size = new System.Drawing.Size(59, 20);
@@ -172,7 +172,7 @@
             this.cmbMartesDesde.CustomFormat = "HH:mm";
             this.cmbMartesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.cmbMartesDesde.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cmbMartesDesde.Location = new System.Drawing.Point(215, 99);
+            this.cmbMartesDesde.Location = new System.Drawing.Point(229, 113);
             this.cmbMartesDesde.Name = "cmbMartesDesde";
             this.cmbMartesDesde.ShowUpDown = true;
             this.cmbMartesDesde.Size = new System.Drawing.Size(59, 20);
@@ -183,7 +183,7 @@
             this.cmbMartesHasta.CustomFormat = "HH:mm";
             this.cmbMartesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.cmbMartesHasta.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cmbMartesHasta.Location = new System.Drawing.Point(307, 99);
+            this.cmbMartesHasta.Location = new System.Drawing.Point(321, 113);
             this.cmbMartesHasta.Name = "cmbMartesHasta";
             this.cmbMartesHasta.ShowUpDown = true;
             this.cmbMartesHasta.Size = new System.Drawing.Size(59, 20);
@@ -194,7 +194,7 @@
             this.cmbMiercolesDesde.CustomFormat = "HH:mm";
             this.cmbMiercolesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.cmbMiercolesDesde.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cmbMiercolesDesde.Location = new System.Drawing.Point(215, 146);
+            this.cmbMiercolesDesde.Location = new System.Drawing.Point(229, 160);
             this.cmbMiercolesDesde.Name = "cmbMiercolesDesde";
             this.cmbMiercolesDesde.ShowUpDown = true;
             this.cmbMiercolesDesde.Size = new System.Drawing.Size(59, 20);
@@ -205,7 +205,7 @@
             this.cmbMiercolesHasta.CustomFormat = "HH:mm";
             this.cmbMiercolesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.cmbMiercolesHasta.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cmbMiercolesHasta.Location = new System.Drawing.Point(307, 146);
+            this.cmbMiercolesHasta.Location = new System.Drawing.Point(321, 160);
             this.cmbMiercolesHasta.Name = "cmbMiercolesHasta";
             this.cmbMiercolesHasta.ShowUpDown = true;
             this.cmbMiercolesHasta.Size = new System.Drawing.Size(59, 20);
@@ -216,7 +216,7 @@
             this.cmbJuevesDesde.CustomFormat = "HH:mm";
             this.cmbJuevesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.cmbJuevesDesde.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cmbJuevesDesde.Location = new System.Drawing.Point(215, 191);
+            this.cmbJuevesDesde.Location = new System.Drawing.Point(229, 205);
             this.cmbJuevesDesde.Name = "cmbJuevesDesde";
             this.cmbJuevesDesde.ShowUpDown = true;
             this.cmbJuevesDesde.Size = new System.Drawing.Size(59, 20);
@@ -227,7 +227,7 @@
             this.cmbJuevesHasta.CustomFormat = "HH:mm";
             this.cmbJuevesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.cmbJuevesHasta.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cmbJuevesHasta.Location = new System.Drawing.Point(307, 191);
+            this.cmbJuevesHasta.Location = new System.Drawing.Point(321, 205);
             this.cmbJuevesHasta.Name = "cmbJuevesHasta";
             this.cmbJuevesHasta.ShowUpDown = true;
             this.cmbJuevesHasta.Size = new System.Drawing.Size(59, 20);
@@ -238,7 +238,7 @@
             this.cmbViernesDesde.CustomFormat = "HH:mm";
             this.cmbViernesDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.cmbViernesDesde.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cmbViernesDesde.Location = new System.Drawing.Point(215, 239);
+            this.cmbViernesDesde.Location = new System.Drawing.Point(229, 263);
             this.cmbViernesDesde.Name = "cmbViernesDesde";
             this.cmbViernesDesde.ShowUpDown = true;
             this.cmbViernesDesde.Size = new System.Drawing.Size(59, 20);
@@ -249,7 +249,7 @@
             this.cmbViernesHasta.CustomFormat = "HH:mm";
             this.cmbViernesHasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.cmbViernesHasta.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cmbViernesHasta.Location = new System.Drawing.Point(307, 239);
+            this.cmbViernesHasta.Location = new System.Drawing.Point(321, 265);
             this.cmbViernesHasta.Name = "cmbViernesHasta";
             this.cmbViernesHasta.ShowUpDown = true;
             this.cmbViernesHasta.Size = new System.Drawing.Size(59, 20);
@@ -260,7 +260,7 @@
             this.cmbSabadoDesde.CustomFormat = "HH:mm";
             this.cmbSabadoDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.cmbSabadoDesde.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cmbSabadoDesde.Location = new System.Drawing.Point(215, 286);
+            this.cmbSabadoDesde.Location = new System.Drawing.Point(229, 308);
             this.cmbSabadoDesde.Name = "cmbSabadoDesde";
             this.cmbSabadoDesde.ShowUpDown = true;
             this.cmbSabadoDesde.Size = new System.Drawing.Size(59, 20);
@@ -271,7 +271,7 @@
             this.cmbSabadoHasta.CustomFormat = "HH:mm";
             this.cmbSabadoHasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.cmbSabadoHasta.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cmbSabadoHasta.Location = new System.Drawing.Point(307, 286);
+            this.cmbSabadoHasta.Location = new System.Drawing.Point(321, 308);
             this.cmbSabadoHasta.Name = "cmbSabadoHasta";
             this.cmbSabadoHasta.ShowUpDown = true;
             this.cmbSabadoHasta.Size = new System.Drawing.Size(59, 20);
@@ -280,7 +280,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(385, 49);
+            this.comboBox1.Location = new System.Drawing.Point(412, 58);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 78;
@@ -288,7 +288,7 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(385, 99);
+            this.comboBox2.Location = new System.Drawing.Point(410, 112);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 79;
@@ -296,7 +296,7 @@
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(385, 146);
+            this.comboBox3.Location = new System.Drawing.Point(410, 159);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 21);
             this.comboBox3.TabIndex = 80;
@@ -304,7 +304,7 @@
             // comboBox4
             // 
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(385, 191);
+            this.comboBox4.Location = new System.Drawing.Point(410, 204);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(121, 21);
             this.comboBox4.TabIndex = 81;
@@ -312,7 +312,7 @@
             // comboBox5
             // 
             this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(385, 238);
+            this.comboBox5.Location = new System.Drawing.Point(410, 262);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(121, 21);
             this.comboBox5.TabIndex = 82;
@@ -320,7 +320,7 @@
             // comboBox6
             // 
             this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(385, 286);
+            this.comboBox6.Location = new System.Drawing.Point(410, 311);
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(121, 21);
             this.comboBox6.TabIndex = 83;
@@ -329,8 +329,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::ClinicaFrba.Properties.Resources.Agenda2;
-            this.ClientSize = new System.Drawing.Size(524, 355);
+            this.BackgroundImage = global::ClinicaFrba.Properties.Resources.Agenda7;
+            this.ClientSize = new System.Drawing.Size(550, 393);
             this.Controls.Add(this.comboBox6);
             this.Controls.Add(this.comboBox5);
             this.Controls.Add(this.comboBox4);

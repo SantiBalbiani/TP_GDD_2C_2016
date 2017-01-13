@@ -94,6 +94,16 @@ namespace ClinicaFrba.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Agenda7 {
+            get {
+                object obj = ResourceManager.GetObject("Agenda7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap clinica_la_arruzafa_doctores {
             get {
                 object obj = ResourceManager.GetObject("clinica-la-arruzafa-doctores", resourceCulture);
