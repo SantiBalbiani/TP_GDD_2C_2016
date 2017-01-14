@@ -125,144 +125,149 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             }
             else{
                 if(verificarHorariosIngresados()){
-                    
+                    if (especialidadElegida())
+                    {
+
                         DataColumn registroSemana =
                         horariosSemana.Columns.Add("profesional_IdProfesional", typeof(int));
                         horariosSemana.Columns.Add("diaDisponible", typeof(int));
                         horariosSemana.Columns.Add("horaDesde", typeof(int));
                         horariosSemana.Columns.Add("horaHasta", typeof(int));
-    
+
                         horariosSemana = cargarEstructura(horariosSemana);
 
-                
+
                         SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
 
                         try
-                            {
-                                SqlCommand cmdAltaAgenda = new SqlCommand("Select_Group.AltaAgenda", cnx);
-                                cmdAltaAgenda.CommandType = CommandType.StoredProcedure;
-                                cmdAltaAgenda.Parameters.Add(new SqlParameter("@Agenda", SqlDbType.Structured));
-                                cmdAltaAgenda.Parameters["@Agenda"].Value = horariosSemana;
-                                cnx.Open();
-                                cmdAltaAgenda.ExecuteNonQuery();
-                                MessageBox.Show("Se han guardado correctamente los datos");
+                        {
+                            SqlCommand cmdAltaAgenda = new SqlCommand("Select_Group.AltaAgenda", cnx);
+                            cmdAltaAgenda.CommandType = CommandType.StoredProcedure;
+                            cmdAltaAgenda.Parameters.Add(new SqlParameter("@Agenda", SqlDbType.Structured));
+                            cmdAltaAgenda.Parameters["@Agenda"].Value = horariosSemana;
+                            cnx.Open();
+                            cmdAltaAgenda.ExecuteNonQuery();
+                            MessageBox.Show("Se han guardado correctamente los datos");
 
-                                Home.Show();
-                                this.Close();
-                            }
-                            catch (ApplicationException error)
-                            {
-                                string mensaje = "Se ha producido un error ";
-                                ApplicationException excep = new ApplicationException(mensaje, error);
-                                excep.Source = this.Text;
-                            }
+                            Home.Show();
+                            this.Close();
+                        }
+                        catch (ApplicationException error)
+                        {
+                            string mensaje = "Se ha producido un error ";
+                            ApplicationException excep = new ApplicationException(mensaje, error);
+                            excep.Source = this.Text;
+                        }
+
+                        /*
                 
-                /*
-                
-                //Conexion.conectar();
-            SqlConnection conexion;
-            bool conectado = false;
-            //llenar la variable conexión con los parámetros de la variable parametros
-            string parametros = ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString;
-            conexion = new SqlConnection(parametros);
-            try
-            {
-                //abrir la conexion
-                conexion.Open();
-                conectado = true;
-            }
-            catch (InvalidCastException)
-            {
-                MessageBox.Show("Error al conectar la Base de datos");
-                conectado = false;
-            }
-
-
-            if (conectado == true)
-            {
-
-                try
-                {
-                    //1//valido que no ingrese dos agendas en un mismo horarios
-                    using (SqlCommand cmdRol2 = new SqlCommand("SELECT COUNT(*) from select_group.Agenda where Agenda.profesional_idProfesional = @matricula and Agenda.diaDisponible =@dia and Agenda.horaDesde =@desde and Agenda.horaHasta = @hasta", conexion))
+                        //Conexion.conectar();
+                    SqlConnection conexion;
+                    bool conectado = false;
+                    //llenar la variable conexión con los parámetros de la variable parametros
+                    string parametros = ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString;
+                    conexion = new SqlConnection(parametros);
+                    try
                     {
+                        //abrir la conexion
+                        conexion.Open();
+                        conectado = true;
+                    }
+                    catch (InvalidCastException)
+                    {
+                        MessageBox.Show("Error al conectar la Base de datos");
+                        conectado = false;
+                    }
+
+
+                    if (conectado == true)
+                    {
+
+                        try
+                        {
+                            //1//valido que no ingrese dos agendas en un mismo horarios
+                            using (SqlCommand cmdRol2 = new SqlCommand("SELECT COUNT(*) from select_group.Agenda where Agenda.profesional_idProfesional = @matricula and Agenda.diaDisponible =@dia and Agenda.horaDesde =@desde and Agenda.horaHasta = @hasta", conexion))
+                            {
 
                         
 
 
 
 
-                        cmdRol2.Parameters.AddWithValue("@matricula", homeProf.idProf);
-                        cmdRol2.Parameters.AddWithValue("@dia", diaSemanaText.Text);
-                        cmdRol2.Parameters.AddWithValue("@desde", horaDesdeText.Text);
-                        cmdRol2.Parameters.AddWithValue("@hasta", horaHastaText.Text);
+                                cmdRol2.Parameters.AddWithValue("@matricula", homeProf.idProf);
+                                cmdRol2.Parameters.AddWithValue("@dia", diaSemanaText.Text);
+                                cmdRol2.Parameters.AddWithValue("@desde", horaDesdeText.Text);
+                                cmdRol2.Parameters.AddWithValue("@hasta", horaHastaText.Text);
 
-                        int userCount = (int)cmdRol2.ExecuteScalar();
+                                int userCount = (int)cmdRol2.ExecuteScalar();
 
-                        //si no lo encontro en la base esa agenda igual, que lo inserte
-                        if (userCount == 0)
-                        {
-                            SqlCommand cmdRol = new SqlCommand("insert into Select_group.Agenda (profesional_idProfesional, diaDisponible, horaDesde, horaHasta) values (@matricula, @dia, @desde, @hasta) ", conexion);
-                            cmdRol.Parameters.AddWithValue("@matricula", homeProf.idProf);
-                            cmdRol.Parameters.AddWithValue("@dia", diaSemanaText.Text);
-                            cmdRol.Parameters.AddWithValue("@desde", horaDesdeText.Text);
-                            cmdRol.Parameters.AddWithValue("@hasta", horaHastaText.Text);
+                                //si no lo encontro en la base esa agenda igual, que lo inserte
+                                if (userCount == 0)
+                                {
+                                    SqlCommand cmdRol = new SqlCommand("insert into Select_group.Agenda (profesional_idProfesional, diaDisponible, horaDesde, horaHasta) values (@matricula, @dia, @desde, @hasta) ", conexion);
+                                    cmdRol.Parameters.AddWithValue("@matricula", homeProf.idProf);
+                                    cmdRol.Parameters.AddWithValue("@dia", diaSemanaText.Text);
+                                    cmdRol.Parameters.AddWithValue("@desde", horaDesdeText.Text);
+                                    cmdRol.Parameters.AddWithValue("@hasta", horaHastaText.Text);
 
-                            cmdRol.ExecuteNonQuery();
+                                    cmdRol.ExecuteNonQuery();
 
-                            MessageBox.Show("Nueva Agenda creada con exito");
-                            Conexion.conexion.Close();
+                                    MessageBox.Show("Nueva Agenda creada con exito");
+                                    Conexion.conexion.Close();
+                                }
+
+                                else
+                                {
+                                    //si lo encontro, que no lo deje y cambie los dias.
+                                    MessageBox.Show("Ya existe una agenda en ese dia y horario. Por favor, elija otro dia u otro horario");
+                                }
+
+                                //2//Valido que su agenda no se encuentre dentro del horario de otra agenda
+                                using (SqlCommand cmdRol3 = new SqlCommand("SELECT COUNT(*) from select_group.Agenda where Agenda.profesional_idProfesional = @matricula and Agenda.diaDisponible =@dia and Agenda.horaDesde >@desde and Agenda.horaHasta < @hasta", conexion))
+                                {
+                                    cmdRol3.Parameters.AddWithValue("@matricula", homeProf.idProf);
+                                    cmdRol3.Parameters.AddWithValue("@dia", diaSemanaText.Text);
+                                    cmdRol3.Parameters.AddWithValue("@desde", horaDesdeText.Text);
+                                    cmdRol3.Parameters.AddWithValue("@hasta", horaHastaText.Text);
+
+                                    int userCount2 = (int)cmdRol3.ExecuteScalar();
+                                }
+                                //si no lo encontro en la base esa agenda igual, que lo inserte
+                                if (userCount == 0)
+                                {
+                                    SqlCommand cmdRol = new SqlCommand("insert into Select_group.Agenda (profesional_idProfesional, diaDisponible, horaDesde, horaHasta) values (@matricula, @dia, @desde, @hasta) ", conexion);
+                                    cmdRol.Parameters.AddWithValue("@matricula", homeProf.idProf);
+                                    cmdRol.Parameters.AddWithValue("@dia", diaSemanaText.Text);
+                                    cmdRol.Parameters.AddWithValue("@desde", horaDesdeText.Text);
+                                    cmdRol.Parameters.AddWithValue("@hasta", horaHastaText.Text);
+
+                                    cmdRol.ExecuteNonQuery();
+
+                                    MessageBox.Show("Nueva Agenda creada con exito");
+                                    Conexion.conexion.Close();
+                                }
+
+                                else
+                                {
+                                    //si lo encontro, que no lo deje y cambie los dias.
+                                    MessageBox.Show("Ya existe una agenda en ese dia y horario. Por favor, elija otro dia u otro horario");
+                                }
+
+                            }
+
                         }
 
-                        else
+
+                        catch (Exception ex)
                         {
-                            //si lo encontro, que no lo deje y cambie los dias.
-                            MessageBox.Show("Ya existe una agenda en ese dia y horario. Por favor, elija otro dia u otro horario");
+                            MessageBox.Show(ex.Message);
                         }
 
-                        //2//Valido que su agenda no se encuentre dentro del horario de otra agenda
-                        using (SqlCommand cmdRol3 = new SqlCommand("SELECT COUNT(*) from select_group.Agenda where Agenda.profesional_idProfesional = @matricula and Agenda.diaDisponible =@dia and Agenda.horaDesde >@desde and Agenda.horaHasta < @hasta", conexion))
-                        {
-                            cmdRol3.Parameters.AddWithValue("@matricula", homeProf.idProf);
-                            cmdRol3.Parameters.AddWithValue("@dia", diaSemanaText.Text);
-                            cmdRol3.Parameters.AddWithValue("@desde", horaDesdeText.Text);
-                            cmdRol3.Parameters.AddWithValue("@hasta", horaHastaText.Text);
-
-                            int userCount2 = (int)cmdRol3.ExecuteScalar();
-                        }
-                        //si no lo encontro en la base esa agenda igual, que lo inserte
-                        if (userCount == 0)
-                        {
-                            SqlCommand cmdRol = new SqlCommand("insert into Select_group.Agenda (profesional_idProfesional, diaDisponible, horaDesde, horaHasta) values (@matricula, @dia, @desde, @hasta) ", conexion);
-                            cmdRol.Parameters.AddWithValue("@matricula", homeProf.idProf);
-                            cmdRol.Parameters.AddWithValue("@dia", diaSemanaText.Text);
-                            cmdRol.Parameters.AddWithValue("@desde", horaDesdeText.Text);
-                            cmdRol.Parameters.AddWithValue("@hasta", horaHastaText.Text);
-
-                            cmdRol.ExecuteNonQuery();
-
-                            MessageBox.Show("Nueva Agenda creada con exito");
-                            Conexion.conexion.Close();
-                        }
-
-                        else
-                        {
-                            //si lo encontro, que no lo deje y cambie los dias.
-                            MessageBox.Show("Ya existe una agenda en ese dia y horario. Por favor, elija otro dia u otro horario");
-                        }
-
-                    }
-
-                }
-
-
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-            }*/
+                    }*/
+                    } else 
+                        MessageBox.Show("No ha sido selecciona la Especialidad en un día Elegido");
         }
+                else
                 MessageBox.Show("Verifique por favor los horarios ingresados");
                 }
         }
@@ -595,6 +600,42 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public Boolean especialidadElegida() {
+            Boolean bandera = false;
+
+            if(comboBox1.Enabled && comboBox1.SelectedIndex != -1){
+                bandera = true;            
+            }
+            if (comboBox2.Enabled && comboBox2.SelectedIndex != -1)
+            {
+                bandera = true;
+            }
+            if (comboBox3.Enabled && comboBox3.SelectedIndex != -1)
+            {
+                bandera = true;
+            }
+            if (comboBox4.Enabled && comboBox4.SelectedIndex != -1)
+            {
+                bandera = true;
+            }
+            if (comboBox5.Enabled && comboBox5.SelectedIndex != -1)
+            {
+                bandera = true;
+            }
+            if (comboBox6.Enabled && comboBox6.SelectedIndex != -1)
+            {
+                bandera = true;
+            }
+
+            return bandera;
+        
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
