@@ -116,7 +116,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                         horariosSemana.Columns.Add("diaDisponible", typeof(int));
                         horariosSemana.Columns.Add("horaDesde", typeof(int));
                         horariosSemana.Columns.Add("horaHasta", typeof(int));
-                        horariosSemana.Columns.Add("especialidad",typeof(string));
+                        horariosSemana.Columns.Add("especialidad",typeof(int));
 
                         horariosSemana = cargarEstructura(horariosSemana);
 
@@ -297,14 +297,16 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
             Menu_Principal.HomeProfesional homeProf = new Menu_Principal.HomeProfesional();
             homeProf = (Menu_Principal.HomeProfesional)Home;
-
+            int matricula = Convert.ToInt32(homeProf.idProf);
+            ComboboxItem especialidad = new ComboboxItem();
             if (checkBoxLunes.Checked) {
                 DataRow unRegistro = tablaAgenda.NewRow();
                 unRegistro["profesional_IdProfesional"] = homeProf.idProf;
                 unRegistro["diaDisponible"] = 1;
                 unRegistro["horaDesde"] = Convert.ToInt32(formatoHorario(cmbLunesDesde.Text));
                 unRegistro["horaHasta"] = Convert.ToInt32(formatoHorario(cmbLunesHasta.Text));
-                unRegistro["especialidad"] = comboBox1.Text;
+                especialidad = (ComboboxItem)comboBox1.SelectedItem;
+                unRegistro["especialidad"] = especialidad.Value;
 
                 tablaAgenda.Rows.Add(unRegistro);
                 }
@@ -314,7 +316,8 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 unRegistro["diaDisponible"] = 2;
                 unRegistro["horaDesde"] = Convert.ToInt32(formatoHorario(cmbMartesDesde.Text));
                 unRegistro["horaHasta"] = Convert.ToInt32(formatoHorario(cmbMartesHasta.Text));
-                unRegistro["especialidad"] = comboBox2.Text;
+                especialidad = (ComboboxItem)comboBox2.SelectedItem;
+                unRegistro["especialidad"] = especialidad.Value;
                 
                 tablaAgenda.Rows.Add(unRegistro);
             
@@ -326,7 +329,8 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 unRegistro["diaDisponible"] = 3;
                 unRegistro["horaDesde"] = Convert.ToInt32(formatoHorario(cmbMiercolesDesde.Text));
                 unRegistro["horaHasta"] = Convert.ToInt32(formatoHorario(cmbMiercolesHasta.Text));
-                unRegistro["especialidad"] = comboBox3.Text;
+                especialidad = (ComboboxItem)comboBox3.SelectedItem;
+                unRegistro["especialidad"] = especialidad.Value;
 
                 tablaAgenda.Rows.Add(unRegistro);
             }
@@ -337,7 +341,8 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 unRegistro["diaDisponible"] = 4;
                 unRegistro["horaDesde"] = Convert.ToInt32(formatoHorario(cmbJuevesDesde.Text));
                 unRegistro["horaHasta"] = Convert.ToInt32(formatoHorario(cmbJuevesHasta.Text));
-                unRegistro["especialidad"] = comboBox4.Text;
+                especialidad = (ComboboxItem)comboBox4.SelectedItem;
+                unRegistro["especialidad"] = especialidad.Value;
 
                 tablaAgenda.Rows.Add(unRegistro);
 
@@ -345,11 +350,12 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
             if (checkBoxViernes.Checked)
             {
                 DataRow unRegistro = tablaAgenda.NewRow();
-                unRegistro["profesional_IdProfesional"] = homeProf.idProf;
+                unRegistro["profesional_IdProfesional"] = matricula;
                 unRegistro["diaDisponible"] = 5;
                 unRegistro["horaDesde"] = Convert.ToInt32(formatoHorario(cmbViernesDesde.Text));
                 unRegistro["horaHasta"] = Convert.ToInt32(formatoHorario(cmbViernesHasta.Text));
-                unRegistro["especialidad"] = comboBox5.Text;
+                especialidad = (ComboboxItem)comboBox5.SelectedItem;
+                unRegistro["especialidad"] = especialidad.Value;
 
                 tablaAgenda.Rows.Add(unRegistro);
 
@@ -361,7 +367,8 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 unRegistro["diaDisponible"] = 6;
                 unRegistro["horaDesde"] = Convert.ToInt32(formatoHorario(cmbSabadoDesde.Text));
                 unRegistro["horaHasta"] = Convert.ToInt32(formatoHorario(cmbSabadoHasta.Text));
-                unRegistro["especialidad"] = comboBox6.Text;
+                especialidad = (ComboboxItem)comboBox6.SelectedItem;
+                unRegistro["especialidad"] = especialidad.Value;
 
                 tablaAgenda.Rows.Add(unRegistro);
 
@@ -384,71 +391,88 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
                 string cadena = "Select count(*) as Cantidad from SELECT_GROUP.Agenda where profesional_IdProfesional = " + idProfesional + " and diaDisponible = 1 group by profesional_IdProfesional ";
                 DataTable query = Conexion.LeerTabla(cadena);
-                string valorColumna = query.Columns["Cantidad"].ToString();
-                
-                if (valorColumna == "" && Convert.ToInt32(formatoHorario(cmbLunesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbLunesDesde.Text))) {
-                    bandera = true;
-                }            
+                //string valorColumna = query.Columns["Cantidad"].ToString();
+
+                if (query.Rows.Count <= 0)
+                {
+                    if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbLunesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbLunesDesde.Text)))
+                    {
+                        bandera = true;
+                    }
+                }
             }
             if (checkBoxMartes.Checked)
             {
                 
-                string cadena = "Select count(*) as Cantidad from SELECT_GROUP.Agenda where profesional_idProfesional = '" + idProfesional + "' and diaDisponible = 2 group by profesiona_idProfesional ";
+                string cadena = "Select count(*) as Cantidad from SELECT_GROUP.Agenda where profesional_idProfesional = '" + idProfesional + "' and diaDisponible = 2 group by profesional_idProfesional ";
                 DataTable query = Conexion.LeerTabla(cadena);
-                string valorColumna = query.Columns["Cantidad"].ToString();
-
-                if (valorColumna == "" && Convert.ToInt32(formatoHorario(cmbMartesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbMartesDesde.Text)))
+               // string valorColumna = query.Columns["Cantidad"].ToString();
+                if (query.Rows.Count <= 0)
                 {
-                    bandera = true;
+                    if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbMartesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbMartesDesde.Text)))
+                    {
+                        bandera = true;
+                    }
                 }
             }
             if (checkBoxMiercoles.Checked)
             {
                 
-                string cadena = "Select count(*) as Cantidad from SELECT_GROUP.Agenda where profesional_idProfesional = '" + idProfesional + "' and diaDisponible = 3 group by profesiona_idProfesional ";
+                string cadena = "Select count(*) as Cantidad from SELECT_GROUP.Agenda where profesional_idProfesional = '" + idProfesional + "' and diaDisponible = 3 group by profesional_idProfesional ";
                 DataTable query = Conexion.LeerTabla(cadena);
-                string valorColumna = query.Columns["Cantidad"].ToString();
+                //string valorColumna = query.Columns["Cantidad"].ToString();
 
-                if (valorColumna == "" && Convert.ToInt32(formatoHorario(cmbMiercolesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbMiercolesDesde.Text)))
+                if (query.Rows.Count <= 0)
                 {
-                    bandera = true;
+                    if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbMiercolesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbMiercolesDesde.Text)))
+                    {
+                        bandera = true;
+                    }
                 }
             }
             if (checkBoxJueves.Checked)
             {
                 
-                string cadena = "Select count(*) as Cantidad from SELECT_GROUP.Agenda where profesional_idProfesional = '" + idProfesional + "' and diaDisponible = 4 group by profesiona_idProfesional ";
+                string cadena = "Select count(*) as Cantidad from SELECT_GROUP.Agenda where profesional_idProfesional = '" + idProfesional + "' and diaDisponible = 4 group by profesional_idProfesional ";
                 DataTable query = Conexion.LeerTabla(cadena);
-                string valorColumna = query.Columns["Cantidad"].ToString();
-
-                if (valorColumna == "" && Convert.ToInt32(formatoHorario(cmbJuevesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbJuevesDesde.Text)))
+                //string valorColumna = query.Columns["Cantidad"].ToString();
+                if (query.Rows.Count <= 0)
                 {
-                    bandera = true;
+                    if (/*valorColumna == "" && */Convert.ToInt32(formatoHorario(cmbJuevesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbJuevesDesde.Text)))
+                    {
+                        bandera = true;
+                    }
                 }
+
             }
             if (checkBoxViernes.Checked)
             {
                 
-                string cadena = "Select count(*) as Cantidad from SELECT_GROUP.Agenda where profesional_idProfesional = '" + idProfesional + "' and diaDisponible = 5 group by profesiona_idProfesional ";
+                string cadena = "Select count(*) as Cantidad from SELECT_GROUP.Agenda where profesional_idProfesional = '" + idProfesional + "' and diaDisponible = 5 group by profesional_idProfesional ";
                 DataTable query = Conexion.LeerTabla(cadena);
-                string valorColumna = query.Columns["Cantidad"].ToString();
-
-                if (valorColumna == "" && Convert.ToInt32(formatoHorario(cmbViernesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbViernesDesde.Text)))
+                //string valorColumna = query.Columns["Cantidad"].ToString();
+                if (query.Rows.Count <= 0)
                 {
-                    bandera = true;
+                    if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbViernesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbViernesDesde.Text)))
+                    {
+                        bandera = true;
+                    }
                 }
             }
             if (checkBoxSabado.Checked)
             {
                 
-                string cadena = "Select count(*) as Cantidad from SELECT_GROUP.Agenda where profesional_idProfesional = '" + idProfesional + "' and diaDisponible = 6 group by profesiona_idProfesional ";
+                string cadena = "Select count(*) as Cantidad from SELECT_GROUP.Agenda where profesional_idProfesional = '" + idProfesional + "' and diaDisponible = 6 group by profesional_idProfesional ";
                 DataTable query = Conexion.LeerTabla(cadena);
-                string valorColumna = query.Columns["Cantidad"].ToString();
-
-                if (valorColumna == "" && Convert.ToInt32(formatoHorario(cmbSabadoHasta.Text)) > Convert.ToInt32(formatoHorario(cmbSabadoDesde.Text)))
+                //string valorColumna = query.Columns["Cantidad"].ToString();
+                if (query.Rows.Count <= 0)
                 {
-                    bandera = true;
+                    if (/*valorColumna == "" && */Convert.ToInt32(formatoHorario(cmbSabadoHasta.Text)) > Convert.ToInt32(formatoHorario(cmbSabadoDesde.Text)))
+                    {
+                        bandera = true;
+                    }
                 }
+
             }
 
             return bandera;

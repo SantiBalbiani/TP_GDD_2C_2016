@@ -42,10 +42,12 @@ DROP PROCEDURE Select_Group.sp_registrarCancelacion;
 DROP PROCEDURE Select_Group.sp_Reservar_Turno;
 DROP PROCEDURE Select_Group.ActualizarPlan;
 DROP PROCEDURE Select_Group.AltaAfiliado;
+DROP PROCEDURE SELECT_GROUP.AltaAgenda
 DROP VIEW [Select_Group].[ProfMasConsultados];
 DROP VIEW [Select_Group].[V_Las5EspConMasBonos];
 DROP VIEW [Select_Group].[V_Las5EspConMasCancelaciones];
 DROP TYPE [Select_Group].[dt_Afiliados];
+DROP TYPE [Select_Group].[dt_Agenda];
 DROP VIEW [Select_Group].[5AfiliadosConMasCompraDeBonos];
 
 

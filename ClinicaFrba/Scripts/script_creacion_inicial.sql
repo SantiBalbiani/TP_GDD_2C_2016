@@ -474,6 +474,23 @@ SELECT distinct M.Especialidad_Codigo, P.matricula FROM gd_esquema.Maestra M JOI
 --(1027,3,1000,2000)
 
 GO
+
+--=============================================================================================================
+--TIPO		: Data Table Type
+--NOMBRE	: dt_Agenda
+--OBJETIVO  : Utilizado para dar de alta la agenda del profesional                                     
+--=============================================================================================================
+
+CREATE TYPE Select_Group.dt_Agenda AS TABLE
+
+(
+	profesional_IdProfesional numeric(7,0) not null,
+    diaDisponible int not null,    
+    horaDesde int not null,
+	horaHasta int not null,
+	especialidad int not null)
+
+GO
 --=============================================================================================================
 --TIPO		: Procedure
 --NOMBRE	: ComprarBono
@@ -612,7 +629,21 @@ COMMIT TRAN
 END
 GO
 
+--=============================================================================================================
+--TIPO		: Store Procedure
+--NOMBRE	: AltaAgenda
+--OBJETIVO  : Registra la agenda de un profesional                                   
+--=============================================================================================================
 
+CREATE PROCEDURE [SELECT_GROUP].[AltaAgenda] 
+@Agenda SELECT_GROUP.dt_Agenda READONLY
+AS
+BEGIN
+	Insert into SELECT_GROUP.Agenda(profesional_IdProfesional,diaDisponible,horaDesde,horaHasta, especialidad) 
+	SELECT * FROM @Agenda
+
+END
+go
 --=============================================================================================================
 --TIPO		: Store Procedure
 --NOMBRE	: sp_getDiasDisponibles
