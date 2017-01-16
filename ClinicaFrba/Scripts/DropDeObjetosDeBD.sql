@@ -2,6 +2,7 @@ USE [GD2C2016]
 GO
 
 /****** Object:  Table [Select_Group].[Afiliado]    Script Date: 30/10/2016 21:04:52 ******/
+DROP SCHEMA [Select_Group];
 DROP TABLE [Select_Group].[Usuario_Por_Rol]
 DROP TABLE [Select_Group].[Afiliado]
 DROP TABLE [Select_Group].[Agenda]
@@ -46,7 +47,7 @@ DROP VIEW [Select_Group].[V_Las5EspConMasBonos];
 DROP VIEW [Select_Group].[V_Las5EspConMasCancelaciones];
 DROP TYPE [Select_Group].[dt_Afiliados];
 DROP VIEW [Select_Group].[5AfiliadosConMasCompraDeBonos];
-DROP SCHEMA [Select_Group];
+
 
 GO
 

@@ -77,7 +77,8 @@ namespace ClinicaFrba.Pedir_Turno
             cmdUsuario.Parameters.Add("@Dia", SqlDbType.Int).Value = diaSemana;
             ComboboxItem profesional = (ComboboxItem)comboBox3.SelectedItem;
             cmdUsuario.Parameters.Add("@idProfesional", SqlDbType.Int).Value = profesional.Value;
-
+            ComboboxItem espec = (ComboboxItem)comboBox1.SelectedItem;
+            cmdUsuario.Parameters.Add("@especialidad", SqlDbType.Int).Value = espec.Value;
             try
             {
                 cnx.Open();

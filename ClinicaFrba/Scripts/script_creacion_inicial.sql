@@ -176,9 +176,12 @@ create table SELECT_GROUP.Agenda(
 	diaDisponible int,
 	horaDesde int,
 	horaHasta int,
+	especialidad numeric(18,0),
 	CONSTRAINT pk_IdAgenda primary key (idAgenda),
-	CONSTRAINT fk_Agenda_IdProfesional foreign key (profesional_IdProfesional) references SELECT_GROUP.Profesional (matricula)
+	CONSTRAINT fk_Agenda_IdProfesional foreign key (profesional_IdProfesional) references SELECT_GROUP.Profesional (matricula),
+	CONSTRAINT fk_Especialidad_idEspecialidad foreign key (especialidad) references SELECT_GROUP.Especialidad (idEspecialidad)
 )
+
 
 create table SELECT_GROUP.Agenda_Detalle(
 	idAgendaDetalle numeric(6,0) identity(1,1) not null,
@@ -893,74 +896,74 @@ BEGIN
 END
 go
 
---=============================================================================================================
---TIPO		: Vista
---NOMBRE	: ProfMasConsultados
---OBJETIVO  : Vista que obtiene los 5 profesionales mas consultados por especialidad.                                     
---=============================================================================================================
-CREATE VIEW [Select_Group].[ProfMasConsultados]
-AS
+----=============================================================================================================
+----TIPO		: Vista
+----NOMBRE	: ProfMasConsultados
+----OBJETIVO  : Vista que obtiene los 5 profesionales mas consultados por especialidad.                                     
+----=============================================================================================================
+--CREATE VIEW [Select_Group].[ProfMasConsultados]
+--AS
 
-SELECT        TOP (5) P.matricula, P.apellido, P.nombre, E.descripcion
-FROM            Select_Group.Profesional AS P INNER JOIN
-                         Select_Group.Profesional_Por_Especialidad AS PE ON PE.profesional_idProfesional = P.matricula INNER JOIN
-                         Select_Group.Especialidad AS E ON E.idEspecialidad = PE.especialidad_idEspecialidad INNER JOIN
-                         Select_Group.Agenda AS Ag ON Ag.profesional_IdProfesional = P.matricula INNER JOIN
-                         Select_Group.Turno AS T ON T.idAgenda = Ag.idAgenda INNER JOIN
-                         Select_Group.Afiliado AS Af ON Af.idAfiliado = T.afiliado_idAfiliado
-GROUP BY P.matricula, Af.plan_idPlan, E.descripcion, P.apellido, P.nombre
-ORDER BY COUNT(Af.plan_idPlan);
+--SELECT        TOP (5) P.matricula, P.apellido, P.nombre, E.descripcion
+--FROM            Select_Group.Profesional AS P INNER JOIN
+--                         Select_Group.Profesional_Por_Especialidad AS PE ON PE.profesional_idProfesional = P.matricula INNER JOIN
+--                         Select_Group.Especialidad AS E ON E.idEspecialidad = PE.especialidad_idEspecialidad INNER JOIN
+--                         Select_Group.Agenda AS Ag ON Ag.profesional_IdProfesional = P.matricula INNER JOIN
+--                         Select_Group.Turno AS T ON T.idAgenda = Ag.idAgenda INNER JOIN
+--                         Select_Group.Afiliado AS Af ON Af.idAfiliado = T.afiliado_idAfiliado
+--GROUP BY P.matricula, Af.plan_idPlan, E.descripcion, P.apellido, P.nombre
+--ORDER BY COUNT(Af.plan_idPlan);
 
-GO
+--GO
 
---=============================================================================================================
---TIPO		: Vista
---NOMBRE	: V_Las5EspConMasCancelaciones
---OBJETIVO  : Vista que obtiene las 5 especialidades con mas cancelaciones.                                     
---=============================================================================================================
-CREATE VIEW [Select_Group].[V_Las5EspConMasCancelaciones]
-AS
+----=============================================================================================================
+----TIPO		: Vista
+----NOMBRE	: V_Las5EspConMasCancelaciones
+----OBJETIVO  : Vista que obtiene las 5 especialidades con mas cancelaciones.                                     
+----=============================================================================================================
+--CREATE VIEW [Select_Group].[V_Las5EspConMasCancelaciones]
+--AS
 
-SELECT TOP 5 T.especialidad 
-FROM Select_Group.Turno T 
-WHERE T.cancelacion_idCancelacion is not null GROUP BY T.especialidad ORDER BY count(*) desc;
+--SELECT TOP 5 T.especialidad 
+--FROM Select_Group.Turno T 
+--WHERE T.cancelacion_idCancelacion is not null GROUP BY T.especialidad ORDER BY count(*) desc;
 
-GO
+--GO
 
---=============================================================================================================
---TIPO		: Vista
---NOMBRE	: 5AfiliadosConMasCompraDeBonos
---OBJETIVO  : Vista que obtiene los 5 afiliados que mas bonos compraron.                                     
---=============================================================================================================
-CREATE VIEW [Select_Group].[5AfiliadosConMasCompraDeBonos]
-AS
+----=============================================================================================================
+----TIPO		: Vista
+----NOMBRE	: 5AfiliadosConMasCompraDeBonos
+----OBJETIVO  : Vista que obtiene los 5 afiliados que mas bonos compraron.                                     
+----=============================================================================================================
+--CREATE VIEW [Select_Group].[5AfiliadosConMasCompraDeBonos]
+--AS
 
-SELECT TOP 5 A.nroAfiliado, A.nombre, A.apellido, COUNT(*) AS 'Cantidad Comprada' 
-FROM Select_Group.Afiliado A 
-JOIN Select_Group.Bono B ON A.idAfiliado = B.idAfiliado AND B.estado = 1 
-GROUP BY A.nroAfiliado, A.nombre, A.apellido ORDER BY COUNT(*) DESC
+--SELECT TOP 5 A.nroAfiliado, A.nombre, A.apellido, COUNT(*) AS 'Cantidad Comprada' 
+--FROM Select_Group.Afiliado A 
+--JOIN Select_Group.Bono B ON A.idAfiliado = B.idAfiliado AND B.estado = 1 
+--GROUP BY A.nroAfiliado, A.nombre, A.apellido ORDER BY COUNT(*) DESC
 
-GO
+--GO
 
---=============================================================================================================
---TIPO		: Vista
---NOMBRE	: V_Las5EspConMasBonos
---OBJETIVO  : Vista que obtiene las 5 especialidades con mas bonos.                                     
---=============================================================================================================
+----=============================================================================================================
+----TIPO		: Vista
+----NOMBRE	: V_Las5EspConMasBonos
+----OBJETIVO  : Vista que obtiene las 5 especialidades con mas bonos.                                     
+----=============================================================================================================
 
-CREATE VIEW [Select_Group].[V_Las5EspConMasBonos]
-AS
+--CREATE VIEW [Select_Group].[V_Las5EspConMasBonos]
+--AS
 
-SELECT TOP 5 PE.especialidad_idEspecialidad, Esp.descripcion 
-FROM Select_Group.Turno T 
-JOIN Select_Group.Agenda Ag ON Ag.idAgenda = T.idAgenda 
-JOIN Select_Group.Profesional_Por_Especialidad PE ON PE.profesional_idProfesional = Ag.profesional_IdProfesional 
-JOIN Select_Group.Bono Bo ON Bo.estado = 0 AND Bo.idAfiliado = T.afiliado_idAfiliado 
-JOIN Select_Group.Especialidad Esp ON Esp.idEspecialidad = T.especialidad 
-GROUP BY PE.especialidad_idEspecialidad, Esp.descripcion 
-ORDER BY count (*) desc;
+--SELECT TOP 5 PE.especialidad_idEspecialidad, Esp.descripcion 
+--FROM Select_Group.Turno T 
+--JOIN Select_Group.Agenda Ag ON Ag.idAgenda = T.idAgenda 
+--JOIN Select_Group.Profesional_Por_Especialidad PE ON PE.profesional_idProfesional = Ag.profesional_IdProfesional 
+--JOIN Select_Group.Bono Bo ON Bo.estado = 0 AND Bo.idAfiliado = T.afiliado_idAfiliado 
+--JOIN Select_Group.Especialidad Esp ON Esp.idEspecialidad = T.especialidad 
+--GROUP BY PE.especialidad_idEspecialidad, Esp.descripcion 
+--ORDER BY count (*) desc;
 
-GO
+--GO
 
 --=============================================================================================================
 --TIPO		: Trigger
