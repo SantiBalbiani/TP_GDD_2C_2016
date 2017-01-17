@@ -608,6 +608,196 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
             _prevDate2 = cmbLunesHasta.Value;
         }
+
+        private void cmbMartesDesde_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue)
+            {
+                initialValue = false;
+                return;
+            }
+
+            dt = cmbMartesDesde.Value;
+            TimeSpan diff = dt - _prevDate;
+
+            if (diff.Ticks < 0)
+                cmbMartesDesde.Value = _prevDate.AddMinutes(-30);
+            else
+                cmbMartesDesde.Value = _prevDate.AddMinutes(30);
+
+            _prevDate = cmbMartesDesde.Value;
+        }
+
+        private void cmbMartesHasta_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue2)
+            {
+                initialValue2 = false;
+                return;
+            }
+
+            dt2 = cmbMartesHasta.Value;
+            TimeSpan diff = dt2 - _prevDate2;
+
+            if (diff.Ticks < 0)
+                cmbMartesHasta.Value = _prevDate2.AddMinutes(-30);
+            else
+                cmbMartesHasta.Value = _prevDate2.AddMinutes(30);
+
+            _prevDate2 = cmbMartesHasta.Value;
+        }
+
+        private void cmbMiercolesDesde_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue)
+            {
+                initialValue = false;
+                return;
+            }
+
+            dt = cmbMiercolesDesde.Value;
+            TimeSpan diff = dt - _prevDate;
+
+            if (diff.Ticks < 0)
+                cmbMiercolesDesde.Value = _prevDate.AddMinutes(-30);
+            else
+                cmbMiercolesDesde.Value = _prevDate.AddMinutes(30);
+
+            _prevDate = cmbMiercolesDesde.Value;
+        }
+
+        private void cmbMiercolesHasta_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue2)
+            {
+                initialValue2 = false;
+                return;
+            }
+
+            dt2 = cmbMiercolesHasta.Value;
+            TimeSpan diff = dt2 - _prevDate2;
+
+            if (diff.Ticks < 0)
+                cmbMiercolesHasta.Value = _prevDate2.AddMinutes(-30);
+            else
+                cmbMiercolesHasta.Value = _prevDate2.AddMinutes(30);
+
+            _prevDate2 = cmbMiercolesHasta.Value;
+        }
+
+        private void cmbJuevesDesde_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue)
+            {
+                initialValue = false;
+                return;
+            }
+
+            dt = cmbJuevesDesde.Value;
+            TimeSpan diff = dt - _prevDate;
+
+            if (diff.Ticks < 0)
+                cmbJuevesDesde.Value = _prevDate.AddMinutes(-30);
+            else
+                cmbJuevesDesde.Value = _prevDate.AddMinutes(30);
+
+            _prevDate = cmbJuevesDesde.Value;
+        }
+
+        private void cmbJuevesHasta_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue2)
+            {
+                initialValue2 = false;
+                return;
+            }
+
+            dt2 = cmbJuevesHasta.Value;
+            TimeSpan diff = dt2 - _prevDate2;
+
+            if (diff.Ticks < 0)
+                cmbJuevesHasta.Value = _prevDate2.AddMinutes(-30);
+            else
+                cmbJuevesHasta.Value = _prevDate2.AddMinutes(30);
+
+            _prevDate2 = cmbJuevesHasta.Value;
+        }
+
+        private void cmbViernesDesde_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue)
+            {
+                initialValue = false;
+                return;
+            }
+
+            dt = cmbViernesDesde.Value;
+            TimeSpan diff = dt - _prevDate;
+
+            if (diff.Ticks < 0)
+                cmbViernesDesde.Value = _prevDate.AddMinutes(-30);
+            else
+                cmbViernesDesde.Value = _prevDate.AddMinutes(30);
+
+            _prevDate = cmbViernesDesde.Value;
+        }
+
+        private void cmbViernesHasta_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue2)
+            {
+                initialValue2 = false;
+                return;
+            }
+
+            dt2 = cmbViernesHasta.Value;
+            TimeSpan diff = dt2 - _prevDate2;
+
+            if (diff.Ticks < 0)
+                cmbViernesHasta.Value = _prevDate2.AddMinutes(-30);
+            else
+                cmbViernesHasta.Value = _prevDate2.AddMinutes(30);
+
+            _prevDate2 = cmbViernesHasta.Value;
+        }
+
+        private void cmbSabadoDesde_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue)
+            {
+                initialValue = false;
+                return;
+            }
+
+            dt = cmbSabadoDesde.Value;
+            TimeSpan diff = dt - _prevDate;
+
+            if (diff.Ticks < 0)
+                cmbSabadoDesde.Value = _prevDate.AddMinutes(-30);
+            else
+                cmbSabadoDesde.Value = _prevDate.AddMinutes(30);
+
+            _prevDate = cmbSabadoDesde.Value;
+        }
+
+        private void cmbSabadoHasta_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue2)
+            {
+                initialValue2 = false;
+                return;
+            }
+
+            dt2 = cmbSabadoHasta.Value;
+            TimeSpan diff = dt2 - _prevDate2;
+
+            if (diff.Ticks < 0)
+                cmbSabadoHasta.Value = _prevDate2.AddMinutes(-30);
+            else
+                cmbSabadoHasta.Value = _prevDate2.AddMinutes(30);
+
+            _prevDate2 = cmbSabadoHasta.Value;
+        }
         
         }
         

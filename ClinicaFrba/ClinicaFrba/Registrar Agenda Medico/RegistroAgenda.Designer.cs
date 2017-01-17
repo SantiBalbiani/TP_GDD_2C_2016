@@ -180,6 +180,7 @@
             this.cmbMartesDesde.ShowUpDown = true;
             this.cmbMartesDesde.Size = new System.Drawing.Size(59, 20);
             this.cmbMartesDesde.TabIndex = 68;
+            this.cmbMartesDesde.ValueChanged += new System.EventHandler(this.cmbMartesDesde_ValueChanged);
             // 
             // cmbMartesHasta
             // 
@@ -191,6 +192,7 @@
             this.cmbMartesHasta.ShowUpDown = true;
             this.cmbMartesHasta.Size = new System.Drawing.Size(59, 20);
             this.cmbMartesHasta.TabIndex = 69;
+            this.cmbMartesHasta.ValueChanged += new System.EventHandler(this.cmbMartesHasta_ValueChanged);
             // 
             // cmbMiercolesDesde
             // 
@@ -202,6 +204,7 @@
             this.cmbMiercolesDesde.ShowUpDown = true;
             this.cmbMiercolesDesde.Size = new System.Drawing.Size(59, 20);
             this.cmbMiercolesDesde.TabIndex = 70;
+            this.cmbMiercolesDesde.ValueChanged += new System.EventHandler(this.cmbMiercolesDesde_ValueChanged);
             // 
             // cmbMiercolesHasta
             // 
@@ -213,6 +216,7 @@
             this.cmbMiercolesHasta.ShowUpDown = true;
             this.cmbMiercolesHasta.Size = new System.Drawing.Size(59, 20);
             this.cmbMiercolesHasta.TabIndex = 71;
+            this.cmbMiercolesHasta.ValueChanged += new System.EventHandler(this.cmbMiercolesHasta_ValueChanged);
             // 
             // cmbJuevesDesde
             // 
@@ -224,6 +228,7 @@
             this.cmbJuevesDesde.ShowUpDown = true;
             this.cmbJuevesDesde.Size = new System.Drawing.Size(59, 20);
             this.cmbJuevesDesde.TabIndex = 72;
+            this.cmbJuevesDesde.ValueChanged += new System.EventHandler(this.cmbJuevesDesde_ValueChanged);
             // 
             // cmbJuevesHasta
             // 
@@ -235,6 +240,7 @@
             this.cmbJuevesHasta.ShowUpDown = true;
             this.cmbJuevesHasta.Size = new System.Drawing.Size(59, 20);
             this.cmbJuevesHasta.TabIndex = 73;
+            this.cmbJuevesHasta.ValueChanged += new System.EventHandler(this.cmbJuevesHasta_ValueChanged);
             // 
             // cmbViernesDesde
             // 
@@ -246,6 +252,7 @@
             this.cmbViernesDesde.ShowUpDown = true;
             this.cmbViernesDesde.Size = new System.Drawing.Size(59, 20);
             this.cmbViernesDesde.TabIndex = 74;
+            this.cmbViernesDesde.ValueChanged += new System.EventHandler(this.cmbViernesDesde_ValueChanged);
             // 
             // cmbViernesHasta
             // 
@@ -257,6 +264,7 @@
             this.cmbViernesHasta.ShowUpDown = true;
             this.cmbViernesHasta.Size = new System.Drawing.Size(59, 20);
             this.cmbViernesHasta.TabIndex = 75;
+            this.cmbViernesHasta.ValueChanged += new System.EventHandler(this.cmbViernesHasta_ValueChanged);
             // 
             // cmbSabadoDesde
             // 
@@ -268,6 +276,7 @@
             this.cmbSabadoDesde.ShowUpDown = true;
             this.cmbSabadoDesde.Size = new System.Drawing.Size(59, 20);
             this.cmbSabadoDesde.TabIndex = 76;
+            this.cmbSabadoDesde.ValueChanged += new System.EventHandler(this.cmbSabadoDesde_ValueChanged);
             // 
             // cmbSabadoHasta
             // 
@@ -279,6 +288,7 @@
             this.cmbSabadoHasta.ShowUpDown = true;
             this.cmbSabadoHasta.Size = new System.Drawing.Size(59, 20);
             this.cmbSabadoHasta.TabIndex = 77;
+            this.cmbSabadoHasta.ValueChanged += new System.EventHandler(this.cmbSabadoHasta_ValueChanged);
             // 
             // comboBox1
             // 
