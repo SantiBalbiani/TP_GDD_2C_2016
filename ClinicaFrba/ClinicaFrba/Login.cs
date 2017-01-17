@@ -51,7 +51,7 @@ namespace ClinicaFrba
                         else
                         {
                             this.Hide();
-                            MessageBox.Show("Bienvenido " + fila["nombreUsuario"].ToString());
+                            MessageBox.Show("Bienvenido Usuario " + fila["nombreUsuario"].ToString());
                             Globals.userName = cod.Trim();
                             cadena = "update SELECT_GROUP.Usuario set intentosFallidos= 0 where nombreUsuario=upper('" + cod.Trim() + "')";
                             Conexion.EjecutarComando(cadena);
