@@ -153,6 +153,7 @@
             this.cmbLunesDesde.ShowUpDown = true;
             this.cmbLunesDesde.Size = new System.Drawing.Size(59, 20);
             this.cmbLunesDesde.TabIndex = 66;
+            this.cmbLunesDesde.Value = new System.DateTime(2017, 1, 17, 19, 0, 0, 0);
             this.cmbLunesDesde.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // cmbLunesHasta
@@ -165,6 +166,8 @@
             this.cmbLunesHasta.ShowUpDown = true;
             this.cmbLunesHasta.Size = new System.Drawing.Size(59, 20);
             this.cmbLunesHasta.TabIndex = 67;
+            this.cmbLunesHasta.Value = new System.DateTime(2017, 1, 17, 19, 0, 0, 0);
+            this.cmbLunesHasta.ValueChanged += new System.EventHandler(this.cmbLunesHasta_ValueChanged);
             // 
             // cmbMartesDesde
             // 

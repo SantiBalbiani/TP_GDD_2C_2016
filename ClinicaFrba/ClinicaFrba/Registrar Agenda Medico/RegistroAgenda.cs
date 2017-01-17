@@ -23,12 +23,68 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
         public FrmRegistroAgenda()
         {
             InitializeComponent();
-                                   
+            //++++++++++++++Lunes Desde+++++++++++++++++++++++++++
+            if (dt.Minute % 30 > 15)
+            {
+                initialValue = true;
+                cmbLunesDesde.Value = dt.AddMinutes(dt.Minute % 30);
+            }
+            else
+            {
+                initialValue = true;
+                cmbLunesDesde.Value = dt.AddMinutes(-(dt.Minute % 30));
+            }
+            _prevDate = cmbLunesDesde.Value;
+
+            //+++++++++++++++Lunes Hasta++++++++++++++++++++++++
+           
+
+            if (dt2.Minute % 30 > 15)
+            {
+                initialValue2 = true;
+                cmbLunesHasta.Value = dt2.AddMinutes(dt2.Minute % 30);
+            }
+            else
+            {
+                initialValue2 = true;
+                cmbLunesHasta.Value = dt2.AddMinutes(-(dt2.Minute % 30));
+            }
+            _prevDate2 = cmbLunesHasta.Value;  
+         
+            //+++++++++++++++Martes Desde++++++++++++++++++++++++
+            
+            //++++++++++++++Martes Hasta+++++++++++++++++++++++++
+
+            //++++++++++++++Miercoles Desde++++++++++++++++++++++
+
+            //++++++++++++++Miercoles Hasta++++++++++++++++++++++
         }
+
+
+
+        
+        //++++++++++++++++Lunes Desde y Lunes Hasta+++++++++++++++++++++
+        private DateTime _prevDate;
+        private DateTime _prevDate2;
+
+        private bool initialValue = false;
+        private bool initialValue2 = false;
+
+        DateTime dt = new DateTime(2017, 01, 10);
+        DateTime dt2 = new DateTime(2017, 01, 10);
+
+        //+++++++++++++++Martes Desde y Martes Hasta+++++++++++++++++++++
+
+
+        //+++++++++++++++Miercoles Desde y Miercoles Hasta+++++++++++++++
+
+
+        //+++++++++++++++Jueves Desde y Jueves Hasta+++++++++++++++++++++
 
         private void Form1_Load(object sender, EventArgs e)
         {
             
+    
             //Cargo especialidades:
             DataTable especialidades = new DataTable();
             Object unItem = comboBox2.SelectedItem;
@@ -481,7 +537,21 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
+            if (initialValue)
+            {
+                initialValue = false;
+                return;
+            }
 
+            dt = cmbLunesDesde.Value;
+            TimeSpan diff = dt - _prevDate;
+
+            if (diff.Ticks < 0)
+                cmbLunesDesde.Value = _prevDate.AddMinutes(-30);
+            else
+                cmbLunesDesde.Value = _prevDate.AddMinutes(30);
+
+            _prevDate = cmbLunesDesde.Value;
         }
 
         public Boolean especialidadElegida() {
@@ -518,6 +588,25 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbLunesHasta_ValueChanged(object sender, EventArgs e)
+        {
+            if (initialValue2)
+            {
+                initialValue2 = false;
+                return;
+            }
+
+            dt2 = cmbLunesHasta.Value;
+            TimeSpan diff = dt2 - _prevDate2;
+
+            if (diff.Ticks < 0)
+                cmbLunesHasta.Value = _prevDate2.AddMinutes(-30);
+            else
+                cmbLunesHasta.Value = _prevDate2.AddMinutes(30);
+
+            _prevDate2 = cmbLunesHasta.Value;
         }
         
         }
