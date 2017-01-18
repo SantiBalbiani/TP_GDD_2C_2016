@@ -649,7 +649,7 @@ go
 --NOMBRE	: sp_getDiasDisponibles
 --OBJETIVO  : obtiene el horario de trabajo de un profesional para un dia de la semana                                   
 --=============================================================================================================
-CREATE PROCEDURE [Select_Group].[sp_getDiasDisponibles] (@Dia int,  @idProfesional int)
+CREATE PROCEDURE [Select_Group].[sp_getDiasDisponibles] (@Dia int,  @idProfesional int, @especialidad int)
 
 AS
 BEGIN
@@ -657,7 +657,7 @@ BEGIN
 
 	SELECT idAgenda, profesional_idProfesional, horaDesde, horaHasta
 	
-	FROM Select_Group.Agenda WHERE diaDisponible = @Dia AND profesional_IdProfesional = @idProfesional
+	FROM Select_Group.Agenda WHERE diaDisponible = @Dia AND profesional_IdProfesional = @idProfesional AND especialidad = @especialidad
 
 END
 GO
