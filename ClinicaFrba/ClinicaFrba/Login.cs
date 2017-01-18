@@ -36,16 +36,19 @@ namespace ClinicaFrba
                 {
                     string cadenaFallidos = "select nombreUsuario,intentosFallidos from SELECT_GROUP.Usuario where nombreUsuario = ('" + cod.Trim() + "')";
                     DataTable tableUsuario = Conexion.LeerTabla(cadenaFallidos);
-                    filaUsuario = tableUsuario.Rows[0];
-                    int cantFallido = int.Parse(filaUsuario["intentosFallidos"].ToString());
-                    if (cantFallido >= 2)
+                    if (users.Rows.Count > 0)
                     {
-                        MessageBox.Show("El usuario " + filaUsuario["nombreUsuario"].ToString() + " está bloqueado");
-                        cadena = "update SELECT_GROUP.Usuario set intentosFallidos = intentosFallidos + 1 where nombreUsuario=upper('" + cod.Trim() + "')";
-                        Conexion.EjecutarComando(cadena);
-                        this.txtContraseña.ResetText();
-                        this.txtUsuario.ResetText();
+                        filaUsuario = tableUsuario.Rows[0];
+                        int cantFallido = int.Parse(filaUsuario["intentosFallidos"].ToString());
+                        if (cantFallido >= 2)
+                        {
+                            MessageBox.Show("El usuario " + filaUsuario["nombreUsuario"].ToString() + " está bloqueado");
+                            cadena = "update SELECT_GROUP.Usuario set intentosFallidos = intentosFallidos + 1 where nombreUsuario=upper('" + cod.Trim() + "')";
+                            Conexion.EjecutarComando(cadena);
+                            this.txtContraseña.ResetText();
+                            this.txtUsuario.ResetText();
 
+                        }
                     }
                     else
                     {
@@ -89,6 +92,61 @@ namespace ClinicaFrba
             frmFecha.MenuAnt = this;
             frmFecha.Show();
             this.Enabled = false; 
+        }
+
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            if (Char.IsLetterOrDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtUsuario_TextChanged(object sender, EventArgs e)
+        {
+            txtUsuario.Text = txtUsuario.Text.Trim();
+            txtUsuario.Text = txtUsuario.Text.Replace(" ", "");
+            txtUsuario.SelectionStart = txtUsuario.Text.Length;
+        }
+
+        private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsLetterOrDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+        
+        private void txtContraseña_TextChanged(object sender, EventArgs e)
+        {
+            txtContraseña.Text = txtContraseña.Text.Trim();
+            txtContraseña.Text = txtContraseña.Text.Replace(" ", "");
+            txtContraseña.SelectionStart = txtContraseña.Text.Length;
         }
     }
 }
