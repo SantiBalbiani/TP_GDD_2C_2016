@@ -61,7 +61,32 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
         }
 
 
+        public bool validHorarioAtencion(int horaDesde, int horaHasta)
+        {
+            bool dentroDeHorarioAtencion = false;
 
+  
+
+                if ((horaDesde < 700) || (horaHasta > 2000))
+                {
+                    dentroDeHorarioAtencion = false;
+
+                }
+                else
+                {
+                    dentroDeHorarioAtencion = true;
+
+                }
+
+        
+              
+
+            
+               
+
+            return dentroDeHorarioAtencion;
+
+        }
         
         //++++++++++++++++Lunes Desde y Lunes Hasta+++++++++++++++++++++
         private DateTime _prevDate;
@@ -204,7 +229,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                         MessageBox.Show("No ha sido selecciona la Especialidad en un día Elegido");
         }
                 else
-                MessageBox.Show("Verifique por favor los horarios ingresados, puede que haya ingresado un horario que ya esta guardado o que el horario hasta sea menor que horario desde");
+                    MessageBox.Show("Verifique por favor los horarios ingresados, puede que haya ingresado un horario que ya esta guardado. Horario de atención de la Clínica: Lunes a Viernes de 7:00 a 20:00 Hs y Sábados de 10:00 a 15:00 Hs.");
                 }
         }
            
@@ -451,7 +476,9 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
                 if (query.Rows.Count <= 0)
                 {
-                    if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbLunesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbLunesDesde.Text)))
+                    if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbLunesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbLunesDesde.Text))
+                        && validHorarioAtencion((Convert.ToInt32(formatoHorario(cmbLunesDesde.Text))),(Convert.ToInt32(formatoHorario(cmbLunesHasta.Text))))
+                        )
                     {
                         bandera = true;
                     }
@@ -465,7 +492,11 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                // string valorColumna = query.Columns["Cantidad"].ToString();
                 if (query.Rows.Count <= 0)
                 {
-                    if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbMartesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbMartesDesde.Text)))
+                    if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbMartesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbMartesDesde.Text))
+
+                        && validHorarioAtencion((Convert.ToInt32(formatoHorario(cmbMartesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbMartesHasta.Text))))
+                        
+                        )
                     {
                         bandera = true;
                     }
@@ -480,7 +511,10 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
                 if (query.Rows.Count <= 0)
                 {
-                    if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbMiercolesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbMiercolesDesde.Text)))
+                    if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbMiercolesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbMiercolesDesde.Text))
+
+                        && validHorarioAtencion((Convert.ToInt32(formatoHorario(cmbMiercolesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbMiercolesHasta.Text))))
+                        )
                     {
                         bandera = true;
                     }
@@ -494,7 +528,11 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 //string valorColumna = query.Columns["Cantidad"].ToString();
                 if (query.Rows.Count <= 0)
                 {
-                    if (/*valorColumna == "" && */Convert.ToInt32(formatoHorario(cmbJuevesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbJuevesDesde.Text)))
+                    if (/*valorColumna == "" && */Convert.ToInt32(formatoHorario(cmbJuevesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbJuevesDesde.Text))
+
+                        && validHorarioAtencion((Convert.ToInt32(formatoHorario(cmbJuevesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbJuevesHasta.Text))))
+                        
+                        )
                     {
                         bandera = true;
                     }
@@ -509,7 +547,12 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 //string valorColumna = query.Columns["Cantidad"].ToString();
                 if (query.Rows.Count <= 0)
                 {
-                    if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbViernesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbViernesDesde.Text)))
+                    if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbViernesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbViernesDesde.Text))
+                        
+                        
+                        && validHorarioAtencion((Convert.ToInt32(formatoHorario(cmbViernesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbViernesHasta.Text))))
+                        
+                        )
                     {
                         bandera = true;
                     }
@@ -523,7 +566,14 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 //string valorColumna = query.Columns["Cantidad"].ToString();
                 if (query.Rows.Count <= 0)
                 {
-                    if (/*valorColumna == "" && */Convert.ToInt32(formatoHorario(cmbSabadoHasta.Text)) > Convert.ToInt32(formatoHorario(cmbSabadoDesde.Text)))
+                    if (/*valorColumna == "" && */(Convert.ToInt32(formatoHorario(cmbSabadoHasta.Text)) > Convert.ToInt32(formatoHorario(cmbSabadoDesde.Text))) &&
+
+                              (!(Convert.ToInt32(formatoHorario(cmbSabadoDesde.Text)) < 1000))
+                    &&
+                    (!(Convert.ToInt32(formatoHorario(cmbSabadoHasta.Text)) > 1500))
+                        
+                        
+                        )
                     {
                         bandera = true;
                     }
