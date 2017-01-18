@@ -22,6 +22,7 @@ namespace ClinicaFrba
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            DataRow filaUsuario;
             
             if (Conexion.conectar())
             {
@@ -33,17 +34,33 @@ namespace ClinicaFrba
                 users = Conexion.LeerTabla(cadena);
                 if (users.Rows.Count == 0)
                 {
-                    MessageBox.Show("Error al ingresar usuario o contraseña");
-                    cadena = "update SELECT_GROUP.Usuario set intentosFallidos=intentosFallidos+1 where nombreUsuario=upper('" + cod.Trim() + "')";
-                    Conexion.EjecutarComando(cadena);
-                    this.txtContraseña.ResetText();
-                    this.txtUsuario.ResetText();
+                    string cadenaFallidos = "select nombreUsuario,intentosFallidos from SELECT_GROUP.Usuario where nombreUsuario = ('" + cod.Trim() + "')";
+                    DataTable tableUsuario = Conexion.LeerTabla(cadenaFallidos);
+                    filaUsuario = tableUsuario.Rows[0];
+                    int cantFallido = int.Parse(filaUsuario["intentosFallidos"].ToString());
+                    if (cantFallido >= 2)
+                    {
+                        MessageBox.Show("El usuario " + filaUsuario["nombreUsuario"].ToString() + " está bloqueado");
+                        cadena = "update SELECT_GROUP.Usuario set intentosFallidos = intentosFallidos + 1 where nombreUsuario=upper('" + cod.Trim() + "')";
+                        Conexion.EjecutarComando(cadena);
+                        this.txtContraseña.ResetText();
+                        this.txtUsuario.ResetText();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al ingresar usuario o contraseña");
+                        cadena = "update SELECT_GROUP.Usuario set intentosFallidos = intentosFallidos + 1 where nombreUsuario=upper('" + cod.Trim() + "')";
+                        Conexion.EjecutarComando(cadena);
+                        this.txtContraseña.ResetText();
+                        this.txtUsuario.ResetText();
+                    }
                 }
                 else
                 {
-                    foreach (DataRow fila in users.Rows)
+                   foreach (DataRow fila in users.Rows)
                     {
-                        if (int.Parse((fila["intentosFallidos"].ToString())) == 3)
+                        if (int.Parse((fila["intentosFallidos"].ToString())) >= 3)
                         {
                             MessageBox.Show("El usuario " + fila["nombreUsuario"].ToString() + " está bloqueado");
                             
@@ -51,7 +68,9 @@ namespace ClinicaFrba
                         else
                         {
                             this.Hide();
-                            MessageBox.Show("Bienvenido Usuario " + fila["nombreUsuario"].ToString());
+                            filaUsuario = users.Rows[0];
+
+                            MessageBox.Show("Bienvenido Usuario " + filaUsuario["nombreUsuario"].ToString());
                             Globals.userName = cod.Trim();
                             cadena = "update SELECT_GROUP.Usuario set intentosFallidos= 0 where nombreUsuario=upper('" + cod.Trim() + "')";
                             Conexion.EjecutarComando(cadena);
@@ -59,11 +78,10 @@ namespace ClinicaFrba
                             frmRol.Show();
                         }
                     }
-
+                    }
                 }
-            }
-
         }
+
 
         private void btnFecha_Click(object sender, EventArgs e)
         {
