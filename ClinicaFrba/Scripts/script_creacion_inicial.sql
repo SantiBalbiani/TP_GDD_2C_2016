@@ -800,13 +800,14 @@ BEGIN
 	SET NOCOUNT ON;
 
     DECLARE turnos CURSOR FOR
-	SELECT T.idTurno
+	SELECT T.idTurno, D.idAgendaDetalle
 	FROM Select_Group.Agenda A
 	JOIN Select_Group.Turno T ON T.idAgenda = A.idAgenda
+	JOIN SELECT_GROUP.Agenda_Detalle D ON D.idAgenda = A.idAgenda AND T.fechaTurno = D.fecha_Hora_Turno
 	WHERE A.profesional_IdProfesional = @idProf
 	AND T.fechaTurno BETWEEN @fechaDesde AND @fechaHasta
 
-	
+	declare @idAgDetalle int;
 	declare @idCanc int;
 	declare @idTurno int;
 
@@ -817,7 +818,7 @@ BEGIN
 
 	OPEN turnos;
 
-	FETCH NEXT FROM turnos INTO @idTurno;
+	FETCH NEXT FROM turnos INTO @idTurno, @idAgDetalle;
 
 	WHILE (@@FETCH_STATUS = 0)
 
@@ -829,15 +830,21 @@ BEGIN
 	WHERE 
 	idTurno = @idTurno;
 
+	UPDATE SELECT_GROUP.Agenda_Detalle
+	SET
+	estaCancelado = 1,
+	cancelacion_idCancelacion = @idCanc
+	WHERE
+	idAgendaDetalle = @idAgDetalle;
 
-	FETCH NEXT FROM turnos INTO @idTurno;
+
+	FETCH NEXT FROM turnos INTO @idTurno, @idAgDetalle;
 	END;
 
 	CLOSE turnos;
 	DEALLOCATE turnos;
 
 END
-GO
 --=============================================================================================================
 --TIPO		: Store Procedure
 --NOMBRE	: ActualizarPlan
