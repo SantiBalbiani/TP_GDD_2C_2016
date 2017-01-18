@@ -337,7 +337,7 @@ namespace ClinicaFrba.Pedir_Turno
             }
             else
             {
-                MessageBox.Show("El Profesional ya ha alcanzado su disponibilidad de 48 hs. Por favor elija otro profesional y otra semana");
+                MessageBox.Show("El Profesional ya ha alcanzado su disponibilidad de 48 hs semanales. Por favor elija otro profesional u otra semana");
             }
         }
 
