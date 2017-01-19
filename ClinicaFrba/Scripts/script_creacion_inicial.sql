@@ -845,6 +845,8 @@ BEGIN
 	DEALLOCATE turnos;
 
 END
+
+GO
 --=============================================================================================================
 --TIPO		: Store Procedure
 --NOMBRE	: ActualizarPlan
