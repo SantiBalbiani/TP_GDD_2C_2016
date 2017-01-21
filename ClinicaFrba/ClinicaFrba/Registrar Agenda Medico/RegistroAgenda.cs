@@ -61,31 +61,34 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
         }
 
 
-        public bool validHorarioAtencion(int horaDesde, int horaHasta)
+        public bool validHorarioAtencionSemana(int horaDesde, int horaHasta)
         {
             bool dentroDeHorarioAtencion = false;
 
   
 
-                if ((horaDesde < 700) || (horaHasta > 2000))
-                {
-                    dentroDeHorarioAtencion = false;
-
-                }
-                else
+                if ((horaDesde >= 700 && horaDesde <= 1930) && (horaHasta <= 2000))
                 {
                     dentroDeHorarioAtencion = true;
 
                 }
-
-        
-              
-
-            
-               
-
             return dentroDeHorarioAtencion;
 
+        }
+        public bool validHorarioAtencionSabado(int horaDesde, int horaHasta)
+        {
+            bool dentroDeHorarioAtencion = false;
+
+            if ((horaDesde >= 1000 && horaDesde <= 1430) && (horaHasta <= 1500)) {
+                
+                dentroDeHorarioAtencion = true;            
+            
+            }
+
+
+            return dentroDeHorarioAtencion;
+        
+        
         }
         
         //++++++++++++++++Lunes Desde y Lunes Hasta+++++++++++++++++++++
@@ -477,7 +480,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 if (query.Rows.Count <= 0)
                 {
                     if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbLunesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbLunesDesde.Text))
-                        && validHorarioAtencion((Convert.ToInt32(formatoHorario(cmbLunesDesde.Text))),(Convert.ToInt32(formatoHorario(cmbLunesHasta.Text))))
+                        && validHorarioAtencionSemana((Convert.ToInt32(formatoHorario(cmbLunesDesde.Text))),(Convert.ToInt32(formatoHorario(cmbLunesHasta.Text))))
                         )
                     {
                         bandera = true;
@@ -494,7 +497,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 {
                     if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbMartesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbMartesDesde.Text))
 
-                        && validHorarioAtencion((Convert.ToInt32(formatoHorario(cmbMartesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbMartesHasta.Text))))
+                        && validHorarioAtencionSemana((Convert.ToInt32(formatoHorario(cmbMartesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbMartesHasta.Text))))
                         
                         )
                     {
@@ -513,7 +516,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 {
                     if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbMiercolesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbMiercolesDesde.Text))
 
-                        && validHorarioAtencion((Convert.ToInt32(formatoHorario(cmbMiercolesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbMiercolesHasta.Text))))
+                        && validHorarioAtencionSemana((Convert.ToInt32(formatoHorario(cmbMiercolesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbMiercolesHasta.Text))))
                         )
                     {
                         bandera = true;
@@ -530,7 +533,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 {
                     if (/*valorColumna == "" && */Convert.ToInt32(formatoHorario(cmbJuevesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbJuevesDesde.Text))
 
-                        && validHorarioAtencion((Convert.ToInt32(formatoHorario(cmbJuevesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbJuevesHasta.Text))))
+                        && validHorarioAtencionSemana((Convert.ToInt32(formatoHorario(cmbJuevesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbJuevesHasta.Text))))
                         
                         )
                     {
@@ -550,7 +553,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                     if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbViernesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbViernesDesde.Text))
                         
                         
-                        && validHorarioAtencion((Convert.ToInt32(formatoHorario(cmbViernesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbViernesHasta.Text))))
+                        && validHorarioAtencionSemana((Convert.ToInt32(formatoHorario(cmbViernesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbViernesHasta.Text))))
                         
                         )
                     {
@@ -568,10 +571,7 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 {
                     if (/*valorColumna == "" && */(Convert.ToInt32(formatoHorario(cmbSabadoHasta.Text)) > Convert.ToInt32(formatoHorario(cmbSabadoDesde.Text))) &&
 
-                              (!(Convert.ToInt32(formatoHorario(cmbSabadoDesde.Text)) < 1000))
-                    &&
-                    (!(Convert.ToInt32(formatoHorario(cmbSabadoHasta.Text)) > 1500))
-                        
+                              validHorarioAtencionSabado((Convert.ToInt32(formatoHorario(cmbViernesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbViernesHasta.Text))))
                         
                         )
                     {
