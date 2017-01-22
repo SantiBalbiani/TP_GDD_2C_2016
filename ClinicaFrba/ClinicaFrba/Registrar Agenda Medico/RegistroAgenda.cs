@@ -470,6 +470,12 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
         }
         public Boolean verificarHorariosIngresados(int idProfesional) {
             Boolean bandera = false;
+            Boolean banderaLunes = true;
+            Boolean banderaMartes = true;
+            Boolean banderaMiercoles = true;
+            Boolean banderaJueves = true;
+            Boolean banderaViernes = true;
+            Boolean banderaSabado = true;
 
             if (checkBoxLunes.Checked) {
 
@@ -480,11 +486,13 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 if (query.Rows.Count <= 0)
                 {
                     if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbLunesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbLunesDesde.Text))
-                        && validHorarioAtencionSemana((Convert.ToInt32(formatoHorario(cmbLunesDesde.Text))),(Convert.ToInt32(formatoHorario(cmbLunesHasta.Text))))
+                        && validHorarioAtencionSemana((Convert.ToInt32(formatoHorario(cmbLunesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbLunesHasta.Text))))
                         )
                     {
-                        bandera = true;
+                        banderaLunes = true;
                     }
+                    else
+                        banderaLunes = false;
                 }
             }
             if (checkBoxMartes.Checked)
@@ -498,11 +506,13 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                     if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbMartesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbMartesDesde.Text))
 
                         && validHorarioAtencionSemana((Convert.ToInt32(formatoHorario(cmbMartesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbMartesHasta.Text))))
-                        
+
                         )
                     {
-                        bandera = true;
+                        banderaMartes = true;
                     }
+                    else
+                        banderaMartes = false;
                 }
             }
             if (checkBoxMiercoles.Checked)
@@ -519,8 +529,10 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                         && validHorarioAtencionSemana((Convert.ToInt32(formatoHorario(cmbMiercolesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbMiercolesHasta.Text))))
                         )
                     {
-                        bandera = true;
+                        banderaMiercoles = true;
                     }
+                    else
+                        banderaMiercoles = false;
                 }
             }
             if (checkBoxJueves.Checked)
@@ -534,11 +546,14 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                     if (/*valorColumna == "" && */Convert.ToInt32(formatoHorario(cmbJuevesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbJuevesDesde.Text))
 
                         && validHorarioAtencionSemana((Convert.ToInt32(formatoHorario(cmbJuevesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbJuevesHasta.Text))))
-                        
+
                         )
                     {
-                        bandera = true;
+                        banderaJueves = true;
                     }
+                    else
+                        banderaJueves = false;
+
                 }
 
             }
@@ -551,14 +566,16 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 if (query.Rows.Count <= 0)
                 {
                     if (/*valorColumna == "" &&*/ Convert.ToInt32(formatoHorario(cmbViernesHasta.Text)) > Convert.ToInt32(formatoHorario(cmbViernesDesde.Text))
-                        
-                        
+
+
                         && validHorarioAtencionSemana((Convert.ToInt32(formatoHorario(cmbViernesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbViernesHasta.Text))))
-                        
+
                         )
                     {
-                        bandera = true;
+                        banderaViernes = true;
                     }
+                    else
+                        banderaViernes = false;
                 }
             }
             if (checkBoxSabado.Checked)
@@ -571,15 +588,19 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
                 {
                     if (/*valorColumna == "" && */(Convert.ToInt32(formatoHorario(cmbSabadoHasta.Text)) > Convert.ToInt32(formatoHorario(cmbSabadoDesde.Text))) &&
 
-                              validHorarioAtencionSabado((Convert.ToInt32(formatoHorario(cmbViernesDesde.Text))), (Convert.ToInt32(formatoHorario(cmbViernesHasta.Text))))
-                        
+                              validHorarioAtencionSabado((Convert.ToInt32(formatoHorario(cmbSabadoDesde.Text))), (Convert.ToInt32(formatoHorario(cmbSabadoHasta.Text))))
+
                         )
                     {
-                        bandera = true;
+                        banderaSabado = true;
                     }
+                    else
+                        banderaSabado = false;
                 }
 
             }
+
+            bandera = banderaLunes && banderaMartes && banderaMiercoles && banderaJueves && banderaViernes && banderaSabado;
 
             return bandera;
         
@@ -606,30 +627,61 @@ namespace ClinicaFrba.Registrar_Agenta_Medico
 
         public Boolean especialidadElegida() {
             Boolean bandera = false;
+            Boolean banderaLunes = true;
+            Boolean banderaMartes = true;
+            Boolean banderaMiercoles = true;
+            Boolean banderaJueves = true;
+            Boolean banderaViernes = true;
+            Boolean banderaSabado = true;
 
-            if(comboBox1.Enabled && comboBox1.SelectedIndex != -1){
-                bandera = true;            
-            }
-            if (comboBox2.Enabled && comboBox2.SelectedIndex != -1)
+            if (comboBox1.Enabled)
             {
-                bandera = true;
+                if (comboBox1.SelectedIndex != -1)
+                    banderaLunes = true;
+                else
+                    banderaLunes = false;
             }
-            if (comboBox3.Enabled && comboBox3.SelectedIndex != -1)
+            
+            if (comboBox2.Enabled)
             {
-                bandera = true;
+                if (comboBox2.SelectedIndex != -1)
+                    banderaMartes = true;
+                else
+                    banderaMartes = false;
+                        
             }
-            if (comboBox4.Enabled && comboBox4.SelectedIndex != -1)
+            if (comboBox3.Enabled)
             {
-                bandera = true;
+                if (comboBox3.SelectedIndex != -1)
+                    banderaMiercoles = true;
+                else
+                    banderaMiercoles = false;
+
             }
-            if (comboBox5.Enabled && comboBox5.SelectedIndex != -1)
+            if (comboBox4.Enabled)
             {
-                bandera = true;
+                if(comboBox4.SelectedIndex != -1)
+                    banderaJueves = true;
+                else
+                    banderaJueves = false;
             }
-            if (comboBox6.Enabled && comboBox6.SelectedIndex != -1)
+            if (comboBox5.Enabled)
             {
-                bandera = true;
+                if (comboBox5.SelectedIndex != -1)
+                    banderaViernes = true;
+                else
+                    banderaViernes = false;
             }
+            if (comboBox6.Enabled)
+            {
+                if (comboBox6.SelectedIndex != -1)
+                    banderaSabado = true;
+                else
+                    banderaSabado = false;
+
+            }
+
+            bandera = banderaLunes && banderaMartes && banderaMiercoles && banderaJueves && banderaViernes && banderaSabado;
 
             return bandera;
         
