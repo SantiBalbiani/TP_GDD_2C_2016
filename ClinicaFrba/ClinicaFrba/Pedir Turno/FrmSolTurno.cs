@@ -35,7 +35,7 @@ namespace ClinicaFrba.Pedir_Turno
             DataTable horasT = new DataTable();
             Globals.getFechaActual().ToString("MM/dd/yyyy HH:mm");
             Conexion.conectar();
-            string consHorasT = "SELECT ((count(*)*30)/60) AS 'cantidadHoras' FROM [SELECT_GROUP].[Agenda] A JOIN Select_Group.Agenda_Detalle D ON D.idAgenda = A.idAgenda WHERE A.profesional_idProfesional = 1000 AND D.estaCancelado = 0 AND D.fecha_Hora_Turno BETWEEN '" + comienzoSemana.ToString("MM/dd/yyyy HH:mm") + "' AND '" + finSemana.ToString("MM/dd/yyyy HH:mm") + "'";
+            string consHorasT = "SELECT ((count(*)*30)/60) AS 'cantidadHoras' FROM [SELECT_GROUP].[Agenda] A JOIN Select_Group.Agenda_Detalle D ON D.idAgenda = A.idAgenda WHERE A.profesional_idProfesional = 1000 AND D.estaCancelado = 0 AND D.fecha_Hora_Turno BETWEEN '" + comienzoSemana.ToString("yyyy-MM-dd HH:mm") + "' AND '" + finSemana.ToString("yyyy-MM-dd HH:mm") + "'";
             horasT = Conexion.LeerTabla(consHorasT);
 
             foreach (DataRow unaCantHora in horasT.Rows) 
