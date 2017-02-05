@@ -71,7 +71,7 @@ namespace ClinicaFrba
         public static DateTime getFechaActual()
         {
             
-            DateTime fechaActual = Convert.ToDateTime(ClinicaFrba.Properties.Settings.Default.FechaDelSistema.ToString("yyyyMMdd HH:mm"));
+            DateTime fechaActual = Convert.ToDateTime(ClinicaFrba.Properties.Settings.Default.FechaDelSistema.ToString("yyyy-MM-dd HH:mm"));
 
             return fechaActual;
         }
