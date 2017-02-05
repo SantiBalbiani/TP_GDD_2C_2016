@@ -105,10 +105,14 @@ namespace ClinicaFrba.Cancelar_Atencion
                             DateTime laFechaACancelar = new DateTime();
                             laFechaACancelar = unaFechaACancelar;
                             SqlConnection cnx2 = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-                            SqlCommand cmdUsuario2 = new SqlCommand("Select_Group.sp_getDiasDisponibles", cnx2);
+                            SqlCommand cmdUsuario2 = new SqlCommand("Select_Group.sp_getDiasCancelables", cnx2);
                             cmdUsuario2.CommandType = CommandType.StoredProcedure;
                             cmdUsuario2.Parameters.Add("@Dia", SqlDbType.Int).Value = unaFechaACancelar.DayOfWeek;
                             cmdUsuario2.Parameters.Add("@idProfesional", SqlDbType.Int).Value = idProf;
+
+
+                            
+
 
                             try
                             {

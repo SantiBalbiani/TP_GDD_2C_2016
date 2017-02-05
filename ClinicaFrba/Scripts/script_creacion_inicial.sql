@@ -793,7 +793,7 @@ GO
 --OBJETIVO  : Cuando un profesional cancela un turno                                    
 --=============================================================================================================
 
-CREATE PROCEDURE [Select_Group].[sp_cancelacionProfesional](@Motivo varchar(45), @tipoMot int, @idProf int, @fechaDesde datetime, @fechaHasta datetime)
+ALTER PROCEDURE [SELECT_GROUP].[sp_cancelacionProfesional](@Motivo varchar(45), @tipoMot int, @idProf int, @fechaDesde datetime, @fechaHasta datetime,@idCanc int out)
 AS
 BEGIN
 	
@@ -808,7 +808,7 @@ BEGIN
 	AND T.fechaTurno BETWEEN @fechaDesde AND @fechaHasta
 
 	declare @idAgDetalle int;
-	declare @idCanc int;
+
 	declare @idTurno int;
 
 	INSERT INTO Select_Group.Cancelacion(motivo, tipo_Cancelacion_idTipoCanc)
@@ -845,7 +845,6 @@ BEGIN
 	DEALLOCATE turnos;
 
 END
-
 GO
 --=============================================================================================================
 --TIPO		: Store Procedure
@@ -934,7 +933,25 @@ BEGIN
 
 	
 END
-go
+GO
+
+--=============================================================================================================
+--TIPO		: Store Procedure
+--NOMBRE	: sp_getDiasDisponibles
+--OBJETIVO  : obtiene el horario de trabajo a cancelar por parte de un Profesional.                                  
+--=============================================================================================================
+CREATE PROCEDURE [SELECT_GROUP].[sp_getDiasCancelables] (@Dia int,  @idProfesional int)
+
+AS
+BEGIN
+	
+
+	SELECT idAgenda, profesional_idProfesional, horaDesde, horaHasta
+	
+	FROM Select_Group.Agenda WHERE diaDisponible = @Dia AND profesional_IdProfesional = @idProfesional
+
+END
+GO
 
 ----=============================================================================================================
 ----TIPO		: Vista
