@@ -425,7 +425,7 @@ namespace ClinicaFrba.Menu_Principal
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Se define fuera del alcance del Rol ya que el Custom no tiene matricula de profesional y turnos Asociados");
+            MessageBox.Show("Se define fuera del alcance del Rol ya que el rol "+ txtRolActual.Text + "Custom no tiene matricula de profesional y turnos Asociados");
             
         }
 

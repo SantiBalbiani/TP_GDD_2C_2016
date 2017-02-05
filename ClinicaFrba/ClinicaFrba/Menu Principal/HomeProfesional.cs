@@ -48,7 +48,7 @@ namespace ClinicaFrba.Menu_Principal
 
             //Agregarle al criterio idAgenda. No hace falta idAfiliado porque 
             // se presupone que un profesional no atiende mas de un Afiliado al mismo tiempo.
-            string consultaTurnoActual = "SELECT TOP 1 T.idTurno, T.afiliado_idAfiliado, T.estado FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda AND A.profesional_IdProfesional = " + idProf + " WHERE T.estado = 4 AND fechaTurno BETWEEN '" + intervaloTurnoMin.ToString("yyyy-MM-dd HH:mm") + "' AND '" + intervaloTurnoMax.ToString("yyyy-MM-dd HH:mm") + "' ORDER BY fechaTurno ASC";
+            string consultaTurnoActual = "SELECT TOP 1 T.idTurno, T.afiliado_idAfiliado, T.estado FROM Select_Group.Turno T JOIN Select_Group.Agenda A ON A.idAgenda = T.idAgenda AND A.profesional_IdProfesional = " + idProf + " WHERE T.estado = 4 AND fechaTurno BETWEEN '" + intervaloTurnoMin.ToString("yyyyMMdd HH:mm") + "' AND '" + intervaloTurnoMax.ToString("yyyyMMdd HH:mm") + "' ORDER BY fechaTurno ASC";
             
             string idTurno = "0";
             Conexion.conectar();
