@@ -127,7 +127,7 @@ namespace ClinicaFrba.Pedir_Turno
 
                     Conexion.conectar();
                     DataTable turnosTomados = new DataTable();
-                    string fechaTurnoSinHoraElegida = fechaElegida.Date.ToString("yyyy-MM-dd");
+                    string fechaTurnoSinHoraElegida = fechaElegida.Date.ToString("yyyyMMdd");
 
                     string queryTurnosTomados = "SELECT fecha_Hora_Turno FROM Select_Group.Agenda_Detalle WHERE CAST(fecha_Hora_Turno AS date) = " + "'" + fechaTurnoSinHoraElegida + "'" + " AND idAgenda = " + idAgenda ;
 
@@ -310,7 +310,7 @@ namespace ClinicaFrba.Pedir_Turno
                 
                 turnoAReservar = turnoAReservar.Date + horaElegida;
 
-                cmdUsuario.Parameters.Add("@fechaHoraTurno", SqlDbType.DateTime).Value = turnoAReservar.ToString("yyyy-MM-dd HH:mm:ss");
+                cmdUsuario.Parameters.Add("@fechaHoraTurno", SqlDbType.DateTime).Value = turnoAReservar.ToString("yyyyMMdd HH:mm");
                 cmdUsuario.Parameters.Add("@idAgenda", SqlDbType.Int).Value = idAgenda;
                 cmdUsuario.Parameters.Add("@userName", SqlDbType.VarChar).Value = Globals.userName;
 
