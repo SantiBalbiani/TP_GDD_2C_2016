@@ -155,14 +155,16 @@ namespace ClinicaFrba.Pedir_Turno
                     //Remuevo horarios que ya pasaron
                     listaHorarios.RemoveAll(esMenor);
 
-                    listaHorarios.Remove(listaHorarios.Last());
-
-
-                    foreach (TimeSpan turno in listaHorarios)
+                    if (listaHorarios.Count > 0)
                     {
-                        listView1.Items.Add(turno.ToString());
-                    }
+                        listaHorarios.Remove(listaHorarios.Last());
 
+
+                        foreach (TimeSpan turno in listaHorarios)
+                        {
+                            listView1.Items.Add(turno.ToString());
+                        }
+                    }
                 }
 
             }
