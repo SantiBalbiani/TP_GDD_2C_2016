@@ -116,11 +116,10 @@ namespace ClinicaFrba.Cancelar_Atencion
                 }
                 finally
                 {
+                    MessageBox.Show("El turno se ha cancelado satisfactoriamente");
                     cnx.Close();
-                    Globals.irAtras(menuAnterior, this);
-                    //HomeAfiliado home = new HomeAfiliado();
-                    //home.Show();
-                    //this.Close();
+                    Home.Show();
+                    this.Close();
                 }
             }
 
