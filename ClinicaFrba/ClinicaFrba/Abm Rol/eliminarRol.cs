@@ -96,15 +96,34 @@ namespace ClinicaFrba.AbmRol
                         foreach (Object item in checkedListBox1.CheckedItems)
                         {
 
+
                             ComboboxItem unItem = new ComboboxItem();
 
                             unItem = (ComboboxItem)item;
 
-                            //le pone el valor 0 al rol eliminado 
-                            SqlCommand cmdRol = new SqlCommand("update Select_group.Rol set habilitado=0 where nombre=@nombreRol", conexion); 
-                            cmdRol.Parameters.AddWithValue("@nombreRol", unItem.Text);
-                            cmdRol.ExecuteNonQuery();
-                            MessageBox.Show("Rol ha sigo inhabilitado con exito ");
+                            string queryUsado = "select TOP 1 rol_idRol from SELECT_GROUP.Usuario_Por_Rol where rol_idRol = " + unItem.Value;
+                            Conexion.conectar();
+
+                            DataTable usado = new DataTable();
+
+                            usado = Conexion.LeerTabla(queryUsado);
+
+                            if (usado.Rows.Count > 0)
+                            {
+                                MessageBox.Show("No es posible eliminar el rol "+ unItem.Text.ToString() +" porque todavía existen usuarios utilizandolo.");
+                            }
+                            else
+                            {
+
+
+
+                                //le pone el valor 0 al rol eliminado 
+                                SqlCommand cmdRol = new SqlCommand("update Select_group.Rol set habilitado=0 where nombre=@nombreRol", conexion);
+                                cmdRol.Parameters.AddWithValue("@nombreRol", unItem.Text);
+                                cmdRol.ExecuteNonQuery();
+                                MessageBox.Show("El Rol "+ unItem.Text.ToString()+" ha sido inhabilitado con exito ");
+                                
+                            }
                             Conexion.conexion.Close();
                         }
 
