@@ -310,7 +310,9 @@ namespace ClinicaFrba.Pedir_Turno
                 
                 turnoAReservar = turnoAReservar.Date + horaElegida;
 
-                cmdUsuario.Parameters.Add("@fechaHoraTurno", SqlDbType.DateTime).Value = turnoAReservar.ToString("yyyyMMdd HH:mm");
+                string fechaTurno = turnoAReservar.ToString("yyyyMMdd HH:mm");
+
+                cmdUsuario.Parameters.Add("@fechaHoraTurno", SqlDbType.DateTime).Value = turnoAReservar;
                 cmdUsuario.Parameters.Add("@idAgenda", SqlDbType.Int).Value = idAgenda;
                 cmdUsuario.Parameters.Add("@userName", SqlDbType.VarChar).Value = Globals.userName;
 
