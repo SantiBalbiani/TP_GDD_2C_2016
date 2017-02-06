@@ -793,7 +793,7 @@ GO
 --OBJETIVO  : Cuando un profesional cancela un turno                                    
 --=============================================================================================================
 
-ALTER PROCEDURE [SELECT_GROUP].[sp_cancelacionProfesional](@Motivo varchar(45), @tipoMot int, @idProf int, @fechaDesde datetime, @fechaHasta datetime,@idCanc int out)
+CREATE PROCEDURE [SELECT_GROUP].[sp_cancelacionProfesional](@Motivo varchar(45), @tipoMot int, @idProf int, @fechaDesde datetime, @fechaHasta datetime,@idCanc int out)
 AS
 BEGIN
 	
