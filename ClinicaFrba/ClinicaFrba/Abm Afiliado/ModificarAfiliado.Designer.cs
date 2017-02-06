@@ -64,6 +64,7 @@
             this.textBox1.Size = new System.Drawing.Size(102, 20);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label1
             // 
@@ -235,6 +236,26 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void textBox1_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if (System.Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (System.Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (System.Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
 
         #endregion
