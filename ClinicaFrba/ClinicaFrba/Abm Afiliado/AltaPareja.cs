@@ -28,6 +28,7 @@ namespace ClinicaFrba.Abm_Afiliado
         public string planMedPareja;
         public int hijosCant;
         public string menuAnterior;
+        public Form MenuHome;
 
 
         public AltaPareja(DataTable afiliadoPrincipal, DataRow afiliadoIngre, Boolean hijos,Boolean afiliadoPrincipalNuevo, int cantHijos)
@@ -68,32 +69,51 @@ namespace ClinicaFrba.Abm_Afiliado
                     {
 
                         AltaHijo frmHijo = new AltaHijo(afiliados, afiliado, hijosCant, nuevoAfiliado);
+                        frmHijo.MenuHome = MenuHome;
                         frmHijo.Show();
                         this.Close();
                     }
                     else
                     {
-                        SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-                        try
+
+                        DialogResult confirmaRegistro = MessageBox.Show("Se procederá a Registrar los datos ingresados. Confirma registro?", "Confirmación de Registro de Afiliado/s", MessageBoxButtons.YesNo);
+
+                        if (confirmaRegistro == DialogResult.Yes)
                         {
-                            Abm_Afiliado.estructuraBD.darAltaUsuarios(afiliados);
-                            SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
-                            cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
-                            cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
-                            cmdAltaAfiliado.Parameters["@Afiliados"].Value = afiliados;
-                            cnx.Open();
-                            cmdAltaAfiliado.ExecuteNonQuery();
-                            MessageBox.Show("Se han guardado correctamente los datos");
-                            Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
-                            frmAdmin.Show();
+
+                            SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+                            try
+                            {
+                                Abm_Afiliado.estructuraBD.darAltaUsuarios(afiliados);
+                                SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
+                                cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+                                cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
+                                cmdAltaAfiliado.Parameters["@Afiliados"].Value = afiliados;
+                                cnx.Open();
+                                cmdAltaAfiliado.ExecuteNonQuery();
+                                MessageBox.Show("Se han guardado correctamente los datos");
+                                MenuHome.Show();
+                                this.Close();
+                            }
+                            catch (ApplicationException error)
+                            {
+                                string mensaje = "Se ha producido un error";
+                                ApplicationException excep = new ApplicationException(mensaje, error);
+                                excep.Source = this.Text;
+                            }
+                        }
+
+                        if (confirmaRegistro == DialogResult.No)
+                        {
+                            MessageBox.Show("Se ha cancelado el registro");
+                            Globals.listaDni.Clear();
+                            MenuHome.Show();
                             this.Close();
+                            
                         }
-                        catch (ApplicationException error)
-                        {
-                            string mensaje = "Se ha producido un error";
-                            ApplicationException excep = new ApplicationException(mensaje, error);
-                            excep.Source = this.Text;
-                        }
+
+
+
                     }
                 }
                 else
@@ -103,14 +123,16 @@ namespace ClinicaFrba.Abm_Afiliado
             }
             else
             {
-                MessageBox.Show("Faltan Campos ingresar");
+                MessageBox.Show("Por favor completar todos los campos");
             }
             //this.Close();
         }
      
         private void btnCancelar_Click(object sender, EventArgs e) 
         {
-            Globals.irAtras(menuAnterior, this);
+            Globals.listaDni.Clear();
+            MenuHome.Show();
+            this.Close();
             
         }
 

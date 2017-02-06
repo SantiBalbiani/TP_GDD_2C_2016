@@ -56,6 +56,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textCantHijos = new Libreria.errorTextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorTextBoxPareja)).BeginInit();
             this.SuspendLayout();
             // 
@@ -329,12 +330,22 @@
             this.label11.TabIndex = 67;
             this.label11.Text = "Cant Hijos / Familiares:";
             // 
+            // label14
+            // 
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Location = new System.Drawing.Point(217, 297);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(130, 20);
+            this.label14.TabIndex = 68;
+            this.label14.Text = "(Sólo a nivel informativo)";
+            // 
             // AltaPareja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(418, 404);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.textCantHijos);
             this.Controls.Add(this.dateTimePicker1);
@@ -399,5 +410,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private Libreria.errorTextBox textCantHijos;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label14;
     }
 }

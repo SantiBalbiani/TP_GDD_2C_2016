@@ -27,7 +27,7 @@ namespace ClinicaFrba.Abm_Afiliado
         public int nroAfiliado;
         public Boolean nuevo;
         public string menuAnterior;
-        
+        public Form MenuHome;
 
         public AltaHijo(DataTable Afiliados,DataRow afiliado,int cantHijos, bool esNuevo)
         {
@@ -41,8 +41,10 @@ namespace ClinicaFrba.Abm_Afiliado
       
         private void btnCancelar_Click_1(object sender, EventArgs e)
         {
+            Globals.listaDni.Clear();
+            MenuHome.Show();
             this.Close();
-            Globals.irAtras(menuAnterior, this);
+            
         }
 
         private void label13_Click(object sender, EventArgs e)
@@ -104,28 +106,44 @@ namespace ClinicaFrba.Abm_Afiliado
                             }
                             else
                             {
-                                SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-                                try
-                                {
-                                    Abm_Afiliado.estructuraBD.darAltaUsuarios(tablaAfiliados);
-                                    SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
-                                    cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
-                                    cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
-                                    cmdAltaAfiliado.Parameters["@Afiliados"].Value = tablaAfiliados;
 
-                                    cnx.Open();
-                                    cmdAltaAfiliado.ExecuteNonQuery();
-                                    MessageBox.Show("Se han guardado correctamente los datos");
-                                    Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
-                                    frmAdmin.Show();
+                                SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+                                
+                                DialogResult confirmaRegistro = MessageBox.Show("Se procederá a Registrar los datos ingresados. Confirma registro?", "Confirmación de Registro de Afiliado/s", MessageBoxButtons.YesNo);
+                                if (confirmaRegistro == DialogResult.Yes)
+                                {
+
+                                    try
+                                    {
+                                        Abm_Afiliado.estructuraBD.darAltaUsuarios(tablaAfiliados);
+                                        SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
+                                        cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+                                        cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
+                                        cmdAltaAfiliado.Parameters["@Afiliados"].Value = tablaAfiliados;
+
+                                        cnx.Open();
+                                        cmdAltaAfiliado.ExecuteNonQuery();
+                                        MessageBox.Show("Se han guardado correctamente los datos");
+                                        Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
+                                        frmAdmin.Show();
+                                        this.Close();
+                                    }
+                                    catch (ApplicationException error)
+                                    {
+                                        string mensaje = "Se ha producido un error";
+                                        ApplicationException excep = new ApplicationException(mensaje, error);
+                                        excep.Source = this.Text;
+                                    }
+                                }
+
+                                if (confirmaRegistro == DialogResult.No)
+                                {
+                                    Globals.listaDni.Clear();
+                                    MessageBox.Show("Se ha cancelado el registro");
+                                    MenuHome.Show();
                                     this.Close();
                                 }
-                                catch (ApplicationException error)
-                                {
-                                    string mensaje = "Se ha producido un error";
-                                    ApplicationException excep = new ApplicationException(mensaje, error);
-                                    excep.Source = this.Text;
-                                }
+
 
                             }
                         }
@@ -154,27 +172,39 @@ namespace ClinicaFrba.Abm_Afiliado
                             else
                             {
                                 SqlConnection cnx = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
-
-                                try
+                                DialogResult confirmaRegistro = MessageBox.Show("Se procederá a Registrar los datos ingresados. Confirma registro?", "Confirmación de Registro de Afiliado/s", MessageBoxButtons.YesNo);
+                                if (confirmaRegistro == DialogResult.Yes)
                                 {
-                                    Abm_Afiliado.estructuraBD.darAltaUsuarios(tablaAfiliados);
-                                    SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
-                                    cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
-                                    cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
-                                    cmdAltaAfiliado.Parameters["@Afiliados"].Value = tablaAfiliados;
 
-                                    cnx.Open();
-                                    cmdAltaAfiliado.ExecuteNonQuery();
-                                    MessageBox.Show("Se han guardado correctamente los datos");
-                                    Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
-                                    frmAdmin.Show();
-                                    this.Close();
+                                    try
+                                    {
+                                        Abm_Afiliado.estructuraBD.darAltaUsuarios(tablaAfiliados);
+                                        SqlCommand cmdAltaAfiliado = new SqlCommand("Select_Group.AltaAfiliado", cnx);
+                                        cmdAltaAfiliado.CommandType = CommandType.StoredProcedure;
+                                        cmdAltaAfiliado.Parameters.Add(new SqlParameter("@Afiliados", SqlDbType.Structured));
+                                        cmdAltaAfiliado.Parameters["@Afiliados"].Value = tablaAfiliados;
+
+                                        cnx.Open();
+                                        cmdAltaAfiliado.ExecuteNonQuery();
+                                        MessageBox.Show("Se han guardado correctamente los datos");
+                                        Menu_Principal.HomeAdmin frmAdmin = new Menu_Principal.HomeAdmin();
+                                        frmAdmin.Show();
+                                        this.Close();
+                                    }
+                                    catch (ApplicationException error)
+                                    {
+                                        string mensaje = "Se ha producido un error";
+                                        ApplicationException excep = new ApplicationException(mensaje, error);
+                                        excep.Source = this.Text;
+                                    }
                                 }
-                                catch (ApplicationException error)
+
+                                if (confirmaRegistro == DialogResult.No)
                                 {
-                                    string mensaje = "Se ha producido un error";
-                                    ApplicationException excep = new ApplicationException(mensaje, error);
-                                    excep.Source = this.Text;
+                                    Globals.listaDni.Clear();
+                                    MessageBox.Show("Se ha cancelado el registro");
+                                    MenuHome.Show();
+                                    this.Close();
                                 }
 
                             }
