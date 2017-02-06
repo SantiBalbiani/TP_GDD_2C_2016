@@ -351,7 +351,7 @@ namespace ClinicaFrba.Listados
                         break;
                     case 1:
 
-                        string consultaMayCanc = "SELECT TOP 5 T.especialidad FROM Select_Group.Turno T WHERE T.cancelacion_idCancelacion is not null AND T.fechaTurno BETWEEN '" + fechaDesde + "' AND '" + fechaHasta + "' GROUP BY T.especialidad ORDER BY count(*) desc";
+                        string consultaMayCanc = "SELECT TOP 5 T.especialidad FROM Select_Group.Turno T WHERE T.cancelacion_idCancelacion is not null AND T.fechaTurno BETWEEN '" + fechaDesde.ToString("yyyyMMdd") + "' AND '" + fechaHasta.ToString("yyyyMMdd") + "' GROUP BY T.especialidad ORDER BY count(*) desc";
 
                         Conexion.conectar();
 
@@ -413,7 +413,7 @@ namespace ClinicaFrba.Listados
                             string from = "FROM   Select_Group.Profesional AS P INNER JOIN Select_Group.Profesional_Por_Especialidad AS PE ON PE.profesional_idProfesional = P.matricula INNER JOIN Select_Group.Especialidad AS E ON E.idEspecialidad = PE.especialidad_idEspecialidad INNER JOIN Select_Group.Agenda AS Ag ON Ag.profesional_IdProfesional = P.matricula INNER JOIN Select_Group.Turno AS T ON T.idAgenda = Ag.idAgenda INNER JOIN Select_Group.Afiliado AS Af ON Af.idAfiliado = T.afiliado_idAfiliado ";
 
 
-                            string where = "WHERE Af.plan_idPlan = " + unPlan.Value.ToString().Trim() + " AND E.idEspecialidad = " + unaEspecialidad.Value.ToString().Trim() + " AND T.fechaTurno BETWEEN '" + fechaDesde + "' AND '" + fechaHasta + "'";
+                            string where = "WHERE Af.plan_idPlan = " + unPlan.Value.ToString().Trim() + " AND E.idEspecialidad = " + unaEspecialidad.Value.ToString().Trim() + " AND T.fechaTurno BETWEEN '" + fechaDesde.ToString("yyyyMMdd") + "' AND '" + fechaHasta.ToString("yyyyMMdd") + "'";
                             string orderBy = "GROUP BY P.matricula, Af.plan_idPlan, E.descripcion, P.apellido, P.nombre, E.idEspecialidad ORDER BY COUNT(Af.plan_idPlan) desc";
                             string cadenaquery2 = select + from + where + orderBy;
                             Lista = Conexion.LeerTabla(cadenaquery2);
@@ -462,7 +462,7 @@ namespace ClinicaFrba.Listados
 
                         string campos = "SELECT TOP 5 A.nroAfiliado, A.nombre, A.apellido, COUNT(*) AS 'Cantidad Comprada', (SELECT count(*) FROM SELECT_GROUP.Afiliado A2 WHERE A2.nroAfiliado LIKE (left(A.nroAfiliado, LEN(A.nroAfiliado)-2)+'%') AND (LEN(A.nroAfiliado) = LEN(A2.nroAfiliado))) AS 'CantFamiliares' ";
                         string desdeTabla = "FROM Select_Group.Afiliado A JOIN Select_Group.Bono B ON A.idAfiliado = B.idAfiliado ";
-                        string condicion = "WHERE B.bonoConsulta_FechaImpresion BETWEEN '"+fechaDesde +"' AND '"+fechaHasta +"' GROUP BY A.nroAfiliado, A.nombre, A.apellido ORDER BY COUNT(*) DESC";
+                        string condicion = "WHERE B.bonoConsulta_FechaImpresion BETWEEN '" + fechaDesde.ToString("yyyyMMdd") + "' AND '" + fechaHasta.ToString("yyyyMMdd") + "' GROUP BY A.nroAfiliado, A.nombre, A.apellido ORDER BY COUNT(*) DESC";
                         string cadenaquery3 = campos + desdeTabla + condicion;
                         Lista = Conexion.LeerTabla(cadenaquery3);
                         listView1.Clear();
@@ -527,7 +527,7 @@ namespace ClinicaFrba.Listados
 
                         string seleccion = "SELECT TOP 5 E.descripcion, T.especialidad, count(*) AS 'CantBonosUsados' ";
                         string desde = "FROM SELECT_GROUP.Bono B JOIN SELECT_GROUP.Turno T ON B.idAfiliado = T.afiliado_idAfiliado JOIN SELECT_GROUP.Especialidad E ON E.idEspecialidad = T.especialidad ";
-                        string filtro = "WHERE B.estado = 0 AND T.fechaTurno BETWEEN '"+fechaDesde +"' AND '"+fechaHasta +"' ";
+                        string filtro = "WHERE B.estado = 0 AND T.fechaTurno BETWEEN '" + fechaDesde.ToString("yyyyMMdd") + "' AND '" + fechaHasta.ToString("yyyyMMdd") + "' ";
                         string agrupa = "GROUP BY T.especialidad, E.descripcion  ORDER BY count(*) DESC";
                         string query4 = seleccion + desde + filtro + agrupa;
                         Lista = Conexion.LeerTabla(query4);
@@ -578,7 +578,7 @@ namespace ClinicaFrba.Listados
 
 
                             especialidadElegida = (ComboboxItem)comboBox1.SelectedItem;
-                            string query3 = "SELECT TOP 5 Ag.profesional_IdProfesional, Pr.apellido, Pr.nombre   FROM Select_Group.Agenda_Detalle Ad  JOIN Select_Group.Agenda Ag ON Ag.idAgenda = Ad.idAgenda JOIN Select_Group.Profesional Pr ON Pr.matricula = Ag.profesional_IdProfesional  JOIN Select_Group.Profesional_Por_Especialidad Esp ON Esp.profesional_idProfesional = Ag.profesional_IdProfesional  JOIN Select_Group.Turno T ON T.fechaTurno = Ad.fecha_Hora_Turno AND T.idAgenda = Ad.idAgenda  JOIN Select_Group.Afiliado Af ON Af.idAfiliado = T.afiliado_idAfiliado WHERE T.fechaTurno BETWEEN '"+fechaDesde +"' AND '"+fechaHasta +"'  GROUP BY Ag.profesional_IdProfesional, Esp.especialidad_idEspecialidad, Af.plan_idPlan, Pr.apellido, Pr.nombre  HAVING Esp.especialidad_idEspecialidad = " + especialidadElegida.Value.ToString() + " ORDER BY count(Ad.fecha_Hora_Turno) asc ";
+                            string query3 = "SELECT TOP 5 Ag.profesional_IdProfesional, Pr.apellido, Pr.nombre   FROM Select_Group.Agenda_Detalle Ad  JOIN Select_Group.Agenda Ag ON Ag.idAgenda = Ad.idAgenda JOIN Select_Group.Profesional Pr ON Pr.matricula = Ag.profesional_IdProfesional  JOIN Select_Group.Profesional_Por_Especialidad Esp ON Esp.profesional_idProfesional = Ag.profesional_IdProfesional  JOIN Select_Group.Turno T ON T.fechaTurno = Ad.fecha_Hora_Turno AND T.idAgenda = Ad.idAgenda  JOIN Select_Group.Afiliado Af ON Af.idAfiliado = T.afiliado_idAfiliado WHERE T.fechaTurno BETWEEN '" + fechaDesde.ToString("yyyyMMdd") + "' AND '" + fechaHasta.ToString("yyyyMMdd") + "'  GROUP BY Ag.profesional_IdProfesional, Esp.especialidad_idEspecialidad, Af.plan_idPlan, Pr.apellido, Pr.nombre  HAVING Esp.especialidad_idEspecialidad = " + especialidadElegida.Value.ToString() + " ORDER BY count(Ad.fecha_Hora_Turno) asc ";
 
                             Conexion.conectar();
 
