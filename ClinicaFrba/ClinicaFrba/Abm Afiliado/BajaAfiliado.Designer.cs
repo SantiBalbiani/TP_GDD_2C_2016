@@ -76,6 +76,8 @@
             this.nroAfiliadoTxtBox.Size = new System.Drawing.Size(100, 20);
             this.nroAfiliadoTxtBox.TabIndex = 20;
             this.nroAfiliadoTxtBox.Validar = true;
+            this.nroAfiliadoTxtBox.TextChanged += new System.EventHandler(this.nroAfiliadoTxtBox_TextChanged);
+            this.nroAfiliadoTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nroAfiliadoTxtBox_KeyPress);
             // 
             // errorTextBox
             // 
@@ -98,6 +100,26 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void nroAfiliadoTxtBox_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if (System.Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (System.Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (System.Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
 
         #endregion

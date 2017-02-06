@@ -90,5 +90,12 @@ namespace ClinicaFrba.Abm_Afiliado
         {
 
         }
+
+        private void nroAfiliadoTxtBox_TextChanged(object sender, EventArgs e)
+        {
+            nroAfiliadoTxtBox.Text = nroAfiliadoTxtBox.Text.Trim();
+            nroAfiliadoTxtBox.Text = nroAfiliadoTxtBox.Text.Replace(" ", "");
+            nroAfiliadoTxtBox.SelectionStart = nroAfiliadoTxtBox.Text.Length;
+        }
     }
 }
