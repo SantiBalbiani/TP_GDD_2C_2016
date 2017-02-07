@@ -45,6 +45,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnTurnoProf
@@ -178,7 +179,7 @@
             // button2
             // 
             this.button2.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button2.Location = new System.Drawing.Point(263, 299);
+            this.button2.Location = new System.Drawing.Point(192, 294);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(138, 23);
             this.button2.TabIndex = 12;
@@ -221,7 +222,7 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(574, 299);
+            this.btnVolver.Location = new System.Drawing.Point(575, 294);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
             this.btnVolver.TabIndex = 16;
@@ -229,12 +230,24 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(12, 299);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(174, 13);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Seleccione el turno, luego el botón:";
+            this.label6.Visible = false;
+            // 
             // Llegada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(662, 350);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -279,5 +292,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.Label label6;
     }
 }
